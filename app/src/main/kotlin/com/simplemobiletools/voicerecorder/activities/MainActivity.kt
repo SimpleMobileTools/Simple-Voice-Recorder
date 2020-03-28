@@ -4,12 +4,16 @@ import android.content.ContentValues
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.media.MediaRecorder
+import android.media.MediaScannerConnection
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
+import androidx.annotation.RequiresApi
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.PERMISSION_RECORD_AUDIO
+import com.simplemobiletools.commons.helpers.PERMISSION_WRITE_STORAGE
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.models.FAQItem
@@ -34,7 +38,7 @@ class MainActivity : SimpleActivity() {
 
         handlePermission(PERMISSION_RECORD_AUDIO) {
             if (it) {
-                initVoiceRecorder()
+                tryInitVoiceRecorder()
             } else {
                 finish()
             }
@@ -69,6 +73,20 @@ class MainActivity : SimpleActivity() {
         return true
     }
 
+    private fun tryInitVoiceRecorder() {
+        if (isQPlus()) {
+            initVoiceRecorder()
+        } else {
+            handlePermission(PERMISSION_WRITE_STORAGE) {
+                if (it) {
+                    initVoiceRecorder()
+                } else {
+                    finish()
+                }
+            }
+        }
+    }
+
     private fun initVoiceRecorder() {
         toggle_recording_button.setOnClickListener {
             toggleRecording()
@@ -97,11 +115,10 @@ class MainActivity : SimpleActivity() {
 
             try {
                 prepare()
+                start()
             } catch (e: IOException) {
                 showErrorToast(e)
             }
-
-            start()
         }
     }
 
@@ -109,19 +126,21 @@ class MainActivity : SimpleActivity() {
         recorder?.apply {
             stop()
             release()
+
             ensureBackgroundThread {
-                addFileInMediaStore()
+                if (isQPlus()) {
+                    addFileInNewMediaStore()
+                } else {
+                    addFileInLegacyMediaStore()
+                }
             }
         }
         recorder = null
     }
 
-    private fun addFileInMediaStore() {
-        val audioCollection = if (isQPlus()) {
-            MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
-        } else {
-            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
-        }
+    @RequiresApi(Build.VERSION_CODES.Q)
+    private fun addFileInNewMediaStore() {
+        val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
 
         val storeFilename = currFilePath.getFilenameFromPath()
         val newSongDetails = ContentValues().apply {
@@ -139,6 +158,15 @@ class MainActivity : SimpleActivity() {
         val outputStream = contentResolver.openOutputStream(newUri)
         val inputStream = getFileInputStreamSync(currFilePath)
         inputStream!!.copyTo(outputStream!!, DEFAULT_BUFFER_SIZE)
+    }
+
+    private fun addFileInLegacyMediaStore() {
+        MediaScannerConnection.scanFile(
+            this,
+            arrayOf(currFilePath),
+            arrayOf(currFilePath.getMimeType()),
+            null
+        )
     }
 
     private fun getToggleButtonIcon(): Drawable {
