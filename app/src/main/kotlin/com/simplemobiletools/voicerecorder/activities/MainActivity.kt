@@ -11,6 +11,7 @@ import android.view.MenuItem
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.PERMISSION_RECORD_AUDIO
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
+import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
@@ -116,9 +117,11 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun addFileInMediaStore() {
-        val resolver = applicationContext.contentResolver
-
-        val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+        val audioCollection = if (isQPlus()) {
+            MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+        } else {
+            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+        }
 
         val storeFilename = currFilePath.getFilenameFromPath()
         val newSongDetails = ContentValues().apply {
@@ -127,7 +130,7 @@ class MainActivity : SimpleActivity() {
             put(MediaStore.Audio.Media.MIME_TYPE, storeFilename.getMimeType())
         }
 
-        val newUri = resolver.insert(audioCollection, newSongDetails)
+        val newUri = contentResolver.insert(audioCollection, newSongDetails)
         if (newUri == null) {
             toast(R.string.unknown_error_occurred)
             return
