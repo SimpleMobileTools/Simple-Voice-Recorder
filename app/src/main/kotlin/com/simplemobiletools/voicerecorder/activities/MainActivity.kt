@@ -1,6 +1,7 @@
 package com.simplemobiletools.voicerecorder.activities
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -12,6 +13,8 @@ import com.simplemobiletools.voicerecorder.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : SimpleActivity() {
+    private var isRecording = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,9 +35,8 @@ class MainActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
-        val micIcon = resources.getColoredDrawableWithColor(R.drawable.ic_mic_vector, getFABIconColor())
         toggle_recording_button.apply {
-            setImageDrawable(micIcon)
+            setImageDrawable(getToggleButtonIcon())
             background.applyColorFilter(getAdjustedPrimaryColor())
         }
     }
@@ -56,8 +58,32 @@ class MainActivity : SimpleActivity() {
     private fun initVoiceRecorder() {
         val filename = "${getCurrentFormattedDateTime()}.mp3"
         toggle_recording_button.setOnClickListener {
-
+            toggleRecording()
         }
+    }
+
+    private fun toggleRecording() {
+        isRecording = !isRecording
+        toggle_recording_button.setImageDrawable(getToggleButtonIcon())
+
+        if (isRecording) {
+            startRecording()
+        } else {
+            stopRecording()
+        }
+    }
+
+    private fun startRecording() {
+
+    }
+
+    private fun stopRecording() {
+
+    }
+
+    private fun getToggleButtonIcon(): Drawable {
+        val drawable = if (isRecording) R.drawable.ic_stop_vector else R.drawable.ic_mic_vector
+        return resources.getColoredDrawableWithColor(drawable, getFABIconColor())
     }
 
     private fun launchSettings() {
