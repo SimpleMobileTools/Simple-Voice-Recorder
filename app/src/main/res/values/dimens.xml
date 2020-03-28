@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="toggle_recording_button_size">64dp</dimen>
+</resources>

@@ -4,13 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.simplemobiletools.commons.extensions.appLaunched
-import com.simplemobiletools.commons.extensions.checkAppSideloading
-import com.simplemobiletools.commons.extensions.getCurrentFormattedDateTime
+import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.PERMISSION_RECORD_AUDIO
 import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : SimpleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +30,15 @@ class MainActivity : SimpleActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        val micIcon = resources.getColoredDrawableWithColor(R.drawable.ic_mic_vector, getFABIconColor())
+        toggle_recording_button.apply {
+            setImageDrawable(micIcon)
+            background.applyColorFilter(getAdjustedPrimaryColor())
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         return true
@@ -47,6 +55,9 @@ class MainActivity : SimpleActivity() {
 
     private fun initVoiceRecorder() {
         val filename = "${getCurrentFormattedDateTime()}.mp3"
+        toggle_recording_button.setOnClickListener {
+
+        }
     }
 
     private fun launchSettings() {
