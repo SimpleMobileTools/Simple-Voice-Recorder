@@ -2,6 +2,7 @@ package com.simplemobiletools.voicerecorder.activities
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.media.MediaRecorder
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -11,9 +12,11 @@ import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.IOException
 
 class MainActivity : SimpleActivity() {
     private var isRecording = false
+    private var recorder: MediaRecorder? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +44,12 @@ class MainActivity : SimpleActivity() {
         }
     }
 
+    override fun onStop() {
+        super.onStop()
+        recorder?.release()
+        recorder = null
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         return true
@@ -56,7 +65,6 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun initVoiceRecorder() {
-        val filename = "${getCurrentFormattedDateTime()}.mp3"
         toggle_recording_button.setOnClickListener {
             toggleRecording()
         }
@@ -74,11 +82,29 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun startRecording() {
+        val filename = "${getCurrentFormattedDateTime()}.3gp"
+        recorder = MediaRecorder().apply {
+            setAudioSource(MediaRecorder.AudioSource.CAMCORDER)
+            setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
+            setOutputFile(filename)
+            setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
 
+            try {
+                prepare()
+            } catch (e: IOException) {
+                showErrorToast(e)
+            }
+
+            start()
+        }
     }
 
     private fun stopRecording() {
-
+        recorder?.apply {
+            stop()
+            release()
+        }
+        recorder = null
     }
 
     private fun getToggleButtonIcon(): Drawable {
