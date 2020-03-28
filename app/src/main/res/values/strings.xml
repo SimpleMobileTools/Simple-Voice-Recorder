@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Simple Voice Recorder</string>
+    <string name="app_launcher_name">Voice Recorder</string>
 </resources>
