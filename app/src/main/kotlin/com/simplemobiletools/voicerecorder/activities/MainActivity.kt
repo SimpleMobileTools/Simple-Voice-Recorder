@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.simplemobiletools.commons.extensions.appLaunched
 import com.simplemobiletools.commons.extensions.checkAppSideloading
+import com.simplemobiletools.commons.extensions.getCurrentFormattedDateTime
 import com.simplemobiletools.commons.helpers.PERMISSION_RECORD_AUDIO
 import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.voicerecorder.BuildConfig
@@ -45,7 +46,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun initVoiceRecorder() {
-
+        val filename = "${getCurrentFormattedDateTime()}.mp3"
     }
 
     private fun launchSettings() {
