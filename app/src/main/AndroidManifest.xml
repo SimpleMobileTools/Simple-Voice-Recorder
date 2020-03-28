@@ -4,6 +4,8 @@
     package="com.simplemobiletools.voicerecorder"
     android:installLocation="auto">
 
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <uses-feature
         android:name="android.hardware.faketouch"
         android:required="false" />

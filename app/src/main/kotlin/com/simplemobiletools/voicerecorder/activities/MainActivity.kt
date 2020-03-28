@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.simplemobiletools.commons.extensions.appLaunched
+import com.simplemobiletools.commons.extensions.checkAppSideloading
+import com.simplemobiletools.commons.helpers.PERMISSION_RECORD_AUDIO
 import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
@@ -14,6 +16,18 @@ class MainActivity : SimpleActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         appLaunched(BuildConfig.APPLICATION_ID)
+
+        if (checkAppSideloading()) {
+            return
+        }
+
+        handlePermission(PERMISSION_RECORD_AUDIO) {
+            if (it) {
+                initVoiceRecorder()
+            } else {
+                finish()
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -28,6 +42,10 @@ class MainActivity : SimpleActivity() {
             else -> return super.onOptionsItemSelected(item)
         }
         return true
+    }
+
+    private fun initVoiceRecorder() {
+
     }
 
     private fun launchSettings() {
