@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Simple Voice Recorder</string>
     <string name="app_launcher_name">Voice Recorder</string>
+    <string name="recording_saved_successfully">Recording saved successfully as\n\"%s\"</string>
 </resources>

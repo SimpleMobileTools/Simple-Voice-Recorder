@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.PERMISSION_RECORD_AUDIO
 import com.simplemobiletools.commons.helpers.PERMISSION_WRITE_STORAGE
@@ -168,15 +169,21 @@ class MainActivity : SimpleActivity() {
         val outputStream = contentResolver.openOutputStream(newUri)
         val inputStream = getFileInputStreamSync(currFilePath)
         inputStream!!.copyTo(outputStream!!, DEFAULT_BUFFER_SIZE)
+        recordingSavedSuccessfully(true)
     }
 
     private fun addFileInLegacyMediaStore() {
         MediaScannerConnection.scanFile(
             this,
             arrayOf(currFilePath),
-            arrayOf(currFilePath.getMimeType()),
-            null
-        )
+            arrayOf(currFilePath.getMimeType())
+        ) { _, _ -> recordingSavedSuccessfully(false) }
+    }
+
+    private fun recordingSavedSuccessfully(showFilenameOnly: Boolean) {
+        val title = if (showFilenameOnly) currFilePath.getFilenameFromPath() else currFilePath
+        val msg = String.format(getString(R.string.recording_saved_successfully), title)
+        toast(msg, Toast.LENGTH_LONG)
     }
 
     private fun getToggleButtonIcon(): Drawable {
