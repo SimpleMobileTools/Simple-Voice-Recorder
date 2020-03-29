@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Jednoduchý nahrávač hlasu</string>
+    <string name="app_launcher_name">Nahrávač hlasu</string>
+    <string name="recording_saved_successfully">Nahrávka bola uložená ako \n\"%s\"</string>
+</resources>
