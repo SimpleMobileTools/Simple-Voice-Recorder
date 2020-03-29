@@ -1,16 +1,15 @@
 package com.simplemobiletools.voicerecorder.activities
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.media.MediaRecorder
 import android.media.MediaScannerConnection
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
-import androidx.annotation.RequiresApi
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.PERMISSION_RECORD_AUDIO
 import com.simplemobiletools.commons.helpers.PERMISSION_WRITE_STORAGE
@@ -138,7 +137,7 @@ class MainActivity : SimpleActivity() {
         recorder = null
     }
 
-    @RequiresApi(Build.VERSION_CODES.Q)
+    @SuppressLint("InlinedApi")
     private fun addFileInNewMediaStore() {
         val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
 
