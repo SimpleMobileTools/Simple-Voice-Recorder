@@ -19,6 +19,7 @@ import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.File
 import java.io.IOException
 
 class MainActivity : SimpleActivity() {
@@ -105,7 +106,17 @@ class MainActivity : SimpleActivity() {
 
     // mp4 output format with aac encoding should produce good enough mp3 files according to https://stackoverflow.com/a/33054794/1967672
     private fun startRecording() {
-        currFilePath = "${cacheDir}/${getCurrentFormattedDateTime()}.mp3"
+        val baseFolder = if (isQPlus()) {
+            cacheDir
+        } else {
+            val defaultFolder = File("$internalStoragePath/${getString(R.string.app_name)}")
+            if (!defaultFolder.exists()) {
+                defaultFolder.mkdir()
+            }
+            defaultFolder.absolutePath
+        }
+
+        currFilePath = "$baseFolder/${getCurrentFormattedDateTime()}.mp3"
         recorder = MediaRecorder().apply {
             setAudioSource(MediaRecorder.AudioSource.CAMCORDER)
             setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
