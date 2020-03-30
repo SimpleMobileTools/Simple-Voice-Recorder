@@ -29,7 +29,7 @@ class MainActivity : SimpleActivity() {
     private var recorder: MediaRecorder? = null
     private var currFilePath = ""
     private var duration = 0
-    private val timer = Timer()
+    private var timer = Timer()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -136,7 +136,9 @@ class MainActivity : SimpleActivity() {
             try {
                 prepare()
                 start()
-                timer.scheduleAtFixedRate(timerTask, 1000, 1000)
+                duration = 0
+                timer = Timer()
+                timer.scheduleAtFixedRate(getTimerTask(), 1000, 1000)
             } catch (e: IOException) {
                 showErrorToast(e)
             }
@@ -145,6 +147,7 @@ class MainActivity : SimpleActivity() {
 
     private fun stopRecording() {
         timer.cancel()
+
         recorder?.apply {
             stop()
             release()
@@ -197,7 +200,7 @@ class MainActivity : SimpleActivity() {
         toast(msg, Toast.LENGTH_LONG)
     }
 
-    private val timerTask = object : TimerTask() {
+    private fun getTimerTask() = object : TimerTask() {
         override fun run() {
             duration++
             runOnUiThread {
