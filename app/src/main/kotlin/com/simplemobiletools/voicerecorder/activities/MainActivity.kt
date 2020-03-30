@@ -87,6 +87,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun initVoiceRecorder() {
+        visualizer.recreate()
         bus = EventBus.getDefault()
         bus!!.register(this)
 
