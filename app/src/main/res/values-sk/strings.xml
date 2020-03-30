@@ -5,7 +5,7 @@
     <string name="recording">Nahráva sa</string>
 
     <!-- Settings -->
-    <string name="hide_status_bar_icon">Skryť ikonku na vrchnej lište</string>
+    <string name="try_hiding_notification">Skúsiť ukryť nahrávaciu notifikáciu</string>
     <string name="save_recordings_in">Ukladať nahrávky do</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->

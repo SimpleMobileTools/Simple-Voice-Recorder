@@ -5,7 +5,7 @@
     <string name="recording">Recording</string>
 
     <!-- Settings -->
-    <string name="hide_status_bar_icon">Hide the top status bar icon</string>
+    <string name="try_hiding_notification">Try hiding the recording notification</string>
     <string name="save_recordings_in">Save recordings in</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
