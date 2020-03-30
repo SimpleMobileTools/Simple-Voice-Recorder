@@ -22,11 +22,14 @@ import com.simplemobiletools.voicerecorder.R
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.io.IOException
+import java.util.*
 
 class MainActivity : SimpleActivity() {
     private var isRecording = false
     private var recorder: MediaRecorder? = null
     private var currFilePath = ""
+    private var duration = 0
+    private val timer = Timer()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,7 +92,8 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun initVoiceRecorder() {
-        updateRecordingDuration(0)
+        duration = 0
+        updateRecordingDuration()
         toggle_recording_button.setOnClickListener {
             toggleRecording()
         }
@@ -106,8 +110,8 @@ class MainActivity : SimpleActivity() {
         }
     }
 
-    private fun updateRecordingDuration(seconds: Int) {
-        recording_duration.text = seconds.getFormattedDuration()
+    private fun updateRecordingDuration() {
+        recording_duration.text = duration.getFormattedDuration()
     }
 
     // mp4 output format with aac encoding should produce good enough mp3 files according to https://stackoverflow.com/a/33054794/1967672
@@ -132,6 +136,7 @@ class MainActivity : SimpleActivity() {
             try {
                 prepare()
                 start()
+                timer.scheduleAtFixedRate(timerTask, 1000, 1000)
             } catch (e: IOException) {
                 showErrorToast(e)
             }
@@ -139,6 +144,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun stopRecording() {
+        timer.cancel()
         recorder?.apply {
             stop()
             release()
@@ -189,6 +195,15 @@ class MainActivity : SimpleActivity() {
         val title = if (showFilenameOnly) currFilePath.getFilenameFromPath() else currFilePath
         val msg = String.format(getString(R.string.recording_saved_successfully), title)
         toast(msg, Toast.LENGTH_LONG)
+    }
+
+    val timerTask = object : TimerTask() {
+        override fun run() {
+            duration++
+            runOnUiThread {
+                updateRecordingDuration()
+            }
+        }
     }
 
     private fun getToggleButtonIcon(): Drawable {
