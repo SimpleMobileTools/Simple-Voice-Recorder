@@ -69,6 +69,7 @@
             android:exported="false">
             <intent-filter>
                 <action android:name="com.simplemobiletools.voicerecorder.action.GET_RECORDER_INFO" />
+                <action android:name="com.simplemobiletools.voicerecorder.action.STOP_AMPLITUDE_UPDATE" />
             </intent-filter>
         </service>
 

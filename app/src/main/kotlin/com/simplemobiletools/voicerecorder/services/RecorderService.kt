@@ -21,6 +21,7 @@ import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SplashActivity
 import com.simplemobiletools.voicerecorder.helpers.GET_RECORDER_INFO
 import com.simplemobiletools.voicerecorder.helpers.RECORDER_RUNNING_NOTIF_ID
+import com.simplemobiletools.voicerecorder.helpers.STOP_AMPLITUDE_UPDATE
 import com.simplemobiletools.voicerecorder.models.Events
 import org.greenrobot.eventbus.EventBus
 import java.io.File
@@ -44,6 +45,7 @@ class RecorderService : Service() {
 
         when (intent.action) {
             GET_RECORDER_INFO -> broadcastRecorderInfo()
+            STOP_AMPLITUDE_UPDATE -> amplitudeTimer.cancel()
             else -> startRecording()
         }
 
@@ -85,8 +87,7 @@ class RecorderService : Service() {
                 durationTimer = Timer()
                 durationTimer.scheduleAtFixedRate(getDurationUpdateTask(), 1000, 1000)
 
-                amplitudeTimer = Timer()
-                amplitudeTimer.scheduleAtFixedRate(getAmplitudeUpdateTask(), 0, AMPLITUDE_UPDATE_MS)
+                startAmplitudeUpdates()
             } catch (e: IOException) {
                 showErrorToast(e)
                 stopRecording()
@@ -117,6 +118,16 @@ class RecorderService : Service() {
     private fun broadcastRecorderInfo() {
         broadcastDuration()
         broadcastStatus()
+
+        if (isRecording) {
+            startAmplitudeUpdates()
+        }
+    }
+
+    private fun startAmplitudeUpdates() {
+        amplitudeTimer.cancel()
+        amplitudeTimer = Timer()
+        amplitudeTimer.scheduleAtFixedRate(getAmplitudeUpdateTask(), 0, AMPLITUDE_UPDATE_MS)
     }
 
     @SuppressLint("InlinedApi")

@@ -13,6 +13,7 @@ import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.helpers.GET_RECORDER_INFO
+import com.simplemobiletools.voicerecorder.helpers.STOP_AMPLITUDE_UPDATE
 import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.services.RecorderService
 import kotlinx.android.synthetic.main.activity_main.*
@@ -56,6 +57,11 @@ class MainActivity : SimpleActivity() {
     override fun onDestroy() {
         super.onDestroy()
         bus?.unregister(this)
+
+        Intent(this@MainActivity, RecorderService::class.java).apply {
+            action = STOP_AMPLITUDE_UPDATE
+            startService(this)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
