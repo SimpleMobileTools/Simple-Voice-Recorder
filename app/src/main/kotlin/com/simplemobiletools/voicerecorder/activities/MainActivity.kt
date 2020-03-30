@@ -89,6 +89,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun initVoiceRecorder() {
+        updateRecordingDuration(0)
         toggle_recording_button.setOnClickListener {
             toggleRecording()
         }
@@ -103,6 +104,10 @@ class MainActivity : SimpleActivity() {
         } else {
             stopRecording()
         }
+    }
+
+    private fun updateRecordingDuration(seconds: Int) {
+        recording_duration.text = seconds.getFormattedDuration()
     }
 
     // mp4 output format with aac encoding should produce good enough mp3 files according to https://stackoverflow.com/a/33054794/1967672
