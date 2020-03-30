@@ -174,7 +174,7 @@ class RecorderService : Service() {
         val builder = NotificationCompat.Builder(this)
             .setContentTitle(label)
             .setContentText(getString(R.string.recording))
-            .setSmallIcon(R.drawable.ic_mic_vector)
+            .setSmallIcon(R.drawable.ic_microphone_vector)
             .setContentIntent(getOpenAppIntent())
             .setPriority(Notification.PRIORITY_DEFAULT)
             .setSound(null)

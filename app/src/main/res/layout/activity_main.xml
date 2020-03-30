@@ -25,6 +25,6 @@
         android:background="@drawable/circle_background"
         android:elevation="@dimen/medium_margin"
         android:padding="@dimen/normal_margin"
-        android:src="@drawable/ic_mic_vector" />
+        android:src="@drawable/ic_microphone_vector" />
 
 </RelativeLayout>

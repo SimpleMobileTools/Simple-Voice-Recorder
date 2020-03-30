@@ -137,7 +137,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun getToggleButtonIcon(): Drawable {
-        val drawable = if (isRecording) R.drawable.ic_stop_vector else R.drawable.ic_mic_vector
+        val drawable = if (isRecording) R.drawable.ic_stop_vector else R.drawable.ic_microphone_vector
         return resources.getColoredDrawableWithColor(drawable, getFABIconColor())
     }
 
