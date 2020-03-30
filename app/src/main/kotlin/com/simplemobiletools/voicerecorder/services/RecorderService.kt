@@ -28,10 +28,13 @@ import java.io.IOException
 import java.util.*
 
 class RecorderService : Service() {
+    private val AMPLITUDE_UPDATE_MS = 100L
+
     private var currFilePath = ""
     private var duration = 0
     private var isRecording = false
-    private var timer = Timer()
+    private var durationTimer = Timer()
+    private var amplitudeTimer = Timer()
     private var recorder: MediaRecorder? = null
 
     override fun onBind(intent: Intent?): IBinder? = null
@@ -50,8 +53,6 @@ class RecorderService : Service() {
     override fun onDestroy() {
         super.onDestroy()
         stopRecording()
-        recorder?.release()
-        recorder = null
     }
 
     // mp4 output format with aac encoding should produce good enough mp3 files according to https://stackoverflow.com/a/33054794/1967672
@@ -81,8 +82,11 @@ class RecorderService : Service() {
                 broadcastRecorderInfo()
                 startForeground(RECORDER_RUNNING_NOTIF_ID, showNotification())
 
-                timer = Timer()
-                timer.scheduleAtFixedRate(getTimerTask(), 1000, 1000)
+                durationTimer = Timer()
+                durationTimer.scheduleAtFixedRate(getDurationUpdateTask(), 1000, 1000)
+
+                amplitudeTimer = Timer()
+                amplitudeTimer.scheduleAtFixedRate(getAmplitudeUpdateTask(), 0, AMPLITUDE_UPDATE_MS)
             } catch (e: IOException) {
                 showErrorToast(e)
                 stopRecording()
@@ -91,7 +95,8 @@ class RecorderService : Service() {
     }
 
     private fun stopRecording() {
-        timer.cancel()
+        durationTimer.cancel()
+        amplitudeTimer.cancel()
         isRecording = false
 
         recorder?.apply {
@@ -151,10 +156,18 @@ class RecorderService : Service() {
         toast(msg, Toast.LENGTH_LONG)
     }
 
-    private fun getTimerTask() = object : TimerTask() {
+    private fun getDurationUpdateTask() = object : TimerTask() {
         override fun run() {
             duration++
             broadcastDuration()
+        }
+    }
+
+    private fun getAmplitudeUpdateTask() = object : TimerTask() {
+        override fun run() {
+            if (recorder != null) {
+                EventBus.getDefault().post(Events.RecordingAmplitude(recorder!!.maxAmplitude))
+            }
         }
     }
 

@@ -44,10 +44,13 @@ class MainActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
+        val adjustedPrimaryColor = getAdjustedPrimaryColor()
         toggle_recording_button.apply {
             setImageDrawable(getToggleButtonIcon())
-            background.applyColorFilter(getAdjustedPrimaryColor())
+            background.applyColorFilter(adjustedPrimaryColor)
         }
+
+        visualizer.chunkColor = adjustedPrimaryColor
     }
 
     override fun onDestroy() {
@@ -134,6 +137,15 @@ class MainActivity : SimpleActivity() {
     fun gotStatusEvent(event: Events.RecordingStatus) {
         isRecording = event.isRecording
         toggle_recording_button.setImageDrawable(getToggleButtonIcon())
+        if (isRecording) {
+            visualizer.recreate()
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun gotAmplitudeEvent(event: Events.RecordingAmplitude) {
+        val amplitude = event.amplitude
+        visualizer.update(amplitude)
     }
 
     private fun getToggleButtonIcon(): Drawable {
