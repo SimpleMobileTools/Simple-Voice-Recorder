@@ -19,6 +19,7 @@ import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
+import com.simplemobiletools.voicerecorder.services.RecorderService
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.io.IOException
@@ -139,6 +140,10 @@ class MainActivity : SimpleActivity() {
                 duration = 0
                 timer = Timer()
                 timer.scheduleAtFixedRate(getTimerTask(), 1000, 1000)
+
+                Intent(this@MainActivity, RecorderService::class.java).apply {
+                    startService(this)
+                }
             } catch (e: IOException) {
                 showErrorToast(e)
             }
@@ -147,6 +152,10 @@ class MainActivity : SimpleActivity() {
 
     private fun stopRecording() {
         timer.cancel()
+
+        Intent(this@MainActivity, RecorderService::class.java).apply {
+            stopService(this)
+        }
 
         recorder?.apply {
             stop()

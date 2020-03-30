@@ -5,6 +5,7 @@
     android:installLocation="auto">
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
@@ -62,6 +63,8 @@
             android:name="com.simplemobiletools.commons.activities.FAQActivity"
             android:label="@string/frequently_asked_questions"
             android:parentActivityName="com.simplemobiletools.commons.activities.AboutActivity" />
+
+        <service android:name=".services.RecorderService"/>
 
     </application>
 </manifest>
