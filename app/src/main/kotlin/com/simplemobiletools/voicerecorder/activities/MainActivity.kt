@@ -12,7 +12,7 @@ import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
-import com.simplemobiletools.voicerecorder.helpers.GET_DURATION
+import com.simplemobiletools.voicerecorder.helpers.GET_RECORDER_INFO
 import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.services.RecorderService
 import kotlinx.android.synthetic.main.activity_main.*
@@ -93,7 +93,7 @@ class MainActivity : SimpleActivity() {
         }
 
         Intent(this@MainActivity, RecorderService::class.java).apply {
-            action = GET_DURATION
+            action = GET_RECORDER_INFO
             startService(this)
         }
     }
@@ -128,6 +128,12 @@ class MainActivity : SimpleActivity() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun gotDurationEvent(event: Events.RecordingDuration) {
         updateRecordingDuration(event.duration)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun gotStatusEvent(event: Events.RecordingStatus) {
+        isRecording = event.isRecording
+        toggle_recording_button.setImageDrawable(getToggleButtonIcon())
     }
 
     private fun getToggleButtonIcon(): Drawable {

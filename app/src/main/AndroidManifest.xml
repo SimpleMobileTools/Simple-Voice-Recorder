@@ -68,7 +68,7 @@
             android:name=".services.RecorderService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.simplemobiletools.voicerecorder.action.GET_DURATION" />
+                <action android:name="com.simplemobiletools.voicerecorder.action.GET_RECORDER_INFO" />
             </intent-filter>
         </service>
 

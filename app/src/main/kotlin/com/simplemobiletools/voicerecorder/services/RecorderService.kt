@@ -19,7 +19,7 @@ import com.simplemobiletools.commons.helpers.isOreoPlus
 import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SplashActivity
-import com.simplemobiletools.voicerecorder.helpers.GET_DURATION
+import com.simplemobiletools.voicerecorder.helpers.GET_RECORDER_INFO
 import com.simplemobiletools.voicerecorder.helpers.RECORDER_RUNNING_NOTIF_ID
 import com.simplemobiletools.voicerecorder.models.Events
 import org.greenrobot.eventbus.EventBus
@@ -30,6 +30,7 @@ import java.util.*
 class RecorderService : Service() {
     private var currFilePath = ""
     private var duration = 0
+    private var isRecording = false
     private var timer = Timer()
     private var recorder: MediaRecorder? = null
 
@@ -39,7 +40,7 @@ class RecorderService : Service() {
         super.onStartCommand(intent, flags, startId)
 
         when (intent.action) {
-            GET_DURATION -> broadcastDuration()
+            GET_RECORDER_INFO -> broadcastRecorderInfo()
             else -> startRecording()
         }
 
@@ -55,10 +56,6 @@ class RecorderService : Service() {
 
     // mp4 output format with aac encoding should produce good enough mp3 files according to https://stackoverflow.com/a/33054794/1967672
     private fun startRecording() {
-        startForeground(RECORDER_RUNNING_NOTIF_ID, showNotification())
-        duration = 0
-        broadcastDuration()
-
         val baseFolder = if (isQPlus()) {
             cacheDir
         } else {
@@ -80,16 +77,22 @@ class RecorderService : Service() {
                 prepare()
                 start()
                 duration = 0
+                isRecording = true
+                broadcastRecorderInfo()
+                startForeground(RECORDER_RUNNING_NOTIF_ID, showNotification())
+
                 timer = Timer()
                 timer.scheduleAtFixedRate(getTimerTask(), 1000, 1000)
             } catch (e: IOException) {
                 showErrorToast(e)
+                stopRecording()
             }
         }
     }
 
     private fun stopRecording() {
         timer.cancel()
+        isRecording = false
 
         recorder?.apply {
             stop()
@@ -104,6 +107,11 @@ class RecorderService : Service() {
             }
         }
         recorder = null
+    }
+
+    private fun broadcastRecorderInfo() {
+        broadcastDuration()
+        broadcastStatus()
     }
 
     @SuppressLint("InlinedApi")
@@ -185,5 +193,9 @@ class RecorderService : Service() {
 
     private fun broadcastDuration() {
         EventBus.getDefault().post(Events.RecordingDuration(duration))
+    }
+
+    private fun broadcastStatus() {
+        EventBus.getDefault().post(Events.RecordingStatus(isRecording))
     }
 }
