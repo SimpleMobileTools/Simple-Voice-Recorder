@@ -197,7 +197,7 @@ class MainActivity : SimpleActivity() {
         toast(msg, Toast.LENGTH_LONG)
     }
 
-    val timerTask = object : TimerTask() {
+    private val timerTask = object : TimerTask() {
         override fun run() {
             duration++
             runOnUiThread {
