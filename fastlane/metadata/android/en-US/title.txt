@@ -1,1 +1,1 @@
-Simple Voice Recorder
+Simple Voice Recorder - Record any audio easily
