@@ -19,8 +19,12 @@ import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
+import com.simplemobiletools.voicerecorder.helpers.GET_DURATION
+import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.services.RecorderService
 import kotlinx.android.synthetic.main.activity_main.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 import java.io.File
 import java.io.IOException
 import java.util.*
@@ -28,6 +32,7 @@ import java.util.*
 class MainActivity : SimpleActivity() {
     private var isRecording = false
     private var recorder: MediaRecorder? = null
+    private var bus: EventBus? = null
     private var currFilePath = ""
     private var duration = 0
     private var timer = Timer()
@@ -64,6 +69,11 @@ class MainActivity : SimpleActivity() {
         recorder = null
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        bus?.unregister(this)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         return true
@@ -93,10 +103,18 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun initVoiceRecorder() {
+        bus = EventBus.getDefault()
+        bus!!.register(this)
+
         duration = 0
         updateRecordingDuration()
         toggle_recording_button.setOnClickListener {
             toggleRecording()
+        }
+
+        Intent(this@MainActivity, RecorderService::class.java).apply {
+            action = GET_DURATION
+            startService(this)
         }
     }
 
@@ -170,6 +188,11 @@ class MainActivity : SimpleActivity() {
             }
         }
         recorder = null
+    }
+
+    @Subscribe
+    fun gotDurationEvent(event: Events.RecordingDuration) {
+
     }
 
     @SuppressLint("InlinedApi")

@@ -11,14 +11,24 @@ import com.simplemobiletools.commons.extensions.getLaunchIntent
 import com.simplemobiletools.commons.helpers.isOreoPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SplashActivity
+import com.simplemobiletools.voicerecorder.helpers.GET_DURATION
 import com.simplemobiletools.voicerecorder.helpers.RECORDER_RUNNING_NOTIF_ID
+import com.simplemobiletools.voicerecorder.models.Events
+import org.greenrobot.eventbus.EventBus
 
 class RecorderService : Service() {
     override fun onBind(intent: Intent?): IBinder? = null
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+    override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
-        startForeground(RECORDER_RUNNING_NOTIF_ID, showNotification())
+
+        val action = intent.action
+        if (action == GET_DURATION) {
+            broadcastDuration()
+        } else {
+            startForeground(RECORDER_RUNNING_NOTIF_ID, showNotification())
+        }
+
         return START_NOT_STICKY
     }
 
@@ -53,5 +63,9 @@ class RecorderService : Service() {
     private fun getOpenAppIntent(): PendingIntent {
         val intent = getLaunchIntent() ?: Intent(this, SplashActivity::class.java)
         return PendingIntent.getActivity(this, RECORDER_RUNNING_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    }
+
+    private fun broadcastDuration() {
+        EventBus.getDefault().post(Events.RecordingDuration(3))
     }
 }
