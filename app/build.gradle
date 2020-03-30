@@ -38,6 +38,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.simplemobiletools:commons:5.24.3'
+    implementation 'com.simplemobiletools:commons:5.24.4'
     implementation 'org.greenrobot:eventbus:3.2.0'
 }
