@@ -28,7 +28,7 @@ import java.io.IOException
 import java.util.*
 
 class RecorderService : Service() {
-    private val AMPLITUDE_UPDATE_MS = 100L
+    private val AMPLITUDE_UPDATE_MS = 75L
 
     private var currFilePath = ""
     private var duration = 0
