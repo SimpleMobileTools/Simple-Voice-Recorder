@@ -1,14 +1,12 @@
 package com.simplemobiletools.voicerecorder.activities
 
-import android.content.Intent
 import android.os.Bundle
-import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.extensions.isThankYouInstalled
 import com.simplemobiletools.commons.extensions.launchPurchaseThankYouIntent
 import com.simplemobiletools.commons.extensions.updateTextColors
-import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.voicerecorder.R
+import com.simplemobiletools.voicerecorder.extensions.config
 import kotlinx.android.synthetic.main.activity_settings.*
 import java.util.*
 
@@ -25,6 +23,7 @@ class SettingsActivity : SimpleActivity() {
         setupPurchaseThankYou()
         setupCustomizeColors()
         setupUseEnglish()
+        setupHideNotification()
         updateTextColors(settings_scrollview)
     }
 
@@ -48,6 +47,14 @@ class SettingsActivity : SimpleActivity() {
             settings_use_english.toggle()
             config.useEnglish = settings_use_english.isChecked
             System.exit(0)
+        }
+    }
+
+    private fun setupHideNotification() {
+        settings_hide_notification.isChecked = config.hideNotification
+        settings_hide_notification_holder.setOnClickListener {
+            settings_hide_notification.toggle()
+            config.hideNotification = settings_hide_notification.isChecked
         }
     }
 }

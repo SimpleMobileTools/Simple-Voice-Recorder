@@ -19,6 +19,7 @@ import com.simplemobiletools.commons.helpers.isOreoPlus
 import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SplashActivity
+import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.helpers.GET_RECORDER_INFO
 import com.simplemobiletools.voicerecorder.helpers.RECORDER_RUNNING_NOTIF_ID
 import com.simplemobiletools.voicerecorder.helpers.STOP_AMPLITUDE_UPDATE
@@ -184,29 +185,44 @@ class RecorderService : Service() {
 
     @TargetApi(Build.VERSION_CODES.O)
     private fun showNotification(): Notification {
+        val hideNotification = config.hideNotification
         val channelId = "simple_recorder"
         val label = getString(R.string.app_name)
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (isOreoPlus()) {
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val importance = if (hideNotification) NotificationManager.IMPORTANCE_MIN else NotificationManager.IMPORTANCE_DEFAULT
             NotificationChannel(channelId, label, importance).apply {
                 setSound(null, null)
                 notificationManager.createNotificationChannel(this)
             }
         }
 
+        var priority = Notification.PRIORITY_DEFAULT
+        var icon = R.drawable.ic_microphone_small
+        var title = label
+        var text = getString(R.string.recording)
+        var visibility = NotificationCompat.VISIBILITY_PUBLIC
+
+        if (hideNotification) {
+            priority = Notification.PRIORITY_MIN
+            icon = R.drawable.ic_empty
+            title = ""
+            text = ""
+            visibility = NotificationCompat.VISIBILITY_SECRET
+        }
+
         val builder = NotificationCompat.Builder(this)
-            .setContentTitle(label)
-            .setContentText(getString(R.string.recording))
-            .setSmallIcon(R.drawable.ic_microphone_small)
+            .setContentTitle(title)
+            .setContentText(text)
+            .setSmallIcon(icon)
             .setContentIntent(getOpenAppIntent())
-            .setPriority(Notification.PRIORITY_DEFAULT)
+            .setPriority(priority)
+            .setVisibility(visibility)
             .setSound(null)
             .setOngoing(true)
             .setAutoCancel(true)
             .setChannelId(channelId)
 
-        builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
         return builder.build()
     }
 
