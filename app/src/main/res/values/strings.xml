@@ -4,6 +4,10 @@
     <string name="recording_saved_successfully">Recording saved successfully as\n\"%s\"</string>
     <string name="recording">Recording</string>
 
+    <!-- Settings -->
+    <string name="hide_status_bar_icon">Hide the top status bar icon</string>
+    <string name="save_recordings_in">Save recordings in</string>
+
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">Simple Voice Recorder - Record any audio easily</string>
