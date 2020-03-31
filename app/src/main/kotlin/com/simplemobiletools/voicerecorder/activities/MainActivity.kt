@@ -10,6 +10,7 @@ import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
+import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.helpers.GET_RECORDER_INFO
 import com.simplemobiletools.voicerecorder.helpers.STOP_AMPLITUDE_UPDATE
 import com.simplemobiletools.voicerecorder.models.Events
@@ -50,6 +51,7 @@ class MainActivity : SimpleActivity() {
         }
 
         visualizer.chunkColor = adjustedPrimaryColor
+        recording_duration.setTextColor(config.textColor)
     }
 
     override fun onDestroy() {

@@ -11,9 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/recording_duration"
-        android:layout_marginTop="@dimen/activity_margin"
-        android:layout_marginEnd="@dimen/activity_margin"
-        android:layout_marginBottom="@dimen/activity_margin"
+        android:layout_margin="@dimen/big_margin"
+        android:background="@drawable/frame_background"
         app:chunkAlignTo="center"
         app:chunkMaxHeight="200dp"
         app:chunkMinHeight="2dp"
@@ -22,7 +21,7 @@
         app:chunkSpace="1dp"
         app:chunkWidth="3dp" />
 
-    <TextView
+    <com.simplemobiletools.commons.views.MyTextView
         android:id="@+id/recording_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
