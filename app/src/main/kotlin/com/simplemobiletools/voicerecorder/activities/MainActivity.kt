@@ -1,28 +1,21 @@
 package com.simplemobiletools.voicerecorder.activities
 
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.extensions.appLaunched
+import com.simplemobiletools.commons.extensions.checkAppSideloading
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
-import com.simplemobiletools.voicerecorder.extensions.config
-import com.simplemobiletools.voicerecorder.helpers.GET_RECORDER_INFO
+import com.simplemobiletools.voicerecorder.adapters.ViewPagerAdapter
 import com.simplemobiletools.voicerecorder.helpers.STOP_AMPLITUDE_UPDATE
-import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.services.RecorderService
-import kotlinx.android.synthetic.main.fragment_recorder.*
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : SimpleActivity() {
-    private var isRecording = false
-    private var bus: EventBus? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,19 +37,12 @@ class MainActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
-        val adjustedPrimaryColor = getAdjustedPrimaryColor()
-        toggle_recording_button.apply {
-            setImageDrawable(getToggleButtonIcon())
-            background.applyColorFilter(adjustedPrimaryColor)
-        }
-
-        recorder_visualizer.chunkColor = adjustedPrimaryColor
-        recording_duration.setTextColor(config.textColor)
+        getPagerAdapter()?.onResume()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        bus?.unregister(this)
+        getPagerAdapter()?.onDestroy()
 
         Intent(this@MainActivity, RecorderService::class.java).apply {
             action = STOP_AMPLITUDE_UPDATE
@@ -80,11 +66,11 @@ class MainActivity : SimpleActivity() {
 
     private fun tryInitVoiceRecorder() {
         if (isQPlus()) {
-            initVoiceRecorder()
+            setupViewPager()
         } else {
             handlePermission(PERMISSION_WRITE_STORAGE) {
                 if (it) {
-                    initVoiceRecorder()
+                    setupViewPager()
                 } else {
                     finish()
                 }
@@ -92,73 +78,11 @@ class MainActivity : SimpleActivity() {
         }
     }
 
-    private fun initVoiceRecorder() {
-        recorder_visualizer.recreate()
-        bus = EventBus.getDefault()
-        bus!!.register(this)
-
-        updateRecordingDuration(0)
-        toggle_recording_button.setOnClickListener {
-            toggleRecording()
-        }
-
-        Intent(this@MainActivity, RecorderService::class.java).apply {
-            action = GET_RECORDER_INFO
-            startService(this)
-        }
+    private fun setupViewPager() {
+        viewpager.adapter = ViewPagerAdapter(this)
     }
 
-    private fun toggleRecording() {
-        isRecording = !isRecording
-        toggle_recording_button.setImageDrawable(getToggleButtonIcon())
-
-        if (isRecording) {
-            startRecording()
-        } else {
-            stopRecording()
-        }
-    }
-
-    private fun updateRecordingDuration(duration: Int) {
-        recording_duration.text = duration.getFormattedDuration()
-    }
-
-    private fun startRecording() {
-        Intent(this@MainActivity, RecorderService::class.java).apply {
-            startService(this)
-        }
-    }
-
-    private fun stopRecording() {
-        Intent(this@MainActivity, RecorderService::class.java).apply {
-            stopService(this)
-        }
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun gotDurationEvent(event: Events.RecordingDuration) {
-        updateRecordingDuration(event.duration)
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun gotStatusEvent(event: Events.RecordingStatus) {
-        isRecording = event.isRecording
-        toggle_recording_button.setImageDrawable(getToggleButtonIcon())
-        if (isRecording) {
-            recorder_visualizer.recreate()
-        }
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun gotAmplitudeEvent(event: Events.RecordingAmplitude) {
-        val amplitude = event.amplitude
-        recorder_visualizer.update(amplitude)
-    }
-
-    private fun getToggleButtonIcon(): Drawable {
-        val drawable = if (isRecording) R.drawable.ic_stop_vector else R.drawable.ic_microphone_vector
-        return resources.getColoredDrawableWithColor(drawable, getFABIconColor())
-    }
+    private fun getPagerAdapter() = (viewpager.adapter as? ViewPagerAdapter)
 
     private fun launchSettings() {
         startActivity(Intent(applicationContext, SettingsActivity::class.java))
