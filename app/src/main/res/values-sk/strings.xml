@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Jednoduchý nahrávač hlasu</string>
-    <string name="app_launcher_name">Nahrávač hlasu</string>
+    <string name="app_name">Jednoduchý nahrávač zvuku</string>
+    <string name="app_launcher_name">Nahrávač zvuku</string>
     <string name="recording_saved_successfully">Nahrávka bola uložená ako \n\"%s\"</string>
     <string name="recording">Nahráva sa</string>
 
@@ -15,17 +15,17 @@
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Voice Recorder - Record any audio easily</string>
+    <string name="app_title">Jednoduchý nahrávač zvuku - Nahrajte zvuky ľahko</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">An easy way of recording any discussion or sounds without ads or internet access</string>
+    <string name="app_short_description">Jednoduchý spôsob nahrávania diskusií, alebo hociakých zvukov bez reklám</string>
     <string name="app_long_description">
-        Ever wished you remember what the other person said? Or the task they gave you at a meeting? Wish no more. With this simple recorder you can record any audio really quickly.
+        Nevedeli ste si niekedy spomenúť, čo niekto povedal? Alebo akú úlohu ste dostali na meetingu? Už nikdy to nemusí byť problém. S týmto nahrávačom viete nahrať ľubovoľné zvuky úplne jednoducho.
 
-        The app goes straight to the point, it contains no fancy features that you won\'t use. Just you and the voice recorder. It shows the current sound volume on a nice visualization that you can have a lot of fun with. Provides a really intuitive and clean user interface, not much can go wrong there.
+        Apka ide priamo na vec, neobsahuje žiadne špeciálne funkcie, ktoré aj tak nepoužijete. Iba vy a nahrávač. Zobrazuje aktuálnu hlasitosť audia peknou vizualizáciou, s ktorou sa môžete aj zahrať. Poskytuje intuitívne a čisté používateľské rozhranie, nič sa tam nemôže pokaziť.
 
-        Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
+        Neobsahuje žiadne reklamy a nepotrebné oprávnenia. Je opensource, poskytuje možnosť zmeny farieb.
 
-        <b>Check out the full suite of Simple Tools here:</b>
+        <b>Pozrite si celú sadu aplikácií na:</b>
         https://www.simplemobiletools.com
 
         <b>Facebook:</b>
