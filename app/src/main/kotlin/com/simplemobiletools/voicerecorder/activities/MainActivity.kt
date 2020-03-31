@@ -1,16 +1,17 @@
 package com.simplemobiletools.voicerecorder.activities
 
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.simplemobiletools.commons.extensions.appLaunched
-import com.simplemobiletools.commons.extensions.checkAppSideloading
+import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.adapters.ViewPagerAdapter
+import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.helpers.STOP_AMPLITUDE_UPDATE
 import com.simplemobiletools.voicerecorder.services.RecorderService
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,6 +34,8 @@ class MainActivity : SimpleActivity() {
                 finish()
             }
         }
+
+        setupTabColors(config.lastUsedViewPagerPage)
     }
 
     override fun onResume() {
@@ -43,6 +46,7 @@ class MainActivity : SimpleActivity() {
     override fun onDestroy() {
         super.onDestroy()
         getPagerAdapter()?.onDestroy()
+        config.lastUsedViewPagerPage = view_pager.currentItem
 
         Intent(this@MainActivity, RecorderService::class.java).apply {
             action = STOP_AMPLITUDE_UPDATE
@@ -79,10 +83,31 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun setupViewPager() {
-        viewpager.adapter = ViewPagerAdapter(this)
+        view_pager.adapter = ViewPagerAdapter(this)
     }
 
-    private fun getPagerAdapter() = (viewpager.adapter as? ViewPagerAdapter)
+    private fun getPagerAdapter() = (view_pager.adapter as? ViewPagerAdapter)
+
+    private fun setupTabColors(lastUsedTab: Int) {
+        main_tabs_holder.apply {
+            background = ColorDrawable(config.backgroundColor)
+            setSelectedTabIndicatorColor(getAdjustedPrimaryColor())
+            getTabAt(lastUsedTab)?.apply {
+                select()
+                icon?.applyColorFilter(getAdjustedPrimaryColor())
+            }
+        }
+
+        main_tabs_holder.onTabSelectionChanged(
+            tabUnselectedAction = {
+                it.icon?.applyColorFilter(config.textColor)
+            },
+            tabSelectedAction = {
+                view_pager.currentItem = it.position
+                it.icon?.applyColorFilter(getAdjustedPrimaryColor())
+            }
+        )
+    }
 
     private fun launchSettings() {
         startActivity(Intent(applicationContext, SettingsActivity::class.java))
