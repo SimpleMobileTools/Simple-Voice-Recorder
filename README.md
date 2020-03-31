@@ -9,6 +9,9 @@ Contains no ads or unnecessary permissions. It is fully opensource, provides cus
 
 This app is just one piece of a bigger series of apps. You can find the rest of them at https://www.simplemobiletools.com
 
+<a href='https://play.google.com/store/apps/details?id=com.simplemobiletools.voicerecorder'><img src='https://simplemobiletools.com/assets/images/google-play.png' alt='Get it on Google Play' height=45/></a>
+
 <div style="display:flex;">
 <img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/app_1.jpg" width="30%">
+<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/app_2.jpg" width="30%">
 </div>
