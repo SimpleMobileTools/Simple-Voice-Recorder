@@ -12,7 +12,7 @@ class ViewPagerAdapter(private val activity: SimpleActivity) : PagerAdapter() {
     private val mFragments = SparseArray<MyViewPagerFragment>()
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val layout = R.layout.fragment_recorder
+        val layout = if (position == 0) R.layout.fragment_recorder else R.layout.fragment_player
         val view = activity.layoutInflater.inflate(layout, container, false)
         container.addView(view)
 
@@ -25,15 +25,19 @@ class ViewPagerAdapter(private val activity: SimpleActivity) : PagerAdapter() {
         container.removeView(item as View)
     }
 
-    override fun getCount() = 1
+    override fun getCount() = 2
 
     override fun isViewFromObject(view: View, item: Any) = view == item
 
     fun onResume() {
-        mFragments.get(0)?.onResume()
+        for (i in 0 until mFragments.size()) {
+            mFragments[i].onResume()
+        }
     }
 
     fun onDestroy() {
-        mFragments.get(0)?.onDestroy()
+        for (i in 0 until mFragments.size()) {
+            mFragments[i].onDestroy()
+        }
     }
 }

@@ -34,13 +34,12 @@ class MainActivity : SimpleActivity() {
                 finish()
             }
         }
-
-        setupTabColors(config.lastUsedViewPagerPage)
     }
 
     override fun onResume() {
         super.onResume()
         getPagerAdapter()?.onResume()
+        setupTabColors()
     }
 
     override fun onDestroy() {
@@ -84,19 +83,10 @@ class MainActivity : SimpleActivity() {
 
     private fun setupViewPager() {
         view_pager.adapter = ViewPagerAdapter(this)
-    }
-
-    private fun getPagerAdapter() = (view_pager.adapter as? ViewPagerAdapter)
-
-    private fun setupTabColors(lastUsedTab: Int) {
-        main_tabs_holder.apply {
-            background = ColorDrawable(config.backgroundColor)
-            setSelectedTabIndicatorColor(getAdjustedPrimaryColor())
-            getTabAt(lastUsedTab)?.apply {
-                select()
-                icon?.applyColorFilter(getAdjustedPrimaryColor())
-            }
+        view_pager.onPageChangeListener {
+            main_tabs_holder.getTabAt(it)?.select()
         }
+        view_pager.currentItem = config.lastUsedViewPagerPage
 
         main_tabs_holder.onTabSelectionChanged(
             tabUnselectedAction = {
@@ -108,6 +98,19 @@ class MainActivity : SimpleActivity() {
             }
         )
     }
+
+    private fun getPagerAdapter() = (view_pager.adapter as? ViewPagerAdapter)
+
+    private fun setupTabColors() {
+        main_tabs_holder.apply {
+            background = ColorDrawable(config.backgroundColor)
+            setSelectedTabIndicatorColor(getAdjustedPrimaryColor())
+            getTabAt(view_pager.currentItem)?.icon?.applyColorFilter(getAdjustedPrimaryColor())
+            getTabAt(getInactiveTabIndex())?.icon?.applyColorFilter(config.textColor)
+        }
+    }
+
+    private fun getInactiveTabIndex() = if (view_pager.currentItem == 0) 1 else 0
 
     private fun launchSettings() {
         startActivity(Intent(applicationContext, SettingsActivity::class.java))
