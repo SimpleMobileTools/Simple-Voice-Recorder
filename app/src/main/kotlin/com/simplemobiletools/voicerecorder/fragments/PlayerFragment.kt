@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.provider.MediaStore
 import android.util.AttributeSet
 import com.simplemobiletools.commons.extensions.getIntValue
+import com.simplemobiletools.commons.extensions.getLongValue
 import com.simplemobiletools.commons.extensions.getStringValue
 import com.simplemobiletools.commons.extensions.showErrorToast
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
@@ -44,8 +45,11 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
         val uri = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
         val projection = arrayOf(
+            MediaStore.Audio.Media._ID,
             MediaStore.Audio.Media.TITLE,
-            MediaStore.Audio.Media._ID
+            MediaStore.Audio.Media.DATE_ADDED,
+            MediaStore.Audio.Media.DURATION,
+            MediaStore.Audio.Media.SIZE
         )
 
         val selection = "${MediaStore.Audio.Media.OWNER_PACKAGE_NAME} = ?"
@@ -57,9 +61,13 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             cursor = context.contentResolver.query(uri, projection, selection, selectionArgs, sorting)
             if (cursor?.moveToFirst() == true) {
                 do {
-                    val title = cursor.getStringValue(MediaStore.Audio.Media.TITLE)
                     val id = cursor.getIntValue(MediaStore.Audio.Media._ID)
-                    val recording = Recording(id, title, "")
+                    val title = cursor.getStringValue(MediaStore.Audio.Media.TITLE)
+                    val path = ""
+                    val timestamp = cursor.getIntValue(MediaStore.Audio.Media.DATE_ADDED)
+                    val duration = cursor.getLongValue(MediaStore.Audio.Media.DURATION) / 1000
+                    val size = cursor.getIntValue(MediaStore.Audio.Media.SIZE)
+                    val recording = Recording(id, title, "", timestamp, duration.toInt(), size)
                     recordings.add(recording)
                 } while (cursor.moveToNext())
             }

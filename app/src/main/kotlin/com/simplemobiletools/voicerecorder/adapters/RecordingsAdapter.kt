@@ -3,7 +3,11 @@ package com.simplemobiletools.voicerecorder.adapters
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
+import com.simplemobiletools.commons.extensions.formatDate
+import com.simplemobiletools.commons.extensions.formatSize
+import com.simplemobiletools.commons.extensions.getFormattedDuration
 import com.simplemobiletools.commons.views.FastScroller
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.voicerecorder.R
@@ -53,7 +57,14 @@ class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Reco
         view.apply {
             recording_frame?.isSelected = selectedKeys.contains(recording.id)
             recording_title.text = recording.title
-            recording_title.setTextColor(textColor)
+
+            recording_date.text = recording.timestamp.formatDate(context)
+            recording_duration.text = recording.duration.getFormattedDuration()
+            recording_size.text = recording.size.formatSize()
+
+            arrayListOf<TextView>(recording_title, recording_date, recording_duration, recording_size).forEach {
+                it.setTextColor(textColor)
+            }
         }
     }
 }
