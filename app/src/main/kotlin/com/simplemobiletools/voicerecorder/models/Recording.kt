@@ -1,3 +1,3 @@
 package com.simplemobiletools.voicerecorder.models
 
-class Recording(id: Int, title: String, path: String)
+data class Recording(val id: Int, val title: String, val path: String)

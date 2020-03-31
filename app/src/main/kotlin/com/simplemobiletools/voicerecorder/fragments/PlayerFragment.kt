@@ -3,24 +3,39 @@ package com.simplemobiletools.voicerecorder.fragments
 import android.annotation.SuppressLint
 import android.content.Context
 import android.database.Cursor
-import android.os.Build
 import android.provider.MediaStore
 import android.util.AttributeSet
-import androidx.annotation.RequiresApi
 import com.simplemobiletools.commons.extensions.getIntValue
 import com.simplemobiletools.commons.extensions.getStringValue
 import com.simplemobiletools.commons.extensions.showErrorToast
+import com.simplemobiletools.voicerecorder.activities.SimpleActivity
+import com.simplemobiletools.voicerecorder.adapters.RecordingsAdapter
 import com.simplemobiletools.voicerecorder.models.Recording
+import kotlinx.android.synthetic.main.fragment_player.view.*
 
 class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet) {
 
-    override fun onResume() {}
+    override fun onResume() {
+        setupColors()
+    }
 
     override fun onDestroy() {}
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        getRecordings()
+
+        val recordings = getRecordings()
+        RecordingsAdapter(context as SimpleActivity, recordings, recordings_list, recordings_fastscroller) {
+
+        }.apply {
+            recordings_list.adapter = this
+        }
+
+        recordings_fastscroller.setScrollToY(0)
+        recordings_fastscroller.setViews(recordings_list) {
+            val item = (recordings_list.adapter as RecordingsAdapter).recordings.getOrNull(it)
+            recordings_fastscroller.updateBubbleText(item?.title ?: "")
+        }
     }
 
     @SuppressLint("InlinedApi")
@@ -55,5 +70,10 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         }
 
         return recordings
+    }
+
+    private fun setupColors() {
+        recordings_fastscroller.updatePrimaryColor()
+        recordings_fastscroller.updateBubbleColors()
     }
 }
