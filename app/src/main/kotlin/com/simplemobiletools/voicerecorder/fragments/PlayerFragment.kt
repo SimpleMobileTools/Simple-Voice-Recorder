@@ -44,7 +44,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
         val uri = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
         val projection = arrayOf(
-            MediaStore.Audio.Media.DISPLAY_NAME,
+            MediaStore.Audio.Media.TITLE,
             MediaStore.Audio.Media._ID
         )
 
@@ -57,7 +57,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             cursor = context.contentResolver.query(uri, projection, selection, selectionArgs, sorting)
             if (cursor?.moveToFirst() == true) {
                 do {
-                    val title = cursor.getStringValue(MediaStore.Audio.Media.DISPLAY_NAME)
+                    val title = cursor.getStringValue(MediaStore.Audio.Media.TITLE)
                     val id = cursor.getIntValue(MediaStore.Audio.Media._ID)
                     val recording = Recording(id, title, "")
                     recordings.add(recording)
