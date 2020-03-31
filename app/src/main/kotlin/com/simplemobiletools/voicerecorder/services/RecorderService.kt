@@ -63,7 +63,7 @@ class RecorderService : Service() {
         val baseFolder = if (isQPlus()) {
             cacheDir
         } else {
-            val defaultFolder = File("$internalStoragePath/${getString(R.string.app_name)}")
+            val defaultFolder = File(config.saveRecordingsFolder)
             if (!defaultFolder.exists()) {
                 defaultFolder.mkdir()
             }

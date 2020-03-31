@@ -1,10 +1,9 @@
 package com.simplemobiletools.voicerecorder.activities
 
 import android.os.Bundle
-import com.simplemobiletools.commons.extensions.beVisibleIf
-import com.simplemobiletools.commons.extensions.isThankYouInstalled
-import com.simplemobiletools.commons.extensions.launchPurchaseThankYouIntent
-import com.simplemobiletools.commons.extensions.updateTextColors
+import com.simplemobiletools.commons.dialogs.FilePickerDialog
+import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.extensions.config
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -24,6 +23,7 @@ class SettingsActivity : SimpleActivity() {
         setupCustomizeColors()
         setupUseEnglish()
         setupHideNotification()
+        setupSaveRecordingsFolder()
         updateTextColors(settings_scrollview)
     }
 
@@ -55,6 +55,22 @@ class SettingsActivity : SimpleActivity() {
         settings_hide_notification_holder.setOnClickListener {
             settings_hide_notification.toggle()
             config.hideNotification = settings_hide_notification.isChecked
+        }
+    }
+
+    private fun setupSaveRecordingsFolder() {
+        settings_save_recordings_holder.beGoneIf(isQPlus())
+        settings_save_recordings.text = humanizePath(config.saveRecordingsFolder)
+        settings_save_recordings_holder.setOnClickListener {
+            FilePickerDialog(this, config.saveRecordingsFolder, false, showFAB = true) {
+                val path = it
+                handleSAFDialog(it) {
+                    if (it) {
+                        config.saveRecordingsFolder = path
+                        settings_save_recordings.text = humanizePath(config.saveRecordingsFolder)
+                    }
+                }
+            }
         }
     }
 }

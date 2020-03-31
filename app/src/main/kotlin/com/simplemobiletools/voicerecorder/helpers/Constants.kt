@@ -8,3 +8,4 @@ const val STOP_AMPLITUDE_UPDATE = PATH + "STOP_AMPLITUDE_UPDATE"
 
 // shared preferences
 const val HIDE_NOTIFICATION = "hide_notification"
+const val SAVE_RECORDINGS = "save_recordings"
