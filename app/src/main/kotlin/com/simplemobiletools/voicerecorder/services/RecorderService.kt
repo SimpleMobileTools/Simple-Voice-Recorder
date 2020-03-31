@@ -79,7 +79,7 @@ class RecorderService : Service() {
             try {
                 if (!isQPlus() && isPathOnSD(currFilePath)) {
                     var document = getDocumentFile(currFilePath.getParentPath())
-                    document = document?.createFile("", currFilePath.substring(currFilePath.lastIndexOf('/') + 1))
+                    document = document?.createFile("", currFilePath.getFilenameFromPath())
 
                     val outputFileDescriptor = contentResolver.openFileDescriptor(document!!.uri, "w")!!.fileDescriptor
                     setOutputFile(outputFileDescriptor)
