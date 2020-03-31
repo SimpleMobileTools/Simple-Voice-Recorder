@@ -26,7 +26,6 @@ import com.simplemobiletools.voicerecorder.helpers.STOP_AMPLITUDE_UPDATE
 import com.simplemobiletools.voicerecorder.models.Events
 import org.greenrobot.eventbus.EventBus
 import java.io.File
-import java.io.IOException
 import java.util.*
 
 class RecorderService : Service() {
@@ -67,6 +66,7 @@ class RecorderService : Service() {
             if (!defaultFolder.exists()) {
                 defaultFolder.mkdir()
             }
+
             defaultFolder.absolutePath
         }
 
@@ -75,9 +75,18 @@ class RecorderService : Service() {
             setAudioSource(MediaRecorder.AudioSource.CAMCORDER)
             setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
             setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
-            setOutputFile(currFilePath)
 
             try {
+                if (!isQPlus() && isPathOnSD(currFilePath)) {
+                    var document = getDocumentFile(currFilePath.getParentPath())
+                    document = document?.createFile("", currFilePath.substring(currFilePath.lastIndexOf('/') + 1))
+
+                    val outputFileDescriptor = contentResolver.openFileDescriptor(document!!.uri, "w")!!.fileDescriptor
+                    setOutputFile(outputFileDescriptor)
+                } else {
+                    setOutputFile(currFilePath)
+                }
+
                 prepare()
                 start()
                 duration = 0
@@ -89,7 +98,7 @@ class RecorderService : Service() {
                 durationTimer.scheduleAtFixedRate(getDurationUpdateTask(), 1000, 1000)
 
                 startAmplitudeUpdates()
-            } catch (e: IOException) {
+            } catch (e: Exception) {
                 showErrorToast(e)
                 stopRecording()
             }
