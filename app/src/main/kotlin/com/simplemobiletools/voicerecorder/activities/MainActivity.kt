@@ -15,7 +15,7 @@ import com.simplemobiletools.voicerecorder.helpers.GET_RECORDER_INFO
 import com.simplemobiletools.voicerecorder.helpers.STOP_AMPLITUDE_UPDATE
 import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.services.RecorderService
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_recorder.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -50,7 +50,7 @@ class MainActivity : SimpleActivity() {
             background.applyColorFilter(adjustedPrimaryColor)
         }
 
-        visualizer.chunkColor = adjustedPrimaryColor
+        recorder_visualizer.chunkColor = adjustedPrimaryColor
         recording_duration.setTextColor(config.textColor)
     }
 
@@ -93,7 +93,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun initVoiceRecorder() {
-        visualizer.recreate()
+        recorder_visualizer.recreate()
         bus = EventBus.getDefault()
         bus!!.register(this)
 
@@ -145,14 +145,14 @@ class MainActivity : SimpleActivity() {
         isRecording = event.isRecording
         toggle_recording_button.setImageDrawable(getToggleButtonIcon())
         if (isRecording) {
-            visualizer.recreate()
+            recorder_visualizer.recreate()
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun gotAmplitudeEvent(event: Events.RecordingAmplitude) {
         val amplitude = event.amplitude
-        visualizer.update(amplitude)
+        recorder_visualizer.update(amplitude)
     }
 
     private fun getToggleButtonIcon(): Drawable {
