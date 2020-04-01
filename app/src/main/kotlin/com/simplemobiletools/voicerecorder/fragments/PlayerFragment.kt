@@ -11,10 +11,8 @@ import android.os.Looper
 import android.os.PowerManager
 import android.provider.MediaStore
 import android.util.AttributeSet
-import android.util.Log
 import android.widget.SeekBar
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.isOnMainThread
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
 import com.simplemobiletools.voicerecorder.adapters.RecordingsAdapter
@@ -144,6 +142,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         player_progressbar.max = recording.duration
         player_title.text = recording.title
         player_progress_max.text = recording.duration.getFormattedDuration()
+        (recordings_list.adapter as RecordingsAdapter).updateCurrentRecording(recording.id)
 
         player!!.apply {
             reset()

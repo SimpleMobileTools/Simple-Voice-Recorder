@@ -7,6 +7,7 @@ import android.widget.TextView
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.commons.extensions.formatDate
 import com.simplemobiletools.commons.extensions.formatSize
+import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
 import com.simplemobiletools.commons.extensions.getFormattedDuration
 import com.simplemobiletools.commons.views.FastScroller
 import com.simplemobiletools.commons.views.MyRecyclerView
@@ -18,6 +19,7 @@ import java.util.*
 
 class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Recording>, recyclerView: MyRecyclerView, fastScroller: FastScroller,
     itemClick: (Any) -> Unit) : MyRecyclerViewAdapter(activity, recyclerView, fastScroller, itemClick) {
+    var currRecordingId = 0
 
     init {
         setupDragListener(true)
@@ -53,18 +55,29 @@ class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Reco
 
     override fun getItemCount() = recordings.size
 
+    fun updateCurrentRecording(newId: Int) {
+        val oldId = currRecordingId
+        currRecordingId = newId
+        notifyItemChanged(recordings.indexOfFirst { it.id == oldId })
+        notifyItemChanged(recordings.indexOfFirst { it.id == newId })
+    }
+
     private fun setupView(view: View, recording: Recording) {
         view.apply {
             recording_frame?.isSelected = selectedKeys.contains(recording.id)
-            recording_title.text = recording.title
-
-            recording_date.text = recording.timestamp.formatDate(context)
-            recording_duration.text = recording.duration.getFormattedDuration()
-            recording_size.text = recording.size.formatSize()
 
             arrayListOf<TextView>(recording_title, recording_date, recording_duration, recording_size).forEach {
                 it.setTextColor(textColor)
             }
+
+            if (recording.id == currRecordingId) {
+                recording_title.setTextColor(context.getAdjustedPrimaryColor())
+            }
+
+            recording_title.text = recording.title
+            recording_date.text = recording.timestamp.formatDate(context)
+            recording_duration.text = recording.duration.getFormattedDuration()
+            recording_size.text = recording.size.formatSize()
         }
     }
 }
