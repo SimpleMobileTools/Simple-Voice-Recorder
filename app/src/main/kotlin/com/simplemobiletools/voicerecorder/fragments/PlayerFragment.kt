@@ -81,7 +81,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         val uri = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
         val projection = arrayOf(
             MediaStore.Audio.Media._ID,
-            MediaStore.Audio.Media.TITLE,
+            MediaStore.Audio.Media.DISPLAY_NAME,
             MediaStore.Audio.Media.DATE_ADDED,
             MediaStore.Audio.Media.DURATION,
             MediaStore.Audio.Media.SIZE
@@ -97,7 +97,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             if (cursor?.moveToFirst() == true) {
                 do {
                     val id = cursor.getIntValue(MediaStore.Audio.Media._ID)
-                    val title = cursor.getStringValue(MediaStore.Audio.Media.TITLE)
+                    val title = cursor.getStringValue(MediaStore.Audio.Media.DISPLAY_NAME)
                     val path = ""
                     val timestamp = cursor.getIntValue(MediaStore.Audio.Media.DATE_ADDED)
                     val duration = cursor.getLongValue(MediaStore.Audio.Media.DURATION) / 1000
