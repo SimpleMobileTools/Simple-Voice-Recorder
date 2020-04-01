@@ -11,11 +11,14 @@ import android.os.Looper
 import android.os.PowerManager
 import android.provider.MediaStore
 import android.util.AttributeSet
+import android.util.Log
 import android.widget.SeekBar
 import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.isOnMainThread
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
 import com.simplemobiletools.voicerecorder.adapters.RecordingsAdapter
+import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.models.Recording
 import kotlinx.android.synthetic.main.fragment_player.view.*
 import java.util.*
@@ -42,6 +45,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
 
+        setupColors()
         val recordings = getRecordings()
         RecordingsAdapter(context as SimpleActivity, recordings, recordings_list, recordings_fastscroller) {
             playRecording(it as Recording)
@@ -227,5 +231,11 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     private fun setupColors() {
         recordings_fastscroller.updatePrimaryColor()
         recordings_fastscroller.updateBubbleColors()
+        context.updateTextColors(player_controls_wrapper)
+
+        val textColor = context.config.textColor
+        arrayListOf(previous_btn, play_pause_btn, next_btn).forEach {
+            it.applyColorFilter(textColor)
+        }
     }
 }
