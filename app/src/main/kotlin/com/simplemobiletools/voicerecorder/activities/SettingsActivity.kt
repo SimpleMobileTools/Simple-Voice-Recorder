@@ -1,6 +1,7 @@
 package com.simplemobiletools.voicerecorder.activities
 
 import android.os.Bundle
+import com.simplemobiletools.commons.dialogs.ChangeDateTimeFormatDialog
 import com.simplemobiletools.commons.dialogs.FilePickerDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.isQPlus
@@ -22,6 +23,7 @@ class SettingsActivity : SimpleActivity() {
         setupPurchaseThankYou()
         setupCustomizeColors()
         setupUseEnglish()
+        setupChangeDateTimeFormat()
         setupHideNotification()
         setupSaveRecordingsFolder()
         updateTextColors(settings_scrollview)
@@ -47,6 +49,12 @@ class SettingsActivity : SimpleActivity() {
             settings_use_english.toggle()
             config.useEnglish = settings_use_english.isChecked
             System.exit(0)
+        }
+    }
+
+    private fun setupChangeDateTimeFormat() {
+        settings_change_date_time_format_holder.setOnClickListener {
+            ChangeDateTimeFormatDialog(this) {}
         }
     }
 
