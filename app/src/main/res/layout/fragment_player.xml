@@ -33,7 +33,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:paddingBottom="@dimen/activity_margin"
         tools:ignore="HardcodedText">
 
         <View
@@ -95,7 +94,7 @@
             android:paddingEnd="@dimen/normal_margin"
             android:text="00:00" />
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/player_controls"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -106,36 +105,46 @@
                 android:id="@+id/previous_btn"
                 android:layout_width="@dimen/normal_icon_size"
                 android:layout_height="@dimen/normal_icon_size"
-                android:layout_weight="1"
                 android:alpha="0.8"
-                android:background="?attr/selectableItemBackground"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/previous"
                 android:padding="@dimen/medium_margin"
-                android:paddingBottom="@dimen/small_margin"
-                android:src="@drawable/ic_previous_vector_new" />
+                android:src="@drawable/ic_previous_vector_new"
+                app:layout_constraintBottom_toBottomOf="@+id/play_pause_btn"
+                app:layout_constraintEnd_toStartOf="@+id/play_pause_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/play_pause_btn" />
 
             <ImageView
                 android:id="@+id/play_pause_btn"
-                android:layout_width="@dimen/normal_icon_size"
-                android:layout_height="@dimen/normal_icon_size"
-                android:layout_weight="1"
-                android:background="?attr/selectableItemBackground"
+                android:layout_width="@dimen/toggle_recording_button_size"
+                android:layout_height="@dimen/toggle_recording_button_size"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/big_margin"
+                android:background="@drawable/circle_background"
                 android:contentDescription="@string/playpause"
-                android:paddingTop="@dimen/small_margin"
-                android:paddingBottom="@dimen/small_margin"
-                android:src="@drawable/ic_play_vector" />
+                android:elevation="@dimen/medium_margin"
+                android:padding="@dimen/normal_margin"
+                android:src="@drawable/ic_play_vector"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
                 android:id="@+id/next_btn"
                 android:layout_width="@dimen/normal_icon_size"
                 android:layout_height="@dimen/normal_icon_size"
-                android:layout_weight="1"
                 android:alpha="0.8"
-                android:background="?attr/selectableItemBackground"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/next"
                 android:padding="@dimen/medium_margin"
-                android:src="@drawable/ic_next_vector_new" />
+                android:src="@drawable/ic_next_vector_new"
+                app:layout_constraintBottom_toBottomOf="@+id/play_pause_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/play_pause_btn"
+                app:layout_constraintTop_toTopOf="@+id/play_pause_btn" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
 </com.simplemobiletools.voicerecorder.fragments.PlayerFragment>
