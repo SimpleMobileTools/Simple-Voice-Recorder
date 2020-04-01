@@ -77,6 +77,7 @@
             android:layout_toEndOf="@+id/player_progress_current"
             android:clickable="true"
             android:focusable="true"
+            android:max="0"
             android:paddingTop="@dimen/normal_margin"
             android:paddingBottom="@dimen/normal_margin" />
 

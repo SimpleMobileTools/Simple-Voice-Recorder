@@ -46,7 +46,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
         setupColors()
         val recordings = getRecordings()
-        RecordingsAdapter(context as SimpleActivity, recordings, recordings_list, recordings_fastscroller) {
+        val adapter = RecordingsAdapter(context as SimpleActivity, recordings, recordings_list, recordings_fastscroller) {
             playRecording(it as Recording)
             if (playedRecordingIDs.isEmpty() || playedRecordingIDs.peek() != it.id) {
                 playedRecordingIDs.push(it.id)
@@ -57,14 +57,14 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
         recordings_fastscroller.setScrollToY(0)
         recordings_fastscroller.setViews(recordings_list) {
-            val item = (recordings_list.adapter as RecordingsAdapter).recordings.getOrNull(it)
+            val item = adapter.recordings.getOrNull(it)
             recordings_fastscroller.updateBubbleText(item?.title ?: "")
         }
 
         initMediaPlayer()
 
         play_pause_btn.setOnClickListener {
-            if (!playedRecordingIDs.empty()) {
+            if (!playedRecordingIDs.empty() || player_progressbar.max > 0) {
                 togglePlayPause()
             }
         }
@@ -75,6 +75,29 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
         player_progress_max.setOnClickListener {
             skip(true)
+        }
+
+        previous_btn.setOnClickListener {
+            if (playedRecordingIDs.isEmpty()) {
+                return@setOnClickListener
+            }
+
+            var wantedRecordingID = playedRecordingIDs.pop()
+            if (wantedRecordingID == adapter.currRecordingId && !playedRecordingIDs.isEmpty()) {
+                wantedRecordingID = playedRecordingIDs.pop()
+            }
+
+            val prevRecordingIndex = adapter.recordings.indexOfFirst { it.id == wantedRecordingID }
+            val prevRecording = adapter.recordings.getOrNull(prevRecordingIndex) ?: return@setOnClickListener
+            playRecording(prevRecording)
+        }
+
+        next_btn.setOnClickListener {
+            val oldRecordingIndex = adapter.recordings.indexOfFirst { it.id == adapter.currRecordingId }
+            val newRecordingIndex = (oldRecordingIndex + 1) % adapter.recordings.size
+            val newRecording = adapter.recordings.getOrNull(newRecordingIndex) ?: return@setOnClickListener
+            playRecording(newRecording)
+            playedRecordingIDs.push(newRecording.id)
         }
     }
 
@@ -128,6 +151,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
                 progressTimer.cancel()
                 player_progressbar.progress = player_progressbar.max
                 player_progress_current.text = player_progress_max.text
+                playbackStateChanged(false)
             }
 
             setOnPreparedListener {
@@ -156,14 +180,14 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             prepare()
         }
 
-        songStateChanged(true)
+        playbackStateChanged(true)
 
         player_progressbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (fromUser && !playedRecordingIDs.isEmpty()) {
                     player?.seekTo(progress * 1000)
                     player_progress_current.text = progress.getFormattedDuration()
-                    resumeSong()
+                    resumePlayback()
                 }
             }
 
@@ -197,25 +221,25 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     private fun togglePlayPause() {
         if (getIsPlaying()) {
-            pauseSong()
+            pausePlayback()
         } else {
-            resumeSong()
+            resumePlayback()
         }
     }
 
-    private fun pauseSong() {
+    private fun pausePlayback() {
         player?.pause()
-        songStateChanged(false)
+        playbackStateChanged(false)
         progressTimer.cancel()
     }
 
-    private fun resumeSong() {
+    private fun resumePlayback() {
         player?.start()
-        songStateChanged(true)
+        playbackStateChanged(true)
         setupProgressTimer()
     }
 
-    private fun songStateChanged(isPlaying: Boolean) {
+    private fun playbackStateChanged(isPlaying: Boolean) {
         val drawable = resources.getDrawable(if (isPlaying) R.drawable.ic_pause_vector else R.drawable.ic_play_vector)
         play_pause_btn.setImageDrawable(drawable)
     }
@@ -232,7 +256,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         }
 
         player!!.seekTo(newProgress)
-        resumeSong()
+        resumePlayback()
     }
 
     private fun getIsPlaying() = player?.isPlaying == true
