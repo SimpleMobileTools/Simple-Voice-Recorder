@@ -11,6 +11,7 @@ import android.os.Looper
 import android.os.PowerManager
 import android.provider.MediaStore
 import android.util.AttributeSet
+import android.widget.SeekBar
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
@@ -104,6 +105,17 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         player = MediaPlayer().apply {
             setWakeMode(context, PowerManager.PARTIAL_WAKE_LOCK)
             setAudioStreamType(AudioManager.STREAM_MUSIC)
+
+            setOnCompletionListener {
+                progressTimer.cancel()
+                player_progressbar.progress = player_progressbar.max
+                player_progress_current.text = player_progress_max.text
+            }
+
+            setOnPreparedListener {
+                setupProgressTimer()
+                player?.start()
+            }
         }
     }
 
@@ -113,33 +125,46 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             recording.id.toLong()
         )
 
+        updateCurrentProgress(0)
+        player_progressbar.progress = 0
         player_progressbar.max = recording.duration
         player_title.text = recording.title
         player_progress_max.text = recording.duration.getFormattedDuration()
-        updateCurrentProgress(0)
 
         player!!.apply {
             reset()
             setDataSource(context, recordingUri)
             prepare()
-            start()
         }
 
         songStateChanged(true)
-        setupProgressTimer()
+
+        player_progressbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                if (fromUser) {
+                    player?.seekTo(progress * 1000)
+                    player_progress_current.text = progress.getFormattedDuration()
+                    resumeSong()
+                }
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {}
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {}
+        })
     }
 
     private fun setupProgressTimer() {
         progressTimer.cancel()
         progressTimer = Timer()
-        progressTimer.scheduleAtFixedRate(getProgressUpdateTask(), 1000, 1000)
+        progressTimer.scheduleAtFixedRate(getProgressUpdateTask(), 0, 1000)
     }
 
     private fun getProgressUpdateTask() = object : TimerTask() {
         override fun run() {
             if (player != null) {
                 Handler(Looper.getMainLooper()).post {
-                    val progress = player!!.currentPosition / 1000
+                    val progress = Math.round(player!!.currentPosition / 1000.toDouble()).toInt()
                     updateCurrentProgress(progress)
                     player_progressbar.progress = progress
                 }
@@ -162,11 +187,13 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     private fun pauseSong() {
         player?.pause()
         songStateChanged(false)
+        progressTimer.cancel()
     }
 
     private fun resumeSong() {
         player?.start()
         songStateChanged(true)
+        setupProgressTimer()
     }
 
     private fun songStateChanged(isPlaying: Boolean) {
