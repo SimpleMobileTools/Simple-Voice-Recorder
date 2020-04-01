@@ -6,6 +6,8 @@ import android.content.Context
 import android.database.Cursor
 import android.media.AudioManager
 import android.media.MediaPlayer
+import android.os.Handler
+import android.os.Looper
 import android.os.PowerManager
 import android.provider.MediaStore
 import android.util.AttributeSet
@@ -14,9 +16,12 @@ import com.simplemobiletools.voicerecorder.activities.SimpleActivity
 import com.simplemobiletools.voicerecorder.adapters.RecordingsAdapter
 import com.simplemobiletools.voicerecorder.models.Recording
 import kotlinx.android.synthetic.main.fragment_player.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet) {
     private var player: MediaPlayer? = null
+    private var progressTimer = Timer()
 
     override fun onResume() {
         setupColors()
@@ -26,6 +31,8 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         player?.stop()
         player?.release()
         player = null
+
+        progressTimer.cancel()
     }
 
     override fun onAttachedToWindow() {
@@ -101,15 +108,32 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             recording.id.toLong()
         )
 
-        updateCurrentProgress(0)
+        player_progressbar.max = recording.duration
         player_title.text = recording.title
         player_progress_max.text = recording.duration.getFormattedDuration()
+        updateCurrentProgress(0)
 
         player!!.apply {
             reset()
             setDataSource(context, recordingUri)
             prepare()
             start()
+        }
+
+        progressTimer.cancel()
+        progressTimer = Timer()
+        progressTimer.scheduleAtFixedRate(getProgressUpdateTask(), 1000, 1000)
+    }
+
+    private fun getProgressUpdateTask() = object : TimerTask() {
+        override fun run() {
+            if (player != null) {
+                Handler(Looper.getMainLooper()).post {
+                    val progress = player!!.currentPosition / 1000
+                    player_progressbar.progress = progress
+                    player_progress_current.text = progress.getFormattedDuration()
+                }
+            }
         }
     }
 
