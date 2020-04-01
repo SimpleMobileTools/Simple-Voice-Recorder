@@ -12,6 +12,7 @@ import android.os.PowerManager
 import android.provider.MediaStore
 import android.util.AttributeSet
 import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
 import com.simplemobiletools.voicerecorder.adapters.RecordingsAdapter
 import com.simplemobiletools.voicerecorder.models.Recording
@@ -52,6 +53,10 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         }
 
         initMediaPlayer()
+
+        play_pause_btn.setOnClickListener {
+            togglePlayPause()
+        }
     }
 
     @SuppressLint("InlinedApi")
@@ -120,6 +125,11 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             start()
         }
 
+        songStateChanged(true)
+        setupProgressTimer()
+    }
+
+    private fun setupProgressTimer() {
         progressTimer.cancel()
         progressTimer = Timer()
         progressTimer.scheduleAtFixedRate(getProgressUpdateTask(), 1000, 1000)
@@ -130,8 +140,8 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             if (player != null) {
                 Handler(Looper.getMainLooper()).post {
                     val progress = player!!.currentPosition / 1000
+                    updateCurrentProgress(progress)
                     player_progressbar.progress = progress
-                    player_progress_current.text = progress.getFormattedDuration()
                 }
             }
         }
@@ -140,6 +150,31 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     private fun updateCurrentProgress(seconds: Int) {
         player_progress_current.text = seconds.getFormattedDuration()
     }
+
+    private fun togglePlayPause() {
+        if (getIsPlaying()) {
+            pauseSong()
+        } else {
+            resumeSong()
+        }
+    }
+
+    private fun pauseSong() {
+        player?.pause()
+        songStateChanged(false)
+    }
+
+    private fun resumeSong() {
+        player?.start()
+        songStateChanged(true)
+    }
+
+    private fun songStateChanged(isPlaying: Boolean) {
+        val drawable = resources.getDrawable(if (isPlaying) R.drawable.ic_pause_vector else R.drawable.ic_play_vector)
+        play_pause_btn.setImageDrawable(drawable)
+    }
+
+    private fun getIsPlaying() = player?.isPlaying == true
 
     private fun setupColors() {
         recordings_fastscroller.updatePrimaryColor()
