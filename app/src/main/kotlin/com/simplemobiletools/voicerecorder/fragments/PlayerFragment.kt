@@ -64,7 +64,9 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         initMediaPlayer()
 
         play_pause_btn.setOnClickListener {
-            if (!playedRecordingIDs.empty() || player_progressbar.max > 0) {
+            if (playedRecordingIDs.empty() || player_progressbar.max == 0) {
+                next_btn.callOnClick()
+            } else {
                 togglePlayPause()
             }
         }
