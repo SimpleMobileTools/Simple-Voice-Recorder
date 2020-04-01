@@ -27,6 +27,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     private var player: MediaPlayer? = null
     private var progressTimer = Timer()
+    private var playedRecordingIDs = Stack<Int>()
 
     override fun onResume() {
         setupColors()
@@ -47,6 +48,9 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         val recordings = getRecordings()
         RecordingsAdapter(context as SimpleActivity, recordings, recordings_list, recordings_fastscroller) {
             playRecording(it as Recording)
+            if (playedRecordingIDs.isEmpty() || playedRecordingIDs.peek() != it.id) {
+                playedRecordingIDs.push(it.id)
+            }
         }.apply {
             recordings_list.adapter = this
         }
@@ -60,7 +64,9 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         initMediaPlayer()
 
         play_pause_btn.setOnClickListener {
-            togglePlayPause()
+            if (!playedRecordingIDs.empty()) {
+                togglePlayPause()
+            }
         }
 
         player_progress_current.setOnClickListener {
@@ -154,7 +160,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
         player_progressbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-                if (fromUser) {
+                if (fromUser && !playedRecordingIDs.isEmpty()) {
                     player?.seekTo(progress * 1000)
                     player_progress_current.text = progress.getFormattedDuration()
                     resumeSong()
@@ -215,6 +221,10 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     }
 
     private fun skip(forward: Boolean) {
+        if (playedRecordingIDs.empty()) {
+            return
+        }
+
         val curr = player?.currentPosition ?: return
         var newProgress = if (forward) curr + FAST_FORWARD_SKIP_MS else curr - FAST_FORWARD_SKIP_MS
         if (newProgress > player!!.duration) {
