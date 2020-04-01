@@ -4,6 +4,7 @@
     package="com.simplemobiletools.voicerecorder"
     android:installLocation="auto">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission

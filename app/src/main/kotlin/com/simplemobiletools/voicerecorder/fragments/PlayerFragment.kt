@@ -1,33 +1,39 @@
 package com.simplemobiletools.voicerecorder.fragments
 
 import android.annotation.SuppressLint
+import android.content.ContentUris
 import android.content.Context
 import android.database.Cursor
+import android.media.AudioManager
+import android.media.MediaPlayer
+import android.os.PowerManager
 import android.provider.MediaStore
 import android.util.AttributeSet
-import com.simplemobiletools.commons.extensions.getIntValue
-import com.simplemobiletools.commons.extensions.getLongValue
-import com.simplemobiletools.commons.extensions.getStringValue
-import com.simplemobiletools.commons.extensions.showErrorToast
+import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
 import com.simplemobiletools.voicerecorder.adapters.RecordingsAdapter
 import com.simplemobiletools.voicerecorder.models.Recording
 import kotlinx.android.synthetic.main.fragment_player.view.*
 
 class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet) {
+    private var player: MediaPlayer? = null
 
     override fun onResume() {
         setupColors()
     }
 
-    override fun onDestroy() {}
+    override fun onDestroy() {
+        player?.stop()
+        player?.release()
+        player = null
+    }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
 
         val recordings = getRecordings()
         RecordingsAdapter(context as SimpleActivity, recordings, recordings_list, recordings_fastscroller) {
-
+            playRecording(it as Recording)
         }.apply {
             recordings_list.adapter = this
         }
@@ -37,6 +43,8 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             val item = (recordings_list.adapter as RecordingsAdapter).recordings.getOrNull(it)
             recordings_fastscroller.updateBubbleText(item?.title ?: "")
         }
+
+        initMediaPlayer()
     }
 
     @SuppressLint("InlinedApi")
@@ -78,6 +86,35 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         }
 
         return recordings
+    }
+
+    private fun initMediaPlayer() {
+        player = MediaPlayer().apply {
+            setWakeMode(context, PowerManager.PARTIAL_WAKE_LOCK)
+            setAudioStreamType(AudioManager.STREAM_MUSIC)
+        }
+    }
+
+    private fun playRecording(recording: Recording) {
+        val recordingUri = ContentUris.withAppendedId(
+            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+            recording.id.toLong()
+        )
+
+        updateCurrentProgress(0)
+        player_title.text = recording.title
+        player_progress_max.text = recording.duration.getFormattedDuration()
+
+        player!!.apply {
+            reset()
+            setDataSource(context, recordingUri)
+            prepare()
+            start()
+        }
+    }
+
+    private fun updateCurrentProgress(seconds: Int) {
+        player_progress_current.text = seconds.getFormattedDuration()
     }
 
     private fun setupColors() {
