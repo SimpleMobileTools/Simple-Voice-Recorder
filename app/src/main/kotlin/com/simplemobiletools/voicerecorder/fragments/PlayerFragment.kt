@@ -22,6 +22,8 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet) {
+    private val FAST_FORWARD_SKIP_MS = 10000
+
     private var player: MediaPlayer? = null
     private var progressTimer = Timer()
 
@@ -57,6 +59,14 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
         play_pause_btn.setOnClickListener {
             togglePlayPause()
+        }
+
+        player_progress_current.setOnClickListener {
+            skip(false)
+        }
+
+        player_progress_max.setOnClickListener {
+            skip(true)
         }
     }
 
@@ -199,6 +209,17 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     private fun songStateChanged(isPlaying: Boolean) {
         val drawable = resources.getDrawable(if (isPlaying) R.drawable.ic_pause_vector else R.drawable.ic_play_vector)
         play_pause_btn.setImageDrawable(drawable)
+    }
+
+    private fun skip(forward: Boolean) {
+        val curr = player?.currentPosition ?: return
+        var newProgress = if (forward) curr + FAST_FORWARD_SKIP_MS else curr - FAST_FORWARD_SKIP_MS
+        if (newProgress > player!!.duration) {
+            newProgress = player!!.duration
+        }
+
+        player!!.seekTo(newProgress)
+        resumeSong()
     }
 
     private fun getIsPlaying() = player?.isPlaying == true
