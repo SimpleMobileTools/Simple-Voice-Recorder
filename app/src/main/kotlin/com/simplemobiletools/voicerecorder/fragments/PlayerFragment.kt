@@ -1,7 +1,6 @@
 package com.simplemobiletools.voicerecorder.fragments
 
 import android.annotation.SuppressLint
-import android.content.ContentUris
 import android.content.Context
 import android.database.Cursor
 import android.media.AudioManager
@@ -18,6 +17,7 @@ import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
 import com.simplemobiletools.voicerecorder.adapters.RecordingsAdapter
 import com.simplemobiletools.voicerecorder.extensions.config
+import com.simplemobiletools.voicerecorder.helpers.getAudioFileContentUri
 import com.simplemobiletools.voicerecorder.interfaces.RefreshRecordingsListener
 import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.models.Recording
@@ -194,24 +194,15 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     }
 
     private fun getDurationFromUri(id: Long): Long {
-        val recordingUri = ContentUris.withAppendedId(
-            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-            id
-        )
-
         val retriever = MediaMetadataRetriever()
-        retriever.setDataSource(context, recordingUri)
+        retriever.setDataSource(context, getAudioFileContentUri(id))
         val time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
         return Math.round(time.toLong() / 1000.toDouble())
     }
 
     private fun getSizeFromUri(id: Long): Int {
-        val recordingUri = ContentUris.withAppendedId(
-            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-            id
-        )
-
-        return context.contentResolver.openInputStream(recordingUri)?.available()?.toInt() ?: 0
+        val recordingUri = getAudioFileContentUri(id)
+        return context.contentResolver.openInputStream(recordingUri)?.available() ?: 0
     }
 
     private fun initMediaPlayer() {
@@ -234,17 +225,12 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     }
 
     override fun playRecording(recording: Recording) {
-        val recordingUri = ContentUris.withAppendedId(
-            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-            recording.id.toLong()
-        )
-
         resetProgress(recording)
         (recordings_list.adapter as RecordingsAdapter).updateCurrentRecording(recording.id)
 
         player!!.apply {
             reset()
-            setDataSource(context, recordingUri)
+            setDataSource(context, getAudioFileContentUri(recording.id.toLong()))
             prepare()
         }
 
