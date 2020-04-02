@@ -221,7 +221,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     private fun setupProgressTimer() {
         progressTimer.cancel()
         progressTimer = Timer()
-        progressTimer.scheduleAtFixedRate(getProgressUpdateTask(), 0, 1000)
+        progressTimer.scheduleAtFixedRate(getProgressUpdateTask(), 1000, 1000)
     }
 
     private fun getProgressUpdateTask() = object : TimerTask() {
