@@ -52,7 +52,8 @@ class RenameRecordingDialog(val activity: BaseSimpleActivity, val recording: Rec
     }
 
     private fun updateMediaStoreTitle(recording: Recording, newTitle: String) {
-        val uri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, recording.id.toLong())
+        val baseUri = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+        val uri = ContentUris.withAppendedId(baseUri, recording.id.toLong())
         val oldExtension = recording.title.getFilenameExtension()
         val newDisplayName = "${newTitle.removeSuffix(".$oldExtension")}.$oldExtension"
 

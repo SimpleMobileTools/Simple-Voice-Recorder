@@ -4,6 +4,13 @@
     <string name="recording_saved_successfully">Recording saved successfully as\n\"%s\"</string>
     <string name="recording">Recording</string>
 
+    <!-- Confirmation dialog -->
+    <string name="delete_recordings_confirmation">Are you sure you want to delete %s?</string>    <!-- Are you sure you want to delete 5 recordings? -->
+    <plurals name="delete_recordings">
+        <item quantity="one">%d recording</item>
+        <item quantity="other">%d recordings</item>
+    </plurals>
+
     <!-- Settings -->
     <string name="try_hiding_notification">Try hiding the recording notification</string>
     <string name="save_recordings_in">Save recordings in</string>

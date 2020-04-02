@@ -4,6 +4,14 @@
     <string name="recording_saved_successfully">Nahrávka bola uložená ako \n\"%s\"</string>
     <string name="recording">Nahráva sa</string>
 
+    <!-- Confirmation dialog -->
+    <string name="delete_recordings_confirmation">Ste si istý, že chcete odstrániť %s?</string>    <!-- Are you sure you want to delete 5 recordings? -->
+    <plurals name="delete_recordings">
+        <item quantity="one">%d nahrávku</item>
+        <item quantity="few">%d nahrávky</item>
+        <item quantity="other">%d nahrávok</item>
+    </plurals>
+
     <!-- Settings -->
     <string name="try_hiding_notification">Skúsiť ukryť nahrávaciu notifikáciu</string>
     <string name="save_recordings_in">Ukladať nahrávky do</string>
