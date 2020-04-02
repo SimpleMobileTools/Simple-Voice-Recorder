@@ -19,8 +19,10 @@ import com.simplemobiletools.voicerecorder.models.Recording
 import kotlinx.android.synthetic.main.item_recording.view.*
 import java.util.*
 
-class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Recording>, val refreshListener: RefreshRecordingsListener,
-                        recyclerView: MyRecyclerView, fastScroller: FastScroller, itemClick: (Any) -> Unit) : MyRecyclerViewAdapter(activity, recyclerView, fastScroller, itemClick) {
+class RecordingsAdapter(
+    activity: SimpleActivity, var recordings: ArrayList<Recording>, val refreshListener: RefreshRecordingsListener,
+    recyclerView: MyRecyclerView, fastScroller: FastScroller, itemClick: (Any) -> Unit
+) : MyRecyclerViewAdapter(activity, recyclerView, fastScroller, itemClick) {
     var currRecordingId = 0
 
     init {
@@ -72,6 +74,14 @@ class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Reco
     override fun getItemCount() = recordings.size
 
     private fun getItemWithKey(key: Int): Recording? = recordings.firstOrNull { it.id == key }
+
+    fun updateItems(newItems: ArrayList<Recording>) {
+        if (newItems.hashCode() != recordings.hashCode()) {
+            recordings = newItems
+            finishActMode()
+        }
+        fastScroller?.measureRecyclerView()
+    }
 
     private fun renameRecording() {
         val recording = getItemWithKey(selectedKeys.first()) ?: return

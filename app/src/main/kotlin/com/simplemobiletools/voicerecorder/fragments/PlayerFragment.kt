@@ -107,13 +107,18 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     private fun setupAdapter() {
         val recordings = getRecordings()
-        RecordingsAdapter(context as SimpleActivity, recordings, this, recordings_list, recordings_fastscroller) {
-            playRecording(it as Recording)
-            if (playedRecordingIDs.isEmpty() || playedRecordingIDs.peek() != it.id) {
-                playedRecordingIDs.push(it.id)
+        val adapter = getRecordingsAdapter()
+        if (adapter == null) {
+            RecordingsAdapter(context as SimpleActivity, recordings, this, recordings_list, recordings_fastscroller) {
+                playRecording(it as Recording)
+                if (playedRecordingIDs.isEmpty() || playedRecordingIDs.peek() != it.id) {
+                    playedRecordingIDs.push(it.id)
+                }
+            }.apply {
+                recordings_list.adapter = this
             }
-        }.apply {
-            recordings_list.adapter = this
+        } else {
+            adapter.updateItems(recordings)
         }
     }
 
