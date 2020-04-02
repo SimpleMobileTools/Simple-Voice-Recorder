@@ -27,9 +27,23 @@ class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Reco
 
     override fun getActionMenuId() = R.menu.cab_recordings
 
-    override fun prepareActionMode(menu: Menu) {}
+    override fun prepareActionMode(menu: Menu) {
+        menu.apply {
+            findItem(R.id.cab_rename).isVisible = isOneItemSelected()
+        }
+    }
 
-    override fun actionItemPressed(id: Int) {}
+    override fun actionItemPressed(id: Int) {
+        if (selectedKeys.isEmpty()) {
+            return
+        }
+
+        when (id) {
+            R.id.cab_rename -> renameRecording()
+            R.id.cab_select_all -> selectAll()
+            R.id.cab_delete -> askConfirmDelete()
+        }
+    }
 
     override fun getSelectableItemCount() = recordings.size
 
@@ -54,6 +68,14 @@ class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Reco
     }
 
     override fun getItemCount() = recordings.size
+
+    private fun renameRecording() {
+
+    }
+
+    private fun askConfirmDelete() {
+
+    }
 
     fun updateCurrentRecording(newId: Int) {
         val oldId = currRecordingId
