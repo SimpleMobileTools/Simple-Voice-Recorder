@@ -38,9 +38,14 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     private var progressTimer = Timer()
     private var playedRecordingIDs = Stack<Int>()
     private var bus: EventBus? = null
+    private var prevSavePath = ""
 
     override fun onResume() {
         setupColors()
+        if (!prevSavePath.isEmpty() && context!!.config.saveRecordingsFolder != prevSavePath) {
+            setupAdapter()
+        }
+        storePrevPath()
     }
 
     override fun onDestroy() {
@@ -61,6 +66,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         setupAdapter()
         initMediaPlayer()
         setupViews()
+        storePrevPath()
     }
 
     private fun setupViews() {
@@ -360,6 +366,10 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     private fun getIsPlaying() = player?.isPlaying == true
 
     private fun getRecordingsAdapter() = recordings_list.adapter as? RecordingsAdapter
+
+    private fun storePrevPath() {
+        prevSavePath = context!!.config.saveRecordingsFolder
+    }
 
     private fun setupColors() {
         recordings_fastscroller.updatePrimaryColor()

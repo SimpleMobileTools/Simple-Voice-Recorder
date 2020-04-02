@@ -4,7 +4,7 @@
     <string name="recording_saved_successfully">Nahrávka bola uložená ako \n\"%s\"</string>
     <string name="recording">Nahráva sa</string>
     <string name="no_recordings_found">Nenašli sa žiadne nahrávky\nvytvorené touto aplikáciou</string>
-    <string name="no_recordings_in_folder_found">V zvolenom priečinku sa nenašli\nžiadne nahrávky</string>
+    <string name="no_recordings_in_folder_found">Vo zvolenom priečinku sa nenašli\nžiadne nahrávky</string>
 
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">Ste si istý, že chcete odstrániť %s?</string>    <!-- Are you sure you want to delete 5 recordings? -->
