@@ -231,15 +231,23 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     }
 
     private fun getDurationFromUri(id: Long): Long {
-        val retriever = MediaMetadataRetriever()
-        retriever.setDataSource(context, getAudioFileContentUri(id))
-        val time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
-        return Math.round(time.toLong() / 1000.toDouble())
+        return try {
+            val retriever = MediaMetadataRetriever()
+            retriever.setDataSource(context, getAudioFileContentUri(id))
+            val time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
+            Math.round(time.toLong() / 1000.toDouble())
+        } catch (e: Exception) {
+            0L
+        }
     }
 
     private fun getSizeFromUri(id: Long): Int {
         val recordingUri = getAudioFileContentUri(id)
-        return context.contentResolver.openInputStream(recordingUri)?.available() ?: 0
+        return try {
+            context.contentResolver.openInputStream(recordingUri)?.available() ?: 0
+        } catch (e: Exception) {
+            0
+        }
     }
 
     private fun initMediaPlayer() {
