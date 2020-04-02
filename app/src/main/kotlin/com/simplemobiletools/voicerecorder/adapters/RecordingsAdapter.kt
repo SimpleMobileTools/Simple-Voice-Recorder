@@ -118,6 +118,7 @@ class RecordingsAdapter(
             return
         }
 
+        val oldRecordingIndex = recordings.indexOfFirst { it.id == currRecordingId }
         val recordingsToRemove = recordings.filter { selectedKeys.contains(it.id) } as ArrayList<Recording>
         val positions = getSelectedItemPositions()
         recordingsToRemove.forEach {
@@ -134,6 +135,11 @@ class RecordingsAdapter(
                 finishActMode()
             } else {
                 removeSelectedItems(positions)
+                if (recordingsToRemove.map { it.id }.contains(currRecordingId)) {
+                    val newRecordingIndex = Math.min(oldRecordingIndex, recordings.size - 1)
+                    val newRecording = recordings[newRecordingIndex]
+                    refreshListener.playRecording(newRecording)
+                }
             }
         }
     }

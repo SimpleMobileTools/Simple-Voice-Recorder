@@ -182,7 +182,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         }
     }
 
-    private fun playRecording(recording: Recording) {
+    override fun playRecording(recording: Recording) {
         val recordingUri = ContentUris.withAppendedId(
             MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
             recording.id.toLong()
