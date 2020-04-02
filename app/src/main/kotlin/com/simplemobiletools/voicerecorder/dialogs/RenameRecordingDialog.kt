@@ -11,6 +11,7 @@ import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.helpers.getAudioFileContentUri
 import com.simplemobiletools.voicerecorder.models.Recording
 import kotlinx.android.synthetic.main.dialog_rename_recording.view.*
+import java.io.File
 
 class RenameRecordingDialog(val activity: BaseSimpleActivity, val recording: Recording, val callback: () -> Unit) {
     init {
@@ -39,6 +40,8 @@ class RenameRecordingDialog(val activity: BaseSimpleActivity, val recording: Rec
                         ensureBackgroundThread {
                             if (isQPlus()) {
                                 updateMediaStoreTitle(recording, newTitle)
+                            } else {
+                                updateLegacyFilename(recording, newTitle)
                             }
 
                             activity.runOnUiThread {
@@ -61,5 +64,13 @@ class RenameRecordingDialog(val activity: BaseSimpleActivity, val recording: Rec
         }
 
         activity.contentResolver.update(getAudioFileContentUri(recording.id.toLong()), values, null, null)
+    }
+
+    private fun updateLegacyFilename(recording: Recording, newTitle: String) {
+        val oldExtension = recording.title.getFilenameExtension()
+        val oldPath = recording.path
+        val newFilename = "${newTitle.removeSuffix(".$oldExtension")}.$oldExtension"
+        val newPath = File(oldPath.getParentPath(), newFilename).absolutePath
+        activity.renameFile(oldPath, newPath)
     }
 }
