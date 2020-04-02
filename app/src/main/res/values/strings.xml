@@ -3,6 +3,7 @@
     <string name="app_launcher_name">Voice Recorder</string>
     <string name="recording_saved_successfully">Recording saved successfully as\n\"%s\"</string>
     <string name="recording">Recording</string>
+    <string name="no_recordings_found">No recordings created by this app\nhave been found</string>
 
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">Are you sure you want to delete %s?</string>    <!-- Are you sure you want to delete 5 recordings? -->

@@ -111,6 +111,12 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     private fun setupAdapter() {
         val recordings = getRecordings()
+        recordings_placeholder.beVisibleIf(recordings.isEmpty())
+        if (recordings.isEmpty()) {
+            resetProgress(null)
+            player?.stop()
+        }
+
         val adapter = getRecordingsAdapter()
         if (adapter == null) {
             RecordingsAdapter(context as SimpleActivity, recordings, this, recordings_list, recordings_fastscroller) {
@@ -192,11 +198,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             recording.id.toLong()
         )
 
-        updateCurrentProgress(0)
-        player_progressbar.progress = 0
-        player_progressbar.max = recording.duration
-        player_title.text = recording.title
-        player_progress_max.text = recording.duration.getFormattedDuration()
+        resetProgress(recording)
         (recordings_list.adapter as RecordingsAdapter).updateCurrentRecording(recording.id)
 
         player!!.apply {
@@ -242,6 +244,14 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     private fun updateCurrentProgress(seconds: Int) {
         player_progress_current.text = seconds.getFormattedDuration()
+    }
+
+    private fun resetProgress(recording: Recording?) {
+        updateCurrentProgress(0)
+        player_progressbar.progress = 0
+        player_progressbar.max = recording?.duration ?: 0
+        player_title.text = recording?.title ?: ""
+        player_progress_max.text = (recording?.duration ?: 0).getFormattedDuration()
     }
 
     private fun togglePlayPause() {
