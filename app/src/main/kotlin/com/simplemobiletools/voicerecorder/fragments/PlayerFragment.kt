@@ -17,12 +17,13 @@ import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
 import com.simplemobiletools.voicerecorder.adapters.RecordingsAdapter
 import com.simplemobiletools.voicerecorder.extensions.config
+import com.simplemobiletools.voicerecorder.interfaces.RefreshRecordingsListener
 import com.simplemobiletools.voicerecorder.models.Recording
 import kotlinx.android.synthetic.main.fragment_player.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet) {
+class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet), RefreshRecordingsListener {
     private val FAST_FORWARD_SKIP_MS = 10000
 
     private var player: MediaPlayer? = null
@@ -45,23 +46,18 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         super.onAttachedToWindow()
 
         setupColors()
-        val recordings = getRecordings()
-        val adapter = RecordingsAdapter(context as SimpleActivity, recordings, recordings_list, recordings_fastscroller) {
-            playRecording(it as Recording)
-            if (playedRecordingIDs.isEmpty() || playedRecordingIDs.peek() != it.id) {
-                playedRecordingIDs.push(it.id)
-            }
-        }.apply {
-            recordings_list.adapter = this
-        }
+        setupAdapter()
+        initMediaPlayer()
+        setupViews()
+    }
 
+    private fun setupViews() {
         recordings_fastscroller.setScrollToY(0)
         recordings_fastscroller.setViews(recordings_list) {
+            val adapter = getRecordingsAdapter() ?: return@setViews
             val item = adapter.recordings.getOrNull(it)
             recordings_fastscroller.updateBubbleText(item?.title ?: "")
         }
-
-        initMediaPlayer()
 
         play_pause_btn.setOnClickListener {
             if (playedRecordingIDs.empty() || player_progressbar.max == 0) {
@@ -84,6 +80,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
                 return@setOnClickListener
             }
 
+            val adapter = getRecordingsAdapter() ?: return@setOnClickListener
             var wantedRecordingID = playedRecordingIDs.pop()
             if (wantedRecordingID == adapter.currRecordingId && !playedRecordingIDs.isEmpty()) {
                 wantedRecordingID = playedRecordingIDs.pop()
@@ -95,11 +92,28 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         }
 
         next_btn.setOnClickListener {
+            val adapter = getRecordingsAdapter() ?: return@setOnClickListener
             val oldRecordingIndex = adapter.recordings.indexOfFirst { it.id == adapter.currRecordingId }
             val newRecordingIndex = (oldRecordingIndex + 1) % adapter.recordings.size
             val newRecording = adapter.recordings.getOrNull(newRecordingIndex) ?: return@setOnClickListener
             playRecording(newRecording)
             playedRecordingIDs.push(newRecording.id)
+        }
+    }
+
+    override fun refreshRecordings() {
+        setupAdapter()
+    }
+
+    private fun setupAdapter() {
+        val recordings = getRecordings()
+        RecordingsAdapter(context as SimpleActivity, recordings, this, recordings_list, recordings_fastscroller) {
+            playRecording(it as Recording)
+            if (playedRecordingIDs.isEmpty() || playedRecordingIDs.peek() != it.id) {
+                playedRecordingIDs.push(it.id)
+            }
+        }.apply {
+            recordings_list.adapter = this
         }
     }
 
@@ -262,6 +276,8 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     }
 
     private fun getIsPlaying() = player?.isPlaying == true
+
+    private fun getRecordingsAdapter() = recordings_list.adapter as? RecordingsAdapter
 
     private fun setupColors() {
         recordings_fastscroller.updatePrimaryColor()

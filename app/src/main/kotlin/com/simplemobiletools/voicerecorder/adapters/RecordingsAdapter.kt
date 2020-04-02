@@ -14,12 +14,13 @@ import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
 import com.simplemobiletools.voicerecorder.dialogs.RenameRecordingDialog
+import com.simplemobiletools.voicerecorder.interfaces.RefreshRecordingsListener
 import com.simplemobiletools.voicerecorder.models.Recording
 import kotlinx.android.synthetic.main.item_recording.view.*
 import java.util.*
 
-class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Recording>, recyclerView: MyRecyclerView, fastScroller: FastScroller,
-    itemClick: (Any) -> Unit) : MyRecyclerViewAdapter(activity, recyclerView, fastScroller, itemClick) {
+class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Recording>, val refreshListener: RefreshRecordingsListener,
+                        recyclerView: MyRecyclerView, fastScroller: FastScroller, itemClick: (Any) -> Unit) : MyRecyclerViewAdapter(activity, recyclerView, fastScroller, itemClick) {
     var currRecordingId = 0
 
     init {
@@ -76,6 +77,7 @@ class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Reco
         val recording = getItemWithKey(selectedKeys.first()) ?: return
         RenameRecordingDialog(activity, recording) {
             finishActMode()
+            refreshListener.refreshRecordings()
         }
     }
 
