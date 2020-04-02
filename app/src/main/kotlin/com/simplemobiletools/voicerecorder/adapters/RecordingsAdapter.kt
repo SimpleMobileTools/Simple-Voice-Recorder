@@ -81,6 +81,7 @@ class RecordingsAdapter(
     fun updateItems(newItems: ArrayList<Recording>) {
         if (newItems.hashCode() != recordings.hashCode()) {
             recordings = newItems
+            notifyDataSetChanged()
             finishActMode()
         }
         fastScroller?.measureRecyclerView()

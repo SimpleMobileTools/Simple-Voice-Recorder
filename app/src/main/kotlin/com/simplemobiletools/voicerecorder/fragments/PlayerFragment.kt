@@ -5,6 +5,7 @@ import android.content.ContentUris
 import android.content.Context
 import android.database.Cursor
 import android.media.AudioManager
+import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
 import android.os.Handler
 import android.os.Looper
@@ -18,10 +19,15 @@ import com.simplemobiletools.voicerecorder.activities.SimpleActivity
 import com.simplemobiletools.voicerecorder.adapters.RecordingsAdapter
 import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.interfaces.RefreshRecordingsListener
+import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.models.Recording
 import kotlinx.android.synthetic.main.fragment_player.view.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import java.util.*
 import kotlin.collections.ArrayList
+
 
 class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet), RefreshRecordingsListener {
     private val FAST_FORWARD_SKIP_MS = 10000
@@ -29,6 +35,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     private var player: MediaPlayer? = null
     private var progressTimer = Timer()
     private var playedRecordingIDs = Stack<Int>()
+    private var bus: EventBus? = null
 
     override fun onResume() {
         setupColors()
@@ -39,12 +46,15 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         player?.release()
         player = null
 
+        bus?.unregister(this)
         progressTimer.cancel()
     }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
 
+        bus = EventBus.getDefault()
+        bus!!.register(this)
         setupColors()
         setupAdapter()
         initMediaPlayer()
@@ -111,6 +121,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     private fun setupAdapter() {
         val recordings = getRecordings()
+
         recordings_placeholder.beVisibleIf(recordings.isEmpty())
         if (recordings.isEmpty()) {
             resetProgress(null)
@@ -158,8 +169,17 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
                     val title = cursor.getStringValue(MediaStore.Audio.Media.DISPLAY_NAME)
                     val path = ""
                     val timestamp = cursor.getIntValue(MediaStore.Audio.Media.DATE_ADDED)
-                    val duration = cursor.getLongValue(MediaStore.Audio.Media.DURATION) / 1000
-                    val size = cursor.getIntValue(MediaStore.Audio.Media.SIZE)
+                    var duration = cursor.getLongValue(MediaStore.Audio.Media.DURATION) / 1000
+                    var size = cursor.getIntValue(MediaStore.Audio.Media.SIZE)
+
+                    if (duration == 0L) {
+                        duration = getDurationFromUri(id.toLong())
+                    }
+
+                    if (size == 0) {
+                        size = getSizeFromUri(id.toLong())
+                    }
+
                     val recording = Recording(id, title, "", timestamp, duration.toInt(), size)
                     recordings.add(recording)
                 } while (cursor.moveToNext())
@@ -171,6 +191,27 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         }
 
         return recordings
+    }
+
+    private fun getDurationFromUri(id: Long): Long {
+        val recordingUri = ContentUris.withAppendedId(
+            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+            id
+        )
+
+        val retriever = MediaMetadataRetriever()
+        retriever.setDataSource(context, recordingUri)
+        val time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
+        return Math.round(time.toLong() / 1000.toDouble())
+    }
+
+    private fun getSizeFromUri(id: Long): Int {
+        val recordingUri = ContentUris.withAppendedId(
+            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+            id
+        )
+
+        return context.contentResolver.openInputStream(recordingUri)?.available()?.toInt() ?: 0
     }
 
     private fun initMediaPlayer() {
@@ -307,5 +348,10 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         arrayListOf(previous_btn, play_pause_btn, next_btn).forEach {
             it.applyColorFilter(textColor)
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun recordingCompleted(event: Events.RecordingCompleted) {
+        refreshRecordings()
     }
 }

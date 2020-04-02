@@ -120,6 +120,7 @@ class RecorderService : Service() {
                 } else {
                     addFileInLegacyMediaStore()
                 }
+                EventBus.getDefault().post(Events.RecordingCompleted())
             }
         }
         recorder = null
