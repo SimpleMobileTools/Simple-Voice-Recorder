@@ -266,7 +266,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
                 setDataSource(recording.path)
             }
 
-            prepare()
+            prepareAsync()
         }
 
         play_pause_btn.setImageDrawable(getToggleButtonIcon(true))
