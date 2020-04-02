@@ -3,6 +3,7 @@ package com.simplemobiletools.voicerecorder.fragments
 import android.annotation.SuppressLint
 import android.content.Context
 import android.database.Cursor
+import android.graphics.drawable.Drawable
 import android.media.AudioManager
 import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
@@ -27,7 +28,6 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import java.util.*
 import kotlin.collections.ArrayList
-
 
 class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet), RefreshRecordingsListener {
     private val FAST_FORWARD_SKIP_MS = 10000
@@ -214,7 +214,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
                 progressTimer.cancel()
                 player_progressbar.progress = player_progressbar.max
                 player_progress_current.text = player_progress_max.text
-                playbackStateChanged(false)
+                play_pause_btn.setImageDrawable(getToggleButtonIcon(false))
             }
 
             setOnPreparedListener {
@@ -234,8 +234,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             prepare()
         }
 
-        playbackStateChanged(true)
-
+        play_pause_btn.setImageDrawable(getToggleButtonIcon(true))
         player_progressbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (fromUser && !playedRecordingIDs.isEmpty()) {
@@ -291,19 +290,19 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     private fun pausePlayback() {
         player?.pause()
-        playbackStateChanged(false)
+        play_pause_btn.setImageDrawable(getToggleButtonIcon(false))
         progressTimer.cancel()
     }
 
     private fun resumePlayback() {
         player?.start()
-        playbackStateChanged(true)
+        play_pause_btn.setImageDrawable(getToggleButtonIcon(true))
         setupProgressTimer()
     }
 
-    private fun playbackStateChanged(isPlaying: Boolean) {
-        val drawable = resources.getDrawable(if (isPlaying) R.drawable.ic_pause_vector else R.drawable.ic_play_vector)
-        play_pause_btn.setImageDrawable(drawable)
+    private fun getToggleButtonIcon(isPlaying: Boolean): Drawable {
+        val drawable = if (isPlaying) R.drawable.ic_pause_vector else R.drawable.ic_play_vector
+        return resources.getColoredDrawableWithColor(drawable, context.getFABIconColor())
     }
 
     private fun skip(forward: Boolean) {
@@ -328,12 +327,15 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     private fun setupColors() {
         recordings_fastscroller.updatePrimaryColor()
         recordings_fastscroller.updateBubbleColors()
-        context.updateTextColors(player_controls_wrapper)
+        context.updateTextColors(player_holder)
 
         val textColor = context.config.textColor
-        arrayListOf(previous_btn, play_pause_btn, next_btn).forEach {
+        arrayListOf(previous_btn, next_btn).forEach {
             it.applyColorFilter(textColor)
         }
+
+        play_pause_btn.background.applyColorFilter(context.getAdjustedPrimaryColor())
+        play_pause_btn.setImageDrawable(getToggleButtonIcon(false))
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

@@ -13,11 +13,11 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/activity_margin"
         android:gravity="center"
-        android:padding="@dimen/activity_margin"
         android:lineSpacingExtra="@dimen/medium_margin"
+        android:padding="@dimen/activity_margin"
         android:text="@string/no_recordings_found"
         android:textSize="@dimen/bigger_text_size"
-        android:visibility="visible"/>
+        android:visibility="visible" />
 
     <com.simplemobiletools.commons.views.MyRecyclerView
         android:id="@+id/recordings_list"
@@ -123,7 +123,6 @@
                 android:layout_alignBottom="@+id/play_pause_btn"
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@+id/play_pause_btn"
-                android:alpha="0.8"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/previous"
                 android:padding="@dimen/medium_margin"
@@ -151,7 +150,6 @@
                 android:layout_alignBottom="@+id/play_pause_btn"
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@+id/play_pause_btn"
-                android:alpha="0.8"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/next"
                 android:padding="@dimen/medium_margin"
