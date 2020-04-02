@@ -92,7 +92,11 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         }
 
         next_btn.setOnClickListener {
-            val adapter = getRecordingsAdapter() ?: return@setOnClickListener
+            val adapter = getRecordingsAdapter()
+            if (adapter == null || adapter.recordings.isEmpty()) {
+                return@setOnClickListener
+            }
+
             val oldRecordingIndex = adapter.recordings.indexOfFirst { it.id == adapter.currRecordingId }
             val newRecordingIndex = (oldRecordingIndex + 1) % adapter.recordings.size
             val newRecording = adapter.recordings.getOrNull(newRecordingIndex) ?: return@setOnClickListener
