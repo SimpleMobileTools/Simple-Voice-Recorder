@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.fragment_player.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -204,6 +205,20 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     private fun getLegacyRecordings(): ArrayList<Recording> {
         val recordings = ArrayList<Recording>()
+        val files = File(context.config.saveRecordingsFolder).listFiles() ?: return recordings
+
+        files.filter { it.isAudioFast() }.forEach {
+            val id = it.hashCode()
+            val title = it.name
+            val path = it.absolutePath
+            val timestamp = (it.lastModified() / 1000).toInt()
+            val duration = it.absolutePath.getFileDurationSeconds() ?: 0
+            val size = it.length().toInt()
+            val recording = Recording(id, title, path, timestamp, duration, size)
+            recordings.add(recording)
+        }
+
+        recordings.sortByDescending { it.timestamp }
         return recordings
     }
 
