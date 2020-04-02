@@ -13,6 +13,7 @@ import com.simplemobiletools.commons.views.FastScroller
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
+import com.simplemobiletools.voicerecorder.dialogs.RenameRecordingDialog
 import com.simplemobiletools.voicerecorder.models.Recording
 import kotlinx.android.synthetic.main.item_recording.view.*
 import java.util.*
@@ -60,17 +61,22 @@ class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Reco
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = createViewHolder(R.layout.item_recording, parent)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val group = recordings[position]
-        holder.bindView(group, true, true) { itemView, layoutPosition ->
-            setupView(itemView, group)
+        val recording = recordings[position]
+        holder.bindView(recording, true, true) { itemView, layoutPosition ->
+            setupView(itemView, recording)
         }
         bindViewHolder(holder)
     }
 
     override fun getItemCount() = recordings.size
 
-    private fun renameRecording() {
+    private fun getItemWithKey(key: Int): Recording? = recordings.firstOrNull { it.id == key }
 
+    private fun renameRecording() {
+        val recording = getItemWithKey(selectedKeys.first()) ?: return
+        RenameRecordingDialog(activity, recording) {
+            finishActMode()
+        }
     }
 
     private fun askConfirmDelete() {
