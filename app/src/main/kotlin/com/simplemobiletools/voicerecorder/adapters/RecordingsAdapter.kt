@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
-import com.simplemobiletools.commons.extensions.formatDate
-import com.simplemobiletools.commons.extensions.formatSize
-import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
-import com.simplemobiletools.commons.extensions.getFormattedDuration
+import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
+import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.views.FastScroller
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.voicerecorder.R
@@ -20,6 +18,7 @@ import com.simplemobiletools.voicerecorder.dialogs.RenameRecordingDialog
 import com.simplemobiletools.voicerecorder.interfaces.RefreshRecordingsListener
 import com.simplemobiletools.voicerecorder.models.Recording
 import kotlinx.android.synthetic.main.item_recording.view.*
+import java.io.File
 import java.util.*
 
 class RecordingsAdapter(
@@ -122,11 +121,18 @@ class RecordingsAdapter(
         val oldRecordingIndex = recordings.indexOfFirst { it.id == currRecordingId }
         val recordingsToRemove = recordings.filter { selectedKeys.contains(it.id) } as ArrayList<Recording>
         val positions = getSelectedItemPositions()
-        recordingsToRemove.forEach {
-            val uri = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
-            val selection = "${MediaStore.Audio.Media._ID} = ?"
-            val selectionArgs = arrayOf(it.id.toString())
-            activity.contentResolver.delete(uri, selection, selectionArgs)
+
+        if (isQPlus()) {
+            recordingsToRemove.forEach {
+                val uri = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+                val selection = "${MediaStore.Audio.Media._ID} = ?"
+                val selectionArgs = arrayOf(it.id.toString())
+                activity.contentResolver.delete(uri, selection, selectionArgs)
+            }
+        } else {
+            recordingsToRemove.forEach {
+                activity.deleteFile(File(it.path).toFileDirItem(activity))
+            }
         }
 
         recordings.removeAll(recordingsToRemove)
