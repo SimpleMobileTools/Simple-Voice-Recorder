@@ -259,7 +259,13 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
         player!!.apply {
             reset()
-            setDataSource(context, getAudioFileContentUri(recording.id.toLong()))
+
+            if (isQPlus()) {
+                setDataSource(context, getAudioFileContentUri(recording.id.toLong()))
+            } else {
+                setDataSource(recording.path)
+            }
+
             prepare()
         }
 
