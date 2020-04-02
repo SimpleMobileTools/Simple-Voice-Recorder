@@ -14,6 +14,7 @@ import android.provider.MediaStore
 import android.util.AttributeSet
 import android.widget.SeekBar
 import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
 import com.simplemobiletools.voicerecorder.adapters.RecordingsAdapter
@@ -143,8 +144,16 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         }
     }
 
-    @SuppressLint("InlinedApi")
     private fun getRecordings(): ArrayList<Recording> {
+        return if (isQPlus()) {
+            getMediaStoreRecordings()
+        } else {
+            getLegacyRecordings()
+        }
+    }
+
+    @SuppressLint("InlinedApi")
+    private fun getMediaStoreRecordings(): ArrayList<Recording> {
         val recordings = ArrayList<Recording>()
 
         val uri = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
@@ -190,6 +199,11 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             cursor?.close()
         }
 
+        return recordings
+    }
+
+    private fun getLegacyRecordings(): ArrayList<Recording> {
+        val recordings = ArrayList<Recording>()
         return recordings
     }
 
