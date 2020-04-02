@@ -1,14 +1,17 @@
 package com.simplemobiletools.voicerecorder.adapters
 
+import android.provider.MediaStore
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
+import com.simplemobiletools.commons.dialogs.ConfirmationDialog
 import com.simplemobiletools.commons.extensions.formatDate
 import com.simplemobiletools.commons.extensions.formatSize
 import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
 import com.simplemobiletools.commons.extensions.getFormattedDuration
+import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.views.FastScroller
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.voicerecorder.R
@@ -92,7 +95,47 @@ class RecordingsAdapter(
     }
 
     private fun askConfirmDelete() {
+        val itemsCnt = selectedKeys.size
+        val firstItem = getSelectedItems().first()
+        val items = if (itemsCnt == 1) {
+            "\"${firstItem.title}\""
+        } else {
+            resources.getQuantityString(R.plurals.delete_recordings, itemsCnt, itemsCnt)
+        }
 
+        val baseString = R.string.delete_recordings_confirmation
+        val question = String.format(resources.getString(baseString), items)
+
+        ConfirmationDialog(activity, question) {
+            ensureBackgroundThread {
+                deleteMediaStoreRecordings()
+            }
+        }
+    }
+
+    private fun deleteMediaStoreRecordings() {
+        if (selectedKeys.isEmpty()) {
+            return
+        }
+
+        val recordingsToRemove = recordings.filter { selectedKeys.contains(it.id) } as ArrayList<Recording>
+        val positions = getSelectedItemPositions()
+        recordingsToRemove.forEach {
+            val uri = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+            val selection = "${MediaStore.Audio.Media._ID} = ?"
+            val selectionArgs = arrayOf(it.id.toString())
+            activity.contentResolver.delete(uri, selection, selectionArgs)
+        }
+
+        recordings.removeAll(recordingsToRemove)
+        activity.runOnUiThread {
+            if (recordings.isEmpty()) {
+                refreshListener.refreshRecordings()
+                finishActMode()
+            } else {
+                removeSelectedItems(positions)
+            }
+        }
     }
 
     fun updateCurrentRecording(newId: Int) {
@@ -101,6 +144,8 @@ class RecordingsAdapter(
         notifyItemChanged(recordings.indexOfFirst { it.id == oldId })
         notifyItemChanged(recordings.indexOfFirst { it.id == newId })
     }
+
+    private fun getSelectedItems() = recordings.filter { selectedKeys.contains(it.id) } as ArrayList<Recording>
 
     private fun setupView(view: View, recording: Recording) {
         view.apply {
