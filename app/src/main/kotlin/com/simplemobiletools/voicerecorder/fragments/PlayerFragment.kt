@@ -126,6 +126,8 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
         recordings_placeholder.beVisibleIf(recordings.isEmpty())
         if (recordings.isEmpty()) {
+            val stringId = if (isQPlus()) R.string.no_recordings_found else R.string.no_recordings_in_folder_found
+            recordings_placeholder.text = context.getString(stringId)
             resetProgress(null)
             player?.stop()
         }
