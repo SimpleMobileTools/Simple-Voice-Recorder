@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Simple Voice Recorder</string>
+    <string name="app_launcher_name">Voice Recorder</string>
+    <string name="recording_saved_successfully">Nagranie zapisano jako\n\"%s\"</string>
+    <string name="recording">Nagrywanie</string>
+    <string name="no_recordings_found">Nie znaleziono nagrań zapisanych\nprzez tę aplikację</string>
+    <string name="no_recordings_in_folder_found">Nie znaleziono nagrań\nw wybranym folderze</string>
+
+    <!-- Confirmation dialog -->
+    <string name="delete_recordings_confirmation">Czy jesteś pewien, że chcesz usunąć %s?</string>    <!-- Are you sure you want to delete 5 recordings? -->
+    <plurals name="delete_recordings">
+        <item quantity="one">%d nagranie</item>
+        <item quantity="few">%d nagrania</item>
+        <item quantity="other">%d nagrań</item>
+    </plurals>
+
+    <!-- Settings -->
+    <string name="try_hiding_notification">Spróbuj ukryć powiadomienie nagrywania</string>
+    <string name="save_recordings_in">Zapisuj nagrania w</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">Czy mogę ukryć ikonę powiadomienia podczas nagrywania?</string>
+    <string name="faq_1_text">To zależy. Gdy urządzenie jest w użyciu, nie da się tego już zrobić dla aplikacji takich, jak ta.
+        Gdy zaznaczysz odpowiednie ustawienie, aplikacja spróbuje to zrobić. Możesz jednak ukryć ikonę powiadomienia na ekranie blokady z ustawień bezpieczeństwa w ustawieniach urządzenia.</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simple Voice Recorder - Nagrywaj z łatwością</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Łatwy sposób nagrywania dowolnego dźwięku bądź dyskusji bez dostępu do internetu</string>
+    <string name="app_long_description">
+        Chciałeś kiedyś przypomnieć sobie, co powiedziała ta druga osoba? Albo zadanie, które dała ci na spotkaniu? Już nie musisz marzyć. Z tym prostym rejestratorem możesz nagrać każdy dźwięk w okamgnieniu.
+
+        Aplikacja jest skupiona na prostocie, nie zawiera w sobie żadnych niepotrzebnych funkcji. Tylko Ty i rejestrator dźwięku. Program pokazuje aktualną głośność dźwięku i wizualizację. Interfejs jest intuicyjny i prosty, nie sposób się w nim zagubić.
+
+        Program oferuje także pomocny odtwarzacz, dający możliwość odsłuchiwania nagrań oraz zmiany ich nazw oraz usuwania ich.
+
+        Aplikacja nie zawiera reklam ani niepotrzebnych uprawnień. Jest w pełni open-source i daje możliwość zmiany kolorów.
+
+        <b>Check out the full suite of Simple Tools here:</b>
+        https://www.simplemobiletools.com
+
+        <b>Facebook:</b>
+        https://www.facebook.com/simplemobiletools
+
+        <b>Reddit:</b>
+        https://www.reddit.com/r/SimpleMobileTools
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
