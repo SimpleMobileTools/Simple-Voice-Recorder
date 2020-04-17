@@ -44,7 +44,10 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         setupColors()
         if (!prevSavePath.isEmpty() && context!!.config.saveRecordingsFolder != prevSavePath) {
             setupAdapter()
+        } else {
+            getRecordingsAdapter()?.updateTextColor(context.config.textColor)
         }
+
         storePrevPath()
     }
 
