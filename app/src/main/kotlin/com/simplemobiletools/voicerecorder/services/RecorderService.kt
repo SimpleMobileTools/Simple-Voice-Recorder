@@ -111,16 +111,20 @@ class RecorderService : Service() {
         isRecording = false
 
         recorder?.apply {
-            stop()
-            release()
+            try {
+                stop()
+                release()
 
-            ensureBackgroundThread {
-                if (isQPlus()) {
-                    addFileInNewMediaStore()
-                } else {
-                    addFileInLegacyMediaStore()
+                ensureBackgroundThread {
+                    if (isQPlus()) {
+                        addFileInNewMediaStore()
+                    } else {
+                        addFileInLegacyMediaStore()
+                    }
+                    EventBus.getDefault().post(Events.RecordingCompleted())
                 }
-                EventBus.getDefault().post(Events.RecordingCompleted())
+            } catch (e: Exception) {
+                showErrorToast(e)
             }
         }
         recorder = null

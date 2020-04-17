@@ -49,7 +49,10 @@ class MainActivity : SimpleActivity() {
 
         Intent(this@MainActivity, RecorderService::class.java).apply {
             action = STOP_AMPLITUDE_UPDATE
-            startService(this)
+            try {
+                startService(this)
+            } catch (ignored: Exception) {
+            }
         }
     }
 

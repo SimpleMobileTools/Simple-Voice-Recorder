@@ -309,8 +309,8 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     private fun getProgressUpdateTask() = object : TimerTask() {
         override fun run() {
-            if (player != null) {
-                Handler(Looper.getMainLooper()).post {
+            Handler(Looper.getMainLooper()).post {
+                if (player != null) {
                     val progress = Math.round(player!!.currentPosition / 1000.toDouble()).toInt()
                     updateCurrentProgress(progress)
                     player_progressbar.progress = progress
