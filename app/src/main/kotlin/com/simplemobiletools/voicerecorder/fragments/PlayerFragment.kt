@@ -2,7 +2,6 @@ package com.simplemobiletools.voicerecorder.fragments
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.database.Cursor
 import android.graphics.drawable.Drawable
 import android.media.AudioManager
 import android.media.MediaMetadataRetriever
@@ -11,6 +10,7 @@ import android.os.Handler
 import android.os.Looper
 import android.os.PowerManager
 import android.provider.MediaStore
+import android.provider.MediaStore.Audio.Media
 import android.util.AttributeSet
 import android.widget.SeekBar
 import com.simplemobiletools.commons.extensions.*
@@ -165,47 +165,37 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     private fun getMediaStoreRecordings(): ArrayList<Recording> {
         val recordings = ArrayList<Recording>()
 
-        val uri = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+        val uri = Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
         val projection = arrayOf(
-            MediaStore.Audio.Media._ID,
-            MediaStore.Audio.Media.DISPLAY_NAME,
-            MediaStore.Audio.Media.DATE_ADDED,
-            MediaStore.Audio.Media.DURATION,
-            MediaStore.Audio.Media.SIZE
+            Media._ID,
+            Media.DISPLAY_NAME,
+            Media.DATE_ADDED,
+            Media.DURATION,
+            Media.SIZE
         )
 
-        val selection = "${MediaStore.Audio.Media.OWNER_PACKAGE_NAME} = ?"
+        val selection = "${Media.OWNER_PACKAGE_NAME} = ?"
         val selectionArgs = arrayOf(context.packageName)
-        val sorting = "${MediaStore.Audio.Media.DATE_ADDED} DESC"
+        val sortOrder = "${Media.DATE_ADDED} DESC"
 
-        var cursor: Cursor? = null
-        try {
-            cursor = context.contentResolver.query(uri, projection, selection, selectionArgs, sorting)
-            if (cursor?.moveToFirst() == true) {
-                do {
-                    val id = cursor.getIntValue(MediaStore.Audio.Media._ID)
-                    val title = cursor.getStringValue(MediaStore.Audio.Media.DISPLAY_NAME)
-                    val path = ""
-                    val timestamp = cursor.getIntValue(MediaStore.Audio.Media.DATE_ADDED)
-                    var duration = cursor.getLongValue(MediaStore.Audio.Media.DURATION) / 1000
-                    var size = cursor.getIntValue(MediaStore.Audio.Media.SIZE)
+        context.queryCursor(uri, projection, selection, selectionArgs, sortOrder, true) { cursor ->
+            val id = cursor.getIntValue(Media._ID)
+            val title = cursor.getStringValue(Media.DISPLAY_NAME)
+            val path = ""
+            val timestamp = cursor.getIntValue(Media.DATE_ADDED)
+            var duration = cursor.getLongValue(Media.DURATION) / 1000
+            var size = cursor.getIntValue(Media.SIZE)
 
-                    if (duration == 0L) {
-                        duration = getDurationFromUri(id.toLong())
-                    }
-
-                    if (size == 0) {
-                        size = getSizeFromUri(id.toLong())
-                    }
-
-                    val recording = Recording(id, title, "", timestamp, duration.toInt(), size)
-                    recordings.add(recording)
-                } while (cursor.moveToNext())
+            if (duration == 0L) {
+                duration = getDurationFromUri(id.toLong())
             }
-        } catch (e: Exception) {
-            context.showErrorToast(e)
-        } finally {
-            cursor?.close()
+
+            if (size == 0) {
+                size = getSizeFromUri(id.toLong())
+            }
+
+            val recording = Recording(id, title, "", timestamp, duration.toInt(), size)
+            recordings.add(recording)
         }
 
         return recordings

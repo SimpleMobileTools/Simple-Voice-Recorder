@@ -1,7 +1,7 @@
 package com.simplemobiletools.voicerecorder.dialogs
 
 import android.content.ContentValues
-import android.provider.MediaStore
+import android.provider.MediaStore.Audio.Media
 import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.extensions.*
@@ -59,8 +59,8 @@ class RenameRecordingDialog(val activity: BaseSimpleActivity, val recording: Rec
         val newDisplayName = "${newTitle.removeSuffix(".$oldExtension")}.$oldExtension"
 
         val values = ContentValues().apply {
-            put(MediaStore.Audio.Media.TITLE, newTitle.substringAfterLast('.'))
-            put(MediaStore.Audio.Media.DISPLAY_NAME, newDisplayName)
+            put(Media.TITLE, newTitle.substringAfterLast('.'))
+            put(Media.DISPLAY_NAME, newDisplayName)
         }
 
         activity.contentResolver.update(getAudioFileContentUri(recording.id.toLong()), values, null, null)

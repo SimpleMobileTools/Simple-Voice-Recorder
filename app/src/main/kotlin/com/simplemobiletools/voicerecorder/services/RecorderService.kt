@@ -11,6 +11,7 @@ import android.media.MediaScannerConnection
 import android.os.Build
 import android.os.IBinder
 import android.provider.MediaStore
+import android.provider.MediaStore.Audio.Media
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.simplemobiletools.commons.extensions.*
@@ -147,13 +148,13 @@ class RecorderService : Service() {
 
     @SuppressLint("InlinedApi")
     private fun addFileInNewMediaStore() {
-        val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+        val audioCollection = Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
 
         val storeFilename = currFilePath.getFilenameFromPath()
         val newSongDetails = ContentValues().apply {
-            put(MediaStore.Audio.Media.DISPLAY_NAME, storeFilename)
-            put(MediaStore.Audio.Media.TITLE, storeFilename)
-            put(MediaStore.Audio.Media.MIME_TYPE, storeFilename.getMimeType())
+            put(Media.DISPLAY_NAME, storeFilename)
+            put(Media.TITLE, storeFilename)
+            put(Media.MIME_TYPE, storeFilename.getMimeType())
         }
 
         val newUri = contentResolver.insert(audioCollection, newSongDetails)

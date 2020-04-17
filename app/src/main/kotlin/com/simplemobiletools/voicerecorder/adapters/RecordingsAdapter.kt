@@ -1,6 +1,7 @@
 package com.simplemobiletools.voicerecorder.adapters
 
 import android.provider.MediaStore
+import android.provider.MediaStore.Audio.Media
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
@@ -21,10 +22,10 @@ import kotlinx.android.synthetic.main.item_recording.view.*
 import java.io.File
 import java.util.*
 
-class RecordingsAdapter(
-    activity: SimpleActivity, var recordings: ArrayList<Recording>, val refreshListener: RefreshRecordingsListener,
-    recyclerView: MyRecyclerView, fastScroller: FastScroller, itemClick: (Any) -> Unit
-) : MyRecyclerViewAdapter(activity, recyclerView, fastScroller, itemClick) {
+class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Recording>, val refreshListener: RefreshRecordingsListener,
+                        recyclerView: MyRecyclerView, fastScroller: FastScroller, itemClick: (Any) -> Unit)
+    : MyRecyclerViewAdapter(activity, recyclerView, fastScroller, itemClick) {
+
     var currRecordingId = 0
 
     init {
@@ -124,8 +125,8 @@ class RecordingsAdapter(
 
         if (isQPlus()) {
             recordingsToRemove.forEach {
-                val uri = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
-                val selection = "${MediaStore.Audio.Media._ID} = ?"
+                val uri = Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+                val selection = "${Media._ID} = ?"
                 val selectionArgs = arrayOf(it.id.toString())
                 activity.contentResolver.delete(uri, selection, selectionArgs)
             }
