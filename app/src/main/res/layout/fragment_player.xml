@@ -11,12 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/activity_margin"
+        android:alpha="0.8"
         android:gravity="center"
-        android:lineSpacingExtra="@dimen/medium_margin"
+        android:lineSpacingExtra="@dimen/small_margin"
         android:padding="@dimen/activity_margin"
         android:text="@string/no_recordings_found"
         android:textSize="@dimen/bigger_text_size"
+        android:textStyle="italic"
         android:visibility="visible" />
 
     <com.simplemobiletools.commons.views.MyRecyclerView
