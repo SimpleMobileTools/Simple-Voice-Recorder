@@ -127,7 +127,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/previous"
                 android:padding="@dimen/medium_margin"
-                android:src="@drawable/ic_previous_vector_new" />
+                android:src="@drawable/ic_previous_vector" />
 
             <ImageView
                 android:id="@+id/play_pause_btn"
@@ -154,7 +154,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/next"
                 android:padding="@dimen/medium_margin"
-                android:src="@drawable/ic_next_vector_new" />
+                android:src="@drawable/ic_next_vector" />
 
         </RelativeLayout>
     </RelativeLayout>
