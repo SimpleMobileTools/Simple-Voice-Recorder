@@ -24,9 +24,9 @@
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Paprastas Garso Įrašytuvas - Lengvai įrašykite bet kokį garsą</string>
+    <string name="app_title">Paprastas Garso Įrašytuvas</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Lengvas būdas įrašyti bet kokį pokalbį ar garsus be reklamų ar interneto prieigos</string>
+    <string name="app_short_description">Lengvas būdas įrašyti bet kokį pokalbį ar garsus be reklamų ar interneto prieigo</string>
     <string name="app_long_description">
         Ar kada norėjote prisiminti, ką kitas asmuo kalbėjo? Arba užduotį kurią Jums davė susitikime? Jums nebereikia norėti. Su šiuo garso įrašytuvu Jūs galite lengvai įrašyti bet kokį garsą.
 
