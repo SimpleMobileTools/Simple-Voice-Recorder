@@ -215,7 +215,7 @@ class RecorderService : Service() {
         }
 
         var priority = Notification.PRIORITY_DEFAULT
-        var icon = R.drawable.ic_microphone_small
+        var icon = R.drawable.ic_microphone_vector
         var title = label
         var text = getString(R.string.recording)
         var visibility = NotificationCompat.VISIBILITY_PUBLIC
