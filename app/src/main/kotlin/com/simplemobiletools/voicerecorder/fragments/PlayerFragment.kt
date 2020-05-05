@@ -213,7 +213,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             val title = it.name
             val path = it.absolutePath
             val timestamp = (it.lastModified() / 1000).toInt()
-            val duration = it.absolutePath.getFileDurationSeconds() ?: 0
+            val duration = context.getDuration(it.absolutePath) ?: 0
             val size = it.length().toInt()
             val recording = Recording(id, title, path, timestamp, duration, size)
             recordings.add(recording)
