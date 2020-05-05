@@ -23,8 +23,8 @@ import java.io.File
 import java.util.*
 
 class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Recording>, val refreshListener: RefreshRecordingsListener,
-                        recyclerView: MyRecyclerView, fastScroller: FastScroller, itemClick: (Any) -> Unit)
-    : MyRecyclerViewAdapter(activity, recyclerView, fastScroller, itemClick) {
+                        recyclerView: MyRecyclerView, fastScroller: FastScroller, itemClick: (Any) -> Unit) :
+        MyRecyclerViewAdapter(activity, recyclerView, fastScroller, itemClick) {
 
     var currRecordingId = 0
 
