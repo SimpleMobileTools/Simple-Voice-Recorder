@@ -57,7 +57,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.simplemobiletools:commons:5.28.14'
+    implementation 'com.simplemobiletools:commons:5.28.15'
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'com.github.Armen101:AudioRecordView:1.0.2'
 }
