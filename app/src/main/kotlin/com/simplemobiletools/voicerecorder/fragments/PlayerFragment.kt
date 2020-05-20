@@ -42,7 +42,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     override fun onResume() {
         setupColors()
-        if (!prevSavePath.isEmpty() && context!!.config.saveRecordingsFolder != prevSavePath) {
+        if (prevSavePath.isNotEmpty() && context!!.config.saveRecordingsFolder != prevSavePath) {
             setupAdapter()
         } else {
             getRecordingsAdapter()?.updateTextColor(context.config.textColor)
@@ -269,10 +269,14 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         player!!.apply {
             reset()
 
-            if (isQPlus()) {
-                setDataSource(context, getAudioFileContentUri(recording.id.toLong()))
-            } else {
-                setDataSource(recording.path)
+            try {
+                if (isQPlus()) {
+                    setDataSource(context, getAudioFileContentUri(recording.id.toLong()))
+                } else {
+                    setDataSource(recording.path)
+                }
+            } catch (e: Exception) {
+                context?.showErrorToast(e)
             }
 
             prepareAsync()
