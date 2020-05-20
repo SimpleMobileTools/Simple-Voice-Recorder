@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.1.3 *(2020-05-20)*
+----------------------------
+
+ * Allow sharing recordings
+ * Added some UI and translation improvements
+
 Version 5.1.2 *(2020-05-05)*
 ----------------------------
 
