@@ -99,7 +99,13 @@ class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Reco
     }
 
     private fun shareRecordings() {
-        val paths = getSelectedItems().map { getAudioFileContentUri(it.id.toLong()).toString() }
+        val selectedItems = getSelectedItems()
+        val paths = if (isQPlus()) {
+            selectedItems.map { getAudioFileContentUri(it.id.toLong()).toString() }
+        } else {
+            selectedItems.map { it.path }
+        }
+
         activity.sharePathsIntent(paths, BuildConfig.APPLICATION_ID)
     }
 
