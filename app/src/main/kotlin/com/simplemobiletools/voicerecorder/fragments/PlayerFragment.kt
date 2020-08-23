@@ -227,7 +227,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         return try {
             val retriever = MediaMetadataRetriever()
             retriever.setDataSource(context, getAudioFileContentUri(id))
-            val time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
+            val time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)!!
             Math.round(time.toLong() / 1000.toDouble())
         } catch (e: Exception) {
             0L
