@@ -279,7 +279,11 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
                 context?.showErrorToast(e)
             }
 
-            prepareAsync()
+            try {
+                prepareAsync()
+            } catch (e: Exception) {
+                context.showErrorToast(e)
+            }
         }
 
         play_pause_btn.setImageDrawable(getToggleButtonIcon(true))
