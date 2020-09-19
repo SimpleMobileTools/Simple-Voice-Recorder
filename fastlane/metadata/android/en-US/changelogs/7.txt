@@ -1,0 +1,2 @@
+ * Store recordings with proper m4a extension
+ * Added some translation, stability and UX improvements

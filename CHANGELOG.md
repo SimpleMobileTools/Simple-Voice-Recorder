@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.2.0 *(2020-09-19)*
+----------------------------
+
+ * Store recordings with proper m4a extension
+ * Added some translation, stability and UX improvements
+
 Version 5.1.3 *(2020-05-20)*
 ----------------------------
 
