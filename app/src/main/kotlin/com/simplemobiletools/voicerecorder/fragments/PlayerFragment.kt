@@ -394,6 +394,8 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         play_pause_btn.setImageDrawable(getToggleButtonIcon(false))
     }
 
+    fun finishActMode() = getRecordingsAdapter()?.finishActMode()
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun recordingCompleted(event: Events.RecordingCompleted) {
         refreshRecordings()

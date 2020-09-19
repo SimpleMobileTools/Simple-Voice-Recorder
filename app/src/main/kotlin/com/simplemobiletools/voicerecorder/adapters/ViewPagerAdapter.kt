@@ -7,6 +7,7 @@ import androidx.viewpager.widget.PagerAdapter
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
 import com.simplemobiletools.voicerecorder.fragments.MyViewPagerFragment
+import com.simplemobiletools.voicerecorder.fragments.PlayerFragment
 
 class ViewPagerAdapter(private val activity: SimpleActivity) : PagerAdapter() {
     private val mFragments = SparseArray<MyViewPagerFragment>()
@@ -40,4 +41,6 @@ class ViewPagerAdapter(private val activity: SimpleActivity) : PagerAdapter() {
             mFragments[i].onDestroy()
         }
     }
+
+    fun finishActMode() = (mFragments[1] as? PlayerFragment)?.finishActMode()
 }

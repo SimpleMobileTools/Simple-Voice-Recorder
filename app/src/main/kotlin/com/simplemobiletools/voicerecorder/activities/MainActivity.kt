@@ -88,6 +88,7 @@ class MainActivity : SimpleActivity() {
         view_pager.adapter = ViewPagerAdapter(this)
         view_pager.onPageChangeListener {
             main_tabs_holder.getTabAt(it)?.select()
+            (view_pager.adapter as ViewPagerAdapter).finishActMode()
         }
         view_pager.currentItem = config.lastUsedViewPagerPage
 
