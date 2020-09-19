@@ -58,7 +58,7 @@ class RecorderService : Service() {
         stopRecording()
     }
 
-    // mp4 output format with aac encoding should produce good enough mp3 files according to https://stackoverflow.com/a/33054794/1967672
+    // mp4 output format with aac encoding should produce good enough m4a files according to https://stackoverflow.com/a/33054794/1967672
     private fun startRecording() {
         val baseFolder = if (isQPlus()) {
             cacheDir
@@ -71,7 +71,7 @@ class RecorderService : Service() {
             defaultFolder.absolutePath
         }
 
-        currFilePath = "$baseFolder/${getCurrentFormattedDateTime()}.mp3"
+        currFilePath = "$baseFolder/${getCurrentFormattedDateTime()}.m4a"
         recorder = MediaRecorder().apply {
             setAudioSource(MediaRecorder.AudioSource.CAMCORDER)
             setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
