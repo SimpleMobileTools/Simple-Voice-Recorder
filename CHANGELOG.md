@@ -1,6 +1,11 @@
 Changelog
 ==========
 
+Version 5.2.1 *(2020-09-28)*
+----------------------------
+
+ * Allow picking between m4a and mp3 file extensions
+
 Version 5.2.0 *(2020-09-19)*
 ----------------------------
 
