@@ -71,7 +71,7 @@ class RecorderService : Service() {
             defaultFolder.absolutePath
         }
 
-        currFilePath = "$baseFolder/${getCurrentFormattedDateTime()}.m4a"
+        currFilePath = "$baseFolder/${getCurrentFormattedDateTime()}.${config.getExtensionText()}"
         recorder = MediaRecorder().apply {
             setAudioSource(MediaRecorder.AudioSource.CAMCORDER)
             setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)

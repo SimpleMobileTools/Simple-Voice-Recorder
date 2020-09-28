@@ -3,10 +3,14 @@ package com.simplemobiletools.voicerecorder.activities
 import android.os.Bundle
 import com.simplemobiletools.commons.dialogs.ChangeDateTimeFormatDialog
 import com.simplemobiletools.commons.dialogs.FilePickerDialog
+import com.simplemobiletools.commons.dialogs.RadioGroupDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.isQPlus
+import com.simplemobiletools.commons.models.RadioItem
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.extensions.config
+import com.simplemobiletools.voicerecorder.helpers.EXTENSION_M4A
+import com.simplemobiletools.voicerecorder.helpers.EXTENSION_MP3
 import kotlinx.android.synthetic.main.activity_settings.*
 import java.util.*
 
@@ -26,6 +30,7 @@ class SettingsActivity : SimpleActivity() {
         setupChangeDateTimeFormat()
         setupHideNotification()
         setupSaveRecordingsFolder()
+        setupExtension()
         updateTextColors(settings_scrollview)
     }
 
@@ -78,6 +83,20 @@ class SettingsActivity : SimpleActivity() {
                         settings_save_recordings.text = humanizePath(config.saveRecordingsFolder)
                     }
                 }
+            }
+        }
+    }
+
+    private fun setupExtension() {
+        settings_extension.text = config.getExtensionText()
+        settings_extension_holder.setOnClickListener {
+            val items = arrayListOf(
+                RadioItem(EXTENSION_M4A, getString(R.string.m4a)),
+                RadioItem(EXTENSION_MP3, getString(R.string.mp3)))
+
+            RadioGroupDialog(this@SettingsActivity, items, config.extension) {
+                config.extension = it as Int
+                settings_extension.text = config.getExtensionText()
             }
         }
     }
