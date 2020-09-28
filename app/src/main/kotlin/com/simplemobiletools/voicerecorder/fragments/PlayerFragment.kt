@@ -277,12 +277,14 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
                 }
             } catch (e: Exception) {
                 context?.showErrorToast(e)
+                return
             }
 
             try {
                 prepareAsync()
             } catch (e: Exception) {
                 context.showErrorToast(e)
+                return
             }
         }
 
