@@ -23,9 +23,9 @@
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Voice Recorder - Grava calquera audio de maneira rápida</string>
+    <string name="app_title">Simple Voice Recorder - Record any audio easily</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Unha forma segura de gravar calquera conversa ou sons sen anuncios ou sen acceso a Internet.</string>
+    <string name="app_short_description">An easy way of recording any discussion or audio sounds without ads</string>
     <string name="app_long_description">
         Algunha vez desexou gravar o que dixo a outra persoa? Ou a tarefa que lle deron nunha reunión? Non desexes máis. Con esta sinxela gravadora podes gravar calquera audio moi rápido.
 
