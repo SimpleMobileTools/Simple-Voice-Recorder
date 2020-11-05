@@ -74,7 +74,7 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
     }
 
     private fun getToggleButtonIcon(): Drawable {
-        val drawable = if (status == RECORDING_RUNNING) R.drawable.ic_stop_vector else R.drawable.ic_microphone_vector
+        val drawable = if (status == RECORDING_RUNNING || status == RECORDING_PAUSED) R.drawable.ic_stop_vector else R.drawable.ic_microphone_vector
         return resources.getColoredDrawableWithColor(drawable, context.getFABIconColor())
     }
 

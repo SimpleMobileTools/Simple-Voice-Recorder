@@ -147,8 +147,20 @@ class RecorderService : Service() {
         amplitudeTimer.scheduleAtFixedRate(getAmplitudeUpdateTask(), 0, AMPLITUDE_UPDATE_MS)
     }
 
+    @SuppressLint("NewApi")
     private fun togglePause() {
-
+        try {
+            if (status == RECORDING_RUNNING) {
+                recorder?.pause()
+                status = RECORDING_PAUSED
+            } else if (status == RECORDING_PAUSED) {
+                recorder?.resume()
+                status = RECORDING_RUNNING
+            }
+            broadcastStatus()
+        } catch (e: Exception) {
+            showErrorToast(e)
+        }
     }
 
     @SuppressLint("InlinedApi")
