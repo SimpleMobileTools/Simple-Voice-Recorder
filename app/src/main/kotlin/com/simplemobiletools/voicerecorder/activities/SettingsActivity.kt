@@ -1,6 +1,7 @@
 package com.simplemobiletools.voicerecorder.activities
 
 import android.os.Bundle
+import android.view.Menu
 import com.simplemobiletools.commons.dialogs.ChangeDateTimeFormatDialog
 import com.simplemobiletools.commons.dialogs.FilePickerDialog
 import com.simplemobiletools.commons.dialogs.RadioGroupDialog
@@ -32,6 +33,11 @@ class SettingsActivity : SimpleActivity() {
         setupSaveRecordingsFolder()
         setupExtension()
         updateTextColors(settings_scrollview)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        updateMenuItemColors(menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     private fun setupPurchaseThankYou() {
