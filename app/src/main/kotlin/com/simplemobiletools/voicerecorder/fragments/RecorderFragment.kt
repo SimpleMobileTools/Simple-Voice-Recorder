@@ -17,6 +17,7 @@ import org.greenrobot.eventbus.ThreadMode
 
 class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet) {
     private var isRecording = false
+    private var isPaused = false
     private var bus: EventBus? = null
 
     override fun onResume() {
@@ -52,6 +53,11 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
             background.applyColorFilter(adjustedPrimaryColor)
         }
 
+        toggle_pause_button.apply {
+            setImageDrawable(resources.getColoredDrawableWithColor(R.drawable.ic_pause_vector, context.getFABIconColor()))
+            background.applyColorFilter(adjustedPrimaryColor)
+        }
+
         recorder_visualizer.chunkColor = adjustedPrimaryColor
         recording_duration.setTextColor(context.config.textColor)
     }
@@ -72,6 +78,7 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
         if (isRecording) {
             startRecording()
         } else {
+            toggle_pause_button.beGone()
             stopRecording()
         }
     }
@@ -97,6 +104,7 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
     fun gotStatusEvent(event: Events.RecordingStatus) {
         isRecording = event.isRecording
         toggle_recording_button.setImageDrawable(getToggleButtonIcon())
+        toggle_pause_button.beVisibleIf(isRecording)
         if (isRecording) {
             recorder_visualizer.recreate()
         }
