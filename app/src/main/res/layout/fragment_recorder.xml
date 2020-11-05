@@ -46,4 +46,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageView
+        android:id="@+id/toggle_pause_button"
+        android:layout_width="@dimen/fab_size"
+        android:layout_height="@dimen/fab_size"
+        android:layout_marginBottom="@dimen/big_margin"
+        android:background="@drawable/circle_background"
+        android:elevation="@dimen/medium_margin"
+        android:padding="@dimen/activity_margin"
+        android:src="@drawable/ic_pause_vector"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/toggle_recording_button" />
+
 </com.simplemobiletools.voicerecorder.fragments.RecorderFragment>
