@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.isNougatPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.helpers.*
@@ -115,7 +116,7 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
     fun gotStatusEvent(event: Events.RecordingStatus) {
         status = event.status
         toggle_recording_button.setImageDrawable(getToggleButtonIcon())
-        toggle_pause_button.beVisibleIf(status != RECORDING_STOPPED)
+        toggle_pause_button.beVisibleIf(status != RECORDING_STOPPED && isNougatPlus())
         if (status == RECORDING_RUNNING) {
             recorder_visualizer.recreate()
         }
