@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.3.0 *(2020-11-05)*
+----------------------------
+
+ * Allow pausing the recording on Android 7+
+ * Added some translation, UX and stability improvements
+
 Version 5.2.1 *(2020-09-28)*
 ----------------------------
 
