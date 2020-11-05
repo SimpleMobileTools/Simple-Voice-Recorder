@@ -21,9 +21,7 @@ import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SplashActivity
 import com.simplemobiletools.voicerecorder.extensions.config
-import com.simplemobiletools.voicerecorder.helpers.GET_RECORDER_INFO
-import com.simplemobiletools.voicerecorder.helpers.RECORDER_RUNNING_NOTIF_ID
-import com.simplemobiletools.voicerecorder.helpers.STOP_AMPLITUDE_UPDATE
+import com.simplemobiletools.voicerecorder.helpers.*
 import com.simplemobiletools.voicerecorder.models.Events
 import org.greenrobot.eventbus.EventBus
 import java.io.File
@@ -34,7 +32,7 @@ class RecorderService : Service() {
 
     private var currFilePath = ""
     private var duration = 0
-    private var isRecording = false
+    private var status = RECORDING_STOPPED
     private var durationTimer = Timer()
     private var amplitudeTimer = Timer()
     private var recorder: MediaRecorder? = null
@@ -47,6 +45,7 @@ class RecorderService : Service() {
         when (intent.action) {
             GET_RECORDER_INFO -> broadcastRecorderInfo()
             STOP_AMPLITUDE_UPDATE -> amplitudeTimer.cancel()
+            TOGGLE_PAUSE -> togglePause()
             else -> startRecording()
         }
 
@@ -93,7 +92,7 @@ class RecorderService : Service() {
                 prepare()
                 start()
                 duration = 0
-                isRecording = true
+                status = RECORDING_RUNNING
                 broadcastRecorderInfo()
                 startForeground(RECORDER_RUNNING_NOTIF_ID, showNotification())
 
@@ -111,7 +110,7 @@ class RecorderService : Service() {
     private fun stopRecording() {
         durationTimer.cancel()
         amplitudeTimer.cancel()
-        isRecording = false
+        status = RECORDING_STOPPED
 
         recorder?.apply {
             try {
@@ -137,7 +136,7 @@ class RecorderService : Service() {
         broadcastDuration()
         broadcastStatus()
 
-        if (isRecording) {
+        if (status == RECORDING_RUNNING) {
             startAmplitudeUpdates()
         }
     }
@@ -146,6 +145,10 @@ class RecorderService : Service() {
         amplitudeTimer.cancel()
         amplitudeTimer = Timer()
         amplitudeTimer.scheduleAtFixedRate(getAmplitudeUpdateTask(), 0, AMPLITUDE_UPDATE_MS)
+    }
+
+    private fun togglePause() {
+
     }
 
     @SuppressLint("InlinedApi")
@@ -256,6 +259,6 @@ class RecorderService : Service() {
     }
 
     private fun broadcastStatus() {
-        EventBus.getDefault().post(Events.RecordingStatus(isRecording))
+        EventBus.getDefault().post(Events.RecordingStatus(status))
     }
 }
