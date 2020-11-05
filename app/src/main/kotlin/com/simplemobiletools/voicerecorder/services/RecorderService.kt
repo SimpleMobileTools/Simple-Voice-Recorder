@@ -195,7 +195,10 @@ class RecorderService : Service() {
     private fun getAmplitudeUpdateTask() = object : TimerTask() {
         override fun run() {
             if (recorder != null) {
-                EventBus.getDefault().post(Events.RecordingAmplitude(recorder!!.maxAmplitude))
+                try {
+                    EventBus.getDefault().post(Events.RecordingAmplitude(recorder!!.maxAmplitude))
+                } catch (ignored: Exception) {
+                }
             }
         }
     }
