@@ -158,6 +158,7 @@ class RecorderService : Service() {
                 status = RECORDING_RUNNING
             }
             broadcastStatus()
+            startForeground(RECORDER_RUNNING_NOTIF_ID, showNotification())
         } catch (e: Exception) {
             showErrorToast(e)
         }
@@ -237,8 +238,11 @@ class RecorderService : Service() {
         var priority = Notification.PRIORITY_DEFAULT
         var icon = R.drawable.ic_microphone_vector
         var title = label
-        var text = getString(R.string.recording)
         var visibility = NotificationCompat.VISIBILITY_PUBLIC
+        var text = getString(R.string.recording)
+        if (status == RECORDING_PAUSED) {
+            text += " (${getString(R.string.paused)})"
+        }
 
         if (hideNotification) {
             priority = Notification.PRIORITY_MIN

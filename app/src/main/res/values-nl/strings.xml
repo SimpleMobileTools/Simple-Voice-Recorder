@@ -5,6 +5,7 @@
     <string name="recording">Opnemen</string>
     <string name="no_recordings_found">Geen opnames door deze app gevonden</string>
     <string name="no_recordings_in_folder_found">Geen opnames gevonden in de gekozen map</string>
+    <string name="paused">Paused</string>
 
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">De volgende opname verwijderen? %s</string>    <!-- Are you sure you want to delete 5 recordings? -->
@@ -20,7 +21,7 @@
     <!-- FAQ -->
     <string name="faq_1_title">Kan ik de notificatie tijdens het opnemen verbergen?</string>
     <string name="faq_1_text">Dat ligt eraan. Tijdens het gebruik is het niet langer mogelijk in Android om notificaties van dit soort apps volledig te verbergen.
-        De app bevat wel een instelling waarmee er toch zal worden geprobeerd om dit te bewerkstelligen. In de schermvergrendeling kan de notificatie wél worden verborgen door het tonen van gevoelige notificaties in de apparaatinstellingen uit te schakelen.</string>
+        De app bevat wel een instelling waarmee er toch zal worden geprobeerd om dit te bewerkstelligen. In de schermvergrendeling kan de notificatie wï¿½l worden verborgen door het tonen van gevoelige notificaties in de apparaatinstellingen uit te schakelen.</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
@@ -30,7 +31,7 @@
     <string name="app_long_description">
         Ooit gedacht "had ik dat gesprek maar opgenomen"? Welke briljante opmerking iemand maakte? Welke taken in een vergadering werden uitgedeeld? Met deze simpele voicerecorder zijn heel gemakkelijk opnames te maken.
 
-        De app is komt direct ter zake en bevat geen onnodige franjes. Het toont Het toont het huidige geluidsvolume in een mooie visualisatie, biedt een intuïtieve en cleane interface, zodat er niets mis kan gaan.
+        De app is komt direct ter zake en bevat geen onnodige franjes. Het toont Het toont het huidige geluidsvolume in een mooie visualisatie, biedt een intuï¿½tieve en cleane interface, zodat er niets mis kan gaan.
 
         Het biedt ook een handige speler, zodat de opnames snel kunnen worden beluisterd, hernoemd of verwijderd.
 
