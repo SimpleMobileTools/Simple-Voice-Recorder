@@ -50,7 +50,6 @@ class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Reco
         when (id) {
             R.id.cab_rename -> renameRecording()
             R.id.cab_share -> shareRecordings()
-            R.id.cab_select_all -> selectAll()
             R.id.cab_delete -> askConfirmDelete()
         }
     }
