@@ -10,7 +10,6 @@
         android:id="@+id/recordings_placeholder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:alpha="0.8"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/small_margin"
@@ -23,20 +22,21 @@
     <com.simplemobiletools.commons.views.MyRecyclerView
         android:id="@+id/recordings_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/player_controls_wrapper"
+        android:layout_height="0dp"
         android:clipToPadding="false"
         android:scrollbars="none"
-        app:layoutManager="com.simplemobiletools.commons.views.MyLinearLayoutManager" />
+        app:layoutManager="com.simplemobiletools.commons.views.MyLinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/player_controls_wrapper"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.simplemobiletools.commons.views.FastScroller
         android:id="@+id/recordings_fastscroller"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignTop="@+id/recordings_list"
-        android:layout_alignBottom="@+id/recordings_list"
-        android:layout_alignParentEnd="true"
-        android:paddingStart="@dimen/normal_margin">
+        android:layout_height="0dp"
+        android:paddingStart="@dimen/normal_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/recordings_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recordings_list">
 
         <include layout="@layout/fastscroller_handle_vertical" />
 
@@ -46,7 +46,8 @@
         android:id="@+id/player_controls_wrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="HardcodedText">
 
         <View
