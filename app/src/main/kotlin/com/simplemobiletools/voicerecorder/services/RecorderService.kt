@@ -202,8 +202,10 @@ class RecorderService : Service() {
 
     private fun getDurationUpdateTask() = object : TimerTask() {
         override fun run() {
-            duration++
-            broadcastDuration()
+            if (status == RECORDING_RUNNING) {
+                duration++
+                broadcastDuration()
+            }
         }
     }
 

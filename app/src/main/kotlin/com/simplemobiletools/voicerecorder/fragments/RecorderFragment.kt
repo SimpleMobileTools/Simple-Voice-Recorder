@@ -99,6 +99,7 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
         Intent(context, RecorderService::class.java).apply {
             context.startService(this)
         }
+        recorder_visualizer.recreate()
     }
 
     private fun stopRecording() {
@@ -117,14 +118,13 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
         status = event.status
         toggle_recording_button.setImageDrawable(getToggleButtonIcon())
         toggle_pause_button.beVisibleIf(status != RECORDING_STOPPED && isNougatPlus())
-        if (status == RECORDING_RUNNING) {
-            recorder_visualizer.recreate()
-        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun gotAmplitudeEvent(event: Events.RecordingAmplitude) {
         val amplitude = event.amplitude
-        recorder_visualizer.update(amplitude)
+        if (status == RECORDING_RUNNING) {
+            recorder_visualizer.update(amplitude)
+        }
     }
 }
