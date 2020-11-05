@@ -3,6 +3,8 @@ package com.simplemobiletools.voicerecorder.fragments
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.isNougatPlus
@@ -15,9 +17,11 @@ import kotlinx.android.synthetic.main.fragment_recorder.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.util.*
 
 class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet) {
     private var status = RECORDING_STOPPED
+    private var pauseBlinkTimer = Timer()
     private var bus: EventBus? = null
 
     override fun onResume() {
@@ -26,6 +30,7 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
 
     override fun onDestroy() {
         bus?.unregister(this)
+        pauseBlinkTimer.cancel()
     }
 
     override fun onAttachedToWindow() {
@@ -108,6 +113,17 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
         }
     }
 
+    private fun getPauseBlinkTask() = object : TimerTask() {
+        override fun run() {
+            if (status == RECORDING_PAUSED) {
+                // update just the alpha so that it will always be clickable
+                Handler(Looper.getMainLooper()).post {
+                    toggle_pause_button.alpha = if (toggle_pause_button.alpha == 0f) 1f else 0f
+                }
+            }
+        }
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun gotDurationEvent(event: Events.RecordingDuration) {
         updateRecordingDuration(event.duration)
@@ -118,6 +134,16 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
         status = event.status
         toggle_recording_button.setImageDrawable(getToggleButtonIcon())
         toggle_pause_button.beVisibleIf(status != RECORDING_STOPPED && isNougatPlus())
+        if (status == RECORDING_PAUSED) {
+            pauseBlinkTimer = Timer()
+            pauseBlinkTimer.scheduleAtFixedRate(getPauseBlinkTask(), 500, 500)
+        } else {
+            pauseBlinkTimer.cancel()
+        }
+
+        if (status == RECORDING_RUNNING) {
+            toggle_pause_button.alpha = 1f
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
