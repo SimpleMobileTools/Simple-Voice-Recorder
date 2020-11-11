@@ -1,43 +1,43 @@
 <resources>
-    <string name="app_name">Simple Voice Recorder</string>
-    <string name="app_launcher_name">Voice Recorder</string>
-    <string name="recording_saved_successfully">Recording saved successfully as\n\"%s\"</string>
-    <string name="recording">Recording</string>
-    <string name="no_recordings_found">No recordings created by this app\nhave been found</string>
-    <string name="no_recordings_in_folder_found">No recordings have been found\nin the selected folder</string>
-    <string name="paused">Paused</string>
+    <string name="app_name">Schlichtes Diktiergerät</string>
+    <string name="app_launcher_name">Diktiergerät</string>
+    <string name="recording_saved_successfully">Aufnahme erfolgreich gespeichert als \n\"%s\"</string>
+    <string name="recording">Aufnehmen</string>
+    <string name="no_recordings_found">Es wurden keine von dieser App\nerstellten Aufnahmen gefunden</string>
+    <string name="no_recordings_in_folder_found">Es wurden keine Aufnahmen\nim ausgewählten Ordner gefunden</string>
+    <string name="paused">Pausieren</string>
 
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Are you sure you want to delete %s?</string>    <!-- Are you sure you want to delete 5 recordings? -->
+    <string name="delete_recordings_confirmation">Bist du sicher, dass du %s löschen möchtest?</string>    <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
-        <item quantity="one">%d recording</item>
-        <item quantity="other">%d recordings</item>
+        <item quantity="one">%d Aufnahme</item>
+        <item quantity="other">%d Aufnahmen</item>
     </plurals>
 
     <!-- Settings -->
-    <string name="try_hiding_notification">Try hiding the recording notification</string>
-    <string name="save_recordings_in">Save recordings in</string>
+    <string name="try_hiding_notification">Versuche die Aufnahmebenachrichtigung auszublenden</string>
+    <string name="save_recordings_in">Speichere Aufnahme in</string>
 
     <!-- FAQ -->
-    <string name="faq_1_title">Can I hide the notification icon during recording?</string>
-    <string name="faq_1_text">Well, it depends. While you use your device it is no longer possible to fully hide the notifications of apps like this.
-        If you check the proper setting item, the app will do its best to hide it. You can hide it on the lockscreen though, if you disable the displaying of sensitive notifications in your device settings.</string>
+    <string name="faq_1_title">Kann ich das Benachrichtigungssymbol während der Aufnahme ausblenden?</string>
+    <string name="faq_1_text">Naja, das kommt darauf an. Während der Nutzung des Geräts ist es nicht mehr möglich, die Benachrichtigungen von Apps wie dieser vollständig auszublenden.
+        Wenn du die Option in den Einstellungen aktivierst, wird die App ihr Bestes tun, es auszublenden. Du kannst es jedoch auf dem Sperrbildschirm ausblenden, indem du die Anzeige vertraulicher Benachrichtigungen in den Geräteeinstellungen verbietest.</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Voice Recorder - Record any audio easily</string>
+    <string name="app_title">Schlichtes Diktiergerät - Tonaufnahmen einfach erstellen</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">An easy way of recording any discussion or sounds without ads or internet access</string>
+    <string name="app_short_description">Ein simpler Weg, Diskussionen oder Töne ohne Werbung und Internet aufzuzeichnen</string>
     <string name="app_long_description">
-        Ever wished you remember what the other person said? Or the task they gave you at a meeting? Wish no more. With this simple recorder you can record any audio really quickly.
+        Wolltest du dich schon immer mal erinnern, was die andere Person gesagt hat? Oder an die Aufgabe, die dir beim letzten Meeting gegeben wurde? Mit diesem simplen Diktiergerät kannst du jederzeit, schnell und problemlos Aufnahmen tätigen.
 
-        The app goes straight to the point, it contains no fancy features that you won\'t use. Just you and the voice recorder. It shows the current sound volume on a nice visualization that you can have a lot of fun with. Provides a really intuitive and clean user interface, not much can go wrong there.
+        Die App erfüllt ihren Zweck, enthält keine ausgefallenen Funktionen, die du eh nie benutzen würdest. Nur du und das Diktiergerät. Es zeigt die aktuelle Lautstärke anhand eines schön gestalteten Pegelausschlags an. Du wirst damit viel Spaß haben. Zudem bietet sie eine wirklich intuitive und übersichtliche Benutzeroberfläche, da kann nicht viel schief gehen.
 
-        It offers a helpful player too so that you can listen to your recordings quickly, maybe rename or delete them.
+        Es bietet zudem einen hilfreichen Player, mit dem die Aufnahmen direkt angehört, nach Bedarf umbenannt oder gelöscht werden können.
 
-        Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
+        Die App enthält keine Werbung und verlangt keine unnötigen Berechtigungen. Sie ist vollständig OpenSource und bietet anpassbare Farben.
 
-        <b>Check out the full suite of Simple Tools here:</b>
+        <b>Schau dir hier die vollständige Serie der Schlichten Apps an:</b>
         https://www.simplemobiletools.com
 
         <b>Facebook:</b>
