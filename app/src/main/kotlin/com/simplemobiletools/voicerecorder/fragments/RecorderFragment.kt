@@ -3,20 +3,25 @@ package com.simplemobiletools.voicerecorder.fragments
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
 import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.isNougatPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.extensions.config
-import com.simplemobiletools.voicerecorder.helpers.GET_RECORDER_INFO
+import com.simplemobiletools.voicerecorder.helpers.*
 import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.services.RecorderService
 import kotlinx.android.synthetic.main.fragment_recorder.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.util.*
 
 class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet) {
-    private var isRecording = false
+    private var status = RECORDING_STOPPED
+    private var pauseBlinkTimer = Timer()
     private var bus: EventBus? = null
 
     override fun onResume() {
@@ -25,6 +30,7 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
 
     override fun onDestroy() {
         bus?.unregister(this)
+        pauseBlinkTimer.cancel()
     }
 
     override fun onAttachedToWindow() {
@@ -37,6 +43,13 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
         updateRecordingDuration(0)
         toggle_recording_button.setOnClickListener {
             toggleRecording()
+        }
+
+        toggle_pause_button.setOnClickListener {
+            Intent(context, RecorderService::class.java).apply {
+                action = TOGGLE_PAUSE
+                context.startService(this)
+            }
         }
 
         Intent(context, RecorderService::class.java).apply {
@@ -52,6 +65,11 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
             background.applyColorFilter(adjustedPrimaryColor)
         }
 
+        toggle_pause_button.apply {
+            setImageDrawable(resources.getColoredDrawableWithColor(R.drawable.ic_pause_vector, context.getFABIconColor()))
+            background.applyColorFilter(adjustedPrimaryColor)
+        }
+
         recorder_visualizer.chunkColor = adjustedPrimaryColor
         recording_duration.setTextColor(context.config.textColor)
     }
@@ -61,17 +79,23 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
     }
 
     private fun getToggleButtonIcon(): Drawable {
-        val drawable = if (isRecording) R.drawable.ic_stop_vector else R.drawable.ic_microphone_vector
+        val drawable = if (status == RECORDING_RUNNING || status == RECORDING_PAUSED) R.drawable.ic_stop_vector else R.drawable.ic_microphone_vector
         return resources.getColoredDrawableWithColor(drawable, context.getFABIconColor())
     }
 
     private fun toggleRecording() {
-        isRecording = !isRecording
+        status = if (status == RECORDING_RUNNING || status == RECORDING_PAUSED) {
+            RECORDING_STOPPED
+        } else {
+            RECORDING_RUNNING
+        }
+
         toggle_recording_button.setImageDrawable(getToggleButtonIcon())
 
-        if (isRecording) {
+        if (status == RECORDING_RUNNING) {
             startRecording()
         } else {
+            toggle_pause_button.beGone()
             stopRecording()
         }
     }
@@ -80,11 +104,23 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
         Intent(context, RecorderService::class.java).apply {
             context.startService(this)
         }
+        recorder_visualizer.recreate()
     }
 
     private fun stopRecording() {
         Intent(context, RecorderService::class.java).apply {
             context.stopService(this)
+        }
+    }
+
+    private fun getPauseBlinkTask() = object : TimerTask() {
+        override fun run() {
+            if (status == RECORDING_PAUSED) {
+                // update just the alpha so that it will always be clickable
+                Handler(Looper.getMainLooper()).post {
+                    toggle_pause_button.alpha = if (toggle_pause_button.alpha == 0f) 1f else 0f
+                }
+            }
         }
     }
 
@@ -95,16 +131,26 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun gotStatusEvent(event: Events.RecordingStatus) {
-        isRecording = event.isRecording
+        status = event.status
         toggle_recording_button.setImageDrawable(getToggleButtonIcon())
-        if (isRecording) {
-            recorder_visualizer.recreate()
+        toggle_pause_button.beVisibleIf(status != RECORDING_STOPPED && isNougatPlus())
+        if (status == RECORDING_PAUSED) {
+            pauseBlinkTimer = Timer()
+            pauseBlinkTimer.scheduleAtFixedRate(getPauseBlinkTask(), 500, 500)
+        } else {
+            pauseBlinkTimer.cancel()
+        }
+
+        if (status == RECORDING_RUNNING) {
+            toggle_pause_button.alpha = 1f
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun gotAmplitudeEvent(event: Events.RecordingAmplitude) {
         val amplitude = event.amplitude
-        recorder_visualizer.update(amplitude)
+        if (status == RECORDING_RUNNING) {
+            recorder_visualizer.update(amplitude)
+        }
     }
 }

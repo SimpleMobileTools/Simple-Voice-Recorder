@@ -42,7 +42,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     override fun onResume() {
         setupColors()
-        if (!prevSavePath.isEmpty() && context!!.config.saveRecordingsFolder != prevSavePath) {
+        if (prevSavePath.isNotEmpty() && context!!.config.saveRecordingsFolder != prevSavePath) {
             setupAdapter()
         } else {
             getRecordingsAdapter()?.updateTextColor(context.config.textColor)
@@ -227,7 +227,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         return try {
             val retriever = MediaMetadataRetriever()
             retriever.setDataSource(context, getAudioFileContentUri(id))
-            val time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
+            val time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)!!
             Math.round(time.toLong() / 1000.toDouble())
         } catch (e: Exception) {
             0L
@@ -269,13 +269,23 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         player!!.apply {
             reset()
 
-            if (isQPlus()) {
-                setDataSource(context, getAudioFileContentUri(recording.id.toLong()))
-            } else {
-                setDataSource(recording.path)
+            try {
+                if (isQPlus()) {
+                    setDataSource(context, getAudioFileContentUri(recording.id.toLong()))
+                } else {
+                    setDataSource(recording.path)
+                }
+            } catch (e: Exception) {
+                context?.showErrorToast(e)
+                return
             }
 
-            prepareAsync()
+            try {
+                prepareAsync()
+            } catch (e: Exception) {
+                context.showErrorToast(e)
+                return
+            }
         }
 
         play_pause_btn.setImageDrawable(getToggleButtonIcon(true))
@@ -385,6 +395,8 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         play_pause_btn.background.applyColorFilter(context.getAdjustedPrimaryColor())
         play_pause_btn.setImageDrawable(getToggleButtonIcon(false))
     }
+
+    fun finishActMode() = getRecordingsAdapter()?.finishActMode()
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun recordingCompleted(event: Events.RecordingCompleted) {

@@ -63,7 +63,11 @@ class RenameRecordingDialog(val activity: BaseSimpleActivity, val recording: Rec
             put(Media.DISPLAY_NAME, newDisplayName)
         }
 
-        activity.contentResolver.update(getAudioFileContentUri(recording.id.toLong()), values, null, null)
+        try {
+            activity.contentResolver.update(getAudioFileContentUri(recording.id.toLong()), values, null, null)
+        } catch (e: Exception) {
+            activity.showErrorToast(e)
+        }
     }
 
     private fun updateLegacyFilename(recording: Recording, newTitle: String) {

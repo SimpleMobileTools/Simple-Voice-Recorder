@@ -5,6 +5,7 @@
     <string name="recording">Запись</string>
     <string name="no_recordings_found">Записи, созданные этим приложением,\nне найдены</string>
     <string name="no_recordings_in_folder_found">В выбранной папке не найдено\nни одной записи</string>
+    <string name="paused">Paused</string>
 
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">Вы уверены, что хотите удалить %s?</string>    <!-- Are you sure you want to delete 5 recordings? -->

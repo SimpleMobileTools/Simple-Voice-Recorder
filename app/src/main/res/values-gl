@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Simple Voice Recorder</string>
+    <string name="app_launcher_name">Gravador de voz</string>
+    <string name="recording_saved_successfully">Gravación gardada como\n\"%s\"</string>
+    <string name="recording">Gravación</string>
+    <string name="no_recordings_found">Non foron atopadas gravacións\ncreadas por este aplicativo</string>
+    <string name="no_recordings_in_folder_found">Non foron atopados gravacións\nno cartafol seleccionado</string>
+
+    <!-- Confirmation dialog -->
+    <string name="delete_recordings_confirmation">Ten a certeza de que desexa eliminar %s?</string>    <!-- Are you sure you want to delete 5 recordings? -->
+    <plurals name="delete_recordings">
+        <item quantity="one">%d gravación</item>
+        <item quantity="other">%d gravacións</item>
+    </plurals>
+
+    <!-- Settings -->
+    <string name="try_hiding_notification">Intentar ocultar a notificación da gravación</string>
+    <string name="save_recordings_in">Gardar gravacións en</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">Podo agochar a icona da notificación mentres estou gravando?</string>
+    <string name="faq_1_text">Ben, depende. Mentres uses o teu dispositivo, non será posible agochar enteiramente as notificacións como as deste aplicativo. Se revisas os axustes deste elemento, o aplicativo intentará agochalo. Si que o podes agochar da pantalla de bloqueo, se o desactivas o amosador das notificacións sensibles nos axustes do teu dispositivo.
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simple Voice Recorder - Record any audio easily</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">An easy way of recording any discussion or audio sounds without ads</string>
+    <string name="app_long_description">
+        Algunha vez desexou gravar o que dixo a outra persoa? Ou a tarefa que lle deron nunha reunión? Non desexes máis. Con esta sinxela gravadora podes gravar calquera audio moi rápido.
+
+        O aplicativo non contén funcións de fantasía que non usarás. Mostra o volume de son cunha boa visualización. Ofrece unha interface de usuario moi intuitiva e clara.
+
+        Tamén ofrece un reprodutor útil para que poidas escoitar as túas gravacións rapidamente e tamén renomealas ou eliminalas.
+        
+        Non contén anuncios nin permisos innecesarios. É totalmente de código aberto e ofrece cores personalizables.
+
+        <b>Consulta o conxunto completo de aplicativos Simple Tools aquí:</b>
+        https://www.simplemobiletools.com
+
+        <b>Facebook:</b>
+        https://www.facebook.com/simplemobiletools
+
+        <b>Reddit:</b>
+        https://www.reddit.com/r/SimpleMobileTools
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>

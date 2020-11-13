@@ -1,6 +1,29 @@
 Changelog
 ==========
 
+Version 5.3.0 *(2020-11-05)*
+----------------------------
+
+ * Allow pausing the recording on Android 7+
+ * Added some translation, UX and stability improvements
+
+Version 5.2.1 *(2020-09-28)*
+----------------------------
+
+ * Allow picking between m4a and mp3 file extensions
+
+Version 5.2.0 *(2020-09-19)*
+----------------------------
+
+ * Store recordings with proper m4a extension
+ * Added some translation, stability and UX improvements
+
+Version 5.1.3 *(2020-05-20)*
+----------------------------
+
+ * Allow sharing recordings
+ * Added some UI and translation improvements
+
 Version 5.1.2 *(2020-05-05)*
 ----------------------------
 

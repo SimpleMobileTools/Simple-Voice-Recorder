@@ -13,9 +13,11 @@ import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.views.FastScroller
 import com.simplemobiletools.commons.views.MyRecyclerView
+import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
 import com.simplemobiletools.voicerecorder.dialogs.RenameRecordingDialog
+import com.simplemobiletools.voicerecorder.helpers.getAudioFileContentUri
 import com.simplemobiletools.voicerecorder.interfaces.RefreshRecordingsListener
 import com.simplemobiletools.voicerecorder.models.Recording
 import kotlinx.android.synthetic.main.item_recording.view.*
@@ -47,7 +49,7 @@ class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Reco
 
         when (id) {
             R.id.cab_rename -> renameRecording()
-            R.id.cab_select_all -> selectAll()
+            R.id.cab_share -> shareRecordings()
             R.id.cab_delete -> askConfirmDelete()
         }
     }
@@ -93,6 +95,17 @@ class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Reco
             finishActMode()
             refreshListener.refreshRecordings()
         }
+    }
+
+    private fun shareRecordings() {
+        val selectedItems = getSelectedItems()
+        val paths = if (isQPlus()) {
+            selectedItems.map { getAudioFileContentUri(it.id.toLong()).toString() }
+        } else {
+            selectedItems.map { it.path }
+        }
+
+        activity.sharePathsIntent(paths, BuildConfig.APPLICATION_ID)
     }
 
     private fun askConfirmDelete() {

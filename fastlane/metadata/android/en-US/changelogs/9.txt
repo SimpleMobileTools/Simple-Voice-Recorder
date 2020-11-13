@@ -1,0 +1,2 @@
+ * Allow pausing the recording on Android 7+
+ * Added some translation, UX and stability improvements

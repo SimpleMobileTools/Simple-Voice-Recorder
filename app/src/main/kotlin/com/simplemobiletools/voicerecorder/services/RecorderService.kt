@@ -21,9 +21,7 @@ import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SplashActivity
 import com.simplemobiletools.voicerecorder.extensions.config
-import com.simplemobiletools.voicerecorder.helpers.GET_RECORDER_INFO
-import com.simplemobiletools.voicerecorder.helpers.RECORDER_RUNNING_NOTIF_ID
-import com.simplemobiletools.voicerecorder.helpers.STOP_AMPLITUDE_UPDATE
+import com.simplemobiletools.voicerecorder.helpers.*
 import com.simplemobiletools.voicerecorder.models.Events
 import org.greenrobot.eventbus.EventBus
 import java.io.File
@@ -34,7 +32,7 @@ class RecorderService : Service() {
 
     private var currFilePath = ""
     private var duration = 0
-    private var isRecording = false
+    private var status = RECORDING_STOPPED
     private var durationTimer = Timer()
     private var amplitudeTimer = Timer()
     private var recorder: MediaRecorder? = null
@@ -47,6 +45,7 @@ class RecorderService : Service() {
         when (intent.action) {
             GET_RECORDER_INFO -> broadcastRecorderInfo()
             STOP_AMPLITUDE_UPDATE -> amplitudeTimer.cancel()
+            TOGGLE_PAUSE -> togglePause()
             else -> startRecording()
         }
 
@@ -58,7 +57,7 @@ class RecorderService : Service() {
         stopRecording()
     }
 
-    // mp4 output format with aac encoding should produce good enough mp3 files according to https://stackoverflow.com/a/33054794/1967672
+    // mp4 output format with aac encoding should produce good enough m4a files according to https://stackoverflow.com/a/33054794/1967672
     private fun startRecording() {
         val baseFolder = if (isQPlus()) {
             cacheDir
@@ -71,7 +70,7 @@ class RecorderService : Service() {
             defaultFolder.absolutePath
         }
 
-        currFilePath = "$baseFolder/${getCurrentFormattedDateTime()}.mp3"
+        currFilePath = "$baseFolder/${getCurrentFormattedDateTime()}.${config.getExtensionText()}"
         recorder = MediaRecorder().apply {
             setAudioSource(MediaRecorder.AudioSource.CAMCORDER)
             setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
@@ -93,7 +92,7 @@ class RecorderService : Service() {
                 prepare()
                 start()
                 duration = 0
-                isRecording = true
+                status = RECORDING_RUNNING
                 broadcastRecorderInfo()
                 startForeground(RECORDER_RUNNING_NOTIF_ID, showNotification())
 
@@ -111,7 +110,7 @@ class RecorderService : Service() {
     private fun stopRecording() {
         durationTimer.cancel()
         amplitudeTimer.cancel()
-        isRecording = false
+        status = RECORDING_STOPPED
 
         recorder?.apply {
             try {
@@ -136,16 +135,30 @@ class RecorderService : Service() {
     private fun broadcastRecorderInfo() {
         broadcastDuration()
         broadcastStatus()
-
-        if (isRecording) {
-            startAmplitudeUpdates()
-        }
+        startAmplitudeUpdates()
     }
 
     private fun startAmplitudeUpdates() {
         amplitudeTimer.cancel()
         amplitudeTimer = Timer()
         amplitudeTimer.scheduleAtFixedRate(getAmplitudeUpdateTask(), 0, AMPLITUDE_UPDATE_MS)
+    }
+
+    @SuppressLint("NewApi")
+    private fun togglePause() {
+        try {
+            if (status == RECORDING_RUNNING) {
+                recorder?.pause()
+                status = RECORDING_PAUSED
+            } else if (status == RECORDING_PAUSED) {
+                recorder?.resume()
+                status = RECORDING_RUNNING
+            }
+            broadcastStatus()
+            startForeground(RECORDER_RUNNING_NOTIF_ID, showNotification())
+        } catch (e: Exception) {
+            showErrorToast(e)
+        }
     }
 
     @SuppressLint("InlinedApi")
@@ -187,15 +200,20 @@ class RecorderService : Service() {
 
     private fun getDurationUpdateTask() = object : TimerTask() {
         override fun run() {
-            duration++
-            broadcastDuration()
+            if (status == RECORDING_RUNNING) {
+                duration++
+                broadcastDuration()
+            }
         }
     }
 
     private fun getAmplitudeUpdateTask() = object : TimerTask() {
         override fun run() {
             if (recorder != null) {
-                EventBus.getDefault().post(Events.RecordingAmplitude(recorder!!.maxAmplitude))
+                try {
+                    EventBus.getDefault().post(Events.RecordingAmplitude(recorder!!.maxAmplitude))
+                } catch (ignored: Exception) {
+                }
             }
         }
     }
@@ -217,8 +235,11 @@ class RecorderService : Service() {
         var priority = Notification.PRIORITY_DEFAULT
         var icon = R.drawable.ic_microphone_vector
         var title = label
-        var text = getString(R.string.recording)
         var visibility = NotificationCompat.VISIBILITY_PUBLIC
+        var text = getString(R.string.recording)
+        if (status == RECORDING_PAUSED) {
+            text += " (${getString(R.string.paused)})"
+        }
 
         if (hideNotification) {
             priority = Notification.PRIORITY_MIN
@@ -253,6 +274,6 @@ class RecorderService : Service() {
     }
 
     private fun broadcastStatus() {
-        EventBus.getDefault().post(Events.RecordingStatus(isRecording))
+        EventBus.getDefault().post(Events.RecordingStatus(status))
     }
 }

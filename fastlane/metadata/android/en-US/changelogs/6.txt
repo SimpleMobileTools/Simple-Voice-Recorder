@@ -1,0 +1,2 @@
+ * Allow sharing recordings
+ * Added some UI and translation improvements
