@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Basit Ses Kaydedici</string>
+    <string name="app_launcher_name">Ses Kaydedici</string>
+    <string name="recording_saved_successfully">Kayıt \n\"%s\" olarak başarıyla kaydedildi</string>
+    <string name="recording">Kaydediliyor</string>
+    <string name="no_recordings_found">Bu uygulama tarafından oluşturulan kayıt\nbulunamadı</string>
+    <string name="no_recordings_in_folder_found">Seçili klasörde\nkayıt bulunamadı</string>
+    <string name="paused">Duraklatıldı</string>
+
+    <!-- Confirmation dialog -->
+    <string name="delete_recordings_confirmation">%s gerçekten silinsin mi?</string>    <!-- Are you sure you want to delete 5 recordings? -->
+    <plurals name="delete_recordings">
+        <item quantity="one">%d kayıt</item>
+        <item quantity="other">%d kayıt</item>
+    </plurals>
+
+    <!-- Settings -->
+    <string name="try_hiding_notification">Kayıt bildirimini gizlemeyi dene</string>
+    <string name="save_recordings_in">Kayıt klasörü:</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">Kayıt sırasında bildirim simgesini gizleyebilir miyim?</string>
+    <string name="faq_1_text">Duruma göre değişir. Cihazınızı kullanırken, bunun gibi uygulamaların bildirimlerini tamamen gizlemek artık mümkün değildir.
+        Doğru ayar öğesini seçerseniz, uygulama onu gizlemek için elinden geleni yapacaktır. Cihaz ayarlarınızda hassas bildirimlerin görüntülenmesini devre dışı bırakırsanız, bunu kilit ekranında gizleyebilirsiniz.</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Herhangi bir sesi kolayca kaydedin</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Reklamlar/internet erişimi olmadan tartışmayı veya sesi kaydetmenin kolay yolu</string>
+    <string name="app_long_description">
+        Başka bir kişinin size ne dediğini hatırlamayı hiç dilediniz mi? Ya da size bir toplantıda verdikleri görevi? Daha fazlasını dilek. Bu basit kaydedici ile herhangi bir sesi gerçekten hızlı bir şekilde kaydedebilirsiniz.
+
+        Uygulama doğrudan konuya gider, kullanmayacağınız süslü özellikler içermez. Sadece siz ve ses kaydedici. Mevcut ses seviyesini, çok eğlenebileceğiniz güzel bir görselleştirmede gösterir. Gerçekten sezgisel ve temiz bir kullanıcı arayüzü sağlar, orada pek bir şey yanlış gidemez.
+
+        Kayıtlarınızı hızlı bir şekilde dinleyebilmeniz, belki yeniden adlandırabilmeniz veya silebilmeniz için yardımcı bir oynatıcı da sunar.
+
+        Hiçbir reklam veya gereksiz izinler içermez. Tamamen açık kaynaklıdır, özelleştirilebilir renkler sağlar.
+
+        <b>Basit Araçlar paketinin tamamına buradan göz atın:</b>
+        https://www.simplemobiletools.com
+
+        <b>Facebook:</b>
+        https://www.facebook.com/simplemobiletools
+
+        <b>Reddit:</b>
+        https://www.reddit.com/r/SimpleMobileTools
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
