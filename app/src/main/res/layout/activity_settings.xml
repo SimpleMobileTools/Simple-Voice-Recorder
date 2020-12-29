@@ -150,6 +150,7 @@
                 android:layout_toEndOf="@+id/settings_save_recordings_label"
                 android:background="@null"
                 android:clickable="false"
+                android:gravity="end"
                 android:maxLines="3" />
 
         </RelativeLayout>
