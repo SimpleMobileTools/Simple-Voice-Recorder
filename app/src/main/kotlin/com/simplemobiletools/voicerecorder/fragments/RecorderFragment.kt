@@ -54,7 +54,10 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
 
         Intent(context, RecorderService::class.java).apply {
             action = GET_RECORDER_INFO
-            context.startService(this)
+            try {
+                context.startService(this)
+            } catch (e: Exception) {
+            }
         }
     }
 
