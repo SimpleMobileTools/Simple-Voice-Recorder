@@ -39,6 +39,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     private var playedRecordingIDs = Stack<Int>()
     private var bus: EventBus? = null
     private var prevSavePath = ""
+    private var playOnPreparation = true
 
     override fun onResume() {
         setupColors()
@@ -109,7 +110,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
             val prevRecordingIndex = adapter.recordings.indexOfFirst { it.id == wantedRecordingID }
             val prevRecording = adapter.recordings.getOrNull(prevRecordingIndex) ?: return@setOnClickListener
-            playRecording(prevRecording)
+            playRecording(prevRecording, true)
         }
 
         next_btn.setOnClickListener {
@@ -121,7 +122,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             val oldRecordingIndex = adapter.recordings.indexOfFirst { it.id == adapter.currRecordingId }
             val newRecordingIndex = (oldRecordingIndex + 1) % adapter.recordings.size
             val newRecording = adapter.recordings.getOrNull(newRecordingIndex) ?: return@setOnClickListener
-            playRecording(newRecording)
+            playRecording(newRecording, true)
             playedRecordingIDs.push(newRecording.id)
         }
     }
@@ -144,7 +145,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         val adapter = getRecordingsAdapter()
         if (adapter == null) {
             RecordingsAdapter(context as SimpleActivity, recordings, this, recordings_list, recordings_fastscroller) {
-                playRecording(it as Recording)
+                playRecording(it as Recording, true)
                 if (playedRecordingIDs.isEmpty() || playedRecordingIDs.peek() != it.id) {
                     playedRecordingIDs.push(it.id)
                 }
@@ -184,7 +185,6 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         context.queryCursor(uri, projection, selection, selectionArgs, sortOrder, true) { cursor ->
             val id = cursor.getIntValue(Media._ID)
             val title = cursor.getStringValue(Media.DISPLAY_NAME)
-            val path = ""
             val timestamp = cursor.getIntValue(Media.DATE_ADDED)
             var duration = cursor.getLongValue(Media.DURATION) / 1000
             var size = cursor.getIntValue(Media.SIZE)
@@ -256,15 +256,20 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             }
 
             setOnPreparedListener {
-                setupProgressTimer()
-                player?.start()
+                if (playOnPreparation) {
+                    setupProgressTimer()
+                    player?.start()
+                }
+
+                playOnPreparation = true
             }
         }
     }
 
-    override fun playRecording(recording: Recording) {
+    override fun playRecording(recording: Recording, playOnPrepared: Boolean) {
         resetProgress(recording)
         (recordings_list.adapter as RecordingsAdapter).updateCurrentRecording(recording.id)
+        playOnPreparation = playOnPrepared || getIsPlaying()
 
         player!!.apply {
             reset()
@@ -288,7 +293,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             }
         }
 
-        play_pause_btn.setImageDrawable(getToggleButtonIcon(true))
+        play_pause_btn.setImageDrawable(getToggleButtonIcon(playOnPreparation))
         player_progressbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (fromUser && !playedRecordingIDs.isEmpty()) {

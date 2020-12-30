@@ -159,7 +159,7 @@ class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Reco
                 if (recordingsToRemove.map { it.id }.contains(currRecordingId)) {
                     val newRecordingIndex = Math.min(oldRecordingIndex, recordings.size - 1)
                     val newRecording = recordings[newRecordingIndex]
-                    refreshListener.playRecording(newRecording)
+                    refreshListener.playRecording(newRecording, false)
                 }
             }
         }
