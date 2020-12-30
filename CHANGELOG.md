@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.4.0 *(2020-12-30)*
+----------------------------
+
+ * Adding some stability, translation and UX improvements
+ * Require Simple Thank You for color customization
+
 Version 5.3.0 *(2020-11-05)*
 ----------------------------
 

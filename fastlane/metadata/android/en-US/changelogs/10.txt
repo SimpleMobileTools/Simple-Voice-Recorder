@@ -1,0 +1,2 @@
+ * Adding some stability, translation and UX improvements
+ * Require Simple Thank You for color customization
