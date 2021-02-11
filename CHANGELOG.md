@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.4.1 *(2021-02-11)*
+----------------------------
+
+ * Added a special White theme with an accent color
+ * Some stability and translation improvements
+
 Version 5.4.0 *(2020-12-30)*
 ----------------------------
 
