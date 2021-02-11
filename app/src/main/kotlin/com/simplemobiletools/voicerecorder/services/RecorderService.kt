@@ -179,9 +179,15 @@ class RecorderService : Service() {
         }
 
         val outputStream = contentResolver.openOutputStream(newUri)
-        val inputStream = getFileInputStreamSync(currFilePath)
-        inputStream!!.copyTo(outputStream!!, DEFAULT_BUFFER_SIZE)
-        recordingSavedSuccessfully(true)
+
+
+        try {
+            val inputStream = getFileInputStreamSync(currFilePath)
+            inputStream!!.copyTo(outputStream!!, DEFAULT_BUFFER_SIZE)
+            recordingSavedSuccessfully(true)
+        } catch (e: Exception) {
+            showErrorToast(e)
+        }
     }
 
     private fun addFileInLegacyMediaStore() {
