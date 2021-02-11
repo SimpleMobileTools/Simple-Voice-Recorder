@@ -361,7 +361,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     private fun getToggleButtonIcon(isPlaying: Boolean): Drawable {
         val drawable = if (isPlaying) R.drawable.ic_pause_vector else R.drawable.ic_play_vector
-        return resources.getColoredDrawableWithColor(drawable, context.getFABIconColor())
+        return resources.getColoredDrawableWithColor(drawable, context.getAdjustedPrimaryColor().getContrastColor())
     }
 
     private fun skip(forward: Boolean) {

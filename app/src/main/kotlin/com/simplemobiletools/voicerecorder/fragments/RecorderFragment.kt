@@ -69,7 +69,7 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
         }
 
         toggle_pause_button.apply {
-            setImageDrawable(resources.getColoredDrawableWithColor(R.drawable.ic_pause_vector, context.getFABIconColor()))
+            setImageDrawable(resources.getColoredDrawableWithColor(R.drawable.ic_pause_vector, adjustedPrimaryColor.getContrastColor()))
             background.applyColorFilter(adjustedPrimaryColor)
         }
 
@@ -83,7 +83,7 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
 
     private fun getToggleButtonIcon(): Drawable {
         val drawable = if (status == RECORDING_RUNNING || status == RECORDING_PAUSED) R.drawable.ic_stop_vector else R.drawable.ic_microphone_vector
-        return resources.getColoredDrawableWithColor(drawable, context.getFABIconColor())
+        return resources.getColoredDrawableWithColor(drawable, context.getAdjustedPrimaryColor().getContrastColor())
     }
 
     private fun toggleRecording() {
