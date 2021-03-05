@@ -113,6 +113,13 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             playRecording(prevRecording, true)
         }
 
+        player_title.setOnLongClickListener {
+            if (player_title.value.isNotEmpty()) {
+                context.copyToClipboard(player_title.value)
+            }
+            true
+        }
+
         next_btn.setOnClickListener {
             val adapter = getRecordingsAdapter()
             if (adapter == null || adapter.recordings.isEmpty()) {
