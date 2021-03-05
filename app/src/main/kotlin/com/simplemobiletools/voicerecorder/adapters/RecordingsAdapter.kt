@@ -24,9 +24,11 @@ import kotlinx.android.synthetic.main.item_recording.view.*
 import java.io.File
 import java.util.*
 
-class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Recording>, val refreshListener: RefreshRecordingsListener,
-                        recyclerView: MyRecyclerView, fastScroller: FastScroller, itemClick: (Any) -> Unit) :
-        MyRecyclerViewAdapter(activity, recyclerView, fastScroller, itemClick) {
+class RecordingsAdapter(
+    activity: SimpleActivity, var recordings: ArrayList<Recording>, val refreshListener: RefreshRecordingsListener,
+    recyclerView: MyRecyclerView, fastScroller: FastScroller, itemClick: (Any) -> Unit
+) :
+    MyRecyclerViewAdapter(activity, recyclerView, fastScroller, itemClick) {
 
     var currRecordingId = 0
 
@@ -39,6 +41,7 @@ class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Reco
     override fun prepareActionMode(menu: Menu) {
         menu.apply {
             findItem(R.id.cab_rename).isVisible = isOneItemSelected()
+            findItem(R.id.cab_open_with).isVisible = isOneItemSelected()
         }
     }
 
@@ -51,6 +54,7 @@ class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Reco
             R.id.cab_rename -> renameRecording()
             R.id.cab_share -> shareRecordings()
             R.id.cab_delete -> askConfirmDelete()
+            R.id.cab_open_with -> openRecordingWith()
         }
     }
 
@@ -95,6 +99,17 @@ class RecordingsAdapter(activity: SimpleActivity, var recordings: ArrayList<Reco
             finishActMode()
             refreshListener.refreshRecordings()
         }
+    }
+
+    private fun openRecordingWith() {
+        val recording = getItemWithKey(selectedKeys.first()) ?: return
+        val path = if (isQPlus()) {
+            getAudioFileContentUri(recording.id.toLong()).toString()
+        } else {
+            recording.path
+        }
+
+        activity.openPathIntent(path, false, BuildConfig.APPLICATION_ID, "audio/*")
     }
 
     private fun shareRecordings() {
