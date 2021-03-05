@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.4.2 *(2021-03-05)*
+----------------------------
+
+ * Store recordings into a separate Recordings folder on Android 10+
+ * Added some design and stability improvements
+
 Version 5.4.1 *(2021-02-11)*
 ----------------------------
 
