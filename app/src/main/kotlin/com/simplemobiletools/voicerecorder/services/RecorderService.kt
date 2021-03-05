@@ -180,10 +180,8 @@ class RecorderService : Service() {
             return
         }
 
-        val outputStream = contentResolver.openOutputStream(newUri)
-
-
         try {
+            val outputStream = contentResolver.openOutputStream(newUri)
             val inputStream = getFileInputStreamSync(currFilePath)
             inputStream!!.copyTo(outputStream!!, DEFAULT_BUFFER_SIZE)
             recordingSavedSuccessfully(true)
