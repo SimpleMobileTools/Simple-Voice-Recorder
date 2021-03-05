@@ -9,6 +9,7 @@ import android.content.Intent
 import android.media.MediaRecorder
 import android.media.MediaScannerConnection
 import android.os.Build
+import android.os.Environment
 import android.os.IBinder
 import android.provider.MediaStore
 import android.provider.MediaStore.Audio.Media
@@ -164,12 +165,13 @@ class RecorderService : Service() {
     @SuppressLint("InlinedApi")
     private fun addFileInNewMediaStore() {
         val audioCollection = Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
-
         val storeFilename = currFilePath.getFilenameFromPath()
+
         val newSongDetails = ContentValues().apply {
             put(Media.DISPLAY_NAME, storeFilename)
             put(Media.TITLE, storeFilename)
             put(Media.MIME_TYPE, storeFilename.getMimeType())
+            put(Media.RELATIVE_PATH, "${Environment.DIRECTORY_MUSIC}/Recordings")
         }
 
         val newUri = contentResolver.insert(audioCollection, newSongDetails)
