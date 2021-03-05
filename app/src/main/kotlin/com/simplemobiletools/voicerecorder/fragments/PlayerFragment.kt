@@ -152,6 +152,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             }.apply {
                 recordings_list.adapter = this
             }
+            recordings_list.scheduleLayoutAnimation()
         } else {
             adapter.updateItems(recordings)
         }
