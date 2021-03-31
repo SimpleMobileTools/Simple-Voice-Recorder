@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">简易录音机</string>
+    <string name="app_launcher_name">录音机</string>
+    <string name="recording_saved_successfully">录音成功保存为\n\"%s\"</string>
+    <string name="recording">录音中</string>
+    <string name="no_recordings_found">未找到由此应用创建\n的录音</string>
+    <string name="no_recordings_in_folder_found">未在选择的文件夹找到\n录音</string>
+    <string name="paused">暂停</string>
+
+    <!-- Confirmation dialog -->
+    <string name="delete_recordings_confirmation">您确定要删除 %s?</string>    <!-- Are you sure you want to delete 5 recordings? -->
+    <plurals name="delete_recordings">
+        <item quantity="one">%d 个录音</item>
+        <item quantity="other">%d 个录音</item>
+    </plurals>
+
+    <!-- Settings -->
+    <string name="try_hiding_notification">尝试隐藏录音通知提示</string>
+    <string name="save_recordings_in">保存录音至</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">在录音过程中我可以隐藏通知提示图标么？</string>
+    <string name="faq_1_text">这个，视情况而定。当您正在使用设备的时候，现在已经不可能完全隐藏像此类应用程序的通知图标了。
+        如果您勾选恰当的设定条目，应用程序将秦可能的隐藏自身。您仍可以在锁屏界面隐藏它，如果您在您设备设定中禁用显示敏感内容的通知提示的话。</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">简易录音机 - 轻松录制任意音频</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">没有广告，无需互联网连接即可录制任意讨论或者声音的简便方式</string>
+    <string name="app_long_description">
+        是否希望您能记住另一个人所说的事情？或者在会议上指派给您的任务？无需再希望。使用这个简单的录音机，您可以快速录制任何音频。
+
+        该应用意图明确，它不包含任何您用不到的功能。仅仅是您和录音机。它会将当前的声音音量以漂亮的示波器展示，令您享有些许乐趣。它提供了简洁明快易上手的用户界面，免于任何困扰或歧义。
+
+        它同时也提供一个好用的播放器，方便您快速聆听在自己的录音，亦或重命名或删除。
+
+        不包含广告及非必要的权限，而且完全开放源代码，并提供自定义颜色。
+
+        <b>于此查看简易工具系列全套:</b>
+        https://www.simplemobiletools.com
+
+        <b>Facebook:</b>
+        https://www.facebook.com/simplemobiletools
+
+        <b>Reddit:</b>
+        https://www.reddit.com/r/SimpleMobileTools
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
