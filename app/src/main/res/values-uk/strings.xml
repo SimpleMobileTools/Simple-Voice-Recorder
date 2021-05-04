@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Simple Voice Recorder</string>
+    <string name="app_launcher_name">Диктофон</string>
+    <string name="recording_saved_successfully">Запис успішно збережений як\n\"%s\"</string>
+    <string name="recording">Запис</string>
+    <string name="no_recordings_found">Записи, створені цим додатком,\nне знайдені</string>
+    <string name="no_recordings_in_folder_found">В обраній теці, не знайдено\nжодного запису</string>
+    <string name="paused">Пауза</string>
+
+    <!-- Confirmation dialog -->
+    <string name="delete_recordings_confirmation">Ви впевнені, що хочете видалити %s?</string>    <!-- Are you sure you want to delete 5 recordings? -->
+    <plurals name="delete_recordings">
+        <item quantity="one">%d запис</item>
+        <item quantity="few">%d записа</item>
+        <item quantity="many">%d записів</item>
+    </plurals>
+
+    <!-- Settings -->
+    <string name="try_hiding_notification">Намагатися приховати сповіщення про запис</string>
+    <string name="save_recordings_in">Місце зберігання записів</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">Чи можна приховати значок сповіщення під час запису?</string>
+    <string name="faq_1_text">Ну, це залежить від обставин. Доки ви використовуєте свій пристрій, повністю приховати сповіщення з таких додатків неможливо.
+        Якщо ви встановите відповідний пункт в настройках, додаток зробить все можливе, щоб приховати сповіщення. Також можна приховати його на екрані блокування, якщо відключити відображення конфіденційних сповіщень в налаштуваннях пристрою.</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simple Voice Recorder - простий запис звуку</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Легкий спосіб запису всякої дискусії або звуку без реклами і доступу в інтернет</string>
+    <string name="app_long_description">
+        Ви коли-небудь хотіли згадати що сказала інша людина? Або завдання, яке вам дали на нараді? Більше не потрібно хотіти. За допомогою цього простого диктофона ви зможете записати будь-який звук дуже швидко.
+
+        Додаток одразу переходить до справи, він не містить ніяких чудернацьких функцій, які ви не будете використовувати. Тільки ви і диктофон. Він показує поточну гучність звуку у вигляді приємної візуалізації, від якої ви отримаєте масу задоволення. Додаток має дійсно інтуїтивно зрозумілий і чистий інтерфейс користувача, мало що може піти "не так".
+
+        Також є програвач, щоб ви могли швидко прослухати свої записи, з можливістю перейменувати або видалити їх.
+
+        Не містить реклами або зайвих дозволів, повністю з відкритим вихідним кодом. Є можливість налаштовувати кольори інтерфейсу.
+
+        <b>Ознайомтеся з повним набором додатків Simple Tools тут:</b>
+        https://www.simplemobiletools.com
+
+        <b>Facebook:</b>
+        https://www.facebook.com/simplemobiletools
+
+        <b>Reddit:</b>
+        https://www.reddit.com/r/SimpleMobileTools
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
