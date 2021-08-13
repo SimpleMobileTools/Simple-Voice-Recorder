@@ -1,16 +1,16 @@
-Chciałeś kiedyś przypomnieć sobie, co powiedziała ta druga osoba? Albo zadanie, które dała ci na spotkaniu? Już nie musisz marzyć. Z tym prostym rejestratorem możesz nagrać każdy dźwięk w okamgnieniu.
+Czy chciałeś(-aś) kiedyś przypomnieć sobie, co powiedziała ta druga osoba? Albo zadanie, które dała Ci na spotkaniu? Już nie musisz marzyć. Z tym prostym rejestratorem możesz nagrać każdy dźwięk w mgnieniu oka.
 
-Aplikacja jest skupiona na prostocie, nie zawiera w sobie żadnych niepotrzebnych funkcji. Tylko Ty i rejestrator dźwięku. Program pokazuje aktualną głośność dźwięku i wizualizację. Interfejs jest intuicyjny i prosty, nie sposób się w nim zagubić.
+Aplikacja jest skupiona na prostocie, nie zawiera w sobie żadnych niepotrzebnych funkcji. Tylko Ty i rejestrator głosu. Pokazuje aktualną głośność dźwięku na ładnej wizualizacji. Interfejs jest intuicyjny i prosty, nie sposób się w nim zagubić.
 
-Program oferuje także pomocny odtwarzacz, dający możliwość odsłuchiwania nagrań oraz zmiany ich nazw oraz usuwania ich.
+Oferuje także pomocny odtwarzacz dający możliwość szybkiego odsłuchania nagrań, zmiany ich nazw czy usunięcia ich.
 
-Aplikacja nie zawiera reklam ani niepotrzebnych uprawnień. Jest w pełni open-source i daje możliwość zmiany kolorów.
+Nie zawiera reklam ani niepotrzebnych uprawnień. Jest w pełni otwartoźródłowa, zapewnia konfigurowalną kolorystykę.
 
-Check out the full suite of Simple Tools here:
+<b>Sprawdź pełen zestaw od Simple Tools tutaj:</b>
 https://www.simplemobiletools.com
 
-Facebook:
+<b>Facebook:</b>
 https://www.facebook.com/simplemobiletools
 
-Reddit:
+<b>Reddit:</b>
 https://www.reddit.com/r/SimpleMobileTools
