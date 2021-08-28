@@ -18,6 +18,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : SimpleActivity() {
 
+    companion object {
+        const val RECORD_INTENT_ACTION = "RECORD_ACTION";
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -40,6 +44,16 @@ class MainActivity : SimpleActivity() {
         super.onResume()
         getPagerAdapter()?.onResume()
         setupTabColors()
+
+        if (intent.action == RECORD_INTENT_ACTION) {
+            view_pager.currentItem = 0
+            Intent(this@MainActivity, RecorderService::class.java).apply {
+                try {
+                    startService(this)
+                } catch (ignored: Exception) {
+                }
+            }
+        }
     }
 
     override fun onDestroy() {

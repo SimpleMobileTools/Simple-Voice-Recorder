@@ -60,6 +60,10 @@ class RecorderService : Service() {
 
     // mp4 output format with aac encoding should produce good enough m4a files according to https://stackoverflow.com/a/33054794/1967672
     private fun startRecording() {
+        if (status == RECORDING_RUNNING) {
+            return
+        }
+
         val baseFolder = if (isQPlus()) {
             cacheDir
         } else {

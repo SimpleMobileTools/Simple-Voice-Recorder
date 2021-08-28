@@ -29,6 +29,27 @@
         android:theme="@style/AppTheme">
 
         <activity
+            android:name=".activities.WidgetRecordDisplayConfigureActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyWidgetConfigTheme">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".helpers.MyWidgetRecordDisplayProvider"
+            android:icon="@drawable/ic_microphone_vector">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_record_display" />
+        </receiver>
+
+        <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/SplashTheme" />
 
