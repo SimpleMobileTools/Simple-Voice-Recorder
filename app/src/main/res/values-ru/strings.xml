@@ -18,7 +18,7 @@
     <!-- Settings -->
     <string name="try_hiding_notification">Пытаться скрыть уведомление о записи</string>
     <string name="save_recordings_in">Место хранения записей</string>
-    <string name="bitrate">Quality (bitrate)</string>
+    <string name="bitrate">Bitrate</string>
     <string name="bitrate_value">%d kbps</string> <!-- Bitrate values like: 320 kbps, 128 kbps etc. -->
 
     <!-- FAQ -->
