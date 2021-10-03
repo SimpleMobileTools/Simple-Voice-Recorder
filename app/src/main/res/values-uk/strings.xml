@@ -18,6 +18,8 @@
     <!-- Settings -->
     <string name="try_hiding_notification">Намагатися приховати сповіщення про запис</string>
     <string name="save_recordings_in">Місце зберігання записів</string>
+    <string name="bitrate">Quality (bitrate)</string>
+    <string name="bitrate_value">%d kbps</string> <!-- Bitrate values like: 320 kbps, 128 kbps etc. -->
 
     <!-- FAQ -->
     <string name="faq_1_title">Чи можна приховати значок сповіщення під час запису?</string>

@@ -10,10 +10,10 @@ import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.models.RadioItem
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.extensions.config
-import com.simplemobiletools.voicerecorder.helpers.EXTENSION_M4A
-import com.simplemobiletools.voicerecorder.helpers.EXTENSION_MP3
+import com.simplemobiletools.voicerecorder.helpers.*
 import kotlinx.android.synthetic.main.activity_settings.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class SettingsActivity : SimpleActivity() {
 
@@ -32,6 +32,7 @@ class SettingsActivity : SimpleActivity() {
         setupHideNotification()
         setupSaveRecordingsFolder()
         setupExtension()
+        setupBitrate()
         updateTextColors(settings_scrollview)
     }
 
@@ -107,4 +108,18 @@ class SettingsActivity : SimpleActivity() {
             }
         }
     }
+
+    private fun setupBitrate() {
+        settings_bitrate.text = getBitrateText(config.bitrate)
+        settings_bitrate_holder.setOnClickListener {
+            val items = BITRATES.map { RadioItem(it, getBitrateText(it)) } as ArrayList
+
+            RadioGroupDialog(this@SettingsActivity, items, config.bitrate) {
+                config.bitrate = it as Int
+                settings_bitrate.text = getBitrateText(config.bitrate)
+            }
+        }
+    }
+
+    private fun getBitrateText(value: Int): String = getString(R.string.bitrate_value).format(value / 1000)
 }

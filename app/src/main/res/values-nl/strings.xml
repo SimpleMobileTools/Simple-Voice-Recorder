@@ -17,6 +17,8 @@
     <!-- Settings -->
     <string name="try_hiding_notification">Tijdens de opname proberen de notificatie te verbergen</string>
     <string name="save_recordings_in">Opnames opslaan in</string>
+    <string name="bitrate">Quality (bitrate)</string>
+    <string name="bitrate_value">%d kbps</string> <!-- Bitrate values like: 320 kbps, 128 kbps etc. -->
 
     <!-- FAQ -->
     <string name="faq_1_title">Kan ik de notificatie tijdens het opnemen verbergen?</string>

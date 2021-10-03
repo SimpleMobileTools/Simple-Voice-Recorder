@@ -17,6 +17,8 @@
     <!-- Settings -->
     <string name="try_hiding_notification">Forsøg at skjule notifikation under optagelse</string>
     <string name="save_recordings_in">Gem optagelser i</string>
+    <string name="bitrate">Quality (bitrate)</string>
+    <string name="bitrate_value">%d kbps</string> <!-- Bitrate values like: 320 kbps, 128 kbps etc. -->
 
     <!-- FAQ -->
     <string name="faq_1_title">Kan jeg skjule notifikationsikonet under optagelse?</string>
