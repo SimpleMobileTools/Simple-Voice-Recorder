@@ -10,8 +10,7 @@ import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.models.RadioItem
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.extensions.config
-import com.simplemobiletools.voicerecorder.helpers.EXTENSION_M4A
-import com.simplemobiletools.voicerecorder.helpers.EXTENSION_MP3
+import com.simplemobiletools.voicerecorder.helpers.*
 import kotlinx.android.synthetic.main.activity_settings.*
 import java.util.*
 
@@ -100,6 +99,10 @@ class SettingsActivity : SimpleActivity() {
             val items = arrayListOf(
                 RadioItem(EXTENSION_M4A, getString(R.string.m4a)),
                 RadioItem(EXTENSION_MP3, getString(R.string.mp3)))
+
+            if (isQPlus()) {
+                items.add(RadioItem(EXTENSION_OGG, getString(R.string.ogg)))
+            }
 
             RadioGroupDialog(this@SettingsActivity, items, config.extension) {
                 config.extension = it as Int

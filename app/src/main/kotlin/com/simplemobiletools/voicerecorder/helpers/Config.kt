@@ -1,6 +1,7 @@
 package com.simplemobiletools.voicerecorder.helpers
 
 import android.content.Context
+import android.media.MediaRecorder
 import com.simplemobiletools.commons.helpers.BaseConfig
 import com.simplemobiletools.voicerecorder.R
 
@@ -23,6 +24,17 @@ class Config(context: Context) : BaseConfig(context) {
 
     fun getExtensionText() = context.getString(when (extension) {
         EXTENSION_M4A -> R.string.m4a
+        EXTENSION_OGG -> R.string.ogg
         else -> R.string.mp3
     })
+
+    fun getOutputFormat() = when (extension) {
+        EXTENSION_OGG -> MediaRecorder.OutputFormat.OGG
+        else -> MediaRecorder.OutputFormat.MPEG_4
+    }
+
+    fun getAudioEncoder() = when (extension) {
+        EXTENSION_OGG -> MediaRecorder.AudioEncoder.OPUS
+        else -> MediaRecorder.AudioEncoder.AAC
+    }
 }

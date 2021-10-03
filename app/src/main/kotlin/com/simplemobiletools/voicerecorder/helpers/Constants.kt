@@ -16,6 +16,7 @@ const val TOGGLE_PAUSE = PATH + "TOGGLE_PAUSE"
 
 const val EXTENSION_M4A = 0
 const val EXTENSION_MP3 = 1
+const val EXTENSION_OGG = 2
 
 const val RECORDING_RUNNING = 0
 const val RECORDING_STOPPED = 1
