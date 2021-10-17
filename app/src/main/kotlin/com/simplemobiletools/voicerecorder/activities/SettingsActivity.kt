@@ -31,6 +31,7 @@ class SettingsActivity : SimpleActivity() {
         setupHideNotification()
         setupSaveRecordingsFolder()
         setupExtension()
+        setupBitrate()
         updateTextColors(settings_scrollview)
     }
 
@@ -98,7 +99,8 @@ class SettingsActivity : SimpleActivity() {
         settings_extension_holder.setOnClickListener {
             val items = arrayListOf(
                 RadioItem(EXTENSION_M4A, getString(R.string.m4a)),
-                RadioItem(EXTENSION_MP3, getString(R.string.mp3)))
+                RadioItem(EXTENSION_MP3, getString(R.string.mp3))
+            )
 
             if (isQPlus()) {
                 items.add(RadioItem(EXTENSION_OGG, getString(R.string.ogg)))
@@ -110,4 +112,18 @@ class SettingsActivity : SimpleActivity() {
             }
         }
     }
+
+    private fun setupBitrate() {
+        settings_bitrate.text = getBitrateText(config.bitrate)
+        settings_bitrate_holder.setOnClickListener {
+            val items = BITRATES.map { RadioItem(it, getBitrateText(it)) } as ArrayList
+
+            RadioGroupDialog(this@SettingsActivity, items, config.bitrate) {
+                config.bitrate = it as Int
+                settings_bitrate.text = getBitrateText(config.bitrate)
+            }
+        }
+    }
+
+    private fun getBitrateText(value: Int): String = getString(R.string.bitrate_value).format(value / 1000)
 }

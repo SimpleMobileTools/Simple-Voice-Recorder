@@ -56,10 +56,10 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.SimpleMobileTools:Simple-Commons:99a97f2e16'
+    implementation 'com.github.SimpleMobileTools:Simple-Commons:0c302e84d4'
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'com.github.Armen101:AudioRecordView:1.0.2'
     implementation 'androidx.documentfile:documentfile:1.0.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
 }

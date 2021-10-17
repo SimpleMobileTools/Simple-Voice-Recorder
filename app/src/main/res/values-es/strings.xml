@@ -17,6 +17,7 @@
     <!-- Settings -->
     <string name="try_hiding_notification">Tratar de ocultar la notificación de grabación</string>
     <string name="save_recordings_in">Guardar grabaciones en</string>
+    <string name="bitrate">Bitrate</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">¿Puedo ocultar el ícono de notificación durante la grabación?</string>

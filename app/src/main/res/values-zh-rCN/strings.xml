@@ -17,6 +17,7 @@
     <!-- Settings -->
     <string name="try_hiding_notification">尝试隐藏录音通知提示</string>
     <string name="save_recordings_in">保存录音至</string>
+    <string name="bitrate">Bitrate</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">在录音过程中我可以隐藏通知提示图标么？</string>

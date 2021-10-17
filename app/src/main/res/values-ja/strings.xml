@@ -17,6 +17,7 @@
     <!-- Settings -->
     <string name="try_hiding_notification">録音通知を隠す</string>
     <string name="save_recordings_in">録音を保存する</string>
+    <string name="bitrate">Bitrate</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">録音中に通知を非表示にすることは出来ますか？</string>

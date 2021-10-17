@@ -76,7 +76,7 @@ class RecorderService : Service() {
             setAudioSource(MediaRecorder.AudioSource.CAMCORDER)
             setOutputFormat(config.getOutputFormat())
             setAudioEncoder(config.getAudioEncoder())
-            setAudioEncodingBitRate(128000)
+            setAudioEncodingBitRate(config.bitrate)
             setAudioSamplingRate(44100)
 
             try {

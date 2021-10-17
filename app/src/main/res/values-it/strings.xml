@@ -17,6 +17,7 @@
     <!-- Settings -->
     <string name="try_hiding_notification">Prova a nascondere la notifica di registrazione</string>
     <string name="save_recordings_in">Salva le registrazioni in</string>
+    <string name="bitrate">Bitrate</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">Posso nascondere la notifica durante la registrazione?</string>

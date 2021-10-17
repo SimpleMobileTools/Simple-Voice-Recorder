@@ -22,6 +22,10 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getInt(EXTENSION, EXTENSION_M4A)
         set(extension) = prefs.edit().putInt(EXTENSION, extension).apply()
 
+    var bitrate: Int
+        get() = prefs.getInt(BITRATE, DEFAULT_BITRATE)
+        set(bitrate) = prefs.edit().putInt(BITRATE, bitrate).apply()
+
     fun getExtensionText() = context.getString(when (extension) {
         EXTENSION_M4A -> R.string.m4a
         EXTENSION_OGG -> R.string.ogg
