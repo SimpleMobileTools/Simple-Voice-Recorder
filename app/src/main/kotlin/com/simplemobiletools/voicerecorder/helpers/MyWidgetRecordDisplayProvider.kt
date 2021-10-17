@@ -11,8 +11,8 @@ import android.graphics.Color
 import android.widget.RemoteViews
 import com.simplemobiletools.commons.extensions.getColoredDrawableWithColor
 import com.simplemobiletools.voicerecorder.R
+import com.simplemobiletools.voicerecorder.activities.BackgroundRecordActivity
 import com.simplemobiletools.voicerecorder.extensions.config
-import com.simplemobiletools.voicerecorder.activities.MainActivity
 import com.simplemobiletools.voicerecorder.extensions.drawableToBitmap
 
 class MyWidgetRecordDisplayProvider : AppWidgetProvider() {
@@ -37,9 +37,9 @@ class MyWidgetRecordDisplayProvider : AppWidgetProvider() {
     private fun getComponentName(context: Context) = ComponentName(context, MyWidgetRecordDisplayProvider::class.java)
 
     private fun setupAppOpenIntent(context: Context, views: RemoteViews) {
-        Intent(context, MainActivity::class.java).apply {
-            action = MainActivity.RECORD_INTENT_ACTION;
-            val pendingIntent = PendingIntent.getActivity(context, OPEN_APP_INTENT_ID, this, PendingIntent.FLAG_CANCEL_CURRENT)
+        Intent(context, BackgroundRecordActivity::class.java).apply {
+            action = BackgroundRecordActivity.RECORD_INTENT_ACTION
+            val pendingIntent = PendingIntent.getActivity(context, OPEN_APP_INTENT_ID, this, PendingIntent.FLAG_UPDATE_CURRENT)
             views.setOnClickPendingIntent(R.id.record_display_btn, pendingIntent)
         }
     }

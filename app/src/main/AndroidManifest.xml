@@ -50,6 +50,10 @@
         </receiver>
 
         <activity
+            android:name=".activities.BackgroundRecordActivity"
+            android:theme="@android:style/Theme.NoDisplay" />
+
+        <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/SplashTheme" />
 

@@ -42,7 +42,7 @@ class WidgetRecordDisplayConfigureActivity : SimpleActivity() {
     }
 
     private fun initVariables() {
-        mWidgetColor = config.widgetBgColor
+        mWidgetColor = resources.getColor(R.color.color_primary)
         mWidgetAlpha = if (mWidgetColor == DEFAULT_WIDGET_BG_COLOR) {
             1f
         } else {
