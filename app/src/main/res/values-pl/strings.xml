@@ -19,7 +19,6 @@
     <string name="try_hiding_notification">Spróbuj ukrywać powiadomienie o nagrywaniu</string>
     <string name="save_recordings_in">Zapisuj nagrania w</string>
     <string name="bitrate">Przepływność</string>
-    <string name="bitrate_value">%d kbps</string> <!-- Bitrate values like: 320 kbps, 128 kbps etc. -->
 
     <!-- FAQ -->
     <string name="faq_1_title">Czy mogę ukryć ikonę powiadomienia podczas nagrywania?</string>

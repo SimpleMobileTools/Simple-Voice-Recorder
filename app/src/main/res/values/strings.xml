@@ -18,7 +18,6 @@
     <string name="try_hiding_notification">Try hiding the recording notification</string>
     <string name="save_recordings_in">Save recordings in</string>
     <string name="bitrate">Bitrate</string>
-    <string name="bitrate_value">%d kbps</string> <!-- Bitrate values like: 320 kbps, 128 kbps etc. -->
 
     <!-- FAQ -->
     <string name="faq_1_title">Can I hide the notification icon during recording?</string>

@@ -13,7 +13,6 @@ import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.helpers.*
 import kotlinx.android.synthetic.main.activity_settings.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 class SettingsActivity : SimpleActivity() {
 
@@ -100,7 +99,8 @@ class SettingsActivity : SimpleActivity() {
         settings_extension_holder.setOnClickListener {
             val items = arrayListOf(
                 RadioItem(EXTENSION_M4A, getString(R.string.m4a)),
-                RadioItem(EXTENSION_MP3, getString(R.string.mp3)))
+                RadioItem(EXTENSION_MP3, getString(R.string.mp3))
+            )
 
             RadioGroupDialog(this@SettingsActivity, items, config.extension) {
                 config.extension = it as Int
