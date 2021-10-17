@@ -74,8 +74,8 @@ class RecorderService : Service() {
         currFilePath = "$baseFolder/${getCurrentFormattedDateTime()}.${config.getExtensionText()}"
         recorder = MediaRecorder().apply {
             setAudioSource(MediaRecorder.AudioSource.CAMCORDER)
-            setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
-            setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
+            setOutputFormat(config.getOutputFormat())
+            setAudioEncoder(config.getAudioEncoder())
             setAudioEncodingBitRate(config.bitrate)
             setAudioSamplingRate(44100)
 

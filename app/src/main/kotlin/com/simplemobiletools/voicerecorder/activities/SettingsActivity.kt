@@ -102,6 +102,10 @@ class SettingsActivity : SimpleActivity() {
                 RadioItem(EXTENSION_MP3, getString(R.string.mp3))
             )
 
+            if (isQPlus()) {
+                items.add(RadioItem(EXTENSION_OGG, getString(R.string.ogg)))
+            }
+
             RadioGroupDialog(this@SettingsActivity, items, config.extension) {
                 config.extension = it as Int
                 settings_extension.text = config.getExtensionText()
