@@ -17,6 +17,9 @@ const val TOGGLE_PAUSE = PATH + "TOGGLE_PAUSE"
 const val EXTENSION_M4A = 0
 const val EXTENSION_MP3 = 1
 
+val BITRATES = arrayListOf(32000, 64000, 96000, 128000, 160000, 192000, 256000, 320000)
+const val DEFAULT_BITRATE = 128000
+
 const val RECORDING_RUNNING = 0
 const val RECORDING_STOPPED = 1
 const val RECORDING_PAUSED = 2
@@ -25,6 +28,7 @@ const val RECORDING_PAUSED = 2
 const val HIDE_NOTIFICATION = "hide_notification"
 const val SAVE_RECORDINGS = "save_recordings"
 const val EXTENSION = "extension"
+const val BITRATE = "bitrate"
 
 @SuppressLint("InlinedApi")
 fun getAudioFileContentUri(id: Long): Uri {

@@ -76,7 +76,7 @@ class RecorderService : Service() {
             setAudioSource(MediaRecorder.AudioSource.CAMCORDER)
             setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
             setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
-            setAudioEncodingBitRate(128000)
+            setAudioEncodingBitRate(config.bitrate)
             setAudioSamplingRate(44100)
 
             try {

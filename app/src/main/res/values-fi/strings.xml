@@ -18,6 +18,8 @@
     <!-- Settings -->
     <string name="try_hiding_notification">Yritä piilottaa tallennusilmoitus</string>
     <string name="save_recordings_in">Tallenna tallenteet</string>
+    <string name="bitrate">Bitrate</string>
+    <string name="bitrate_value">%d kbps</string> <!-- Bitrate values like: 320 kbps, 128 kbps etc. -->
 
     <!-- FAQ -->
     <string name="faq_1_title">Voinko piilottaa ilmoituskuvakkeen tallennuksen aikana?</string>

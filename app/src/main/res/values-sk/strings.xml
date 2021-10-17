@@ -18,6 +18,8 @@
     <!-- Settings -->
     <string name="try_hiding_notification">Skúsiť ukryť nahrávaciu notifikáciu</string>
     <string name="save_recordings_in">Ukladať nahrávky do</string>
+    <string name="bitrate">Bitrate</string>
+    <string name="bitrate_value">%d kbps</string> <!-- Bitrate values like: 320 kbps, 128 kbps etc. -->
 
     <!-- FAQ -->
     <string name="faq_1_title">Viem nejakým spôsobom ukryť notifikačnú ikonku počas nahrávania?</string>
