@@ -25,6 +25,9 @@ const val RECORDING_RUNNING = 0
 const val RECORDING_STOPPED = 1
 const val RECORDING_PAUSED = 2
 
+const val IS_RECORDING = "is_recording"
+const val TOGGLE_WIDGET_UI = "toggle_widget_ui"
+
 // shared preferences
 const val HIDE_NOTIFICATION = "hide_notification"
 const val SAVE_RECORDINGS = "save_recordings"

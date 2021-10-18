@@ -19,16 +19,27 @@ class MyWidgetRecordDisplayProvider : AppWidgetProvider() {
     private val OPEN_APP_INTENT_ID = 1
 
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
+        changeWidgetIcon(appWidgetManager, context, Color.WHITE)
+    }
+
+    override fun onReceive(context: Context, intent: Intent) {
+        if (intent.action == TOGGLE_WIDGET_UI && intent.extras?.containsKey(IS_RECORDING) == true) {
+            val appWidgetManager = AppWidgetManager.getInstance(context) ?: return
+            val color = if (intent.extras!!.getBoolean(IS_RECORDING)) context.config.widgetBgColor else Color.WHITE
+            changeWidgetIcon(appWidgetManager, context, color)
+        } else {
+            super.onReceive(context, intent)
+        }
+    }
+
+    private fun changeWidgetIcon(appWidgetManager: AppWidgetManager, context: Context, color: Int) {
+        val alpha = Color.alpha(context.config.widgetBgColor)
+        val bmp = getColoredIcon(context, color, alpha)
+
         appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
             RemoteViews(context.packageName, R.layout.widget_record_display).apply {
                 setupAppOpenIntent(context, this)
-
-                val selectedColor = context.config.widgetBgColor
-                val alpha = Color.alpha(selectedColor)
-
-                val bmp = getColoredIcon(context, selectedColor, alpha)
                 setImageViewBitmap(R.id.record_display_btn, bmp)
-
                 appWidgetManager.updateAppWidget(it, this)
             }
         }

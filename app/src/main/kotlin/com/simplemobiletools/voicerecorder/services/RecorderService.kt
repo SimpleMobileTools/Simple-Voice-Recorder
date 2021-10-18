@@ -22,6 +22,7 @@ import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SplashActivity
 import com.simplemobiletools.voicerecorder.extensions.config
+import com.simplemobiletools.voicerecorder.extensions.updateWidgets
 import com.simplemobiletools.voicerecorder.helpers.*
 import com.simplemobiletools.voicerecorder.models.Events
 import org.greenrobot.eventbus.EventBus
@@ -61,11 +62,13 @@ class RecorderService : Service() {
         super.onDestroy()
         stopRecording()
         isRunning = false
+        updateWidgets(false)
     }
 
     // mp4 output format with aac encoding should produce good enough m4a files according to https://stackoverflow.com/a/33054794/1967672
     private fun startRecording() {
         isRunning = true
+        updateWidgets(true)
         if (status == RECORDING_RUNNING) {
             return
         }
