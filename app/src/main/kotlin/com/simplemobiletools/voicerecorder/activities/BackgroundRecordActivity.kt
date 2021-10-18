@@ -5,7 +5,7 @@ import com.simplemobiletools.voicerecorder.services.RecorderService
 
 class BackgroundRecordActivity : SimpleActivity() {
     companion object {
-        const val RECORD_INTENT_ACTION = "RECORD_ACTION";
+        const val RECORD_INTENT_ACTION = "RECORD_ACTION"
     }
 
     override fun onResume() {
