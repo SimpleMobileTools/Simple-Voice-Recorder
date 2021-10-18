@@ -32,6 +32,7 @@ class SettingsActivity : SimpleActivity() {
         setupSaveRecordingsFolder()
         setupExtension()
         setupBitrate()
+        setupRecordAfterLaunch()
         updateTextColors(settings_scrollview)
     }
 
@@ -126,4 +127,12 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun getBitrateText(value: Int): String = getString(R.string.bitrate_value).format(value / 1000)
+
+    private fun setupRecordAfterLaunch() {
+        settings_record_after_launch.isChecked = config.recordAfterLaunch
+        settings_record_after_launch_holder.setOnClickListener {
+            settings_record_after_launch.toggle()
+            config.recordAfterLaunch = settings_record_after_launch.isChecked
+        }
+    }
 }

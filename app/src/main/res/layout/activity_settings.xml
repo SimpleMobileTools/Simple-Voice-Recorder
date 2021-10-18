@@ -218,5 +218,28 @@
                 android:clickable="false" />
 
         </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/settings_record_after_launch_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:background="?attr/selectableItemBackground"
+            android:paddingLeft="@dimen/normal_margin"
+            android:paddingTop="@dimen/activity_margin"
+            android:paddingRight="@dimen/normal_margin"
+            android:paddingBottom="@dimen/activity_margin">
+
+            <com.simplemobiletools.commons.views.MySwitchCompat
+                android:id="@+id/settings_record_after_launch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:clickable="false"
+                android:paddingStart="@dimen/medium_margin"
+                android:text="@string/record_after_launch"
+                app:switchPadding="@dimen/medium_margin" />
+
+        </RelativeLayout>
     </LinearLayout>
 </ScrollView>
