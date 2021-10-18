@@ -33,6 +33,7 @@ const val HIDE_NOTIFICATION = "hide_notification"
 const val SAVE_RECORDINGS = "save_recordings"
 const val EXTENSION = "extension"
 const val BITRATE = "bitrate"
+const val RECORD_AFTER_LAUNCH = "record_after_launch"
 
 @SuppressLint("InlinedApi")
 fun getAudioFileContentUri(id: Long): Uri {

@@ -34,6 +34,15 @@ class MainActivity : SimpleActivity() {
                 finish()
             }
         }
+
+        if (config.recordAfterLaunch && !RecorderService.isRunning) {
+            Intent(this@MainActivity, RecorderService::class.java).apply {
+                try {
+                    startService(this)
+                } catch (ignored: Exception) {
+                }
+            }
+        }
     }
 
     override fun onResume() {
