@@ -26,6 +26,8 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
 
     override fun onResume() {
         setupColors()
+        if (!RecorderService.isRunning) status = RECORDING_STOPPED
+        refreshView()
     }
 
     override fun onDestroy() {
@@ -127,14 +129,7 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun gotDurationEvent(event: Events.RecordingDuration) {
-        updateRecordingDuration(event.duration)
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun gotStatusEvent(event: Events.RecordingStatus) {
-        status = event.status
+    private fun refreshView() {
         toggle_recording_button.setImageDrawable(getToggleButtonIcon())
         toggle_pause_button.beVisibleIf(status != RECORDING_STOPPED && isNougatPlus())
         if (status == RECORDING_PAUSED) {
@@ -147,6 +142,17 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
         if (status == RECORDING_RUNNING) {
             toggle_pause_button.alpha = 1f
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun gotDurationEvent(event: Events.RecordingDuration) {
+        updateRecordingDuration(event.duration)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun gotStatusEvent(event: Events.RecordingStatus) {
+        status = event.status
+        refreshView()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

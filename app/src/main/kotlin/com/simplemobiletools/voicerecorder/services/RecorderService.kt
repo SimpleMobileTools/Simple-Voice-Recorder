@@ -22,6 +22,7 @@ import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SplashActivity
 import com.simplemobiletools.voicerecorder.extensions.config
+import com.simplemobiletools.voicerecorder.extensions.updateWidgets
 import com.simplemobiletools.voicerecorder.helpers.*
 import com.simplemobiletools.voicerecorder.models.Events
 import org.greenrobot.eventbus.EventBus
@@ -29,6 +30,10 @@ import java.io.File
 import java.util.*
 
 class RecorderService : Service() {
+    companion object {
+        var isRunning = false
+    }
+
     private val AMPLITUDE_UPDATE_MS = 75L
 
     private var currFilePath = ""
@@ -56,10 +61,18 @@ class RecorderService : Service() {
     override fun onDestroy() {
         super.onDestroy()
         stopRecording()
+        isRunning = false
+        updateWidgets(false)
     }
 
     // mp4 output format with aac encoding should produce good enough m4a files according to https://stackoverflow.com/a/33054794/1967672
     private fun startRecording() {
+        isRunning = true
+        updateWidgets(true)
+        if (status == RECORDING_RUNNING) {
+            return
+        }
+
         val baseFolder = if (isQPlus()) {
             cacheDir
         } else {

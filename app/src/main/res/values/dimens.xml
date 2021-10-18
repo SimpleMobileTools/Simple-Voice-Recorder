@@ -2,4 +2,5 @@
 <resources>
     <dimen name="toggle_recording_button_size">64dp</dimen>
     <dimen name="player_button_margin">48dp</dimen>
+    <dimen name="main_button_size">150dp</dimen>
 </resources>
