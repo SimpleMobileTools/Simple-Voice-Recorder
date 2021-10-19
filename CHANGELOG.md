@@ -1,12 +1,20 @@
 Changelog
 ==========
 
-Version 5.4.3 *(2021-04-19)*
+Version 5.6.0 *(2021-10-19)*
+----------------------------
+
+ * Added a widget for quick recording toggling
+ * Allow customizing the bitrate
+ * Added .ogg extension on Android 8+
+ * Adding some translation improvements
+
+Version 5.5.1 *(2021-04-19)*
 ----------------------------
 
  * Adding some translation improvements
 
-Version 5.4.2 *(2021-03-05)*
+Version 5.5.0 *(2021-03-05)*
 ----------------------------
 
  * Store recordings into a separate Recordings folder on Android 10+
