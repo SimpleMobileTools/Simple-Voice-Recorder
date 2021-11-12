@@ -5,6 +5,7 @@
     <string name="recording">Gravación</string>
     <string name="no_recordings_found">Non foron atopadas gravacións\ncreadas por este aplicativo</string>
     <string name="no_recordings_in_folder_found">Non foron atopados gravacións\nno cartafol seleccionado</string>
+    <string name="paused">Paused</string>
 
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">Ten a certeza de que desexa eliminar %s?</string>    <!-- Are you sure you want to delete 5 recordings? -->
@@ -16,6 +17,8 @@
     <!-- Settings -->
     <string name="try_hiding_notification">Intentar ocultar a notificación da gravación</string>
     <string name="save_recordings_in">Gardar gravacións en</string>
+    <string name="bitrate">Bitrate</string>
+    <string name="record_after_launch">Start recording automatically after launching the app</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">Podo agochar a icona da notificación mentres estou gravando?</string>
