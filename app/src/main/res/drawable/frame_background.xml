@@ -6,7 +6,7 @@
         android:width="@dimen/one_dp"
         android:color="@color/divider_grey" />
 
-    <corners android:radius="@dimen/normal_margin" />
+    <corners android:radius="@dimen/activity_margin" />
 
     <solid android:color="@color/activated_item_foreground" />
 

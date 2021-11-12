@@ -85,14 +85,15 @@ class RecorderService : Service() {
         }
 
         currFilePath = "$baseFolder/${getCurrentFormattedDateTime()}.${config.getExtensionText()}"
-        recorder = MediaRecorder().apply {
-            setAudioSource(MediaRecorder.AudioSource.CAMCORDER)
-            setOutputFormat(config.getOutputFormat())
-            setAudioEncoder(config.getAudioEncoder())
-            setAudioEncodingBitRate(config.bitrate)
-            setAudioSamplingRate(44100)
 
-            try {
+        try {
+            recorder = MediaRecorder().apply {
+                setAudioSource(MediaRecorder.AudioSource.CAMCORDER)
+                setOutputFormat(config.getOutputFormat())
+                setAudioEncoder(config.getAudioEncoder())
+                setAudioEncodingBitRate(config.bitrate)
+                setAudioSamplingRate(44100)
+
                 if (!isQPlus() && isPathOnSD(currFilePath)) {
                     var document = getDocumentFile(currFilePath.getParentPath())
                     document = document?.createFile("", currFilePath.getFilenameFromPath())
@@ -114,10 +115,10 @@ class RecorderService : Service() {
                 durationTimer.scheduleAtFixedRate(getDurationUpdateTask(), 1000, 1000)
 
                 startAmplitudeUpdates()
-            } catch (e: Exception) {
-                showErrorToast(e)
-                stopRecording()
             }
+        } catch (e: Exception) {
+            showErrorToast(e)
+            stopRecording()
         }
     }
 
