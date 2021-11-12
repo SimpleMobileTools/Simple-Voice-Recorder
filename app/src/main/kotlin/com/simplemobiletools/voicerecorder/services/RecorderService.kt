@@ -13,7 +13,6 @@ import android.os.Environment
 import android.os.IBinder
 import android.provider.MediaStore
 import android.provider.MediaStore.Audio.Media
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
@@ -198,7 +197,7 @@ class RecorderService : Service() {
             val outputStream = contentResolver.openOutputStream(newUri)
             val inputStream = getFileInputStreamSync(currFilePath)
             inputStream!!.copyTo(outputStream!!, DEFAULT_BUFFER_SIZE)
-            recordingSavedSuccessfully(true)
+            recordingSavedSuccessfully()
         } catch (e: Exception) {
             showErrorToast(e)
         }
@@ -209,13 +208,11 @@ class RecorderService : Service() {
             this,
             arrayOf(currFilePath),
             arrayOf(currFilePath.getMimeType())
-        ) { _, _ -> recordingSavedSuccessfully(false) }
+        ) { _, _ -> recordingSavedSuccessfully() }
     }
 
-    private fun recordingSavedSuccessfully(showFilenameOnly: Boolean) {
-        val title = if (showFilenameOnly) currFilePath.getFilenameFromPath() else currFilePath
-        val msg = String.format(getString(R.string.recording_saved_successfully), title)
-        toast(msg, Toast.LENGTH_LONG)
+    private fun recordingSavedSuccessfully() {
+        toast(R.string.recording_saved_successfully)
     }
 
     private fun getDurationUpdateTask() = object : TimerTask() {

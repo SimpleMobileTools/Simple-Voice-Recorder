@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Paprastas Garso Įrašytuvas</string>
     <string name="app_launcher_name">Garso Įrašytuvas</string>
-    <string name="recording_saved_successfully">Įrašas sėkmingai išsaugotas kaip\n\"%s\"</string>
+    <string name="recording_saved_successfully">Įrašas sėkmingai išsaugotas</string>
     <string name="recording">Įrašoma</string>
     <string name="no_recordings_found">Nerasta įrašų įrašytų su šia programėle\nbuvo rasta</string>
     <string name="no_recordings_in_folder_found">Nerasta įrašų\pasirinktame aplanke</string>

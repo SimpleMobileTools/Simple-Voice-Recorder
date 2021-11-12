@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ضبط صوت ساده</string>
     <string name="app_launcher_name">ضبط صدا</string>
-    <string name="recording_saved_successfully">ضبط با موفقیت به عنوان ذخیره شد\n\"%s\"</string>
+    <string name="recording_saved_successfully">ضبط با موفقیت ذخیره شد</string>
     <string name="recording">در حال ضبط</string>
     <string name="no_recordings_found">هیچ ضبطی توسط این برنامه ایجاد نشده است\n پیدا شده است</string>
     <string name="no_recordings_in_folder_found">هیچ ضبطی یافت نشد \n در پوشه انتخاب شده</string>

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Simple Voice Recorder</string>
     <string name="app_launcher_name">Диктофон</string>
-    <string name="recording_saved_successfully">Запис успішно збережений як\n\"%s\"</string>
+    <string name="recording_saved_successfully">Запис успішно збережений</string>
     <string name="recording">Запис</string>
     <string name="no_recordings_found">Записи, створені цим додатком,\nне знайдені</string>
     <string name="no_recordings_in_folder_found">В обраній теці, не знайдено\nжодного запису</string>

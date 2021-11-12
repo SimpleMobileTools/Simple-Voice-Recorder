@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Simple Voice Recorder</string>
     <string name="app_launcher_name">Gravador de voz</string>
-    <string name="recording_saved_successfully">Gravação guardada como\n\"%s\"</string>
+    <string name="recording_saved_successfully">Gravação guardada</string>
     <string name="recording">Gravação</string>
     <string name="no_recordings_found">Não foram encontradas gravações\ncriadas por esta aplicação</string>
     <string name="no_recordings_in_folder_found">Não foram encontradas gravações\nna pasta selecionada</string>

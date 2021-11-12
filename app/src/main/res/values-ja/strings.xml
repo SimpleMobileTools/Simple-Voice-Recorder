@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Simpleボイスレコーダー</string>
     <string name="app_launcher_name">ボイスレコーダー</string>
-    <string name="recording_saved_successfully">録音は\n\"%s\"として保存されました</string>
+    <string name="recording_saved_successfully">録音が正常に保存されました</string>
     <string name="recording">録音</string>
     <string name="no_recordings_found">このアプリで作成された録音はありません</string>
     <string name="no_recordings_in_folder_found">選択されたフォルダ内には、録音が見つかりません</string>

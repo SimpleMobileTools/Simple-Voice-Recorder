@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Απλή Εγγραφή Φωνής</string>
     <string name="app_launcher_name">Εγγραφή Φωνής</string>
-    <string name="recording_saved_successfully">Η εγγραφή αποθηκεύτηκε με επιτυχία ως\n\"%s\"</string>
+    <string name="recording_saved_successfully">Η εγγραφή αποθηκεύτηκε με επιτυχία ως</string>
     <string name="recording">Εγγραφή</string>
     <string name="no_recordings_found">Δεν βρέθηκαν εγγραφές που δημιουργήθηκαν\n από αυτήν την εφαρμογή</string>
     <string name="no_recordings_in_folder_found">Δεν βρέθηκαν εγγραφές\nστον επιλεγμένο φάκελο</string>

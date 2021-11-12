@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Schlichtes Diktiergerät</string>
     <string name="app_launcher_name">Diktiergerät</string>
-    <string name="recording_saved_successfully">Aufnahme erfolgreich gespeichert als \n\"%s\"</string>
+    <string name="recording_saved_successfully">Aufnahme erfolgreich gespeichert</string>
     <string name="recording">Aufnehmen</string>
     <string name="no_recordings_found">Es wurden keine von dieser App\nerstellten Aufnahmen gefunden</string>
     <string name="no_recordings_in_folder_found">Es wurden keine Aufnahmen\nim ausgewählten Ordner gefunden</string>

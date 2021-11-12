@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">简易录音机</string>
     <string name="app_launcher_name">录音机</string>
-    <string name="recording_saved_successfully">录音成功保存为\n\"%s\"</string>
+    <string name="recording_saved_successfully">录音成功保存</string>
     <string name="recording">录音中</string>
     <string name="no_recordings_found">未找到由此应用创建\n的录音</string>
     <string name="no_recordings_in_folder_found">未在选择的文件夹找到\n录音</string>

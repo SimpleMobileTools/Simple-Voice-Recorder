@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Simple Voice Recorder</string>
     <string name="app_launcher_name">Ääninauhuri</string>
-    <string name="recording_saved_successfully">Tallennus tallennettu onnistuneesti nimellä\n\"%s\"</string>
+    <string name="recording_saved_successfully">Tallennus tallennettu onnistuneesti</string>
     <string name="recording">Tallenne</string>
     <string name="no_recordings_found">Tämän sovelluksen tallennuksia ei löytynyt</string>
     <string name="no_recordings_in_folder_found">Tallenuksia ei löytynyt\nvalitusta kansiosta</string>

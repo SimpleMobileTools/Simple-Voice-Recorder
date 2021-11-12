@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Simple Voice Recorder</string>
     <string name="app_launcher_name">Perekam suara</string>
-    <string name="recording_saved_successfully">Rekaman berhasil disimpan sebagai\n\"%s\"</string>
+    <string name="recording_saved_successfully">Rekaman berhasil disimpan</string>
     <string name="recording">Rekaman</string>
     <string name="no_recordings_found">Tidak ada rekaman yang dibuat oleh aplikasi ini\nTelah ditemukan</string>
     <string name="no_recordings_in_folder_found">Tidak ada rekaman yang ditemukan\ndi folder yang dipilih</string>

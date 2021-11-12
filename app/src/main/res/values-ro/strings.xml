@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Simple Voice Recorder</string>
     <string name="app_launcher_name">Înregistrare voce</string>
-    <string name="recording_saved_successfully">Înregistrare salvată cu succes ca\n\"%s\"</string>
+    <string name="recording_saved_successfully">Înregistrare salvată cu succes</string>
     <string name="recording">Înregistrare activă</string>
     <string name="no_recordings_found">Nu au fost găsite înregistrări create\nde această aplicație</string>
     <string name="no_recordings_in_folder_found">Nu au fost găsite înregistrări\nîn dosarul selectat</string>

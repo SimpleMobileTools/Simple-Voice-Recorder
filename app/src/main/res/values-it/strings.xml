@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Semplice Registratore di suoni</string>
     <string name="app_launcher_name">Registratore di suoni</string>
-    <string name="recording_saved_successfully">Registrazione salvata con successo come\n\"%s\"</string>
+    <string name="recording_saved_successfully">Registrazione salvata con successo</string>
     <string name="recording">Registrazione</string>
     <string name="no_recordings_found">Nessuna registrazione creata da questa app trovata</string>
     <string name="no_recordings_in_folder_found">Non sono state trovate registrazioni\nnella cartela selezionata</string>
