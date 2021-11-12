@@ -3,7 +3,7 @@
     <string name="app_launcher_name">Ses Kaydedici</string>
     <string name="recording_saved_successfully">Kayıt başarıyla kaydedildi</string>
     <string name="recording">Kaydediliyor</string>
-    <string name="no_recordings_found">Bu uygulama tarafından oluşturulan kayıt\nbulunamadı</string>
+    <string name="no_recordings_found">Bu uygulama tarafından oluşturulan\nkayıt bulunamadı</string>
     <string name="no_recordings_in_folder_found">Seçili klasörde\nkayıt bulunamadı</string>
     <string name="paused">Duraklatıldı</string>
 
@@ -17,8 +17,8 @@
     <!-- Settings -->
     <string name="try_hiding_notification">Kayıt bildirimini gizlemeyi dene</string>
     <string name="save_recordings_in">Kayıt klasörü:</string>
-    <string name="bitrate">Bitrate</string>
-    <string name="record_after_launch">Start recording automatically after launching the app</string>
+    <string name="bitrate">Bit hızı</string>
+    <string name="record_after_launch">Uygulama başladıktan sonra otomatik olarak kaydetmeye başla</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">Kayıt sırasında bildirim simgesini gizleyebilir miyim?</string>
