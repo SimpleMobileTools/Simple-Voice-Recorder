@@ -22,7 +22,7 @@
 
     <!-- FAQ -->
     <string name="faq_1_title">Podo agochar a icona da notificación mentres estou gravando?</string>
-    <string name="faq_1_text">Ben, depende. Mentres uses o teu dispositivo, non será posible agochar enteiramente as notificacións como as deste aplicativo. Se revisas os axustes deste elemento, o aplicativo intentará agochalo. Si que o podes agochar da pantalla de bloqueo, se o desactivas o amosador das notificacións sensibles nos axustes do teu dispositivo.
+    <string name="faq_1_text">Ben, depende. Mentres uses o teu dispositivo, non será posible agochar enteiramente as notificacións como as deste aplicativo. Se revisas os axustes deste elemento, o aplicativo intentará agochalo. Si que o podes agochar da pantalla de bloqueo, se o desactivas o amosador das notificacións sensibles nos axustes do teu dispositivo.</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
