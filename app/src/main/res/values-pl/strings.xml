@@ -1,31 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Prosty rejestrator głosu</string>
     <string name="app_launcher_name">Rejestrator głosu</string>
     <string name="recording_saved_successfully">Nagranie zostało zapisane</string>
     <string name="recording">Nagrywanie</string>
-    <string name="no_recordings_found">Nie znaleziono nagrań utworzonych\nprzez tę aplikację</string>
-    <string name="no_recordings_in_folder_found">Nie znaleziono nagrań\nw wybranym folderze</string>
+    <string name="no_recordings_found">Nie znaleziono nagrań utworzonych
+\nprzez tę aplikację</string>
+    <string name="no_recordings_in_folder_found">Nie znaleziono nagrań
+\nw wybranym folderze</string>
     <string name="paused">Wstrzymane</string>
-
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Czy na pewno chcesz usunąć %s?</string>    <!-- Are you sure you want to delete 5 recordings? -->
+    <string name="delete_recordings_confirmation">Czy na pewno chcesz usunąć %s\?</string>
+    <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d nagranie</item>
         <item quantity="few">%d nagrania</item>
         <item quantity="other">%d nagrań</item>
     </plurals>
-
     <!-- Settings -->
     <string name="try_hiding_notification">Próbuj ukrywać powiadomienie o nagrywaniu</string>
     <string name="save_recordings_in">Zapisuj nagrania w</string>
     <string name="bitrate">Przepływność</string>
     <string name="record_after_launch">Rozpoczynaj nagrywanie automatycznie przy uruchomieniu aplikacji</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">Czy mogę ukryć ikonę powiadomienia podczas nagrywania?</string>
     <string name="faq_1_text">To zależy. Podczas korzystania z urządzenia nie da się już całkowicie ukryć powiadomień aplikacji takich jak ta.
         Jeśli zaznaczysz odpowiednie ustawienie, aplikacja spróbuje to zrobić. Możesz jednak ukryć ikonę powiadomienia na ekranie blokady w ustawieniach bezpieczeństwa z ustawień urządzenia.</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">Prosty rejestrator głosu - Nagrywaj z łatwością</string>
@@ -49,7 +49,6 @@
         <b>Reddit:</b>
         https://www.reddit.com/r/SimpleMobileTools
     </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
