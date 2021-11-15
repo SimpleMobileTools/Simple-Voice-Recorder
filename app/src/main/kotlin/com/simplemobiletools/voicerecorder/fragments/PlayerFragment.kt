@@ -134,6 +134,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     private fun setupAdapter() {
         val recordings = getRecordings()
 
+        recordings_fastscroller.beVisibleIf(recordings.isNotEmpty())
         recordings_placeholder.beVisibleIf(recordings.isEmpty())
         if (recordings.isEmpty()) {
             val stringId = if (isQPlus()) R.string.no_recordings_found else R.string.no_recordings_in_folder_found
