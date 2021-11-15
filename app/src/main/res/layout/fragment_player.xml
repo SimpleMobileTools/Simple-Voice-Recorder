@@ -19,29 +19,23 @@
         android:textStyle="italic"
         android:visibility="visible" />
 
-    <com.simplemobiletools.commons.views.MyRecyclerView
-        android:id="@+id/recordings_list"
+    <com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
+        android:id="@+id/recordings_fastscroller"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:layoutAnimation="@anim/layout_animation"
-        android:scrollbars="none"
-        app:layoutManager="com.simplemobiletools.commons.views.MyLinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/player_controls_wrapper"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.simplemobiletools.commons.views.FastScroller
-        android:id="@+id/recordings_fastscroller"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:paddingStart="@dimen/normal_margin"
-        app:layout_constraintBottom_toBottomOf="@+id/recordings_list"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/recordings_list">
+        <com.simplemobiletools.commons.views.MyRecyclerView
+            android:id="@+id/recordings_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:layoutAnimation="@anim/layout_animation"
+            android:scrollbars="none"
+            app:layoutManager="com.simplemobiletools.commons.views.MyLinearLayoutManager" />
 
-        <include layout="@layout/fastscroller_handle_vertical" />
-
-    </com.simplemobiletools.commons.views.FastScroller>
+    </com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller>
 
     <RelativeLayout
         android:id="@+id/player_controls_wrapper"

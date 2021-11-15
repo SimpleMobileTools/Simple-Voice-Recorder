@@ -35,7 +35,7 @@
 
                 <com.simplemobiletools.commons.views.MyTextView
                     android:id="@+id/settings_customize_colors_label"
-                    style="@style/SettingsLeftLabelStyle"
+                    style="@style/SettingsTextLabelStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/customize_colors" />
@@ -67,7 +67,7 @@
 
                 <com.simplemobiletools.commons.views.MyTextView
                     android:id="@+id/settings_purchase_thank_you"
-                    style="@style/SettingsLeftLabelStyle"
+                    style="@style/SettingsTextLabelStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/purchase_simple_thank_you" />
@@ -99,7 +99,7 @@
 
                 <com.simplemobiletools.commons.views.MyTextView
                     android:id="@+id/settings_change_date_time_format"
-                    style="@style/SettingsLeftLabelStyle"
+                    style="@style/SettingsTextLabelStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/change_date_and_time_format" />
@@ -147,17 +147,17 @@
 
                 <com.simplemobiletools.commons.views.MyTextView
                     android:id="@+id/settings_save_recordings_label"
-                    style="@style/SettingsLeftLabelStyle"
+                    style="@style/SettingsTextLabelStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/save_recordings_in" />
 
                 <com.simplemobiletools.commons.views.MyTextView
                     android:id="@+id/settings_save_recordings"
-                    style="@style/SettingsRightTextualValueStyle"
+                    style="@style/SettingsTextValueStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/settings_save_recordings_label"
+                    android:layout_below="@+id/settings_save_recordings_label"
                     tools:text="@string/internal" />
 
             </RelativeLayout>
@@ -171,17 +171,17 @@
 
                 <com.simplemobiletools.commons.views.MyTextView
                     android:id="@+id/settings_extension_label"
-                    style="@style/SettingsLeftLabelStyle"
+                    style="@style/SettingsTextLabelStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/extension" />
 
                 <com.simplemobiletools.commons.views.MyTextView
                     android:id="@+id/settings_extension"
-                    style="@style/SettingsRightTextualValueStyle"
+                    style="@style/SettingsTextValueStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/settings_extension_label"
+                    android:layout_below="@+id/settings_extension_label"
                     tools:text="@string/m4a" />
 
             </RelativeLayout>
@@ -195,17 +195,17 @@
 
                 <com.simplemobiletools.commons.views.MyTextView
                     android:id="@+id/settings_bitrate_label"
-                    style="@style/SettingsLeftLabelStyle"
+                    style="@style/SettingsTextLabelStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/bitrate" />
 
                 <com.simplemobiletools.commons.views.MyTextView
                     android:id="@+id/settings_bitrate"
-                    style="@style/SettingsRightTextualValueStyle"
+                    style="@style/SettingsTextValueStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/settings_bitrate_label"
+                    android:layout_below="@+id/settings_bitrate_label"
                     tools:text="128 kbps" />
 
             </RelativeLayout>

@@ -74,13 +74,6 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     }
 
     private fun setupViews() {
-        recordings_fastscroller.setScrollToY(0)
-        recordings_fastscroller.setViews(recordings_list) {
-            val adapter = getRecordingsAdapter() ?: return@setViews
-            val item = adapter.recordings.getOrNull(it)
-            recordings_fastscroller.updateBubbleText(item?.title ?: "")
-        }
-
         play_pause_btn.setOnClickListener {
             if (playedRecordingIDs.empty() || player_progressbar.max == 0) {
                 next_btn.callOnClick()
@@ -151,7 +144,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
         val adapter = getRecordingsAdapter()
         if (adapter == null) {
-            RecordingsAdapter(context as SimpleActivity, recordings, this, recordings_list, recordings_fastscroller) {
+            RecordingsAdapter(context as SimpleActivity, recordings, this, recordings_list) {
                 playRecording(it as Recording, true)
                 if (playedRecordingIDs.isEmpty() || playedRecordingIDs.peek() != it.id) {
                     playedRecordingIDs.push(it.id)
@@ -399,8 +392,8 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     }
 
     private fun setupColors() {
-        recordings_fastscroller.updatePrimaryColor()
-        recordings_fastscroller.updateBubbleColors()
+        val adjustedPrimaryColor = context.getAdjustedPrimaryColor()
+        recordings_fastscroller.updateColors(adjustedPrimaryColor, adjustedPrimaryColor.getContrastColor())
         context.updateTextColors(player_holder)
 
         val textColor = context.config.textColor
@@ -408,7 +401,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             it.applyColorFilter(textColor)
         }
 
-        play_pause_btn.background.applyColorFilter(context.getAdjustedPrimaryColor())
+        play_pause_btn.background.applyColorFilter(adjustedPrimaryColor)
         play_pause_btn.setImageDrawable(getToggleButtonIcon(false))
     }
 

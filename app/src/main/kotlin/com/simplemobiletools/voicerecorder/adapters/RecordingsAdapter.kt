@@ -6,12 +6,12 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isQPlus
-import com.simplemobiletools.commons.views.FastScroller
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
@@ -25,10 +25,13 @@ import java.io.File
 import java.util.*
 
 class RecordingsAdapter(
-    activity: SimpleActivity, var recordings: ArrayList<Recording>, val refreshListener: RefreshRecordingsListener,
-    recyclerView: MyRecyclerView, fastScroller: FastScroller, itemClick: (Any) -> Unit
+    activity: SimpleActivity,
+    var recordings: ArrayList<Recording>,
+    val refreshListener: RefreshRecordingsListener,
+    recyclerView: MyRecyclerView,
+    itemClick: (Any) -> Unit
 ) :
-    MyRecyclerViewAdapter(activity, recyclerView, fastScroller, itemClick) {
+    MyRecyclerViewAdapter(activity, recyclerView, null, itemClick), RecyclerViewFastScroller.OnPopupTextUpdate {
 
     var currRecordingId = 0
 
@@ -207,4 +210,6 @@ class RecordingsAdapter(
             recording_size.text = recording.size.formatSize()
         }
     }
+
+    override fun onChange(position: Int) = recordings.getOrNull(position)?.title ?: ""
 }
