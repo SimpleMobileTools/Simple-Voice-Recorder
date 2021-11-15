@@ -10,7 +10,7 @@
 \nw wybranym folderze</string>
     <string name="paused">Wstrzymane</string>
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Czy na pewno chcesz usunąć %s\?</string>
+    <string name="delete_recordings_confirmation">Czy usunąć %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d nagranie</item>
@@ -31,24 +31,7 @@
     <string name="app_title">Prosty rejestrator głosu - Nagrywaj z łatwością</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Łatwy sposób nagrywania dyskusji lub dźwięku bez reklam i dostępu do Internetu</string>
-    <string name="app_long_description">
-        Czy chciałeś(-aś) kiedyś przypomnieć sobie, co powiedziała ta druga osoba? Albo zadanie, które dała Ci na spotkaniu? Już nie musisz marzyć. Z tym prostym rejestratorem możesz nagrać każdy dźwięk w mgnieniu oka.
-
-        Aplikacja jest skupiona na prostocie, nie zawiera w sobie żadnych niepotrzebnych funkcji. Tylko Ty i rejestrator głosu. Pokazuje aktualną głośność dźwięku na ładnej wizualizacji. Interfejs jest intuicyjny i prosty, nie sposób się w nim zagubić.
-
-        Oferuje także pomocny odtwarzacz dający możliwość szybkiego odsłuchania nagrań, zmiany ich nazw czy usunięcia ich.
-
-        Nie zawiera reklam ani niepotrzebnych uprawnień. Jest w pełni otwartoźródłowa, zapewnia konfigurowalną kolorystykę.
-
-        <b>Sprawdź pełen zestaw od Simple Tools tutaj:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
+    <string name="app_long_description">Czy chciałeś(-aś) kiedyś przypomnieć sobie, co powiedziała ta druga osoba\? Albo zadanie, które dała Ci na spotkaniu\? Już nie musisz marzyć. Z tym prostym rejestratorem możesz nagrać każdy dźwięk w mgnieniu oka. Aplikacja jest skupiona na prostocie, nie zawiera w sobie żadnych niepotrzebnych funkcji. Tylko Ty i rejestrator głosu. Pokazuje aktualną głośność dźwięku na ładnej wizualizacji. Interfejs jest intuicyjny i prosty, nie sposób się w nim zagubić. Oferuje także pomocny odtwarzacz dający możliwość szybkiego odsłuchania nagrań, zmiany ich nazw czy usunięcia ich. Nie zawiera reklam ani niepotrzebnych uprawnień. Jest w pełni otwartoźródłowa, zapewnia konfigurowalną kolorystykę. <b>Sprawdź pełen zestaw od Simple Tools tutaj:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
