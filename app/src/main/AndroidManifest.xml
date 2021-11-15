@@ -60,7 +60,8 @@
 
         <activity
             android:name=".activities.MainActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:configChanges="orientation|screenSize" />
 
         <activity
             android:name=".activities.SettingsActivity"
