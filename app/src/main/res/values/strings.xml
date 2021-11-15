@@ -2,16 +2,14 @@
 <resources>
     <string name="app_name">Simple Voice Recorder</string>
     <string name="app_launcher_name">Voice Recorder</string>
-    <string name="recording_saved_successfully">Recording saved</string>
+    <string name="recording_saved_successfully">Recording saved successfully</string>
     <string name="recording">Recording</string>
-    <string name="no_recordings_found">Did not find any recordings
-\nmade by the app</string>
-    <string name="no_recordings_in_folder_found">Did not find any recordings
-\nin the selected folder</string>
+    <string name="no_recordings_found">No recordings created by this app\nhave been found</string>
+    <string name="no_recordings_in_folder_found">No recordings have been found\nin the selected folder</string>
     <string name="paused">Paused</string>
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Delete %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
+    <string name="delete_recordings_confirmation">Are you sure you want to delete %s?</string>
     <plurals name="delete_recordings">
         <item quantity="one">%d recording</item>
         <item quantity="other">%d recordings</item>
