@@ -1,6 +1,13 @@
 Changelog
 ==========
 
+Version 5.6.1 *(2021-11-15)*
+----------------------------
+
+ * Redesigned some screens, added Auto theme
+ * Do not stop recording playback on device rotation
+ * Added some stability, translation and UI improvements
+
 Version 5.6.0 *(2021-10-19)*
 ----------------------------
 

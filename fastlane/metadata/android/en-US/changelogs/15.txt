@@ -1,0 +1,3 @@
+ * Redesigned some screens, added Auto theme
+ * Do not stop recording playback on device rotation
+ * Added some stability, translation and UI improvements
