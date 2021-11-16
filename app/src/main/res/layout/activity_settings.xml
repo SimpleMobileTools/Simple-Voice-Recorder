@@ -28,7 +28,7 @@
 
             <RelativeLayout
                 android:id="@+id/settings_customize_colors_holder"
-                style="@style/SettingsHolderTextViewStyle"
+                style="@style/SettingsHolderTextViewOneLinerStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ripple_all_corners">
@@ -60,7 +60,7 @@
 
             <RelativeLayout
                 android:id="@+id/settings_purchase_thank_you_holder"
-                style="@style/SettingsHolderTextViewStyle"
+                style="@style/SettingsHolderTextViewOneLinerStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ripple_top_corners">
@@ -92,7 +92,7 @@
 
             <RelativeLayout
                 android:id="@+id/settings_change_date_time_format_holder"
-                style="@style/SettingsHolderTextViewStyle"
+                style="@style/SettingsHolderTextViewOneLinerStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ripple_background">
