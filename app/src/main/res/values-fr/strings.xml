@@ -4,8 +4,10 @@
     <string name="app_launcher_name">Enregistreur vocal</string>
     <string name="recording_saved_successfully">Enregistrement sauvegardé avec succès</string>
     <string name="recording">Enregistrement</string>
-    <string name="no_recordings_found">Aucun enregistrement créé par cette application\nn’a été trouvé</string>
-    <string name="no_recordings_in_folder_found">Aucun enregistrement n’a été trouvé\ndans le dossier sélectionné</string>
+    <string name="no_recordings_found">Aucun enregistrement créé par cette application
+\nn’a été trouvé</string>
+    <string name="no_recordings_in_folder_found">Aucun enregistrement n’a été trouvé
+\ndans le dossier sélectionné</string>
     <string name="paused">En pause</string>
     <string name="recorder">Recorder</string>
     <string name="player">Lecteur</string>
