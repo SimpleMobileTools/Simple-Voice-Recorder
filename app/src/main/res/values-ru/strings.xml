@@ -10,7 +10,7 @@
 \nни одной записи</string>
     <string name="paused">Пауза</string>
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Вы уверены, что хотите удалить %s\?</string>
+    <string name="delete_recordings_confirmation">Удалить %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d запись</item>
