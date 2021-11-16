@@ -1,54 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Semplice Registratore di suoni</string>
     <string name="app_launcher_name">Registratore di suoni</string>
     <string name="recording_saved_successfully">Registrazione salvata con successo</string>
     <string name="recording">Registrazione</string>
-    <string name="no_recordings_found">Nessuna registrazione creata da questa app trovata</string>
-    <string name="no_recordings_in_folder_found">Non sono state trovate registrazioni\nnella cartela selezionata</string>
+    <string name="no_recordings_found">Nessuna registrazione creata
+\nda questa app trovata</string>
+    <string name="no_recordings_in_folder_found">Non sono state trovate registrazioni
+\nnella cartela selezionata</string>
     <string name="paused">In pausa</string>
-
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Sei sicuro di voler cancellare %s?</string>    <!-- Are you sure you want to delete 5 recordings? -->
+    <string name="delete_recordings_confirmation">Eliminare %s\?</string>
+    <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d registrazione</item>
         <item quantity="other">%d registrazioni</item>
     </plurals>
-
     <!-- Settings -->
     <string name="try_hiding_notification">Prova a nascondere la notifica di registrazione</string>
     <string name="save_recordings_in">Salva le registrazioni in</string>
     <string name="bitrate">Bitrate</string>
-    <string name="record_after_launch">Start recording automatically after launching the app</string>
-
+    <string name="record_after_launch">Inizia a registrare automaticamente dopo aver lanciato l\'app</string>
     <!-- FAQ -->
     <string name="faq_1_title">Posso nascondere la notifica durante la registrazione?</string>
     <string name="faq_1_text">Dipende. Mentre usi il tuo dispositivo non è più possibile nascondere completamente le notifiche di app come questa.
         Se selezioni l\'impostazione appropriata, la app farà del suo meglio per nasconderla. Comunque, puoi nasconderla nella schermata di blocco, se disabiliti la visualizzazione di notifiche sensibili nelle impostazioni del tuo dispositivo.</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">Semplice Registratore di suoni - Registra facile</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Un modo facile di registrare conversazioni o suoni senza annunci o accesso web</string>
-    <string name="app_long_description">
-        Hai mai desiderato di ricordare ciò che ha detto l\'altro? O il compito che ti hanno assegnato in riunione? Smettila di desiderarlo. Con questo semplice registratore puoi registrare velocemente qualsiasi audio.
-
-        L\'app va dritta al sodo, non contiene funzioni complicate che non userai. Solo tu ed il registratore. Essa mostra il volume dell\'audio in una graziosa schermata con cui puoi divertirti molto. Fornisce un\'interfaccia intuitiva e pulita, nulla può andar storto.
-
-        Essa offre anche un utile riproduttore in modo che tu possa asooltare velocemente le tue registrazioni, o rinominarle o cancellarle.
-
-        Non contiene annunci né richiede permessi inutili. È completamente open source, e fornisce colori personalizzabili.
-
-        <b>Guarda qui il pacchetto completo dei Semplici Strumenti:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
+    <string name="app_long_description">Ricorda cosa ha detto l\'altra persona e quale compito ti è stato assegnato dopo una riunione.
+\nIl semplice registratore è facilmente accessibile senza caratteristiche fantasiose, pubblicità o permessi non necessari.
+\nIl volume corrente del suono e una bella visualizzazione sono mostrati in un\'interfaccia pulita.
+\nUn\'applicazione di riproduzione che ti permette di ascoltare rapidamente le tue registrazioni, rinominarle o cancellarle.
+\nColori personalizzabili.
+\nSoftware libero con copyleft, con licenza GPLv3+.
+\n<b>Scopri la suite completa di Simple Tools</b> su https://www.simplemobiletools.com</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
