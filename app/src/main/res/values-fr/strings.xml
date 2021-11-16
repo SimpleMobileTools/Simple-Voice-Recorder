@@ -28,5 +28,5 @@
 \nCouleurs personnalisables.
 \nLogiciel libre copylefté, sous licence GPLv3+.
 \n<b>Découvrez la suite complète de Simple Tools</b> à l\'adresse https://www.simplemobiletools.com</string>
-    <string name="delete_recordings_confirmation">Voulez-vous vraiment supprimer %s \?</string>
+    <string name="delete_recordings_confirmation">Supprimer %s \?</string>
 </resources>
