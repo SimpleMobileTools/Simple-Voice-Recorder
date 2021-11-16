@@ -9,7 +9,7 @@
     <string name="paused">Paused</string>
     <!-- Confirmation dialog -->
     <!-- Are you sure you want to delete 5 recordings? -->
-    <string name="delete_recordings_confirmation">Are you sure you want to delete %s?</string>
+    <string name="delete_recordings_confirmation">Delete %s\?</string>
     <plurals name="delete_recordings">
         <item quantity="one">%d recording</item>
         <item quantity="other">%d recordings</item>
