@@ -28,7 +28,7 @@
         Если вы установите соответствующий пункт в настройках, приложение сделает всё возможное, чтобы скрыть его. Также можно скрыть уведомление на экране блокировки, если отключить отображение конфиденциальных уведомлений в настройках устройства.</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Voice Recorder - простая запись звука</string>
+    <string name="app_title">Simple Voice Recorder — простая запись звука</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Лёгкий способ записи любой дискуссии или звука без рекламы и доступа в интернет</string>
     <string name="app_long_description">
