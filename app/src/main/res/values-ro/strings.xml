@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simple Voice Recorder</string>
     <string name="app_launcher_name">Înregistrare voce</string>
@@ -6,49 +7,28 @@
     <string name="no_recordings_found">Nu au fost găsite înregistrări create\nde această aplicație</string>
     <string name="no_recordings_in_folder_found">Nu au fost găsite înregistrări\nîn dosarul selectat</string>
     <string name="paused">A fost pus în pauză</string>
-
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Ești sigur că vrei să ștergi %s?</string>    <!-- Are you sure you want to delete 5 recordings? -->
+    <string name="delete_recordings_confirmation">Ești sigur că vrei să ștergi %s?</string>
+    <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d înregistrare</item>
         <item quantity="other">%d înregistrări</item>
     </plurals>
-
     <!-- Settings -->
     <string name="try_hiding_notification">Încercați să ascundeți notificarea de înregistrare</string>
     <string name="save_recordings_in">Salvați înregistrările în</string>
     <string name="bitrate">Rata de biți</string>
     <string name="record_after_launch">Începeți înregistrarea în mod automat după lansarea aplicației</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">Pot să ascund pictograma de notificare în timpul înregistrării?</string>
     <string name="faq_1_text">Ei bine, depinde. În timp ce vă utilizați dispozitivul, nu mai este posibil să ascundeți complet notificările unor astfel de aplicații.
         Dacă bifați setarea corespunzătoare, aplicația va face tot posibilul să o ascundă. Totuși, o puteți ascunde pe ecranul de blocare, dacă dezactivați afișarea conţinutului sensibil al notificărilor în setările dispozitivului.</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">Simple Voice Recorder - Înregistrează orice sunet</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Un mod simplu de a înregistra orice discuție sau sunet fără reclame</string>
-    <string name="app_long_description">
-        V-ați dorit vreodată să vă amintiți ce a spus cealaltă persoană? Sau sarcina pe care v-au dat-o la şedinţă? Cu acest recorder simplu puteți înregistra orice sunet foarte rapid.
-
-        Aplicația merge direct la subiect, nu conține funcții sofisticate pe care nu le veți folosi. Doar tu și înregistratorul de voce. Afișează volumul curent al sunetului pe o vizualizare frumoasă, cu care vă puteți distra foarte mult. Oferă o interfață de utilizator cu adevărat intuitivă și curată.
-
-        Oferă și un player util, astfel încât să puteți asculta rapid înregistrările, eventual să le redenumiți sau să le ștergeți.
-
-        Nu conţine reclame sau permisiuni inutile. Codul sursă este complet open source şi oferă culori personalizabile.
-
-        <b>Consultaţi întreaga suită de aplicaţii Simple Tools aici:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
+    <string name="app_long_description">V-ați dorit vreodată să vă amintiți ce a spus cealaltă persoană\? Sau sarcina pe care v-au dat-o la şedinţă\? Cu acest recorder simplu puteți înregistra orice sunet foarte rapid. Aplicația merge direct la subiect, nu conține funcții sofisticate pe care nu le veți folosi. Doar tu și înregistratorul de voce. Afișează volumul curent al sunetului pe o vizualizare frumoasă, cu care vă puteți distra foarte mult. Oferă o interfață de utilizator cu adevărat intuitivă și curată. Oferă și un player util, astfel încât să puteți asculta rapid înregistrările, eventual să le redenumiți sau să le ștergeți. Nu conţine reclame sau permisiuni inutile. Codul sursă este complet open source şi oferă culori personalizabile. <b>Consultaţi întreaga suită de aplicaţii Simple Tools aici:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
