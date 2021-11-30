@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Eenvoudige Voicerecorder</string>
     <string name="app_launcher_name">Voicerecorder</string>
@@ -6,49 +7,28 @@
     <string name="no_recordings_found">Geen opnames door deze app gevonden</string>
     <string name="no_recordings_in_folder_found">Geen opnames gevonden in de gekozen map</string>
     <string name="paused">Gepauzeerd</string>
-
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">De volgende opname verwijderen? %s</string>    <!-- Are you sure you want to delete 5 recordings? -->
+    <string name="delete_recordings_confirmation">De volgende opname verwijderen? %s</string>
+    <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d opname</item>
         <item quantity="other">%d opnames</item>
     </plurals>
-
     <!-- Settings -->
     <string name="try_hiding_notification">Tijdens de opname proberen de notificatie te verbergen</string>
     <string name="save_recordings_in">Opnames opslaan in</string>
     <string name="bitrate">Bitrate</string>
     <string name="record_after_launch">Bij het starten van de app direct een opname beginnen</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">Kan ik de notificatie tijdens het opnemen verbergen?</string>
     <string name="faq_1_text">Dat ligt eraan. Tijdens het gebruik is het niet langer mogelijk in Android om notificaties van dit soort apps volledig te verbergen.
         De app bevat wel een instelling waarmee er toch zal worden geprobeerd om dit te bewerkstelligen. In de schermvergrendeling kan de notificatie wél worden verborgen door het tonen van gevoelige notificaties in de apparaatinstellingen uit te schakelen.</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">Eenvoudige Voicerecorder - Snel geluid opnemen</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Een makkelijke manier om discussies of geluiden op te nemen, zonder advertenties</string>
-    <string name="app_long_description">
-        Ooit gedacht "had ik dat gesprek maar opgenomen"? Welke briljante opmerking iemand maakte? Welke taken in een vergadering werden uitgedeeld? Met deze simpele voicerecorder zijn heel gemakkelijk opnames te maken.
-
-        De app is komt direct ter zake en bevat geen onnodige franjes. Het toont Het toont het huidige geluidsvolume in een mooie visualisatie, biedt een intuïtieve en cleane interface, zodat er niets mis kan gaan.
-
-        Het biedt ook een handige speler, zodat de opnames snel kunnen worden beluisterd, hernoemd of verwijderd.
-
-        Bevat geen advertenties of onnodige machtigingen. Volledig open-source. Kleuren van de app kunnen worden aangepast.
-
-        <b>Probeer ook eens de andere apps van Simple Tools:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
+    <string name="app_long_description">Ooit gedacht had ik dat gesprek maar opgenomen\? Welke briljante opmerking iemand maakte\? Welke taken in een vergadering werden uitgedeeld\? Met deze simpele voicerecorder zijn heel gemakkelijk opnames te maken. De app is komt direct ter zake en bevat geen onnodige franjes. Het toont Het toont het huidige geluidsvolume in een mooie visualisatie, biedt een intuïtieve en cleane interface, zodat er niets mis kan gaan. Het biedt ook een handige speler, zodat de opnames snel kunnen worden beluisterd, hernoemd of verwijderd. Bevat geen advertenties of onnodige machtigingen. Volledig open-source. Kleuren van de app kunnen worden aangepast. <b>Probeer ook eens de andere apps van Simple Tools:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
