@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Απλή Εγγραφή Φωνής</string>
     <string name="app_launcher_name">Εγγραφή Φωνής</string>
@@ -6,49 +7,28 @@
     <string name="no_recordings_found">Δεν βρέθηκαν εγγραφές που δημιουργήθηκαν\n από αυτήν την εφαρμογή</string>
     <string name="no_recordings_in_folder_found">Δεν βρέθηκαν εγγραφές\nστον επιλεγμένο φάκελο</string>
     <string name="paused">Σε Παύση</string>
-
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Είστε βέβαιοι ότι θέλετε να διαγράψετε τις %s;</string>    <!-- Are you sure you want to delete 5 recordings? -->
+    <string name="delete_recordings_confirmation">Είστε βέβαιοι ότι θέλετε να διαγράψετε τις %s;</string>
+    <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d εγγραφή</item>
         <item quantity="other">%d εγγραφές</item>
     </plurals>
-
     <!-- Settings -->
     <string name="try_hiding_notification">Δοκιμάστε να αποκρύψετε την ειδοποίηση εγγραφής</string>
     <string name="save_recordings_in">Αποθήκευση εγγραφών σε</string>
     <string name="bitrate">Bitrate</string>
     <string name="record_after_launch">Αυτόματη έναρξη εγγραφής μετά την εκκίνηση της</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">Μπορώ να αποκρύψω το εικονίδιο ειδοποίησης κατά την εγγραφή;</string>
     <string name="faq_1_text">Εξαρτάται. Ενώ χρησιμοποιείτε τη συσκευή σας, δεν είναι πλέον δυνατή η πλήρης απόκρυψη των ειδοποιήσεων εφαρμογών όπως αυτή.
         Εάν ελέγξετε το κατάλληλο στοιχείο ρύθμισης, η εφαρμογή θα κάνει ό,τι μπορεί για να το αποκρύψει. Ωστόσο, μπορείτε να την αποκρύψετε στην οθόνη κλειδώματος, αν απενεργοποιήσετε την εμφάνιση ευαίσθητων ειδοποιήσεων στις ρυθμίσεις της συσκευής σας.</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">Απλή Εγγραφή Φωνής - Ηχογραφήστε εύκολα οτιδήποτε</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Έύκολη καταγραφή οτιδήποτε ήχου χωρίς διαφημίσεις ή πρόσβαση στο διαδίκτυο</string>
-    <string name="app_long_description">
-        Ευχήθηκες ποτέ να θυμάσαι τι είπε ο άλλος; Ή την εργασία που σου έδωσαν σε μια συνάντηση; Δεν θα εύχεστε άλλο. Με αυτή την απλή καταγραφή μπορείτε να ηχογραφήσετε οποιονδήποτε ήχο πολύ γρήγορα.
-
-        Η εφαρμογή πηγαίνει κατευθείαν στο θέμα, δεν περιέχει φανταχτερά χαρακτηριστικά που δεν θα χρησιμοποιήσετε. Μόνο εσύ και ο καταγραφέας φωνής. Δείχνει την τρέχουσα ηχητική ένταση σε μια ωραία απεικόνιση. Παρέχει ένα πραγματικά διαισθητικό και καθαρό περιβάλλον εργασίας χρήστη, δεν μπορούν να πάνε πολλά στραβά εκεί.
-
-        Προσφέρει επίσης έναν χρήσιμο player, ώστε να μπορείτε να ακούσετε τις εγγραφές σας γρήγορα, ίσως να τις μετονομάσετε ή να τις διαγράψετε.
-
-        Δεν περιέχει διαφημίσεις ή περιττά δικαιώματα. Είναι πλήρως ανοιχτού κώδικα, παρέχει προσαρμόσιμα χρώματα.
-
-        <b>Δείτε την πλήρη σειρά των Απλών εργαλείων εδώ:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
+    <string name="app_long_description">Ευχήθηκες ποτέ να θυμάσαι τι είπε ο άλλος; Ή την εργασία που σου έδωσαν σε μια συνάντηση; Δεν θα εύχεστε άλλο. Με αυτή την απλή καταγραφή μπορείτε να ηχογραφήσετε οποιονδήποτε ήχο πολύ γρήγορα. Η εφαρμογή πηγαίνει κατευθείαν στο θέμα, δεν περιέχει φανταχτερά χαρακτηριστικά που δεν θα χρησιμοποιήσετε. Μόνο εσύ και ο καταγραφέας φωνής. Δείχνει την τρέχουσα ηχητική ένταση σε μια ωραία απεικόνιση. Παρέχει ένα πραγματικά διαισθητικό και καθαρό περιβάλλον εργασίας χρήστη, δεν μπορούν να πάνε πολλά στραβά εκεί. Προσφέρει επίσης έναν χρήσιμο player, ώστε να μπορείτε να ακούσετε τις εγγραφές σας γρήγορα, ίσως να τις μετονομάσετε ή να τις διαγράψετε. Δεν περιέχει διαφημίσεις ή περιττά δικαιώματα. Είναι πλήρως ανοιχτού κώδικα, παρέχει προσαρμόσιμα χρώματα. <b>Δείτε την πλήρη σειρά των Απλών εργαλείων εδώ:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
