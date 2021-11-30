@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simpleボイスレコーダー</string>
     <string name="app_launcher_name">ボイスレコーダー</string>
@@ -6,51 +7,28 @@
     <string name="no_recordings_found">このアプリで作成された録音はありません</string>
     <string name="no_recordings_in_folder_found">選択されたフォルダ内には、録音が見つかりません</string>
     <string name="paused">停止</string>
-
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">本当に%sを削除しますか？</string>    <!-- Are you sure you want to delete 5 recordings? -->
+    <string name="delete_recordings_confirmation">本当に%sを削除しますか？</string>
+    <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d 件の録音</item>
         <item quantity="other">%d 件の録音</item>
     </plurals>
-
     <!-- Settings -->
     <string name="try_hiding_notification">録音通知を隠す</string>
     <string name="save_recordings_in">録音を保存する</string>
     <string name="bitrate">Bitrate</string>
     <string name="record_after_launch">Start recording automatically after launching the app</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">録音中に通知を非表示にすることは出来ますか？</string>
     <string name="faq_1_text">場合によります。デバイスの使用中は、このようなアプリの通知を全て非表示にすることは不可能です。
         適切な設定項目にチェックを入れると、通知表示は出来るだけ隠されます。ロックスクリーン上での非表示の仕方は、デバイスの設定から通知の表示を無効にすると可能です。</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">シンプルなボイスレコーダー-オーディオを簡単に録音</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">広告やインターネットアクセスなしで討論や音声を簡単に録音可能</string>
-    <string name="app_long_description">
-        誰かが言ったこと、会議で課された課題などを覚えていたいと思ったことはありますか。それはもう願い事ではなくなります。このシンプルなレコーダーがあれば、高音質かつ素早く録音することができます。
-
-        この無料アプリには、使わないような複雑な機能はありません。録音のみです。どれが最近録音したものかを分かり易く見ることができるため、楽しい思い出をたくさん聞くことができます。無駄がなく直感的に使える画面のため、間違った使用をしてしまうことはありません。
-
-        録音したものは名前を変更したり削除したりすることで、お目当ての録音をすぐ聞くことができます。日にちや時間も都合に合わせて変更可能です。
-
-        プライバシー保護のため録音中は上部にある通知を隠すことが出来ます。
-
-        広告や不要な権限はありません。 完全にオープンソースで、カラーもカスタマイズ可能。
-
-        <b>シンプルツールの完全なリストはこちらからご確認ください：</b>
-         https://www.simplemobiletools.com
-
-        <b> Facebook：</b>
-         https://www.facebook.com/simplemobiletools
-
-        <b> Reddit：</b>
-         https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
+    <string name="app_long_description">誰かが言ったこと、会議で課された課題などを覚えていたいと思ったことはありますか。それはもう願い事ではなくなります。このシンプルなレコーダーがあれば、高音質かつ素早く録音することができます。 この無料アプリには、使わないような複雑な機能はありません。録音のみです。どれが最近録音したものかを分かり易く見ることができるため、楽しい思い出をたくさん聞くことができます。無駄がなく直感的に使える画面のため、間違った使用をしてしまうことはありません。 録音したものは名前を変更したり削除したりすることで、お目当ての録音をすぐ聞くことができます。日にちや時間も都合に合わせて変更可能です。 プライバシー保護のため録音中は上部にある通知を隠すことが出来ます。 広告や不要な権限はありません。 完全にオープンソースで、カラーもカスタマイズ可能。 <b>シンプルツールの完全なリストはこちらからご確認ください：</b> https://www.simplemobiletools.com <b> Facebook：</b> https://www.facebook.com/simplemobiletools <b> Reddit：</b> https://www.reddit.com/r/SimpleMobileTools</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
