@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Enregistreur vocal simple</string>
+    <string name="app_launcher_name">Enregistreur vocal</string>
+    <string name="recording_saved_successfully">Enregistrement sauvegardé avec succès</string>
+    <string name="recording">Enregistrement</string>
+    <string name="no_recordings_found">Aucun enregistrement créé par cette application\nn’a été trouvé</string>
+    <string name="no_recordings_in_folder_found">Aucun enregistrement n’a été trouvé\ndans le dossier sélectionné</string>
+    <string name="paused">En pause</string>
+    <!-- Confirmation dialog -->
+    <!-- Are you sure you want to delete 5 recordings? -->
+    <string name="delete_recordings_confirmation">Supprimer %s \?</string>
+    <plurals name="delete_recordings">
+        <item quantity="one">%d enregistrement</item>
+        <item quantity="other">%d enregistrements</item>
+    </plurals>
+    <!-- Settings -->
+    <string name="try_hiding_notification">Essayez de masquer la notification d’enregistrement</string>
+    <string name="save_recordings_in">Sauvegarder les enregistrements dans</string>
+    <string name="bitrate">Débit binaire</string>
+    <string name="record_after_launch">Démarrer l’enregistrement automatiquement après le lancement de l’application</string>
+    <!-- FAQ -->
+    <string name="faq_1_title">Puis-je masquer l’icône de notification pendant l’enregistrement \?</string>
+    <string name="faq_1_text">Eh bien, ça dépend. Pendant que vous utilisez votre appareil, il n’est plus possible de masquer complètement les notifications d’applications comme celle-ci. Si vous cochez l’élément de réglage approprié, l’application fera de son mieux pour les masquer. Vous pouvez cependant la masquer sur l’écran de verrouillage, si vous désactivez l’affichage des notifications sensibles dans les paramètres de votre appareil.</string>
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simple Voice Recorder – Enregistrez facilement n’importe quel fichier audio</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Un moyen facile d’enregistrer n’importe quelle discussion ou n’importe quel son sans publicité ni accès à Internet</string>
+    <string name="app_long_description">Souvenez-vous de ce que votre interlocuteur a dit et de la tâche qui vous a été confiée après une réunion.
+\nCet enregistreur simple est facilement accessible et ne comporte pas de fonctions sophistiquées, de publicités ou de permissions inutiles.
+\nLe volume sonore actuel et une belle visualisation sont affichés dans une interface épurée.
+\nUn lecteur utile vous permet d\'écouter rapidement vos enregistrements, de les renommer ou de les supprimer.
+\nCouleurs personnalisables.
+\nLogiciel libre copylefté, sous licence GPLv3+.
+\n<b>Découvrez la suite complète de Simple Tools</b> à l\'adresse https://www.simplemobiletools.com</string>
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>

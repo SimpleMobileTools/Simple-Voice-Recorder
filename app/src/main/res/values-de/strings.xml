@@ -1,54 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Schlichtes Diktiergerät</string>
     <string name="app_launcher_name">Diktiergerät</string>
     <string name="recording_saved_successfully">Aufnahme erfolgreich gespeichert</string>
     <string name="recording">Aufnehmen</string>
-    <string name="no_recordings_found">Es wurden keine von dieser App\nerstellten Aufnahmen gefunden</string>
-    <string name="no_recordings_in_folder_found">Es wurden keine Aufnahmen\nim ausgewählten Ordner gefunden</string>
+    <string name="no_recordings_found">Es wurden keine von dieser Anwendung
+\nerstellten Aufnahmen gefunden</string>
+    <string name="no_recordings_in_folder_found">Es wurden keine Aufnahmen
+\nim ausgewählten Ordner gefunden</string>
     <string name="paused">Pausieren</string>
-
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Bist du sicher, dass du %s löschen möchtest?</string>    <!-- Are you sure you want to delete 5 recordings? -->
+    <string name="delete_recordings_confirmation">%s löschen\?</string>
+    <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d Aufnahme</item>
         <item quantity="other">%d Aufnahmen</item>
     </plurals>
-
     <!-- Settings -->
     <string name="try_hiding_notification">Versuche die Aufnahmebenachrichtigung auszublenden</string>
     <string name="save_recordings_in">Speichere Aufnahme in</string>
     <string name="bitrate">Bitrate</string>
-    <string name="record_after_launch">Start recording automatically after launching the app</string>
-
+    <string name="record_after_launch">Starten Sie die Aufnahme automatisch nach dem Start der Anwendung</string>
     <!-- FAQ -->
     <string name="faq_1_title">Kann ich das Benachrichtigungssymbol während der Aufnahme ausblenden?</string>
     <string name="faq_1_text">Naja, das kommt darauf an. Während der Nutzung des Geräts ist es nicht mehr möglich, die Benachrichtigungen von Apps wie dieser vollständig auszublenden.
         Wenn du die Option in den Einstellungen aktivierst, wird die App ihr Bestes tun, es auszublenden. Du kannst es jedoch auf dem Sperrbildschirm ausblenden, indem du die Anzeige vertraulicher Benachrichtigungen in den Geräteeinstellungen verbietest.</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Schlichtes Diktiergerät - Tonaufnahmen einfach</string>
+    <string name="app_title">Einfacher Sprachrekorder – Einfaches Aufnehmen beliebiger Audiodaten</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Ein simpler Weg, Diskussionen oder Töne ohne Werbung und Internet aufzuzeichnen</string>
-    <string name="app_long_description">
-        Wolltest du dich schon immer mal erinnern, was die andere Person gesagt hat? Oder an die Aufgabe, die dir beim letzten Meeting gegeben wurde? Mit diesem simplen Diktiergerät kannst du jederzeit, schnell und problemlos Aufnahmen tätigen.
-
-        Die App erfüllt ihren Zweck, enthält keine ausgefallenen Funktionen, die du eh nie benutzen würdest. Nur du und das Diktiergerät. Es zeigt die aktuelle Lautstärke anhand eines schön gestalteten Pegelausschlags an. Du wirst damit viel Spaß haben. Zudem bietet sie eine intuitive und übersichtliche Benutzeroberfläche, da kann nicht viel schief gehen.
-
-        Es bietet zudem einen hilfreichen Player, mit dem die Aufnahmen direkt angehört, nach Bedarf umbenannt oder gelöscht werden können.
-
-        Die App enthält keine Werbung und verlangt keine unnötigen Berechtigungen. Sie ist vollständig OpenSource und bietet anpassbare Farben.
-
-        <b>Schau dir hier die vollständige Serie der Schlichten Apps an:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
+    <string name="app_long_description">Wolltest du dich schon immer mal erinnern, was die andere Person gesagt hat\? Oder an die Aufgabe, die dir bei der letzten Besprechung gegeben wurde\? Mit diesem simplen Diktiergerät kannst du jederzeit, schnell und problemlos Aufnahmen tätigen. Die Anwendung erfüllt ihren Zweck, enthält keine ausgefallenen Funktionen, die du eh nie benutzen würdest. Nur du und das Diktiergerät. Es zeigt die aktuelle Lautstärke anhand eines schön gestalteten Pegelausschlags an. Du wirst damit viel Spaß haben. Zudem bietet sie eine intuitive und übersichtliche Benutzeroberfläche, da kann nicht viel schief gehen. Es bietet zudem ein hilfreiches Wiedergabeprogramm, mit dem die Aufnahmen direkt angehört, nach Bedarf umbenannt oder gelöscht werden können. Die App enthält keine Werbung und verlangt keine unnötigen Berechtigungen. Sie ist vollständig OpenSource und bietet anpassbare Farben. <b>Schau dir hier die vollständige Serie der Schlichten Apps an:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Paprastas Garso Įrašytuvas</string>
     <string name="app_launcher_name">Garso Įrašytuvas</string>
@@ -6,49 +7,28 @@
     <string name="no_recordings_found">Nerasta įrašų įrašytų su šia programėle\nbuvo rasta</string>
     <string name="no_recordings_in_folder_found">Nerasta įrašų\pasirinktame aplanke</string>
     <string name="paused">Paused</string>
-
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Ar tikrai norite ištrinti %s?</string>    <!-- Are you sure you want to delete 5 recordings? -->
+    <string name="delete_recordings_confirmation">Ar tikrai norite ištrinti %s?</string>
+    <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d įrašą</item>
         <item quantity="other">%d įrašus</item>
     </plurals>
-
     <!-- Settings -->
     <string name="try_hiding_notification">Pabandyti paslėpti įrašymo pranešimą</string>
     <string name="save_recordings_in">Išsaugoti įrašus</string>
     <string name="bitrate">Bitrate</string>
     <string name="record_after_launch">Start recording automatically after launching the app</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">Ar galiu paslėpti pranešimo ikonėlę įrašinėjant?</string>
     <string name="faq_1_text">Well, it depends. While you use your device it is no longer possible to fully hide the notifications of apps like this.
         If you check the proper setting item, the app will do its best to hide it. You can hide it on the lockscreen though, if you disable the displaying of sensitive notifications in your device settings.</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">Paprastas Garso Įrašytuvas</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Lengvas būdas įrašyti bet kokį pokalbį ar garsus be reklamų ar interneto prieigo</string>
-    <string name="app_long_description">
-        Ar kada norėjote prisiminti, ką kitas asmuo kalbėjo? Arba užduotį kurią Jums davė susitikime? Jums nebereikia norėti. Su šiuo garso įrašytuvu Jūs galite lengvai įrašyti bet kokį garsą.
-
-        Ši programėlė atlieka konkrečią užduotį, be jokių nereikalingų priedų. Tik Jūs ir garso įrašytuvas. Rodo įrašomo įr balso garsumą gražioje vizualizacijoje su kuria galite smagiai jaustis. Suteikia tikrai intuityvią ir švarią naudotojo aplinką, kurioje viskas paprasta.
-
-        Taip pat yra geras grotuvas, per kurį galite lengvai klausytis įrašytų garso įrašų, gal net pervadinti ar ištrinti juos.
-
-        Neturi reklamų ar nereikalingų leidimų. Programėlė visiškai atviro kodo, yra galimybė keisti spalvas.
-
-        <b>Check out the full suite of Simple Tools here:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
+    <string name="app_long_description">Ar kada norėjote prisiminti, ką kitas asmuo kalbėjo\? Arba užduotį kurią Jums davė susitikime\? Jums nebereikia norėti. Su šiuo garso įrašytuvu Jūs galite lengvai įrašyti bet kokį garsą. Ši programėlė atlieka konkrečią užduotį, be jokių nereikalingų priedų. Tik Jūs ir garso įrašytuvas. Rodo įrašomo įr balso garsumą gražioje vizualizacijoje su kuria galite smagiai jaustis. Suteikia tikrai intuityvią ir švarią naudotojo aplinką, kurioje viskas paprasta. Taip pat yra geras grotuvas, per kurį galite lengvai klausytis įrašytų garso įrašų, gal net pervadinti ar ištrinti juos. Neturi reklamų ar nereikalingų leidimų. Programėlė visiškai atviro kodo, yra galimybė keisti spalvas. <b>Check out the full suite of Simple Tools here:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ضبط صوت ساده</string>
     <string name="app_launcher_name">ضبط صدا</string>
@@ -6,49 +7,28 @@
     <string name="no_recordings_found">هیچ ضبطی توسط این برنامه ایجاد نشده است\n پیدا شده است</string>
     <string name="no_recordings_in_folder_found">هیچ ضبطی یافت نشد \n در پوشه انتخاب شده</string>
     <string name="paused">مکث کرد</string>
-
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">آیا مطمئنید که میخواهید حذف کنید %s?</string>    <!-- Are you sure you want to delete 5 recordings? -->
+    <string name="delete_recordings_confirmation">آیا مطمئنید که میخواهید حذف کنید %s?</string>
+    <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d ضبط کردن</item>
         <item quantity="other">%d ضبط شده</item>
     </plurals>
-
     <!-- Settings -->
     <string name="try_hiding_notification">اعلان ضبط را پنهان کنید</string>
     <string name="save_recordings_in">ذخیره ضبط در</string>
     <string name="bitrate">میزان بیت</string>
     <string name="record_after_launch">پس از راه اندازی برنامه، ضبط را به صورت خودکار شروع کنید</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">آیا می توانم نماد اعلان را در حین ضبط مخفی کنم؟</string>
     <string name="faq_1_text">خب، بستگی دارد. هنگامی که از دستگاه خود استفاده می کنید، دیگر نمی توان اعلان های برنامه هایی مانند این را به طور کامل مخفی کرد.
          اگر آیتم تنظیم مناسب را بررسی کنید، برنامه تمام تلاش خود را می کند تا آن را پنهان کند. اگر نمایش اعلان‌های حساس را در تنظیمات دستگاه خود غیرفعال کنید، می‌توانید آن را روی صفحه قفل پنهان کنید.</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">ضبط صدا ساده - هر صوتی را به راحتی ضبط کنید</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">راهی آسان برای ضبط هر بحث یا صدا بدون تبلیغات یا دسترسی به اینترنت</string>
-    <string name="app_long_description">
-        آیا تا به حال آرزو کرده اید که ای کاش صحبت های طرف مقابل را به خاطر بسپارید؟ یا وظیفه ای که در یک جلسه به شما دادند؟ دیگه آرزو نکن با این ضبط کننده ساده می توانید هر صدایی را خیلی سریع ضبط کنید.
-
-        برنامه مستقیماً به سر اصل مطلب می رود، هیچ ویژگی جالبی ندارد که شما از آن استفاده نخواهید کرد. فقط شما و ضبط صوت این میزان صدای فعلی را با تجسم خوبی نشان می دهد که می توانید با آن بسیار سرگرم شوید. یک رابط کاربری واقعاً بصری و تمیز ارائه می دهد، در آنجا چیز زیادی نمی تواند اشتباه کند.
-
-        این یک پخش کننده مفید نیز ارائه می دهد تا بتوانید به سرعت به ضبط های خود گوش دهید، شاید آنها را تغییر نام دهید یا حذف کنید.
-
-        فاقد تبلیغات یا مجوزهای غیر ضروری است. این کاملا منبع باز است، رنگ های قابل تنظیم را ارائه می دهد.
-
-        <b>مجموعه کامل ابزارهای ساده را اینجا ببینید:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
+    <string name="app_long_description">آیا تا به حال آرزو کرده اید که ای کاش صحبت های طرف مقابل را به خاطر بسپارید؟ یا وظیفه ای که در یک جلسه به شما دادند؟ دیگه آرزو نکن با این ضبط کننده ساده می توانید هر صدایی را خیلی سریع ضبط کنید. برنامه مستقیماً به سر اصل مطلب می رود، هیچ ویژگی جالبی ندارد که شما از آن استفاده نخواهید کرد. فقط شما و ضبط صوت این میزان صدای فعلی را با تجسم خوبی نشان می دهد که می توانید با آن بسیار سرگرم شوید. یک رابط کاربری واقعاً بصری و تمیز ارائه می دهد، در آنجا چیز زیادی نمی تواند اشتباه کند. این یک پخش کننده مفید نیز ارائه می دهد تا بتوانید به سرعت به ضبط های خود گوش دهید، شاید آنها را تغییر نام دهید یا حذف کنید. فاقد تبلیغات یا مجوزهای غیر ضروری است. این کاملا منبع باز است، رنگ های قابل تنظیم را ارائه می دهد. <b>مجموعه کامل ابزارهای ساده را اینجا ببینید:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
