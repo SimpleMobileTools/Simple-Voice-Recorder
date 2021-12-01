@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Eenvoudige Voicerecorder</string>
     <string name="app_launcher_name">Voicerecorder</string>
@@ -28,7 +27,13 @@
     <string name="app_title">Eenvoudige Voicerecorder - Snel geluid opnemen</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Een makkelijke manier om discussies of geluiden op te nemen, zonder advertenties</string>
-    <string name="app_long_description">Ooit gedacht had ik dat gesprek maar opgenomen\? Welke briljante opmerking iemand maakte\? Welke taken in een vergadering werden uitgedeeld\? Met deze simpele voicerecorder zijn heel gemakkelijk opnames te maken. De app is komt direct ter zake en bevat geen onnodige franjes. Het toont Het toont het huidige geluidsvolume in een mooie visualisatie, biedt een intuïtieve en cleane interface, zodat er niets mis kan gaan. Het biedt ook een handige speler, zodat de opnames snel kunnen worden beluisterd, hernoemd of verwijderd. Bevat geen advertenties of onnodige machtigingen. Volledig open-source. Kleuren van de app kunnen worden aangepast. <b>Probeer ook eens de andere apps van Simple Tools:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools</string>
+    <string name="app_long_description">Onthoud wat anderen zeiden of welke opdrachten zijn uitgedeeld bij een vergadering.
+\nDeze eenvoudige voicerecorder is direct toegankelijk en bevat geen onnodige franjes, advertenties of onnodige machtigingen.
+\nDe app toont het huidige geluidsvolume met een mooie visualisatie en biedt een intuïtieve cleane interface, zodat er niets mis kan gaan.
+\nHet biedt ook een handige speler, zodat de opnames snel kunnen worden beluisterd, hernoemd of verwijderd.
+\nKleuren van de app kunnen worden aangepast.
+\nVolledig open-source, copyleft GPLv3+ libre software.
+\n<b>Probeer ook eens de andere apps van Simple Tools</b> via https://www.simplemobiletools.com</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
