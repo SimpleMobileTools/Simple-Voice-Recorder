@@ -27,10 +27,16 @@
         Wenn du die Option in den Einstellungen aktivierst, wird die App ihr Bestes tun, es auszublenden. Du kannst es jedoch auf dem Sperrbildschirm ausblenden, indem du die Anzeige vertraulicher Benachrichtigungen in den Geräteeinstellungen verbietest.</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Einfacher Sprachrekorder – Einfaches Aufnehmen beliebiger Audiodaten</string>
+    <string name="app_title">Schlichter Sprachrekorder – Einfaches Aufnehmen beliebiger Audiodaten</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Ein simpler Weg, Diskussionen oder Töne ohne Werbung und Internet aufzuzeichnen</string>
-    <string name="app_long_description">Wolltest du dich schon immer mal erinnern, was die andere Person gesagt hat\? Oder an die Aufgabe, die dir bei der letzten Besprechung gegeben wurde\? Mit diesem simplen Diktiergerät kannst du jederzeit, schnell und problemlos Aufnahmen tätigen. Die Anwendung erfüllt ihren Zweck, enthält keine ausgefallenen Funktionen, die du eh nie benutzen würdest. Nur du und das Diktiergerät. Es zeigt die aktuelle Lautstärke anhand eines schön gestalteten Pegelausschlags an. Du wirst damit viel Spaß haben. Zudem bietet sie eine intuitive und übersichtliche Benutzeroberfläche, da kann nicht viel schief gehen. Es bietet zudem ein hilfreiches Wiedergabeprogramm, mit dem die Aufnahmen direkt angehört, nach Bedarf umbenannt oder gelöscht werden können. Die App enthält keine Werbung und verlangt keine unnötigen Berechtigungen. Sie ist vollständig OpenSource und bietet anpassbare Farben. <b>Schau dir hier die vollständige Serie der Schlichten Apps an:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools</string>
+    <string name="app_long_description">Erinnern Sie sich daran, was die andere Person gesagt hat und welche Aufgabe Sie nach einem Meeting erhalten haben.
+\nDer einfache Rekorder ist leicht zugänglich, ohne ausgefallene Funktionen, Werbung oder unnötige Berechtigungen.
+\nDie aktuelle Lautstärke und eine schöne Visualisierung werden auf einer übersichtlichen Oberfläche angezeigt.
+\nMit einem hilfreichen Player können Sie Ihre Aufnahmen schnell anhören, umbenennen oder löschen.
+\nAnpassbare Farben.
+\nFreie Copyleft-Software, lizenziert GPLv3+.
+\n<b>Sehen Sie sich die vollständige Suite von Simple Tools</b> unter https://www.simplemobiletools.com an</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
