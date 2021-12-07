@@ -2,13 +2,15 @@
 <resources>
     <string name="app_name">Simple Voice Recorder</string>
     <string name="app_launcher_name">Ääninauhuri</string>
-    <string name="recording_saved_successfully">Tallennus tallennettu onnistuneesti</string>
+    <string name="recording_saved_successfully">Nauhoitus tallennettu onnistuneesti</string>
     <string name="recording">Tallenne</string>
-    <string name="no_recordings_found">Tämän sovelluksen tallennuksia ei löytynyt</string>
-    <string name="no_recordings_in_folder_found">Tallenuksia ei löytynyt\nvalitusta kansiosta</string>
+    <string name="no_recordings_found">Tällä sovelluksella luotuja
+\nnauhoituksia ei löytynyt</string>
+    <string name="no_recordings_in_folder_found">Nauhoituksia ei löytynyt
+\nvalitusta kansiosta</string>
     <string name="paused">Keskeytetty</string>
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Haluatko varmasti poistaa %s?</string>
+    <string name="delete_recordings_confirmation">Haluatko varmasti poistaa kohteen %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d tallenteen</item>
@@ -18,16 +20,16 @@
     <string name="try_hiding_notification">Yritä piilottaa tallennusilmoitus</string>
     <string name="save_recordings_in">Tallenna tallenteet</string>
     <string name="bitrate">Bitrate</string>
-    <string name="record_after_launch">Start recording automatically after launching the app</string>
+    <string name="record_after_launch">Aloita nauhoitus automaattisesti, kun sovellus käynnistetään</string>
     <!-- FAQ -->
     <string name="faq_1_title">Voinko piilottaa ilmoituskuvakkeen tallennuksen aikana?</string>
     <string name="faq_1_text">No, se riippuu. Kun käytät laitettasi, tällaisten sovellusten ilmoituksia ei voida enää piilottaa kokonaan.
          Jos tarkistat oikean asetuskohdan, sovellus tekee parhaansa piilottaakseen sen. Voit kuitenkin piilottaa sen lukitusnäytössä, jos poistat arkaluontoisten ilmoitusten näyttämisen käytöstä laitteen asetuksissa.</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Voice Recorder - Record any audio easily</string>
+    <string name="app_title">Simple Voice Recorder - Nauhoita ääntä helposti</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">An easy way of recording any discussion or sounds without ads or internet access</string>
+    <string name="app_short_description">Helppo tapa nauhoittaa keskusteluja ja ääniä ilman mainoksia tai internetiä</string>
     <string name="app_long_description">Ever wished you remember what the other person said\? Or the task they gave you at a meeting\? Wish no more. With this simple recorder you can record any audio really quickly. The app goes straight to the point, it contains no fancy features that you won\'t use. Just you and the voice recorder. It shows the current sound volume on a nice visualization that you can have a lot of fun with. Provides a really intuitive and clean user interface, not much can go wrong there. It offers a helpful player too so that you can listen to your recordings quickly, maybe rename or delete them. Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors. <b>Check out the full suite of Simple Tools here:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools</string>
     <!--
         Haven't found some strings? There's more at
