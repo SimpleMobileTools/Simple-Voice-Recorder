@@ -394,7 +394,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     private fun setupColors() {
         val adjustedPrimaryColor = context.getAdjustedPrimaryColor()
-        recordings_fastscroller.updateColors(adjustedPrimaryColor, adjustedPrimaryColor.getContrastColor())
+        recordings_fastscroller.updateColors(adjustedPrimaryColor)
         context.updateTextColors(player_holder)
 
         val textColor = context.config.textColor

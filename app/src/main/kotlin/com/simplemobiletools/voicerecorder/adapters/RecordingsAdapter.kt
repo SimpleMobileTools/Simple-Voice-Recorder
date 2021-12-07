@@ -31,7 +31,7 @@ class RecordingsAdapter(
     recyclerView: MyRecyclerView,
     itemClick: (Any) -> Unit
 ) :
-    MyRecyclerViewAdapter(activity, recyclerView, null, itemClick), RecyclerViewFastScroller.OnPopupTextUpdate {
+    MyRecyclerViewAdapter(activity, recyclerView, itemClick), RecyclerViewFastScroller.OnPopupTextUpdate {
 
     var currRecordingId = 0
 
@@ -93,7 +93,6 @@ class RecordingsAdapter(
             notifyDataSetChanged()
             finishActMode()
         }
-        fastScroller?.measureRecyclerView()
     }
 
     private fun renameRecording() {
