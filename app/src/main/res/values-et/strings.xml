@@ -4,7 +4,8 @@
     <string name="app_launcher_name">Helisalvestaja</string>
     <string name="recording_saved_successfully">Salvestamine õnnestus</string>
     <string name="recording">Salvestus</string>
-    <string name="no_recordings_found">Ühtegi selle rakenduse poolt tehtud\nsalvestust ei leidu</string>
+    <string name="no_recordings_found">Ühtegi selle rakenduse poolt tehtud
+\nsalvestust ei leidu</string>
     <string name="no_recordings_in_folder_found">Valitud kaustas ei leidu
 \nühtegi salvestust</string>
     <string name="paused">Peatatud</string>
