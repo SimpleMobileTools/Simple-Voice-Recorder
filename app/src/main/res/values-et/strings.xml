@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lihtne helisalvestaja</string>
+    <string name="app_launcher_name">Helisalvestaja</string>
+    <string name="recording_saved_successfully">Salvestamine õnnestus</string>
+    <string name="recording">Salvestus</string>
+    <string name="no_recordings_found">Ühtegi selle rakenduse poolt tehtud\nsalvestust ei leidu</string>
+    <string name="no_recordings_in_folder_found">Ühtegi selle salvestust ei leidu\nvalitud kaustas</string>
+    <string name="paused">Peatatud</string>
+    <!-- Confirmation dialog -->
+    <!-- Are you sure you want to delete 5 recordings? -->
+    <string name="delete_recordings_confirmation">Kas kustutame %s\?</string>
+    <plurals name="delete_recordings">
+        <item quantity="one">%d salvestus</item>
+        <item quantity="other">%d salvestust</item>
+    </plurals>
+    <!-- Settings -->
+    <string name="try_hiding_notification">Proovi peita salvestamise teavitust</string>
+    <string name="save_recordings_in">Salvesta failid kausta</string>
+    <string name="bitrate">Bitikiirus</string>
+    <string name="record_after_launch">Rakenduse käivitamisel alusta kohe salvestamist</string>
+    <!-- FAQ -->
+    <string name="faq_1_title">Kas salvestamise ajal saan peita vastavat teavitust\?</string>
+    <string name="faq_1_text">Eks see nüüd sõltub… Selliste rakenduste täiesti peitmine kasutamise ajal ei ole enam võimalik. Seadistustest vastava sätte valimisel annab see rakendus endast parima, et teavitusi peita. Lisaks saad üldistest seadistustest keelata privaatsete teavituste näitamise lukustuskuval ning siis ka seda rakendust pole seal näha.</string>
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Lihtne helisalvestaja - salvesta helisid hõlpsalt</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Lihtne lahendus vestluste ja helide salvestamiseks reklaamide ja võrguühenduseta</string>
+    <string name="app_long_description">Jäta meelde, mida vestluse teine osapool ütles ja mis ülesandeid sulle koosolekul jagati.
+\nLihtne helisalvestaja on hõlpsalt kasutatav ning rakenduses pole reklaame ega asjatute õiguste eeldamist.
+\nHelivaljuse juhtimine ja salvestuse visualiseerimine lihtsas kasutajaliideses.
+\nMugavas meediamängijas saad salvestusi kuulata, ümbernimetada või kustutada.
+\nVohanda välimuse värve vastavalt oma eelistustele.
+\nGPLv3+ alusel litsentseeritud vaba tarkvara.
+\n<b>Teave kõikide Lihtsate tarvikute kohta</b> at https://www.simplemobiletools.com</string>
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
