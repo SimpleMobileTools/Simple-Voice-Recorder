@@ -75,6 +75,6 @@ class RenameRecordingDialog(val activity: BaseSimpleActivity, val recording: Rec
         val oldPath = recording.path
         val newFilename = "${newTitle.removeSuffix(".$oldExtension")}.$oldExtension"
         val newPath = File(oldPath.getParentPath(), newFilename).absolutePath
-        activity.renameFile(oldPath, newPath)
+        activity.renameFile(oldPath, newPath, false)
     }
 }
