@@ -1,2 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Egyszerű hangrögzítő</string>
+    <string name="app_launcher_name">Hangrögzítő</string>
+    <string name="recording_saved_successfully">Rögzítés sikeresen mentve</string>
+    <string name="recording">Rögzítés</string>
+    <string name="no_recordings_found">Nem található az alkalmazás által
+\nkészített rögzítés</string>
+    <string name="no_recordings_in_folder_found">A kiválasztott mappában
+\nnem található rögzítés</string>
+    <string name="paused">Szüneteltetve</string>
+    <string name="delete_recordings_confirmation">Töröl %s\?</string>
+    <plurals name="delete_recordings">
+        <item quantity="one">%d rögzítést</item>
+        <item quantity="other">%d rögzítést</item>
+    </plurals>
+    <string name="try_hiding_notification">Próbálja elrejteni a rögzítési értesítéseket</string>
+    <string name="save_recordings_in">Rögzítések mentési helye</string>
+    <string name="bitrate">Bitsebesség</string>
+    <string name="record_after_launch">Rögzítés automatikus indítása az alkalmazás indításakor</string>
+    <string name="faq_1_title">Elrejthetem az értesítéseket rögzítés közben\?</string>
+    <string name="faq_1_text">Az attól függ. Amíg használja az eszközt, addig nem lehetséges az ehhez hasonló alkalmazások értesítéseinek elrejtése. Ha bekapcsolja a megfelelő beállítást, akkor az alkalmazás megpróbálja elrejteni őket. A zárképernyőn viszont elrejtheti őket, ha letiltja az érzékeny értesítéseket az eszköz beállításaiban.</string>
+    <string name="app_title">Egyszerű hangrögzítő – Vegyen fel bármilyen hangot</string>
+    <string name="app_short_description">Bármilyen beszélgetés vagy hang felvétele, reklámok és internetelérés nélkül</string>
+</resources>
