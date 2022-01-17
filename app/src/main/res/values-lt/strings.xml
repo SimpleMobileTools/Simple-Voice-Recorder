@@ -16,7 +16,7 @@
     <plurals name="delete_recordings">
         <item quantity="one">%d įrašą</item>
         <item quantity="few">%d įrašus</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <!-- Settings -->
     <string name="try_hiding_notification">Pabandyti paslėpti įrašymo pranešimą</string>
