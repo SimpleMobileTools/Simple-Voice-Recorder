@@ -2,13 +2,15 @@
 <resources>
     <string name="app_name">Simple Voice Recorder</string>
     <string name="app_launcher_name">Gravador de voz</string>
-    <string name="recording_saved_successfully">Gravação guardada</string>
+    <string name="recording_saved_successfully">Gravação guardada com êxito</string>
     <string name="recording">Gravação</string>
-    <string name="no_recordings_found">Não foram encontradas gravações\ncriadas por esta aplicação</string>
-    <string name="no_recordings_in_folder_found">Não foram encontradas gravações\nna pasta selecionada</string>
+    <string name="no_recordings_found">Não foram encontradas gravações
+\ncriadas por esta aplicação</string>
+    <string name="no_recordings_in_folder_found">Não foram encontradas gravações
+\nna pasta selecionada</string>
     <string name="paused">Em pausa</string>
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Tem a certeza de que deseja apagar %s?</string>
+    <string name="delete_recordings_confirmation">Apagar %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d gravação</item>
@@ -20,15 +22,20 @@
     <string name="bitrate">Taxa de dados</string>
     <string name="record_after_launch">Iniciar gravação automaticamente ao iniciar a aplicação</string>
     <!-- FAQ -->
-    <string name="faq_1_title">Can I hide the notification icon during recording?</string>
-    <string name="faq_1_text">Well, it depends. While you use your device it is no longer possible to fully hide the notifications of apps like this.
-        If you check the proper setting item, the app will do its best to hide it. You can hide it on the lockscreen though, if you disable the displaying of sensitive notifications in your device settings.</string>
+    <string name="faq_1_title">Posso ocultar o ícone de notificação durante a gravação\?</string>
+    <string name="faq_1_text">Depende. Actuamente, já não possível ocultar totalmente as notificações em aplicações deste tipo. Tente nas Definições da aplicação, habilitar a alinea correspondente e nas Definições do sistema, desabilitar a apresentação de notificações desta natureza no ecrã de bloqueio.</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">Simple Voice Recorder - Gravação de sons</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Aplicação para gravar discussões ou sons. Sem anúncios nem acesso à Internet</string>
-    <string name="app_long_description">Ever wished you remember what the other person said\? Or the task they gave you at a meeting\? Wish no more. With this simple recorder you can record any audio really quickly. The app goes straight to the point, it contains no fancy features that you won\'t use. Just you and the voice recorder. It shows the current sound volume on a nice visualization that you can have a lot of fun with. Provides a really intuitive and clean user interface, not much can go wrong there. It offers a helpful player too so that you can listen to your recordings quickly, maybe rename or delete them. Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors. <b>Consulte o conjunto completo de aplicações Simple Tools aqui:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools</string>
+    <string name="app_long_description">Lembre-se daquilo que foi dito e do que tem a fazer.
+\nVá ajustando o volume durante a gravação, ouça-a logo de seguida no leitor integrado e escolha se a renomeia ou apaga.
+\nUma aplicação sem complicações, nem anúncios ou permissões desnecessárias.
+\nInterface despojado e cores personalizáveis a gosto.
+\nOpen source.
+\nCopylefted libre software, licensed GPLv3+.
+\n<b>Consulte a gama completa de aplicações Simple Tools aqui:</b> https://www.simplemobiletools.com</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
