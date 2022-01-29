@@ -31,6 +31,7 @@ class MainActivity : SimpleActivity() {
             if (it) {
                 tryInitVoiceRecorder()
             } else {
+                toast(R.string.no_audio_permissions)
                 finish()
             }
         }
