@@ -4,8 +4,10 @@
     <string name="app_launcher_name">Gravador de voz</string>
     <string name="recording_saved_successfully">Gravação salva com sucesso</string>
     <string name="recording">Gravação</string>
-    <string name="no_recordings_found">Nenhuma gravação criada por\neste app foi encontrada</string>
-    <string name="no_recordings_in_folder_found">Nenhuma gravação foi\nencontrada na pasta selecionada</string>
+    <string name="no_recordings_found">Nenhuma gravação criada por
+\neste app foi encontrada</string>
+    <string name="no_recordings_in_folder_found">Nenhuma gravação foi
+\nencontrada na pasta selecionada</string>
     <string name="paused">Pausado</string>
     <string name="recorder">Recorder</string>
     <string name="player">Player</string>
