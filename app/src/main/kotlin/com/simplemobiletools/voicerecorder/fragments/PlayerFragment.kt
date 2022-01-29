@@ -274,7 +274,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     override fun playRecording(recording: Recording, playOnPrepared: Boolean) {
         resetProgress(recording)
         (recordings_list.adapter as RecordingsAdapter).updateCurrentRecording(recording.id)
-        playOnPreparation = playOnPrepared || getIsPlaying()
+        playOnPreparation = playOnPrepared
 
         player!!.apply {
             reset()
