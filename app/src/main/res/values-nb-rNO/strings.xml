@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Enkel stemmeopptaker</string>
     <string name="app_launcher_name">Stemmeopptaker</string>
-    <string name="recording_saved_successfully">Opptak lagret</string>
+    <string name="recording_saved_successfully">Opptaket ble lagret</string>
     <string name="recording">Tar opp …</string>
     <string name="no_recordings_found">Fant ingen opptak
 \nlaget av programmet</string>
@@ -28,11 +28,11 @@
     <string name="app_title">Enkel stemmeopptaker – ta opp all lyd</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">En enkel måte å ta opp enhver diskusjon eller lyd uten reklame eller internett-tilgang</string>
-    <string name="app_long_description">Husk hva som ble sagt eller hva oppgaven du ble tildelt i et møte var.
-\nDen enkle opptakeren tar opp all lyd raskt. Programmet går rett på sak og inneholder ingen funksjoner du ikke trenger.
-\nNåværende lydstyrke og litt visualisering derav vises i et rent brukergrensesnitt.
-\nEn nyttig avspiller lar deg lytte til opptakene dine raskt, og du kan gi dem nye navn eller slette dem.
-\nIngen reklame.
-\nGemenhetslig fri programvare, lisensiert GPLv3+
-\nTilpassbare farger. <b>Sjekk det ut her:</b> https://www.simplemobiletools.com</string>
+    <string name="app_long_description">Husk hva den andre sa og hvilken oppgave du fikk etter et møte.
+\nDen enkle opptakeren er lett tilgjengelig uten fancy funksjoner, annonser eller unødvendige tillatelser.
+\nGjeldende lydvolum og en fin visualisering vises i et rent grensesnitt.
+\nEn nyttig spiller lar deg lytte til opptakene dine raskt, gi dem nytt navn eller slette dem.
+\nTilpassbare farger.
+\nCopylefted libre programvare, lisensiert GPLv3+.
+\n<b>Sjekk ut hele pakken med enkle verktøy</b> på https://www.simplemobiletools.com</string>
 </resources>
