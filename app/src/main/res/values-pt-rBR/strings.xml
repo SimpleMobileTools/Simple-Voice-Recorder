@@ -6,4 +6,13 @@
     <string name="recording">Gravação</string>
     <string name="no_recordings_found">Nenhuma gravação criada por 
 \neste app foi encontrada</string>
+    <string name="no_recordings_in_folder_found">Nenhuma gravação foi
+\nencontrada na pasta selecionada</string>
+    <string name="paused">Pausado</string>
+    <plurals name="delete_recordings">
+        <item quantity="one">%d gravação</item>
+        <item quantity="other">%d gravações</item>
+    </plurals>
+    <string name="delete_recordings_confirmation">Apagar %s\?</string>
+    <string name="try_hiding_notification">Tentar ocultar a notificação de gravação</string>
 </resources>
