@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simple Voice Recorder</string>
-    <string name="app_launcher_name">Gravador de voz</string>
+    <string name="app_launcher_name">Gravador de sons</string>
     <string name="recording_saved_successfully">Gravação guardada com êxito</string>
     <string name="recording">Gravação</string>
     <string name="no_recordings_found">Não foram encontradas gravações
@@ -28,13 +28,13 @@
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">Simple Voice Recorder - Gravação de sons</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Aplicação para gravar discussões ou sons. Sem anúncios nem acesso à Internet</string>
-    <string name="app_long_description">Lembre-se daquilo que foi dito e do que tem a fazer.
+    <string name="app_short_description">Gravação de conversas ou sons, sem anúncios nem acesso à internet</string>
+    <string name="app_long_description">Um gravador simples para que se lembre exactamente de tudo o que foi dito e do que tem a fazer.
 \nVá ajustando o volume durante a gravação, ouça-a logo de seguida no leitor integrado e escolha se a renomeia ou apaga.
-\nUma aplicação sem complicações, nem anúncios ou permissões desnecessárias.
-\nInterface despojado e cores personalizáveis a gosto.
-\nOpen source.
-\nCopylefted libre software, licensed GPLv3+.
+\nDescomplicado.
+\nSem anúncios ou permissões desnecessárias.
+\nCom material design e cores personalizáveis a gosto.
+\nOpen source, licença GPLv3+.
 \n<b>Consulte a gama completa de aplicações Simple Tools aqui:</b> https://www.simplemobiletools.com</string>
     <!--
         Haven't found some strings? There's more at
