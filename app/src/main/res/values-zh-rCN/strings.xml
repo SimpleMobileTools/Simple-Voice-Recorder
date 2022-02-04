@@ -30,13 +30,7 @@
     <string name="app_title">简易录音机 - 轻松录制任意音频</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">没有广告，无需互联网连接即可录制任意讨论或者声音的简便方式</string>
-    <string name="app_long_description">记录对方所说的话以及会议后布置给你的任务。
-\n简易录音机十分易于使用，没有花哨的功能、广告或不需要的权限。
-\n在干净的界面中显示有当前音量水平和漂亮的波形图。
-\n好用的播放器允许您您快速收听回放，重命名或删除。
-\n可定制的颜色。
-\nCopyleft 的自由软件，依据 GPLv3+ 许可授权。
-\n<b>于此查看简易工具系列全套</b>，请访问 https://www.simplemobiletools.com</string>
+    <string name="app_long_description"> 记住对方说了什么，会议结束后给了你什么任务。这个简单的录音器很容易访问，没有花哨的功能，广告或不必要的权限。当前音量和良好的可视化显示在一个干净的界面。一个有用的播放器可以让你快速听录音，重命名，或删除它们。本应用界面遵照 Material 设计，默认启用深色主题，提供良好的用户体验，易于使用。没有互联网访问权限，使本应用与其他同类应用相比，可以给你更多的隐私、安全和稳定性。不包含广告或不必要的权限。它是完全开源的，提供可定制的颜色。<b>在此处查看全套的 Simple Tools：</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

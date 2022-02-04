@@ -30,13 +30,7 @@
     <string name="app_title">Semplice Registratore di suoni - Registra facile</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Un modo facile di registrare conversazioni o suoni senza annunci o accesso web</string>
-    <string name="app_long_description">Ricorda cosa ha detto l\'altra persona e quale compito ti è stato assegnato dopo una riunione.
-\nIl semplice registratore è facilmente accessibile senza caratteristiche fantasiose, pubblicità o permessi non necessari.
-\nIl volume corrente del suono e una bella visualizzazione sono mostrati in un\'interfaccia pulita.
-\nUn\'applicazione di riproduzione che ti permette di ascoltare rapidamente le tue registrazioni, rinominarle o cancellarle.
-\nColori personalizzabili.
-\nSoftware libero con copyleft, con licenza GPLv3+.
-\n<b>Scopri la suite completa di Simple Tools</b> su https://www.simplemobiletools.com</string>
+    <string name="app_long_description"> Ricorda cosa ha detto l\'altra persona e quale compito ti è stato assegnato dopo una riunione. Il semplice registratore è facilmente accessibile senza caratteristiche fantasiose, pubblicità o permessi non necessari. Il volume corrente del suono e una bella visualizzazione sono mostrati in un\'interfaccia pulita. Un utile player ti permette di ascoltare le tue registrazioni velocemente, rinominarle o cancellarle. Viene fornito con material design e tema scuro per impostazione predefinita, fornisce una grande esperienza utente per un facile utilizzo. La mancanza di accesso a internet ti dà più privacy, sicurezza e stabilità rispetto ad altre app. Non contiene pubblicità o permessi inutili. È completamente opensource, fornisce colori personalizzabili. <b> Guarda la suite completa di Simple Tools qui:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
