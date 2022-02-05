@@ -30,13 +30,7 @@
     <string name="app_title">Schlichter Sprachrekorder – Einfaches Aufnehmen beliebiger Audiodaten</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Ein simpler Weg, Diskussionen oder Töne ohne Werbung und Internet aufzuzeichnen</string>
-    <string name="app_long_description">Erinnern Sie sich daran, was die andere Person gesagt hat und welche Aufgabe Sie nach einem Meeting erhalten haben.
-\nDer einfache Rekorder ist leicht zugänglich, ohne ausgefallene Funktionen, Werbung oder unnötige Berechtigungen.
-\nDie aktuelle Lautstärke und eine schöne Visualisierung werden auf einer übersichtlichen Oberfläche angezeigt.
-\nMit einem hilfreichen Player können Sie Ihre Aufnahmen schnell anhören, umbenennen oder löschen.
-\nAnpassbare Farben.
-\nFreie Copyleft-Software, lizenziert GPLv3+.
-\n<b>Sehen Sie sich die vollständige Suite von Simple Tools</b> unter https://www.simplemobiletools.com an</string>
+    <string name="app_long_description"> Erinnern Sie sich daran, was die andere Person gesagt hat und welche Aufgabe Sie nach einem Meeting erhalten haben. Der einfache Rekorder ist leicht zugänglich, ohne ausgefallene Funktionen, Werbung oder überflüssige Berechtigungen. Die aktuelle Lautstärke und eine schöne Visualisierung werden auf einer übersichtlichen Oberfläche angezeigt. Mit einem hilfreichen Player können Sie Ihre Aufnahmen schnell anhören, umbenennen oder löschen. Die App ist standardmäßig im Material Design und mit einem dunklen Thema ausgestattet, was eine großartige Benutzererfahrung für eine einfache Nutzung bietet. Der fehlende Internetzugang bietet Ihnen mehr Privatsphäre, Sicherheit und Stabilität als andere Apps. Enthält keine Werbung oder unnötige Berechtigungen. Es ist vollständig OpenSource, bietet anpassbare Farben. <b>Hier finden Sie die gesamte Palette der Simple Tools:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
