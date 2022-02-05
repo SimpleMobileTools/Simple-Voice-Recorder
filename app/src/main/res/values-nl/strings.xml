@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Eenvoudige Voicerecorder</string>
     <string name="app_launcher_name">Voicerecorder</string>
-    <string name="recording_saved_successfully">Opname goed opgeslagen</string>
+    <string name="recording_saved_successfully">Opname is opgeslagen</string>
     <string name="recording">Opnemen</string>
     <string name="no_recordings_found">Geen opnames gemaakt door
 \ndeze app gevonden</string>
@@ -30,7 +30,7 @@
     <string name="app_title">Eenvoudige Voicerecorder - Snel geluid opnemen</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Een makkelijke manier om discussies of geluiden op te nemen, zonder advertenties</string>
-    <string name="app_long_description"> Onthoud wat de ander zei en welke taken u zijn opgelegd na een vergadering. Deze eenvoudigeopname-app is makkelijk te gebruiken. Zonder onnodige functies, machtigingen en advertenties. Een overzichtelijke interface toont het huidige volume in een mooie weergave. De handige speler laat de opnames snel luisteren, ze hernoemen of verwijderen. Standaard geleverd conform Material Design en een donker thema, wat een prima gebruikerservaring biedt voor eenvoudig gebruik. Het ontbreken van internettoegang geeft je meer privacy, veiligheid en stabiliteit dan andere apps. Geen advertenties of onnodige toestemmingen. Aanpasbare kleuren en volledig opensource. <b>Bekijk de volledige suite van Simple Tools op</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
+    <string name="app_long_description"> Onthoud wat de ander zei en welke taken zijn uitgedeeld na een vergadering. Deze eenvoudige voicerecorder is makkelijk te gebruiken. Zonder onnodige functies, machtigingen of advertenties. Een overzichtelijke interface toont de geluidsgolven met een mooie visualisatie. De handige speler laat de opnames snel beluisteren, hernoemen of verwijderen. Standaard geleverd conform Material Design en met een donker thema voor een goede gebruikerservaring. Het ontbreken van internettoegang geeft je de garantie op privacy. Bevat geen advertenties of onnodige machtigingen. Aanpasbare kleuren en volledig open-source. <b>Bekijk de volledige suite van Simple Tools op</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
