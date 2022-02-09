@@ -128,6 +128,7 @@ class MainActivity : SimpleActivity() {
     private fun getInactiveTabIndex() = if (view_pager.currentItem == 0) 1 else 0
 
     private fun launchSettings() {
+        hideKeyboard()
         startActivity(Intent(applicationContext, SettingsActivity::class.java))
     }
 
