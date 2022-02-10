@@ -1,0 +1,2 @@
+ * Do not play next recording automatically after deleting one
+ * Added some translation, stability and UX improvements

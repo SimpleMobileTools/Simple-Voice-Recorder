@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.6.4 *(2022-02-10)*
+----------------------------
+
+ * Do not play next recording automatically after deleting one
+ * Added some translation, stability and UX improvements
+
 Version 5.6.3 *(2022-01-03)*
 ----------------------------
 
