@@ -5,7 +5,8 @@
     <string name="recording_saved_successfully">Salvestamine õnnestus</string>
     <string name="recording">Salvestus</string>
     <string name="no_recordings_found">Ühtegi selle rakenduse poolt tehtud\nsalvestust ei leidu</string>
-    <string name="no_recordings_in_folder_found">Ühtegi selle salvestust ei leidu\nvalitud kaustas</string>
+    <string name="no_recordings_in_folder_found">Valitud kaustas ei leidu
+\nühtegi salvestust</string>
     <string name="paused">Peatatud</string>
     <!-- Confirmation dialog -->
     <!-- Are you sure you want to delete 5 recordings? -->
