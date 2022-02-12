@@ -2,10 +2,12 @@
 <resources>
     <string name="app_name">Simpel Lydoptager</string>
     <string name="app_launcher_name">Lydoptager</string>
-    <string name="recording_saved_successfully">Optagelse gemt som</string>
+    <string name="recording_saved_successfully">Optagelse gemt</string>
     <string name="recording">Optager</string>
-    <string name="no_recordings_found">Ingen optagelser lavet af denne app\ner blevet fundet</string>
-    <string name="no_recordings_in_folder_found">Ingen optagelser er fundet\ni den valgte mappe</string>
+    <string name="no_recordings_found">Ingen optagelser lavet af denne app
+\ner blevet fundet</string>
+    <string name="no_recordings_in_folder_found">Ingen optagelser er fundet
+\ni den valgte mappe</string>
     <string name="paused">Pauset</string>
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">Slet %s\?</string>
