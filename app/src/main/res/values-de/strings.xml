@@ -3,12 +3,12 @@
     <string name="app_name">Schlichtes Diktiergerät</string>
     <string name="app_launcher_name">Diktiergerät</string>
     <string name="recording_saved_successfully">Aufnahme erfolgreich gespeichert</string>
-    <string name="recording">Aufnehmen</string>
+    <string name="recording">Aufnahme</string>
     <string name="no_recordings_found">Es wurden keine von dieser Anwendung
 \nerstellten Aufnahmen gefunden</string>
     <string name="no_recordings_in_folder_found">Es wurden keine Aufnahmen
 \nim ausgewählten Ordner gefunden</string>
-    <string name="paused">Pausieren</string>
+    <string name="paused">Pausiert</string>
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">%s löschen\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
@@ -18,9 +18,9 @@
     </plurals>
     <!-- Settings -->
     <string name="try_hiding_notification">Versuche die Aufnahmebenachrichtigung auszublenden</string>
-    <string name="save_recordings_in">Speichere Aufnahme in</string>
+    <string name="save_recordings_in">Aufnahme speichern in</string>
     <string name="bitrate">Bitrate</string>
-    <string name="record_after_launch">Starten Sie die Aufnahme automatisch nach dem Start der Anwendung</string>
+    <string name="record_after_launch">Aufnahme startet automatisch beim Öffnen der Anwendung</string>
     <!-- FAQ -->
     <string name="faq_1_title">Kann ich das Benachrichtigungssymbol während der Aufnahme ausblenden?</string>
     <string name="faq_1_text">Naja, das kommt darauf an. Während der Nutzung des Geräts ist es nicht mehr möglich, die Benachrichtigungen von Apps wie dieser vollständig auszublenden.
@@ -29,7 +29,7 @@
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">Schlichter Sprachrekorder – Einfaches Aufnehmen beliebiger Audiodaten</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Ein simpler Weg, Diskussionen oder Töne ohne Werbung und Internet aufzuzeichnen</string>
+    <string name="app_short_description">Ein einfacher Weg, Diskussionen oder Töne ohne Werbung und Internet aufzuzeichnen</string>
     <string name="app_long_description"> Erinnern Sie sich daran, was die andere Person gesagt hat und welche Aufgabe Sie nach einem Meeting erhalten haben. Der einfache Rekorder ist leicht zugänglich, ohne ausgefallene Funktionen, Werbung oder überflüssige Berechtigungen. Die aktuelle Lautstärke und eine schöne Visualisierung werden auf einer übersichtlichen Oberfläche angezeigt. Mit einem hilfreichen Player können Sie Ihre Aufnahmen schnell anhören, umbenennen oder löschen. Die App ist standardmäßig im Material Design und mit einem dunklen Thema ausgestattet, was eine großartige Benutzererfahrung für eine einfache Nutzung bietet. Der fehlende Internetzugang bietet Ihnen mehr Privatsphäre, Sicherheit und Stabilität als andere Apps. Enthält keine Werbung oder unnötige Berechtigungen. Es ist vollständig OpenSource, bietet anpassbare Farben. <b>Hier finden Sie die gesamte Palette der Simple Tools:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
