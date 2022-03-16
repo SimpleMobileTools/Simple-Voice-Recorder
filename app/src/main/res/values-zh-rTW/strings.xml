@@ -4,8 +4,10 @@
     <string name="app_launcher_name">錄音機</string>
     <string name="recording_saved_successfully">成功儲存錄音</string>
     <string name="recording">錄音中</string>
-    <string name="no_recordings_found">未找到以此 app\n產生的錄音</string>
-    <string name="no_recordings_in_folder_found">在所選的資料夾內\n未找到錄音</string>
+    <string name="no_recordings_found">未找到以此 app
+\n產生的錄音</string>
+    <string name="no_recordings_in_folder_found">在所選的資料夾內
+\n未找到錄音</string>
     <string name="paused">已暫停</string>
     <string name="recorder">Recorder</string>
     <string name="player">Player</string>
