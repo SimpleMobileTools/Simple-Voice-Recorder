@@ -23,8 +23,7 @@
     <string name="record_after_launch">Bij het starten van de app direct een opname beginnen</string>
     <!-- FAQ -->
     <string name="faq_1_title">Kan ik de notificatie tijdens het opnemen verbergen?</string>
-    <string name="faq_1_text">Dat ligt eraan. Tijdens het gebruik is het niet langer mogelijk in Android om notificaties van dit soort apps volledig te verbergen.
-        De app bevat wel een instelling waarmee er toch zal worden geprobeerd om dit te bewerkstelligen. In de schermvergrendeling kan de notificatie wél worden verborgen door het tonen van gevoelige notificaties in de apparaatinstellingen uit te schakelen.</string>
+    <string name="faq_1_text">Dat ligt eraan. Tijdens het gebruik is het niet langer mogelijk in Android om meldingen van dit soort apps volledig te verbergen. De app bevat wel een instelling waarmee er toch zal worden geprobeerd om dit te bewerkstelligen. In de schermvergrendeling kan de melding wél worden verborgen door het tonen van gevoelige notificaties in de systeeminstellingen uit te schakelen.</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">Eenvoudige Voicerecorder - Snel geluid opnemen</string>

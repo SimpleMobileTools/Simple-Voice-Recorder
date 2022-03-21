@@ -2,13 +2,15 @@
 <resources>
     <string name="app_name">Simple Voice Recorder</string>
     <string name="app_launcher_name">Диктофон</string>
-    <string name="recording_saved_successfully">Запис успішно збережений</string>
+    <string name="recording_saved_successfully">Запис успішно збережено</string>
     <string name="recording">Запис</string>
-    <string name="no_recordings_found">Записи, створені цим додатком,\nне знайдені</string>
-    <string name="no_recordings_in_folder_found">В обраній теці, не знайдено\nжодного запису</string>
+    <string name="no_recordings_found">Записи, створені цим додатком,
+\nне знайдені</string>
+    <string name="no_recordings_in_folder_found">В обраній теці, не знайдено
+\nжодного запису</string>
     <string name="paused">Пауза</string>
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Ви впевнені, що хочете видалити %s?</string>
+    <string name="delete_recordings_confirmation">Видалити %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d запис</item>
