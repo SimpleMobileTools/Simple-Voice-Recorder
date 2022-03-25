@@ -4,11 +4,13 @@
     <string name="app_launcher_name">Perekam suara</string>
     <string name="recording_saved_successfully">Rekaman berhasil disimpan</string>
     <string name="recording">Rekaman</string>
-    <string name="no_recordings_found">Tidak ada rekaman yang dibuat oleh aplikasi ini\nTelah ditemukan</string>
-    <string name="no_recordings_in_folder_found">Tidak ada rekaman yang ditemukan\ndi folder yang dipilih</string>
+    <string name="no_recordings_found">Tidak ada rekaman dibuat oleh aplikasi ini
+\nyang ditemukan</string>
+    <string name="no_recordings_in_folder_found">Tidak ada rekaman yang ditemukan
+\ndi folder yang dipilih</string>
     <string name="paused">Dijeda</string>
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Anda yakin ingin menghapus %s?</string>
+    <string name="delete_recordings_confirmation">Hapus %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d rekaman</item>
@@ -28,7 +30,13 @@
     <string name="app_title">Simple Voice Recorder - Rekam audio apa pun dengan mudah</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Cara mudah merekam diskusi atau suara apa pun tanpa iklan atau akses internet</string>
-    <string name="app_long_description">Pernahkah Anda berharap Anda mengingat apa yang dikatakan orang lain\? Atau tugas yang mereka berikan saat rapat\? Tidak berharap lebih. Dengan perekam sederhana ini, Anda dapat merekam audio apa pun dengan sangat cepat. Aplikasi ini langsung ke intinya, tidak berisi fitur mewah yang tidak akan Anda gunakan. Hanya Anda dan perekam suara. Ini menunjukkan volume suara saat ini pada visualisasi bagus yang dapat Anda nikmati. Menyediakan antarmuka pengguna yang sangat intuitif dan bersih, tidak banyak yang salah di sana. Ini menawarkan pemutar yang bermanfaat juga sehingga Anda dapat mendengarkan rekaman Anda dengan cepat, mungkin mengganti nama atau menghapusnya. Tidak mengandung iklan atau izin yang tidak perlu. Ini sepenuhnya open source, memberikan warna yang dapat disesuaikan. <b>Lihat rangkaian lengkap Alat Sederhana di sini:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools</string>
+    <string name="app_long_description"> Ingat apa yang dikatakan orang lain dan tugas apa yang diberikan kepada Anda setelah rapat. Perekam sederhana mudah untuk diakses tanpa fitur mewah, iklan, atau izin yang tidak diperlukan. Volume suara saat ini dan visualisasi yang bagus ditampilkan dalam antarmuka yang bersih. Pemutar yang membantu memungkinkan Anda mendengarkan rekaman dengan cepat, mengganti nama, atau menghapusnya.
+\n
+\nMuncul dengan desain material dan tema gelap secara default, memberikan pengalaman pengguna yang luar biasa untuk penggunaan yang mudah. Kurangnya akses internet memberi Anda lebih banyak privasi, keamanan, dan stabilitas daripada aplikasi lain. Tidak mengandung iklan atau izin yang tidak perlu. Ini sepenuhnya sumber-terbuka, menyediakan warna yang dapat disesuaikan.
+\n
+\n<b>Lihat rangkaian lengkap Simple Tools di sini:</b> https://www.simplemobiletools.com
+\n<b>Facebook:</b> https://www.facebook.com/simplemobiletools
+\n<b>Reddit :</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
