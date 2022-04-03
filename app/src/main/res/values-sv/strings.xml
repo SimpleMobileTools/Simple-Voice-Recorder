@@ -4,8 +4,10 @@
     <string name="app_launcher_name">Röstinspelning</string>
     <string name="recording_saved_successfully">Inspelning framgångsrikt sparad</string>
     <string name="recording">Spelar in</string>
-    <string name="no_recordings_found">Inga inspelningar skapad med denna app\nhar hittats</string>
-    <string name="no_recordings_in_folder_found">Inga inspelningar har hittats\ni den valda mappen</string>
+    <string name="no_recordings_found">Inga inspelningar skapad med denna app
+\nhar hittats</string>
+    <string name="no_recordings_in_folder_found">Inga inspelningar har hittats
+\ni den valda mappen</string>
     <string name="paused">Pausad</string>
     <string name="recorder">Inspelning</string>
     <string name="player">Uppspelning</string>
