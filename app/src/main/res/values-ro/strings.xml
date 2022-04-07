@@ -4,11 +4,13 @@
     <string name="app_launcher_name">Înregistrare voce</string>
     <string name="recording_saved_successfully">Înregistrare salvată cu succes</string>
     <string name="recording">Înregistrare activă</string>
-    <string name="no_recordings_found">Nu au fost găsite înregistrări create\nde această aplicație</string>
-    <string name="no_recordings_in_folder_found">Nu au fost găsite înregistrări\nîn dosarul selectat</string>
+    <string name="no_recordings_found">Nu au fost găsite înregistrări create
+\nde această aplicație</string>
+    <string name="no_recordings_in_folder_found">Nu au fost găsite înregistrări
+\nîn dosarul selectat</string>
     <string name="paused">A fost pus în pauză</string>
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Ești sigur că vrei să ștergi %s?</string>
+    <string name="delete_recordings_confirmation">Ștergeți %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d înregistrare</item>
