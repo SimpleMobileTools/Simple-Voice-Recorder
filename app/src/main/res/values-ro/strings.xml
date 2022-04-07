@@ -14,6 +14,7 @@
     <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d înregistrare</item>
+        <item quantity="few">%d înregistrări</item>
         <item quantity="other">%d înregistrări</item>
     </plurals>
     <!-- Settings -->
