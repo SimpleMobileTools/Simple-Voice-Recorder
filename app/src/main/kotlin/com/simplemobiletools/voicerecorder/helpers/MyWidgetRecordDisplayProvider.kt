@@ -50,7 +50,7 @@ class MyWidgetRecordDisplayProvider : AppWidgetProvider() {
     private fun setupAppOpenIntent(context: Context, views: RemoteViews) {
         Intent(context, BackgroundRecordActivity::class.java).apply {
             action = BackgroundRecordActivity.RECORD_INTENT_ACTION
-            val pendingIntent = PendingIntent.getActivity(context, OPEN_APP_INTENT_ID, this, PendingIntent.FLAG_UPDATE_CURRENT)
+            val pendingIntent = PendingIntent.getActivity(context, OPEN_APP_INTENT_ID, this, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
             views.setOnClickPendingIntent(R.id.record_display_btn, pendingIntent)
         }
     }

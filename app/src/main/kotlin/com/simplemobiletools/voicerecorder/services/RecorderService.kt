@@ -283,7 +283,7 @@ class RecorderService : Service() {
 
     private fun getOpenAppIntent(): PendingIntent {
         val intent = getLaunchIntent() ?: Intent(this, SplashActivity::class.java)
-        return PendingIntent.getActivity(this, RECORDER_RUNNING_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        return PendingIntent.getActivity(this, RECORDER_RUNNING_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
     }
 
     private fun broadcastDuration() {
