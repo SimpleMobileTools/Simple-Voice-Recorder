@@ -56,7 +56,7 @@
         <activity
             android:name=".activities.BackgroundRecordActivity"
             android:exported="false"
-            android:theme="@android:style/Theme.NoDisplay" />
+            android:theme="@style/AppTheme.NoDisplay" />
 
         <activity
             android:name=".activities.SplashActivity"
