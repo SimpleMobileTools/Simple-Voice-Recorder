@@ -200,7 +200,7 @@ class RecordingsAdapter(
             }
 
             if (recording.id == currRecordingId) {
-                recording_title.setTextColor(context.getAdjustedPrimaryColor())
+                recording_title.setTextColor(context.getProperPrimaryColor())
             }
 
             recording_title.text = recording.title

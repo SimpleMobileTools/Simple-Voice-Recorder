@@ -9,7 +9,6 @@ import android.util.AttributeSet
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.isNougatPlus
 import com.simplemobiletools.voicerecorder.R
-import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.helpers.*
 import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.services.RecorderService
@@ -64,19 +63,19 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
     }
 
     private fun setupColors() {
-        val adjustedPrimaryColor = context.getAdjustedPrimaryColor()
+        val properPrimaryColor = context.getProperPrimaryColor()
         toggle_recording_button.apply {
             setImageDrawable(getToggleButtonIcon())
-            background.applyColorFilter(adjustedPrimaryColor)
+            background.applyColorFilter(properPrimaryColor)
         }
 
         toggle_pause_button.apply {
-            setImageDrawable(resources.getColoredDrawableWithColor(R.drawable.ic_pause_vector, adjustedPrimaryColor.getContrastColor()))
-            background.applyColorFilter(adjustedPrimaryColor)
+            setImageDrawable(resources.getColoredDrawableWithColor(R.drawable.ic_pause_vector, properPrimaryColor.getContrastColor()))
+            background.applyColorFilter(properPrimaryColor)
         }
 
-        recorder_visualizer.chunkColor = adjustedPrimaryColor
-        recording_duration.setTextColor(context.config.textColor)
+        recorder_visualizer.chunkColor = properPrimaryColor
+        recording_duration.setTextColor(context.getProperTextColor())
     }
 
     private fun updateRecordingDuration(duration: Int) {
@@ -85,7 +84,7 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
 
     private fun getToggleButtonIcon(): Drawable {
         val drawable = if (status == RECORDING_RUNNING || status == RECORDING_PAUSED) R.drawable.ic_stop_vector else R.drawable.ic_microphone_vector
-        return resources.getColoredDrawableWithColor(drawable, context.getAdjustedPrimaryColor().getContrastColor())
+        return resources.getColoredDrawableWithColor(drawable, context.getProperPrimaryColor().getContrastColor())
     }
 
     private fun toggleRecording() {

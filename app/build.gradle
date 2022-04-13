@@ -9,12 +9,12 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId "com.simplemobiletools.voicerecorder"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 19
         versionName "5.6.5"
         setProperty("archivesBaseName", "voice-recorder")
@@ -62,7 +62,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.SimpleMobileTools:Simple-Commons:99c8b8c007'
+    implementation 'com.github.SimpleMobileTools:Simple-Commons:e3376e4f56'
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'com.github.Armen101:AudioRecordView:1.0.4'
     implementation 'androidx.documentfile:documentfile:1.0.1'
