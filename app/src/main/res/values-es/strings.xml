@@ -4,11 +4,13 @@
     <string name="app_launcher_name">Grabadora de voz</string>
     <string name="recording_saved_successfully">Grabación guardada exitosamente</string>
     <string name="recording">Grabando</string>
-    <string name="no_recordings_found">No se han encontrado grabaciones\ncreadas por esta app</string>
-    <string name="no_recordings_in_folder_found">No se han encontrado grabaciones\nen la carpeta seleccionada</string>
+    <string name="no_recordings_found">No se han encontrado grabaciones
+\ncreadas por esta app</string>
+    <string name="no_recordings_in_folder_found">No se han encontrado grabaciones
+\nen la carpeta seleccionada</string>
     <string name="paused">Pausado</string>
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">¿Estás seguro que quieres eliminar %s?</string>
+    <string name="delete_recordings_confirmation">¿Eliminar %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d grabación</item>
