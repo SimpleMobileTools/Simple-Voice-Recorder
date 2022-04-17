@@ -99,13 +99,20 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupSaveRecordingsFolder() {
-        settings_save_recordings_holder.beGoneIf(isQPlus())
         settings_save_recordings.text = humanizePath(config.saveRecordingsFolder)
         settings_save_recordings_holder.setOnClickListener {
             FilePickerDialog(this, config.saveRecordingsFolder, false, showFAB = true) {
                 val path = it
-                handleSAFDialog(it) {
-                    if (it) {
+                handleSAFDialog(path) { grantedSAF ->
+                    if (!grantedSAF) {
+                        return@handleSAFDialog
+                    }
+
+                    handleSAFDialogSdk30(path) { grantedSAF30 ->
+                        if (!grantedSAF30) {
+                            return@handleSAFDialogSdk30
+                        }
+
                         config.saveRecordingsFolder = path
                         settings_save_recordings.text = humanizePath(config.saveRecordingsFolder)
                     }

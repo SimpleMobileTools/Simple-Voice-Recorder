@@ -9,7 +9,6 @@ import android.content.Intent
 import android.media.MediaRecorder
 import android.media.MediaScannerConnection
 import android.os.Build
-import android.os.Environment
 import android.os.IBinder
 import android.provider.MediaStore
 import android.provider.MediaStore.Audio.Media
@@ -17,10 +16,11 @@ import androidx.core.app.NotificationCompat
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isOreoPlus
-import com.simplemobiletools.commons.helpers.isQPlus
+import com.simplemobiletools.commons.helpers.isRPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SplashActivity
 import com.simplemobiletools.voicerecorder.extensions.config
+import com.simplemobiletools.voicerecorder.extensions.getDefaultRecordingsRelativePath
 import com.simplemobiletools.voicerecorder.extensions.updateWidgets
 import com.simplemobiletools.voicerecorder.helpers.*
 import com.simplemobiletools.voicerecorder.models.Events
@@ -72,14 +72,14 @@ class RecorderService : Service() {
             return
         }
 
-        val baseFolder = if (isQPlus()) {
+        val defaultFolder = File(config.saveRecordingsFolder)
+        if (!defaultFolder.exists()) {
+            defaultFolder.mkdir()
+        }
+
+        val baseFolder = if (isRPlus() && !hasProperStoredFirstParentUri(defaultFolder.absolutePath)) {
             cacheDir
         } else {
-            val defaultFolder = File(config.saveRecordingsFolder)
-            if (!defaultFolder.exists()) {
-                defaultFolder.mkdir()
-            }
-
             defaultFolder.absolutePath
         }
 
@@ -93,7 +93,12 @@ class RecorderService : Service() {
                 setAudioEncodingBitRate(config.bitrate)
                 setAudioSamplingRate(44100)
 
-                if (!isQPlus() && isPathOnSD(currFilePath)) {
+                if (isRPlus() && hasProperStoredFirstParentUri(currFilePath)) {
+                    val fileUri = createDocumentUriUsingFirstParentTreeUri(currFilePath)
+                    createSAFFileSdk30(currFilePath)
+                    val outputFileDescriptor = contentResolver.openFileDescriptor(fileUri, "w")!!.fileDescriptor
+                    setOutputFile(outputFileDescriptor)
+                } else if (!isRPlus() && isPathOnSD(currFilePath)) {
                     var document = getDocumentFile(currFilePath.getParentPath())
                     document = document?.createFile("", currFilePath.getFilenameFromPath())
 
@@ -132,7 +137,7 @@ class RecorderService : Service() {
                 release()
 
                 ensureBackgroundThread {
-                    if (isQPlus()) {
+                    if (isRPlus() && !hasProperStoredFirstParentUri(currFilePath) ) {
                         addFileInNewMediaStore()
                     } else {
                         addFileInLegacyMediaStore()
@@ -184,7 +189,7 @@ class RecorderService : Service() {
             put(Media.DISPLAY_NAME, storeFilename)
             put(Media.TITLE, storeFilename)
             put(Media.MIME_TYPE, storeFilename.getMimeType())
-            put(Media.RELATIVE_PATH, "${Environment.DIRECTORY_MUSIC}/Recordings")
+            put(Media.RELATIVE_PATH, getDefaultRecordingsRelativePath())
         }
 
         val newUri = contentResolver.insert(audioCollection, newSongDetails)

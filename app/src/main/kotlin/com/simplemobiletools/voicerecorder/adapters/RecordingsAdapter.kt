@@ -116,10 +116,10 @@ class RecordingsAdapter(
 
     private fun shareRecordings() {
         val selectedItems = getSelectedItems()
-        val paths = if (isQPlus()) {
-            selectedItems.map { getAudioFileContentUri(it.id.toLong()).toString() }
-        } else {
-            selectedItems.map { it.path }
+        val paths = selectedItems.map {
+            it.path.ifEmpty {
+                getAudioFileContentUri(it.id.toLong()).toString()
+            }
         }
 
         activity.sharePathsIntent(paths, BuildConfig.APPLICATION_ID)

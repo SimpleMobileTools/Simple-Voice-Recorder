@@ -6,15 +6,18 @@ import android.graphics.drawable.Drawable
 import android.media.AudioManager
 import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.os.PowerManager
+import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.provider.MediaStore.Audio.Media
 import android.util.AttributeSet
 import android.widget.SeekBar
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.isQPlus
+import com.simplemobiletools.commons.helpers.isRPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
 import com.simplemobiletools.voicerecorder.adapters.RecordingsAdapter
@@ -29,6 +32,8 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import java.io.File
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.math.roundToLong
 
 class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet), RefreshRecordingsListener {
     private val FAST_FORWARD_SKIP_MS = 10000
@@ -162,10 +167,20 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     }
 
     private fun getRecordings(): ArrayList<Recording> {
-        return if (isQPlus()) {
-            getMediaStoreRecordings()
-        } else {
-            getLegacyRecordings()
+        return when {
+            isRPlus() -> {
+                ArrayList(getMediaStoreRecordings() + getSAFRecordings()).apply {
+                    sortByDescending { it.timestamp }
+                }
+            }
+            isQPlus() -> {
+                ArrayList(getMediaStoreRecordings() + getLegacyRecordings()).apply {
+                    sortByDescending { it.timestamp }
+                }
+            }
+            else -> {
+                getLegacyRecordings()
+            }
         }
     }
 
@@ -194,7 +209,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             var size = cursor.getIntValue(Media.SIZE)
 
             if (duration == 0L) {
-                duration = getDurationFromUri(id.toLong())
+                duration = getDurationFromUri(getAudioFileContentUri(id.toLong()))
             }
 
             if (size == 0) {
@@ -222,17 +237,34 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             val recording = Recording(id, title, path, timestamp, duration, size)
             recordings.add(recording)
         }
+        return recordings
+    }
+
+    private fun getSAFRecordings(): ArrayList<Recording> {
+        val recordings = ArrayList<Recording>()
+        val files = context.getDocumentSdk30(context.config.saveRecordingsFolder)?.listFiles() ?: return recordings
+
+        files.filter { it.type?.startsWith("audio") == true && !it.name.isNullOrEmpty() }.forEach {
+            val id = it.hashCode()
+            val title = it.name!!
+            val path = it.uri.toString()
+            val timestamp = (it.lastModified() / 1000).toInt()
+            val duration = getDurationFromUri(it.uri)
+            val size = it.length().toInt()
+            val recording = Recording(id, title, path, timestamp, duration.toInt(), size)
+            recordings.add(recording)
+        }
 
         recordings.sortByDescending { it.timestamp }
         return recordings
     }
 
-    private fun getDurationFromUri(id: Long): Long {
+    private fun getDurationFromUri(uri: Uri): Long {
         return try {
             val retriever = MediaMetadataRetriever()
-            retriever.setDataSource(context, getAudioFileContentUri(id))
+            retriever.setDataSource(context, uri)
             val time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)!!
-            Math.round(time.toLong() / 1000.toDouble())
+            (time.toLong() / 1000.toDouble()).roundToLong()
         } catch (e: Exception) {
             0L
         }
@@ -279,10 +311,17 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             reset()
 
             try {
-                if (isQPlus()) {
-                    setDataSource(context, getAudioFileContentUri(recording.id.toLong()))
-                } else {
-                    setDataSource(recording.path)
+                val uri = Uri.parse(recording.path)
+                when {
+                    DocumentsContract.isDocumentUri(context, uri) -> {
+                        setDataSource(context, uri)
+                    }
+                    recording.path.isEmpty() -> {
+                        setDataSource(context, getAudioFileContentUri(recording.id.toLong()))
+                    }
+                    else -> {
+                        setDataSource(recording.path)
+                    }
                 }
             } catch (e: Exception) {
                 context?.showErrorToast(e)

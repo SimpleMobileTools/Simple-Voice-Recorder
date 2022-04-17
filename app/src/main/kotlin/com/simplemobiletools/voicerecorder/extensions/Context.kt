@@ -7,6 +7,10 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
+import android.os.Environment
+import com.simplemobiletools.commons.extensions.internalStoragePath
+import com.simplemobiletools.commons.helpers.isQPlus
+import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.helpers.Config
 import com.simplemobiletools.voicerecorder.helpers.IS_RECORDING
 import com.simplemobiletools.voicerecorder.helpers.MyWidgetRecordDisplayProvider
@@ -32,5 +36,18 @@ fun Context.updateWidgets(isRecording: Boolean) {
             putExtra(IS_RECORDING, isRecording)
             sendBroadcast(this)
         }
+    }
+}
+
+fun Context.getDefaultRecordingsFolder(): String {
+    val defaultPath = getDefaultRecordingsRelativePath()
+    return "$internalStoragePath/$defaultPath"
+}
+
+fun Context.getDefaultRecordingsRelativePath(): String {
+    return if (isQPlus()) {
+        "${Environment.DIRECTORY_MUSIC}/Recordings"
+    } else {
+        getString(R.string.app_name)
     }
 }
