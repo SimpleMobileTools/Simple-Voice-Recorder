@@ -167,20 +167,24 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     }
 
     private fun getRecordings(): ArrayList<Recording> {
+        val recordings = ArrayList<Recording>()
         return when {
             isRPlus() -> {
-                ArrayList(getMediaStoreRecordings() + getSAFRecordings()).apply {
-                    sortByDescending { it.timestamp }
-                }
+                recordings.addAll(getMediaStoreRecordings())
+                recordings.addAll(getSAFRecordings())
+                recordings
             }
             isQPlus() -> {
-                ArrayList(getMediaStoreRecordings() + getLegacyRecordings()).apply {
-                    sortByDescending { it.timestamp }
-                }
+                recordings.addAll(getMediaStoreRecordings())
+                recordings.addAll(getLegacyRecordings())
+                recordings
             }
             else -> {
-                getLegacyRecordings()
+                recordings.addAll(getLegacyRecordings())
+                recordings
             }
+        }.apply {
+            sortByDescending { it.timestamp }
         }
     }
 
