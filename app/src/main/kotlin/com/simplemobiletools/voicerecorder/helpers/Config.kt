@@ -4,6 +4,7 @@ import android.content.Context
 import android.media.MediaRecorder
 import com.simplemobiletools.commons.helpers.BaseConfig
 import com.simplemobiletools.voicerecorder.R
+import com.simplemobiletools.voicerecorder.extensions.getDefaultRecordingsFolder
 
 class Config(context: Context) : BaseConfig(context) {
     companion object {
@@ -15,7 +16,7 @@ class Config(context: Context) : BaseConfig(context) {
         set(hideNotification) = prefs.edit().putBoolean(HIDE_NOTIFICATION, hideNotification).apply()
 
     var saveRecordingsFolder: String
-        get() = prefs.getString(SAVE_RECORDINGS, "$internalStoragePath/${context.getString(R.string.app_name)}")!!
+        get() = prefs.getString(SAVE_RECORDINGS, context.getDefaultRecordingsFolder())!!
         set(saveRecordingsFolder) = prefs.edit().putString(SAVE_RECORDINGS, saveRecordingsFolder).apply()
 
     var extension: Int

@@ -82,7 +82,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun tryInitVoiceRecorder() {
-        if (isQPlus()) {
+        if (isRPlus()) {
             setupViewPager()
         } else {
             handlePermission(PERMISSION_WRITE_STORAGE) {
