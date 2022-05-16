@@ -5,7 +5,8 @@
     <string name="recording_saved_successfully">Nahrávka se úspěšně uložila</string>
     <string name="recording">Nahrávám</string>
     <string name="no_recordings_found">No recordings created by this app\nhave been found</string>
-    <string name="no_recordings_in_folder_found">V této složce nebyly nalezené\n žádné nahrávky</string>
+    <string name="no_recordings_in_folder_found">V této složce nebyly nalezené
+\n žádné nahrávky</string>
     <string name="paused">Pozastaveno</string>
     <string name="recorder">Recorder</string>
     <string name="player">Player</string>
