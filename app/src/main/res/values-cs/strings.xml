@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Jednoduchý nahrávač hlasu</string>
+    <string name="app_launcher_name">Nahrávač hlasu</string>
+    <string name="recording_saved_successfully">Nahrávka se úspěšně uložila</string>
+    <string name="recording">Nahrávám</string>
+    <string name="no_recordings_found">No recordings created by this app\nhave been found</string>
+    <string name="no_recordings_in_folder_found">V této složce nebyly nalezené\n žádné nahrávky</string>
+    <string name="paused">Pozastaveno</string>
+    <!-- Confirmation dialog -->
+    <!-- Are you sure you want to delete 5 recordings? -->
+    <string name="delete_recordings_confirmation">Smazat %s\?</string>
+    <plurals name="delete_recordings">
+        <item quantity="one">%d nahrávka</item>
+        <item quantity="few">%d nahrávky</item>
+        <item quantity="other">%d nahrávky</item>
+    </plurals>
+    <!-- Settings -->
+    <string name="try_hiding_notification">Try hiding the recording notification</string>
+    <string name="save_recordings_in">Uložit nahrávky v</string>
+    <string name="bitrate">Bitrate</string>
+    <string name="record_after_launch">Začít nahrávat automaticky při spuštění aplikace</string>
+    <!-- FAQ -->
+    <string name="faq_1_title">Can I hide the notification icon during recording?</string>
+    <string name="faq_1_text">Well, it depends. While you use your device it is no longer possible to fully hide the notifications of apps like this.
+        If you check the proper setting item, the app will do its best to hide it. You can hide it on the lockscreen though, if you disable the displaying of sensitive notifications in your device settings.</string>
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Jednoduchý nahrávač hlasu - Nahrajte jakékoliv audio lehce</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">An easy way of recording any discussion or sounds without ads or internet access</string>
+    <string name="app_long_description">
+        Remember what the other person said and what task you were given after a meeting.
+
+        The simple recorder is easily accessible with no fancy features, ads or unneeded permissions.
+
+        The current sound volume and a nice visualization is shown in a clean interface.
+
+        A helpful player lets you listen to your recordings quickly, rename, or delete them.
+
+        It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
+
+        Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
+
+        <b>Check out the full suite of Simple Tools here:</b>
+        https://www.simplemobiletools.com
+
+        <b>Facebook:</b>
+        https://www.facebook.com/simplemobiletools
+
+        <b>Reddit:</b>
+        https://www.reddit.com/r/SimpleMobileTools
+    </string>
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
