@@ -1,6 +1,13 @@
 Changelog
 ==========
 
+Version 5.7.1 *(2022-05-20)*
+----------------------------
+
+ * Allow customizing the save folder on all devices
+ * Added some widget related improvements, but require Simple Thank You for using them
+ * Added some stabiliy and translation improvements
+
 Version 5.7.0 *(2022-04-13)*
 ----------------------------
 
