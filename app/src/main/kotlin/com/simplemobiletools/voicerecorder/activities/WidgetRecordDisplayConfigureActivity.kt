@@ -10,7 +10,6 @@ import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.adjustAlpha
 import com.simplemobiletools.commons.extensions.applyColorFilter
 import com.simplemobiletools.commons.extensions.setFillWithStroke
-import com.simplemobiletools.commons.helpers.DEFAULT_WIDGET_BG_COLOR
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.extensions.config
@@ -43,11 +42,7 @@ class WidgetRecordDisplayConfigureActivity : SimpleActivity() {
 
     private fun initVariables() {
         mWidgetColor = resources.getColor(R.color.color_primary)
-        mWidgetAlpha = if (mWidgetColor == DEFAULT_WIDGET_BG_COLOR) {
-            1f
-        } else {
-            Color.alpha(mWidgetColor) / 255.toFloat()
-        }
+        mWidgetAlpha = Color.alpha(mWidgetColor) / 255.toFloat()
 
         mWidgetColorWithoutTransparency = Color.rgb(Color.red(mWidgetColor), Color.green(mWidgetColor), Color.blue(mWidgetColor))
         config_widget_seekbar.setOnSeekBarChangeListener(seekbarChangeListener)
