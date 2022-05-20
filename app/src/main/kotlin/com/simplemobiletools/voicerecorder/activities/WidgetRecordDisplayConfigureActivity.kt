@@ -7,9 +7,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.widget.SeekBar
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
-import com.simplemobiletools.commons.extensions.adjustAlpha
-import com.simplemobiletools.commons.extensions.applyColorFilter
-import com.simplemobiletools.commons.extensions.setFillWithStroke
+import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.extensions.config
@@ -38,10 +36,13 @@ class WidgetRecordDisplayConfigureActivity : SimpleActivity() {
 
         config_save.setOnClickListener { saveConfig() }
         config_widget_color.setOnClickListener { pickBackgroundColor() }
+
+        val primaryColor = getProperPrimaryColor()
+        config_widget_seekbar.setColors(getProperTextColor(), primaryColor, primaryColor)
     }
 
     private fun initVariables() {
-        mWidgetColor = resources.getColor(R.color.color_primary)
+        mWidgetColor = config.widgetBgColor
         mWidgetAlpha = Color.alpha(mWidgetColor) / 255.toFloat()
 
         mWidgetColorWithoutTransparency = Color.rgb(Color.red(mWidgetColor), Color.green(mWidgetColor), Color.blue(mWidgetColor))
@@ -79,7 +80,7 @@ class WidgetRecordDisplayConfigureActivity : SimpleActivity() {
 
     private fun updateColors() {
         mWidgetColor = mWidgetColorWithoutTransparency.adjustAlpha(mWidgetAlpha)
-        config_widget_color.setFillWithStroke(mWidgetColor, Color.BLACK)
+        config_widget_color.setFillWithStroke(mWidgetColor, mWidgetColor)
         config_image.background.mutate().applyColorFilter(mWidgetColor)
     }
 
