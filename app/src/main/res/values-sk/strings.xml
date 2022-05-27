@@ -4,8 +4,10 @@
     <string name="app_launcher_name">Nahrávač zvuku</string>
     <string name="recording_saved_successfully">Nahrávka bola uložená</string>
     <string name="recording">Nahráva sa</string>
-    <string name="no_recordings_found">Nenašli sa žiadne nahrávky\nvytvorené touto aplikáciou</string>
-    <string name="no_recordings_in_folder_found">Vo zvolenom priečinku sa nenašli\nžiadne nahrávky</string>
+    <string name="no_recordings_found">Nenašli sa žiadne nahrávky
+\nvytvorené touto aplikáciou</string>
+    <string name="no_recordings_in_folder_found">Vo zvolenom priečinku sa nenašli
+\nžiadne nahrávky</string>
     <string name="paused">Pauznuté</string>
     <string name="recorder">Nahrávač</string>
     <string name="player">Prehrávač</string>
