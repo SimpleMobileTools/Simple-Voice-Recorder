@@ -27,28 +27,7 @@
     <string name="app_title">Gravador de Voz Simples - Grave áudios facilmente</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Uma maneira fácil de gravar qualquer discussão ou sons sem anúncios ou acesso à Internet</string>
-    <string name="app_long_description">
-        Remember what the other person said and what task you were given after a meeting.
-
-        The simple recorder is easily accessible with no fancy features, ads or unneeded permissions.
-
-        The current sound volume and a nice visualization is shown in a clean interface.
-
-        A helpful player lets you listen to your recordings quickly, rename, or delete them.
-
-        It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
-
-        Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
-
-        <b>Check out the full suite of Simple Tools here:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
+    <string name="app_long_description"> Lembre-se do que alguém perguntou ou o que foi definido durante aquela longa reunião. O gravador simples é acessível e sem ferramentas difíceis, anúncios ou permissões desnecessárias. O volume atual do som e uma visualização simples são exibidos em uma interface limpa. Um reprodutor útil que permite que você escute suas gravações rapidamente, renomeie-as ou exclua. Vêm com os temas escuro e material design de padrão, e fornece ótima experiência ao usuário para uso facilitado. A ausência de acesso à Internet te dá mais privacidade, segurança e estabilidade que outros apps. Não há anúncios ou permissões desnecessárias. É totalmente de código aberto, e fornece cores personalizáveis. <b>Confira aqui a coleção completa de Simples Tools:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
