@@ -225,7 +225,7 @@ class RecordingsAdapter(
         val contextTheme = ContextThemeWrapper(activity, theme)
 
         PopupMenu(contextTheme, view, Gravity.END).apply {
-            inflate(R.menu.cab_recordings)
+            inflate(getActionMenuId())
             setOnMenuItemClickListener { item ->
                 val recordingId = recording.id
                 when (item.itemId) {
