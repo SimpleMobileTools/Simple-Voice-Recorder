@@ -13,7 +13,9 @@
         android:id="@+id/item_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/activity_margin">
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingStart="@dimen/activity_margin">
 
         <TextView
             android:id="@+id/recording_title"
@@ -45,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/recording_title"
             android:layout_alignBottom="@+id/recording_title"
-            android:layout_alignParentEnd="true"
+            android:layout_toStartOf="@+id/overflow_menu_icon"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="1"
@@ -58,13 +60,29 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/recording_date"
             android:layout_alignBottom="@+id/recording_date"
-            android:layout_alignParentEnd="true"
+            android:layout_toStartOf="@+id/overflow_menu_icon"
             android:alpha="0.6"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="1"
             android:textSize="@dimen/normal_text_size"
             tools:text="3 MB" />
+
+        <ImageView
+            android:id="@+id/overflow_menu_icon"
+            style="@style/OverflowMenuIconStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:visibility="visible" />
+
+        <View
+            android:id="@+id/overflow_menu_anchor"
+            style="@style/OverflowMenuAnchorStyle"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true" />
 
     </RelativeLayout>
 </FrameLayout>

@@ -2,9 +2,8 @@ package com.simplemobiletools.voicerecorder.adapters
 
 import android.provider.MediaStore
 import android.provider.MediaStore.Audio.Media
-import android.view.Menu
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.PopupMenu
 import android.widget.TextView
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
@@ -22,7 +21,6 @@ import com.simplemobiletools.voicerecorder.interfaces.RefreshRecordingsListener
 import com.simplemobiletools.voicerecorder.models.Recording
 import kotlinx.android.synthetic.main.item_recording.view.*
 import java.io.File
-import java.util.*
 
 class RecordingsAdapter(
     activity: SimpleActivity,
@@ -207,8 +205,61 @@ class RecordingsAdapter(
             recording_date.text = recording.timestamp.formatDate(context)
             recording_duration.text = recording.duration.getFormattedDuration()
             recording_size.text = recording.size.formatSize()
+
+            overflow_menu_icon.drawable.apply {
+                mutate()
+                setTint(activity.getProperTextColor())
+            }
+
+            overflow_menu_icon.setOnClickListener {
+                showPopupMenu(overflow_menu_anchor, recording)
+            }
         }
     }
 
     override fun onChange(position: Int) = recordings.getOrNull(position)?.title ?: ""
+
+    private fun showPopupMenu(view: View, recording: Recording) {
+        finishActMode()
+        val theme = activity.getPopupMenuTheme()
+        val contextTheme = ContextThemeWrapper(activity, theme)
+
+        PopupMenu(contextTheme, view, Gravity.END).apply {
+            inflate(R.menu.cab_recordings)
+            setOnMenuItemClickListener { item ->
+                val recordingId = recording.id
+                when (item.itemId) {
+                    R.id.cab_rename -> {
+                        executeItemMenuOperation(recordingId) {
+                            renameRecording()
+                        }
+                    }
+                    R.id.cab_share -> {
+                        executeItemMenuOperation(recordingId) {
+                            shareRecordings()
+                        }
+                    }
+                    R.id.cab_open_with -> {
+                        executeItemMenuOperation(recordingId) {
+                            openRecordingWith()
+                        }
+                    }
+                    R.id.cab_delete -> {
+                        executeItemMenuOperation(recordingId) {
+                            deleteMediaStoreRecordings()
+                        }
+                    }
+                }
+
+                true
+            }
+            show()
+        }
+    }
+
+    private fun executeItemMenuOperation(callId: Int, callback: () -> Unit) {
+        selectedKeys.add(callId)
+        callback()
+        selectedKeys.remove(callId)
+    }
 }
