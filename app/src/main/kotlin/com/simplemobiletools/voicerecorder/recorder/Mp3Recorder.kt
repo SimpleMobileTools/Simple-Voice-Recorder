@@ -17,13 +17,14 @@ import kotlin.math.abs
 
 
 class Mp3Recorder(val context: Context) : Recorder {
-    private var androidLame: AndroidLame? = null
     private var mp3buffer: ByteArray = ByteArray(0)
     private var isPaused = AtomicBoolean(false)
     private var isStopped = AtomicBoolean(false)
-    private var outputPath: String? = null
-    private var fileDescriptor: FileDescriptor? = null
     private var amplitude = AtomicInteger(0)
+    private var outputPath: String? = null
+    private var androidLame: AndroidLame? = null
+    private var fileDescriptor: FileDescriptor? = null
+    private var outputStream: FileOutputStream? = null
     private val minBufferSize = AudioRecord.getMinBufferSize(
         SAMPLE_RATE,
         AudioFormat.CHANNEL_IN_MONO,
@@ -49,7 +50,7 @@ class Mp3Recorder(val context: Context) : Recorder {
         val rawData = ShortArray(minBufferSize)
         mp3buffer = ByteArray((7200 + rawData.size * 2 * 1.25).toInt())
 
-        val outputStream: FileOutputStream = try {
+        outputStream = try {
             if (fileDescriptor != null) {
                 FileOutputStream(fileDescriptor)
             } else {
@@ -78,7 +79,7 @@ class Mp3Recorder(val context: Context) : Recorder {
                         if (encoded > 0) {
                             try {
                                 updateAmplitude(rawData)
-                                outputStream.write(mp3buffer, 0, encoded)
+                                outputStream!!.write(mp3buffer, 0, encoded)
                             } catch (e: IOException) {
                                 e.printStackTrace()
                             }
@@ -104,6 +105,7 @@ class Mp3Recorder(val context: Context) : Recorder {
 
     override fun release() {
         androidLame?.flush(mp3buffer)
+        outputStream?.close()
     }
 
     override fun getMaxAmplitude(): Int {
