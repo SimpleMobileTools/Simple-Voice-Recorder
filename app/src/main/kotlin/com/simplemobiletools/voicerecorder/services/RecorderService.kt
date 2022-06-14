@@ -6,7 +6,6 @@ import android.app.*
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
-import android.media.MediaRecorder
 import android.media.MediaScannerConnection
 import android.os.Build
 import android.os.IBinder
@@ -24,6 +23,8 @@ import com.simplemobiletools.voicerecorder.extensions.getDefaultRecordingsRelati
 import com.simplemobiletools.voicerecorder.extensions.updateWidgets
 import com.simplemobiletools.voicerecorder.helpers.*
 import com.simplemobiletools.voicerecorder.models.Events
+import com.simplemobiletools.voicerecorder.recorder.MediaRecorderWrapper
+import com.simplemobiletools.voicerecorder.recorder.Recorder
 import org.greenrobot.eventbus.EventBus
 import java.io.File
 import java.util.*
@@ -40,7 +41,7 @@ class RecorderService : Service() {
     private var status = RECORDING_STOPPED
     private var durationTimer = Timer()
     private var amplitudeTimer = Timer()
-    private var recorder: MediaRecorder? = null
+    private var recorder: Recorder? = null
 
     override fun onBind(intent: Intent?): IBinder? = null
 
@@ -86,40 +87,39 @@ class RecorderService : Service() {
         currFilePath = "$baseFolder/${getCurrentFormattedDateTime()}.${config.getExtensionText()}"
 
         try {
-            recorder = MediaRecorder().apply {
-                setAudioSource(MediaRecorder.AudioSource.CAMCORDER)
-                setOutputFormat(config.getOutputFormat())
-                setAudioEncoder(config.getAudioEncoder())
-                setAudioEncodingBitRate(config.bitrate)
-                setAudioSamplingRate(44100)
-
-                if (isRPlus() && hasProperStoredFirstParentUri(currFilePath)) {
-                    val fileUri = createDocumentUriUsingFirstParentTreeUri(currFilePath)
-                    createSAFFileSdk30(currFilePath)
-                    val outputFileDescriptor = contentResolver.openFileDescriptor(fileUri, "w")!!.fileDescriptor
-                    setOutputFile(outputFileDescriptor)
-                } else if (!isRPlus() && isPathOnSD(currFilePath)) {
-                    var document = getDocumentFile(currFilePath.getParentPath())
-                    document = document?.createFile("", currFilePath.getFilenameFromPath())
-
-                    val outputFileDescriptor = contentResolver.openFileDescriptor(document!!.uri, "w")!!.fileDescriptor
-                    setOutputFile(outputFileDescriptor)
-                } else {
-                    setOutputFile(currFilePath)
-                }
-
-                prepare()
-                start()
-                duration = 0
-                status = RECORDING_RUNNING
-                broadcastRecorderInfo()
-                startForeground(RECORDER_RUNNING_NOTIF_ID, showNotification())
-
-                durationTimer = Timer()
-                durationTimer.scheduleAtFixedRate(getDurationUpdateTask(), 1000, 1000)
-
-                startAmplitudeUpdates()
+            recorder = if (recordMp3()) {
+                Mp3Recorder(this)
+            } else {
+                MediaRecorderWrapper(this)
             }
+
+            if (isRPlus() && hasProperStoredFirstParentUri(currFilePath)) {
+                val fileUri = createDocumentUriUsingFirstParentTreeUri(currFilePath)
+                createSAFFileSdk30(currFilePath)
+                val outputFileDescriptor = contentResolver.openFileDescriptor(fileUri, "w")!!.fileDescriptor
+                recorder?.setOutputFile(outputFileDescriptor)
+            } else if (!isRPlus() && isPathOnSD(currFilePath)) {
+                var document = getDocumentFile(currFilePath.getParentPath())
+                document = document?.createFile("", currFilePath.getFilenameFromPath())
+
+                val outputFileDescriptor = contentResolver.openFileDescriptor(document!!.uri, "w")!!.fileDescriptor
+                recorder?.setOutputFile(outputFileDescriptor)
+            } else {
+                recorder?.setOutputFile(currFilePath)
+            }
+
+            recorder?.prepare()
+            recorder?.start()
+            duration = 0
+            status = RECORDING_RUNNING
+            broadcastRecorderInfo()
+            startForeground(RECORDER_RUNNING_NOTIF_ID, showNotification())
+
+            durationTimer = Timer()
+            durationTimer.scheduleAtFixedRate(getDurationUpdateTask(), 1000, 1000)
+
+            startAmplitudeUpdates()
+
         } catch (e: Exception) {
             showErrorToast(e)
             stopRecording()
@@ -137,7 +137,7 @@ class RecorderService : Service() {
                 release()
 
                 ensureBackgroundThread {
-                    if (isRPlus() && !hasProperStoredFirstParentUri(currFilePath) ) {
+                    if (isRPlus() && !hasProperStoredFirstParentUri(currFilePath)) {
                         addFileInNewMediaStore()
                     } else {
                         addFileInLegacyMediaStore()
@@ -233,7 +233,7 @@ class RecorderService : Service() {
         override fun run() {
             if (recorder != null) {
                 try {
-                    EventBus.getDefault().post(Events.RecordingAmplitude(recorder!!.maxAmplitude))
+                    EventBus.getDefault().post(Events.RecordingAmplitude(recorder!!.getMaxAmplitude()))
                 } catch (ignored: Exception) {
                 }
             }
@@ -297,5 +297,9 @@ class RecorderService : Service() {
 
     private fun broadcastStatus() {
         EventBus.getDefault().post(Events.RecordingStatus(status))
+    }
+
+    private fun recordMp3(): Boolean {
+        return config.extension == EXTENSION_MP3
     }
 }
