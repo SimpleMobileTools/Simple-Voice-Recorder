@@ -10,7 +10,7 @@
 \nen la carpeta seleccionada</string>
     <string name="paused">Pausado</string>
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">¿Eliminar %s\?</string>
+    <string name="delete_recordings_confirmation">¿Está seguro que quieres eliminar %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d grabación</item>
@@ -20,7 +20,7 @@
     <string name="try_hiding_notification">Tratar de ocultar la notificación de grabación</string>
     <string name="save_recordings_in">Guardar grabaciones en</string>
     <string name="bitrate">Bitrate</string>
-    <string name="record_after_launch">Start recording automatically after launching the app</string>
+    <string name="record_after_launch">Comenzar a grabar automáticamente después de abrir la aplicación</string>
     <!-- FAQ -->
     <string name="faq_1_title">¿Puedo ocultar el ícono de notificación durante la grabación?</string>
     <string name="faq_1_text">Bueno, depende. Ya no es posible ocultar completamente las notificacioes de aplicaciones como esta mientras usas tu dispositivo.
@@ -30,7 +30,7 @@
     <string name="app_title">Grabadora de voz Simple - Graba audio facilmente</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Una forma fácil de grabar cualquier sonido sin anuncios o acceso a internet</string>
-    <string name="app_long_description">¿Alguna vez deseaste recordar lo que otra persona dijo\? ¿O la tarea que te asignaron en una reunión\? No desees más. Con esta grabadora simple puedes grabar cualquier audio realmente rápido. La aplicación va directo al punto, no contiene características lujosas que no vas a usar. Solo tú y la grabadora de voz. Muestra el volumen del sonido actual de una forma con la que puedes tener un montón de diversión. Provee una interfaz de usuario realmente intuitiva y limpia, no hay mucho que pueda ir mal aquí. También ofrece un útil reproductor, así que puedes escuchar tus grabaciones rapidamente, y quizá renombrarlas o eliminarlas. No contiene anuncios o permisos innecesarios. Es completamente de código abierto, provee colores personalizables. <b>Mira la suite completa de herramientas Simples aquí:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools</string>
+    <string name="app_long_description"> Recuerde lo que otra persona dijo y qué tarea le fue asignada después de una reunión. La Grabadora Simple es fácilmente accesible sin características elegantes, anuncios o permisos no requeridos. El volumen de sonido actual y una agradable visualización es mostrada en una interfaz limpia. Un reproductor útil le permite escuchar sus grabaciones rápidamente, renombrarlas o borrarlas. Viene con material design y modo oscuro por defecto, provee una gran experiencia de usuario para un uso sencillo. La falta de acceso a Internet le da mayor privacidad, seguridad y estabilidad que otras aplicaciones. No contiene anuncios ni permisos innecesarios. Es completamente código libre, provee colores personalizables. <b>Échele un ojo al conjunto completo de Herramientas Simples aquí:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
