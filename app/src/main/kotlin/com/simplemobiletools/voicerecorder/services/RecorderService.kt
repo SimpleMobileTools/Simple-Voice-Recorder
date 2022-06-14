@@ -24,6 +24,7 @@ import com.simplemobiletools.voicerecorder.extensions.updateWidgets
 import com.simplemobiletools.voicerecorder.helpers.*
 import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.recorder.MediaRecorderWrapper
+import com.simplemobiletools.voicerecorder.recorder.Mp3Recorder
 import com.simplemobiletools.voicerecorder.recorder.Recorder
 import org.greenrobot.eventbus.EventBus
 import java.io.File
@@ -119,7 +120,6 @@ class RecorderService : Service() {
             durationTimer.scheduleAtFixedRate(getDurationUpdateTask(), 1000, 1000)
 
             startAmplitudeUpdates()
-
         } catch (e: Exception) {
             showErrorToast(e)
             stopRecording()

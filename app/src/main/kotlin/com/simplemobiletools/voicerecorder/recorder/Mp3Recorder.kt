@@ -1,4 +1,4 @@
-package com.simplemobiletools.voicerecorder.helpers
+package com.simplemobiletools.voicerecorder.recorder
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,7 +9,7 @@ import com.naman14.androidlame.AndroidLame
 import com.naman14.androidlame.LameBuilder
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.voicerecorder.extensions.config
-import com.simplemobiletools.voicerecorder.recorder.Recorder
+import com.simplemobiletools.voicerecorder.helpers.SAMPLE_RATE
 import java.io.*
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
@@ -48,8 +48,8 @@ class Mp3Recorder(val context: Context) : Recorder {
     override fun prepare() {}
 
     override fun start() {
-        val data = ShortArray(minBufferSize)
-        mp3buffer = ByteArray((7200 + data.size * 2 * 1.25).toInt())
+        val rawData = ShortArray(minBufferSize)
+        mp3buffer = ByteArray((7200 + rawData.size * 2 * 1.25).toInt())
 
         val outputStream: FileOutputStream = try {
             if (fileDescriptor != null) {
@@ -74,12 +74,12 @@ class Mp3Recorder(val context: Context) : Recorder {
 
             while (!isStopped.get()) {
                 if (!isPaused.get()) {
-                    val count = audioRecord.read(data, 0, minBufferSize)
+                    val count = audioRecord.read(rawData, 0, minBufferSize)
                     if (count > 0) {
-                        val bytesEncoded: Int = androidLame.encode(data, data, count, mp3buffer)
+                        val bytesEncoded: Int = androidLame.encode(rawData, rawData, count, mp3buffer)
                         if (bytesEncoded > 0) {
                             try {
-                                updateAmplitude(data)
+                                updateAmplitude(rawData)
                                 outputStream.write(mp3buffer, 0, bytesEncoded)
                             } catch (e: IOException) {
                                 e.printStackTrace()
