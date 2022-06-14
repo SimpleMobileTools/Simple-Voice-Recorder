@@ -17,8 +17,6 @@ import kotlin.math.abs
 
 
 class Mp3Recorder(val context: Context) : Recorder {
-    val TAG = "Mp3Helper"
-
     private var androidLame: AndroidLame? = null
     private var mp3buffer: ByteArray = ByteArray(0)
     private var isPaused = AtomicBoolean(false)
@@ -76,11 +74,11 @@ class Mp3Recorder(val context: Context) : Recorder {
                 if (!isPaused.get()) {
                     val count = audioRecord.read(rawData, 0, minBufferSize)
                     if (count > 0) {
-                        val bytesEncoded: Int = androidLame.encode(rawData, rawData, count, mp3buffer)
-                        if (bytesEncoded > 0) {
+                        val encoded = androidLame.encode(rawData, rawData, count, mp3buffer)
+                        if (encoded > 0) {
                             try {
                                 updateAmplitude(rawData)
-                                outputStream.write(mp3buffer, 0, bytesEncoded)
+                                outputStream.write(mp3buffer, 0, encoded)
                             } catch (e: IOException) {
                                 e.printStackTrace()
                             }
