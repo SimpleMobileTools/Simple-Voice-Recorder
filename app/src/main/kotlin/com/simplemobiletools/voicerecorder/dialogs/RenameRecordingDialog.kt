@@ -8,9 +8,12 @@ import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.voicerecorder.R
+import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.helpers.getAudioFileContentUri
+import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.models.Recording
 import kotlinx.android.synthetic.main.dialog_rename_recording.view.*
+import org.greenrobot.eventbus.EventBus
 import java.io.File
 
 class RenameRecordingDialog(val activity: BaseSimpleActivity, val recording: Recording, val callback: () -> Unit) {
@@ -63,10 +66,22 @@ class RenameRecordingDialog(val activity: BaseSimpleActivity, val recording: Rec
             put(Media.DISPLAY_NAME, newDisplayName)
         }
 
+        // if the old way of renaming fails, try the new SDK 30 one on Android 11+
         try {
             activity.contentResolver.update(getAudioFileContentUri(recording.id.toLong()), values, null, null)
-        } catch (e: Exception) {
-            activity.showErrorToast(e)
+        } catch (e: SecurityException) {
+            try {
+                val path = "${activity.config.saveRecordingsFolder}/${recording.title}"
+                val newPath = "${path.getParentPath()}/$newDisplayName"
+                activity.handleSAFDialogSdk30(path) {
+                    val success = activity.renameDocumentSdk30(path, newPath)
+                    if (success) {
+                        EventBus.getDefault().post(Events.RecordingCompleted())
+                    }
+                }
+            } catch (e: Exception) {
+                activity.showErrorToast(e)
+            }
         }
     }
 
