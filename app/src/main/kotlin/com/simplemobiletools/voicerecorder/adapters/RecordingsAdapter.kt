@@ -1,16 +1,22 @@
 package com.simplemobiletools.voicerecorder.adapters
 
+import android.content.ContentUris
+import android.content.Context
+import android.net.Uri
 import android.provider.MediaStore
 import android.provider.MediaStore.Audio.Media
 import android.view.*
 import android.widget.PopupMenu
 import android.widget.TextView
+import androidx.core.net.toUri
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isQPlus
+import com.simplemobiletools.commons.helpers.isRPlus
+import com.simplemobiletools.commons.models.FileDirItem
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
@@ -151,19 +157,37 @@ class RecordingsAdapter(
         val recordingsToRemove = recordings.filter { selectedKeys.contains(it.id) } as ArrayList<Recording>
         val positions = getSelectedItemPositions()
 
-        if (isQPlus()) {
-            recordingsToRemove.forEach {
-                val uri = Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
-                val selection = "${Media._ID} = ?"
-                val selectionArgs = arrayOf(it.id.toString())
-                activity.contentResolver.delete(uri, selection, selectionArgs)
+        when {
+            isRPlus() -> {
+                val fileUris = recordingsToRemove.map { recording ->
+                    "${Media.EXTERNAL_CONTENT_URI}/${recording.id.toLong()}".toUri()
+                }
+
+                activity.deleteSDK30Uris(fileUris) { success ->
+                    if (success) {
+                        doDeleteAnimation(oldRecordingIndex, recordingsToRemove, positions)
+                    }
+                }
             }
-        } else {
-            recordingsToRemove.forEach {
-                activity.deleteFile(File(it.path).toFileDirItem(activity))
+            isQPlus() -> {
+                recordingsToRemove.forEach {
+                    val uri = Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+                    val selection = "${Media._ID} = ?"
+                    val selectionArgs = arrayOf(it.id.toString())
+                    activity.contentResolver.delete(uri, selection, selectionArgs)
+                }
+                doDeleteAnimation(oldRecordingIndex, recordingsToRemove, positions)
+            }
+            else -> {
+                recordingsToRemove.forEach {
+                    activity.deleteFile(File(it.path).toFileDirItem(activity))
+                }
+                doDeleteAnimation(oldRecordingIndex, recordingsToRemove, positions)
             }
         }
+    }
 
+    private fun doDeleteAnimation(oldRecordingIndex: Int, recordingsToRemove: ArrayList<Recording>, positions: ArrayList<Int>) {
         recordings.removeAll(recordingsToRemove)
         activity.runOnUiThread {
             if (recordings.isEmpty()) {
@@ -178,6 +202,25 @@ class RecordingsAdapter(
                 }
             }
         }
+    }
+
+    fun Context.getFileUrisFromFileDirItems2(fileDirItems: List<FileDirItem>): Pair<java.util.ArrayList<String>, java.util.ArrayList<Uri>> {
+        val fileUris = java.util.ArrayList<Uri>()
+        val successfulFilePaths = java.util.ArrayList<String>()
+        val allIds = getMediaStoreIds(this)
+        val filePaths = fileDirItems.map { it.path }
+        filePaths.forEach { path ->
+            for ((filePath, mediaStoreId) in allIds) {
+                if (filePath.lowercase() == path.lowercase()) {
+                    val baseUri = getFileUri(filePath)
+                    val uri = ContentUris.withAppendedId(baseUri, mediaStoreId)
+                    fileUris.add(uri)
+                    successfulFilePaths.add(path)
+                }
+            }
+        }
+
+        return Pair(successfulFilePaths, fileUris)
     }
 
     fun updateCurrentRecording(newId: Int) {
