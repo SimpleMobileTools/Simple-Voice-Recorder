@@ -15,7 +15,6 @@ import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.math.abs
 
-
 class Mp3Recorder(val context: Context) : Recorder {
     private var mp3buffer: ByteArray = ByteArray(0)
     private var isPaused = AtomicBoolean(false)
