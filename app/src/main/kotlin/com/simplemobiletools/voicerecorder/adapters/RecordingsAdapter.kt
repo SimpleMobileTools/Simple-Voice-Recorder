@@ -61,6 +61,7 @@ class RecordingsAdapter(
             R.id.cab_rename -> renameRecording()
             R.id.cab_share -> shareRecordings()
             R.id.cab_delete -> askConfirmDelete()
+            R.id.cab_select_all -> selectAll()
             R.id.cab_open_with -> openRecordingWith()
         }
     }
@@ -269,6 +270,7 @@ class RecordingsAdapter(
 
         PopupMenu(contextTheme, view, Gravity.END).apply {
             inflate(getActionMenuId())
+            menu.findItem(R.id.cab_select_all).isVisible = false
             setOnMenuItemClickListener { item ->
                 val recordingId = recording.id
                 when (item.itemId) {
