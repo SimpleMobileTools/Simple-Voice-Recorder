@@ -10,7 +10,7 @@
 \nkayıt bulunamadı</string>
     <string name="paused">Duraklatıldı</string>
     <string name="recorder">Recorder</string>
-    <string name="player">Player</string>
+    <string name="player">Oynatıcı</string>
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">%s silinsin mi\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
