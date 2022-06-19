@@ -7,6 +7,8 @@
     <string name="no_recordings_found">未找到以此 app\n產生的錄音</string>
     <string name="no_recordings_in_folder_found">在所選的資料夾內\n未找到錄音</string>
     <string name="paused">已暫停</string>
+    <string name="recorder">Recorder</string>
+    <string name="player">Player</string>
     <!-- Confirmation dialog -->
     <!-- Are you sure you want to delete 5 recordings? -->
     <string name="delete_recordings_confirmation">要刪除 %s 嗎？</string>

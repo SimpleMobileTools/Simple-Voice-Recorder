@@ -9,6 +9,8 @@
     <string name="no_recordings_in_folder_found">Nauhoituksia ei löytynyt
 \nvalitusta kansiosta</string>
     <string name="paused">Keskeytetty</string>
+    <string name="recorder">Recorder</string>
+    <string name="player">Player</string>
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">Haluatko varmasti poistaa kohteen %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->

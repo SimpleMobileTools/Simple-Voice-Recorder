@@ -9,6 +9,8 @@
     <string name="no_recordings_in_folder_found">Ingen optagelser er fundet
 \ni den valgte mappe</string>
     <string name="paused">Pauset</string>
+    <string name="recorder">Recorder</string>
+    <string name="player">Player</string>
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">Slet %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->

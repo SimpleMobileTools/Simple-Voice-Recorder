@@ -9,6 +9,8 @@
     <string name="no_recordings_in_folder_found">Fant ingen opptak
 \ni denne mappen</string>
     <string name="paused">På pause</string>
+    <string name="recorder">Recorder</string>
+    <string name="player">Player</string>
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">Slett %s\?</string>
     <plurals name="delete_recordings">

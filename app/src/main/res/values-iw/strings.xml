@@ -7,6 +7,8 @@
     <string name="no_recordings_found">אין הקלטות שנוצרו על ידי האפליקציה הזו\nנמצא</string>
     <string name="no_recordings_in_folder_found">לא נמצאו הקלטות\nבתיקייה שנבחרה</string>
     <string name="paused">מושהה</string>
+    <string name="recorder">Recorder</string>
+    <string name="player">Player</string>
     <!-- Confirmation dialog -->
     <!-- Are you sure you want to delete 5 recordings? -->
     <string name="delete_recordings_confirmation">למחוק את %s\?</string>

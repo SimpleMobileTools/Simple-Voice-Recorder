@@ -7,6 +7,8 @@
     <string name="no_recordings_found">No s\'ha trobat cap enregistrament\ncreat per aquesta aplicació</string>
     <string name="no_recordings_in_folder_found">No s\'ha trobat cap enregistrament\na la carpeta seleccionada</string>
     <string name="paused">En pausa</string>
+    <string name="recorder">Recorder</string>
+    <string name="player">Player</string>
     <!-- Confirmation dialog -->
     <!-- Are you sure you want to delete 5 recordings? -->
     <string name="delete_recordings_confirmation">Suprimeixo %s\?</string>
