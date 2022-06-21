@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Voice Recorder</string>
-    <string name="app_launcher_name">Voice Recorder</string>
+    <string name="app_name">Обикновен диктофон</string>
+    <string name="app_launcher_name">Диктофон</string>
     <string name="recording_saved_successfully">Recording saved successfully</string>
     <string name="recording">Recording</string>
     <string name="no_recordings_found">No recordings created by this app\nhave been found</string>
@@ -27,7 +27,7 @@
         If you check the proper setting item, the app will do its best to hide it. You can hide it on the lockscreen though, if you disable the displaying of sensitive notifications in your device settings.</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Voice Recorder - Record any audio easily</string>
+    <string name="app_title">Обикновен диктофон - Лесно записване на аудио</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">An easy way of recording any discussion or sounds without ads or internet access</string>
     <string name="app_long_description">
