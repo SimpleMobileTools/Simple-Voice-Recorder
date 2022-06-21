@@ -1,2 +1,0 @@
- * Added a special White theme with an accent color
- * Some stability and translation improvements

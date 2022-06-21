@@ -1,2 +1,0 @@
- * Added a Player for the recordings
- * Many UI improvements

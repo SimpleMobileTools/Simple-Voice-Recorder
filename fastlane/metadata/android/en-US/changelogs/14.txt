@@ -1,4 +1,0 @@
- * Added a widget for quick recording toggling
- * Allow customizing the bitrate
- * Added .ogg extension on Android 8+
- * Adding some translation improvements

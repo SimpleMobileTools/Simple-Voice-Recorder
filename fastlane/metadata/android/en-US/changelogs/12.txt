@@ -1,2 +1,0 @@
- * Store recordings into a separate Recordings folder on Android 10+
- * Added some design and stability improvements
