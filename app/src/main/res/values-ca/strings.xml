@@ -4,8 +4,10 @@
     <string name="app_launcher_name">Enregistrador de veu</string>
     <string name="recording_saved_successfully">L\'enregistrament s\'ha desat correctament</string>
     <string name="recording">Enregistrament</string>
-    <string name="no_recordings_found">No s\'ha trobat cap enregistrament\ncreat per aquesta aplicació</string>
-    <string name="no_recordings_in_folder_found">No s\'ha trobat cap enregistrament\na la carpeta seleccionada</string>
+    <string name="no_recordings_found">No s\'ha trobat cap enregistrament
+\ncreat per aquesta aplicació</string>
+    <string name="no_recordings_in_folder_found">No s\'ha trobat cap enregistrament
+\na la carpeta seleccionada</string>
     <string name="paused">En pausa</string>
     <string name="recorder">Recorder</string>
     <string name="player">Reproductor</string>
