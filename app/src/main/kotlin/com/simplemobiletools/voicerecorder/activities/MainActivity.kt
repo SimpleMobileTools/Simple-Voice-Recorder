@@ -103,26 +103,26 @@ class MainActivity : SimpleActivity() {
     private fun setupViewPager() {
         main_tabs_holder.removeAllTabs()
         main_tabs_holder.newTab().setCustomView(R.layout.bottom_tablayout_item).apply {
-            customView?.findViewById<ImageView>(R.id.tab_icon)?.setImageDrawable(getDrawable(R.drawable.ic_microphone_vector))
-            customView?.findViewById<TextView>(R.id.tab_label)?.setText(R.string.recorder)
+            customView?.findViewById<ImageView>(R.id.tab_item_icon)?.setImageDrawable(getDrawable(R.drawable.ic_microphone_vector))
+            customView?.findViewById<TextView>(R.id.tab_item_label)?.setText(R.string.recorder)
             main_tabs_holder.addTab(this)
         }
 
         main_tabs_holder.newTab().setCustomView(R.layout.bottom_tablayout_item).apply {
-            customView?.findViewById<ImageView>(R.id.tab_icon)?.setImageDrawable(getDrawable(R.drawable.ic_headset_vector))
-            customView?.findViewById<TextView>(R.id.tab_label)?.setText(R.string.player)
+            customView?.findViewById<ImageView>(R.id.tab_item_icon)?.setImageDrawable(getDrawable(R.drawable.ic_headset_vector))
+            customView?.findViewById<TextView>(R.id.tab_item_label)?.setText(R.string.player)
             main_tabs_holder.addTab(this)
         }
 
         main_tabs_holder.onTabSelectionChanged(
             tabUnselectedAction = {
-                it.customView?.findViewById<ImageView>(R.id.tab_icon)?.applyColorFilter(getProperTextColor())
-                it.customView?.findViewById<TextView>(R.id.tab_label)?.setTextColor(getProperTextColor())
+                it.customView?.findViewById<ImageView>(R.id.tab_item_icon)?.applyColorFilter(getProperTextColor())
+                it.customView?.findViewById<TextView>(R.id.tab_item_label)?.setTextColor(getProperTextColor())
             },
             tabSelectedAction = {
                 view_pager.currentItem = it.position
-                it.customView?.findViewById<ImageView>(R.id.tab_icon)?.applyColorFilter(getProperPrimaryColor())
-                it.customView?.findViewById<TextView>(R.id.tab_label)?.setTextColor(getProperPrimaryColor())
+                it.customView?.findViewById<ImageView>(R.id.tab_item_icon)?.applyColorFilter(getProperPrimaryColor())
+                it.customView?.findViewById<TextView>(R.id.tab_item_label)?.setTextColor(getProperPrimaryColor())
             }
         )
 
@@ -131,6 +131,7 @@ class MainActivity : SimpleActivity() {
             main_tabs_holder.getTabAt(it)?.select()
             (view_pager.adapter as ViewPagerAdapter).finishActMode()
         }
+
         view_pager.currentItem = config.lastUsedViewPagerPage
         main_tabs_holder.getTabAt(config.lastUsedViewPagerPage)?.select()
     }
@@ -139,13 +140,13 @@ class MainActivity : SimpleActivity() {
 
     private fun setupTabColors() {
         main_tabs_holder.getTabAt(getInactiveTabIndex())?.customView?.apply {
-            findViewById<ImageView>(R.id.tab_icon)?.applyColorFilter(getProperTextColor())
-            findViewById<TextView>(R.id.tab_label)?.setTextColor(getProperTextColor())
+            findViewById<ImageView>(R.id.tab_item_icon)?.applyColorFilter(getProperTextColor())
+            findViewById<TextView>(R.id.tab_item_label)?.setTextColor(getProperTextColor())
         }
 
         main_tabs_holder.getTabAt(view_pager.currentItem)?.customView?.apply {
-            findViewById<ImageView>(R.id.tab_icon)?.applyColorFilter(getProperPrimaryColor())
-            findViewById<TextView>(R.id.tab_label)?.setTextColor(getProperPrimaryColor())
+            findViewById<ImageView>(R.id.tab_item_icon)?.applyColorFilter(getProperPrimaryColor())
+            findViewById<TextView>(R.id.tab_item_label)?.setTextColor(getProperPrimaryColor())
         }
     }
 
