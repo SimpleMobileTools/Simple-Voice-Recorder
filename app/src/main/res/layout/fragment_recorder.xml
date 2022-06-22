@@ -51,7 +51,7 @@
         android:layout_height="@dimen/fab_size"
         android:layout_marginBottom="@dimen/big_margin"
         android:background="@drawable/circle_background"
-        android:padding="@dimen/activity_margin"
+        android:padding="@dimen/normal_margin"
         android:src="@drawable/ic_pause_vector"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
