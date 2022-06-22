@@ -16,27 +16,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:elevation="8dp"
         app:tabIndicator="@null"
         app:tabMinWidth="150dp"
-        app:tabRippleColor="@null"
-        app:tabTextAppearance="@style/TabLayoutStyle">
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_recorder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/recorder"
-            android:icon="@drawable/ic_microphone_vector"
-            android:text="@string/recorder" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_player"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/player"
-            android:icon="@drawable/ic_headset_vector"
-            android:text="@string/player" />
+        app:tabRippleColor="@null">
 
     </com.google.android.material.tabs.TabLayout>
 </RelativeLayout>

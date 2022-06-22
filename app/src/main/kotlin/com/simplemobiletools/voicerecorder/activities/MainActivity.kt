@@ -1,10 +1,11 @@
 package com.simplemobiletools.voicerecorder.activities
 
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.TextView
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FAQItem
@@ -52,10 +53,14 @@ class MainActivity : SimpleActivity() {
         setupTabColors()
     }
 
+    override fun onPause() {
+        super.onPause()
+        config.lastUsedViewPagerPage = view_pager.currentItem
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         getPagerAdapter()?.onDestroy()
-        config.lastUsedViewPagerPage = view_pager.currentItem
 
         Intent(this@MainActivity, RecorderService::class.java).apply {
             action = STOP_AMPLITUDE_UPDATE
@@ -96,36 +101,51 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun setupViewPager() {
+        main_tabs_holder.removeAllTabs()
+        main_tabs_holder.newTab().setCustomView(R.layout.bottom_tablayout_item).apply {
+            customView?.findViewById<ImageView>(R.id.tab_icon)?.setImageDrawable(getDrawable(R.drawable.ic_microphone_vector))
+            customView?.findViewById<TextView>(R.id.tab_label)?.setText(R.string.recorder)
+            main_tabs_holder.addTab(this)
+        }
+
+        main_tabs_holder.newTab().setCustomView(R.layout.bottom_tablayout_item).apply {
+            customView?.findViewById<ImageView>(R.id.tab_icon)?.setImageDrawable(getDrawable(R.drawable.ic_headset_vector))
+            customView?.findViewById<TextView>(R.id.tab_label)?.setText(R.string.player)
+            main_tabs_holder.addTab(this)
+        }
+
+        main_tabs_holder.onTabSelectionChanged(
+            tabUnselectedAction = {
+                it.customView?.findViewById<ImageView>(R.id.tab_icon)?.applyColorFilter(getProperTextColor())
+                it.customView?.findViewById<TextView>(R.id.tab_label)?.setTextColor(getProperTextColor())
+            },
+            tabSelectedAction = {
+                view_pager.currentItem = it.position
+                it.customView?.findViewById<ImageView>(R.id.tab_icon)?.applyColorFilter(getProperPrimaryColor())
+                it.customView?.findViewById<TextView>(R.id.tab_label)?.setTextColor(getProperPrimaryColor())
+            }
+        )
+
         view_pager.adapter = ViewPagerAdapter(this)
         view_pager.onPageChangeListener {
             main_tabs_holder.getTabAt(it)?.select()
             (view_pager.adapter as ViewPagerAdapter).finishActMode()
         }
         view_pager.currentItem = config.lastUsedViewPagerPage
-
-        main_tabs_holder.setTabTextColors(
-            getProperTextColor(),
-            getProperPrimaryColor()
-        )
-
-        main_tabs_holder.onTabSelectionChanged(
-            tabUnselectedAction = {
-                it.icon?.applyColorFilter(getProperTextColor())
-            },
-            tabSelectedAction = {
-                view_pager.currentItem = it.position
-                it.icon?.applyColorFilter(getProperPrimaryColor())
-            }
-        )
+        main_tabs_holder.getTabAt(config.lastUsedViewPagerPage)?.select()
     }
 
     private fun getPagerAdapter() = (view_pager.adapter as? ViewPagerAdapter)
 
     private fun setupTabColors() {
-        main_tabs_holder.apply {
-            background = ColorDrawable(getProperBackgroundColor())
-            getTabAt(view_pager.currentItem)?.icon?.applyColorFilter(getProperPrimaryColor())
-            getTabAt(getInactiveTabIndex())?.icon?.applyColorFilter(getProperTextColor())
+        main_tabs_holder.getTabAt(getInactiveTabIndex())?.customView?.apply {
+            findViewById<ImageView>(R.id.tab_icon)?.applyColorFilter(getProperTextColor())
+            findViewById<TextView>(R.id.tab_label)?.setTextColor(getProperTextColor())
+        }
+
+        main_tabs_holder.getTabAt(view_pager.currentItem)?.customView?.apply {
+            findViewById<ImageView>(R.id.tab_icon)?.applyColorFilter(getProperPrimaryColor())
+            findViewById<TextView>(R.id.tab_label)?.setTextColor(getProperPrimaryColor())
         }
     }
 

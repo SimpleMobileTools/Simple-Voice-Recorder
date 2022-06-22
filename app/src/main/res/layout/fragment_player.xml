@@ -135,7 +135,6 @@
                 android:layout_marginBottom="@dimen/big_margin"
                 android:background="@drawable/circle_background"
                 android:contentDescription="@string/playpause"
-                android:elevation="@dimen/medium_margin"
                 android:padding="@dimen/activity_margin"
                 android:src="@drawable/ic_play_vector" />
 
