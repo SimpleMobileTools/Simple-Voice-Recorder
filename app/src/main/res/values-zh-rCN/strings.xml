@@ -10,7 +10,7 @@
 \n录音</string>
     <string name="paused">暂停</string>
     <string name="recorder">Recorder</string>
-    <string name="player">Player</string>
+    <string name="player">播放器</string>
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">删除 %s？</string>
     <!-- Are you sure you want to delete 5 recordings? -->
