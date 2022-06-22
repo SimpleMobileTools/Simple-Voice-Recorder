@@ -11,4 +11,7 @@
         <item name="android:windowNoDisplay">true</item>
     </style>
 
+    <style name="TabLayoutStyle" parent="Base.Widget.Design.TabLayout">
+        <item name="android:textSize">@dimen/smaller_text_size</item>
+    </style>
 </resources>

@@ -103,6 +103,11 @@ class MainActivity : SimpleActivity() {
         }
         view_pager.currentItem = config.lastUsedViewPagerPage
 
+        main_tabs_holder.setTabTextColors(
+            getProperTextColor(),
+            getProperPrimaryColor()
+        )
+
         main_tabs_holder.onTabSelectionChanged(
             tabUnselectedAction = {
                 it.icon?.applyColorFilter(getProperTextColor())
@@ -119,7 +124,6 @@ class MainActivity : SimpleActivity() {
     private fun setupTabColors() {
         main_tabs_holder.apply {
             background = ColorDrawable(getProperBackgroundColor())
-            setSelectedTabIndicatorColor(getProperPrimaryColor())
             getTabAt(view_pager.currentItem)?.icon?.applyColorFilter(getProperPrimaryColor())
             getTabAt(getInactiveTabIndex())?.icon?.applyColorFilter(getProperTextColor())
         }
