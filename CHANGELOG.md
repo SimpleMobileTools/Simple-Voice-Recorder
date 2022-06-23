@@ -1,6 +1,14 @@
 Changelog
 ==========
 
+Version 5.8.0 *(2022-06-23)*
+----------------------------
+
+ * Fixed file deletion and renaming on Android 11+
+ * Moved top tabs at the bottom
+ * Save proper mp3 files, if set so
+ * Added some stability, translation and UX improvements
+
 Version 5.7.1 *(2022-05-20)*
 ----------------------------
 
