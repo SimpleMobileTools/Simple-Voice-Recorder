@@ -1,20 +1,22 @@
-Pamiętaj, co powiedziała druga osoba i jakie zadanie otrzymałeś(-aś) po spotkaniu. 
+🎙 Czy chciałeś(-aś) kiedyś pamiętać, co powiedziała druga osoba? Twoje życzenie stało się rzeczywistością! Dzięki temu prostemu rejestratorowi głosu i rejestratorowi dźwięku możesz nagrywać dowolny dźwięk wysokiej jakości i inne notatki głosowe naprawdę łatwo!
 
-Prosty rejestrator jest łatwo dostępny bez żadnych wymyślnych funkcji, reklam ani niepotrzebnych uprawnień. 
+Dzięki tej aplikacji do nagrywania możesz nagrywać różne dźwięki. Możesz używać tego rejestratora głosu i rejestratora dźwięku jako studia nagrań muzycznych. Aplikacja daje Ci swobodę nagrywania wszystkiego, co dzieje się wokół Ciebie, i późniejszej tego wizualizacji.
 
-Aktualna głośność dźwięku i ładna wizualizacja są pokazane w przejrzystym interfejsie. 
+Ta bezpłatna aplikacja przechodzi od razu do sedna – nie zawiera żadnych wymyślnych funkcji, z których nie będziesz korzystać. Tylko Ty i rejestrator głosu lub rejestrator dźwięku. Pokazuje aktualną głośność dźwięku na ładnej wizualizacji, która sprawia dużo frajdy. Zapewnia naprawdę intuicyjny i przejrzysty interfejs, przez co ciężko się pomylić. Możesz także robić notatki dźwiękowe lub przechowywać notatki głosowe do późniejszego odsłuchania. Ta aplikacja do nagrywania dostarcza również wyjątkową i łatwą funkcję studia nagrań muzycznych, gdzie rejestrator dźwięku może nagrywać muzykę. Następnie możesz zmienić jakość muzyki i edytować ją jak każde studio nagrań muzycznych.
 
-Pomocny odtwarzacz pozwala szybko odsłuchiwać nagrania, zmieniać ich nazwy lub je usuwać.
+Aplikacja oferuje również pomocny odtwarzacz rejestratora dźwięku i rejestratora głosu, dzięki czemu możesz szybko odsłuchiwać swoje nagrania w tej aplikacji do nagrywania, ewentualnie zmieniać ich nazwy lub je usuwać. Możesz dostosować wyświetlany format daty i godziny, aby uzyskać lepsze wrażenia użytkownika.
 
-Domyślnie jest wyposażony w Material Design i ciemny motyw, zapewniając doskonałe doświadczenie użytkownika dla łatwego użytkowania. Brak dostępu do Internetu zapewnia większą prywatność, bezpieczeństwo i stabilność niż inne aplikacje.
+Możesz opcjonalnie ukryć górne powiadomienie podczas nagrywania, aby zachować swoją prywatność. Za pomocą tego rejestratora głosu możesz zapisywać notatki głosowe, aby rejestrować, kto co powiedział. W ten sposób możesz również przechowywać różne notatki głosowe, takie jak ważne spotkania, wykłady i wiele innych. Aplikacja daje Ci swobodę w korzystaniu z niej w dowolny sposób.
 
-Nie zawiera reklam ani niepotrzebnych uprawnień. Jest w pełni otwartoźródłowy, zapewnia konfigurowalną kolorystykę.
+Domyślnie jest wyposażona w Material Design i ciemny motyw, zapewniając doskonałe doświadczenie użytkownika dla łatwego użytkowania. Brak dostępu do Internetu zapewnia większą prywatność, bezpieczeństwo i stabilność niż inne aplikacje.
+
+Nie zawiera reklam ani niepotrzebnych uprawnień. Jest w pełni otwartoźródłowa, zapewnia konfigurowalną kolorystykę.
 
 <b>Sprawdź pełen zestaw od Simple Tools tutaj:</b>
 https://www.simplemobiletools.com
 
-<b>Facebook:</b>
+Facebook:
 https://www.facebook.com/simplemobiletools
 
-<b>Reddit:</b>
+Reddit:
 https://www.reddit.com/r/SimpleMobileTools
