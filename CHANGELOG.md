@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.8.1 *(2022-06-24)*
+----------------------------
+
+ * Fix some renaming glitch on Android 10
+ * Added some translation and UI improvements
+
 Version 5.8.0 *(2022-06-23)*
 ----------------------------
 
