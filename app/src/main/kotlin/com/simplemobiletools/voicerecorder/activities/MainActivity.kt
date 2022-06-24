@@ -133,8 +133,6 @@ class MainActivity : SimpleActivity() {
         main_tabs_holder.getTabAt(config.lastUsedViewPagerPage)?.select()
     }
 
-    private fun getPagerAdapter() = (view_pager.adapter as? ViewPagerAdapter)
-
     private fun setupTabColors() {
         val activeView = main_tabs_holder.getTabAt(view_pager.currentItem)?.customView
         val inactiveView = main_tabs_holder.getTabAt(getInactiveTabIndex())?.customView
@@ -148,6 +146,8 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun getInactiveTabIndex() = if (view_pager.currentItem == 0) 1 else 0
+
+    private fun getPagerAdapter() = (view_pager.adapter as? ViewPagerAdapter)
 
     private fun launchSettings() {
         hideKeyboard()

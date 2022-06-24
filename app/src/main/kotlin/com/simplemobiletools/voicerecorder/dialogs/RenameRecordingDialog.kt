@@ -69,7 +69,7 @@ class RenameRecordingDialog(val activity: BaseSimpleActivity, val recording: Rec
         // if the old way of renaming fails, try the new SDK 30 one on Android 11+
         try {
             activity.contentResolver.update(getAudioFileContentUri(recording.id.toLong()), values, null, null)
-        } catch (e: SecurityException) {
+        } catch (e: Exception) {
             try {
                 val path = "${activity.config.saveRecordingsFolder}/${recording.title}"
                 val newPath = "${path.getParentPath()}/$newDisplayName"
