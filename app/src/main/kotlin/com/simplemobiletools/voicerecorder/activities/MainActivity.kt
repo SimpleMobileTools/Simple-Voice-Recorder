@@ -102,16 +102,15 @@ class MainActivity : SimpleActivity() {
 
     private fun setupViewPager() {
         main_tabs_holder.removeAllTabs()
-        main_tabs_holder.newTab().setCustomView(R.layout.bottom_tablayout_item).apply {
-            customView?.findViewById<ImageView>(R.id.tab_item_icon)?.setImageDrawable(getDrawable(R.drawable.ic_microphone_vector))
-            customView?.findViewById<TextView>(R.id.tab_item_label)?.setText(R.string.recorder)
-            main_tabs_holder.addTab(this)
-        }
+        val tabDrawables = arrayOf(R.drawable.ic_microphone_vector, R.drawable.ic_headset_vector)
+        val tabLabels = arrayOf(R.string.recorder, R.string.player)
 
-        main_tabs_holder.newTab().setCustomView(R.layout.bottom_tablayout_item).apply {
-            customView?.findViewById<ImageView>(R.id.tab_item_icon)?.setImageDrawable(getDrawable(R.drawable.ic_headset_vector))
-            customView?.findViewById<TextView>(R.id.tab_item_label)?.setText(R.string.player)
-            main_tabs_holder.addTab(this)
+        tabDrawables.forEachIndexed { i, drawableId ->
+            main_tabs_holder.newTab().setCustomView(R.layout.bottom_tablayout_item).apply {
+                customView?.findViewById<ImageView>(R.id.tab_item_icon)?.setImageDrawable(getDrawable(drawableId))
+                customView?.findViewById<TextView>(R.id.tab_item_label)?.setText(tabLabels[i])
+                main_tabs_holder.addTab(this)
+            }
         }
 
         main_tabs_holder.onTabSelectionChanged(
@@ -141,6 +140,11 @@ class MainActivity : SimpleActivity() {
         val inactiveView = main_tabs_holder.getTabAt(getInactiveTabIndex())?.customView
         updateBottomTabItemColors(activeView, true)
         updateBottomTabItemColors(inactiveView, false)
+
+        main_tabs_holder.getTabAt(view_pager.currentItem)?.select()
+        val bottomBarColor = getBottomTabsBackgroundColor()
+        main_tabs_holder.setBackgroundColor(bottomBarColor)
+        updateNavigationBarColor(bottomBarColor)
     }
 
     private fun getInactiveTabIndex() = if (view_pager.currentItem == 0) 1 else 0

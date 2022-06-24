@@ -18,7 +18,6 @@
         android:layout_alignParentBottom="true"
         app:tabIndicator="@null"
         app:tabMinWidth="150dp"
-        app:tabRippleColor="@null">
+        app:tabRippleColor="@null" />
 
-    </com.google.android.material.tabs.TabLayout>
 </RelativeLayout>
