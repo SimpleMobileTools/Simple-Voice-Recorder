@@ -7,7 +7,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.widget.SeekBar
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
-import com.simplemobiletools.commons.dialogs.WidgetLockedDialog
+import com.simplemobiletools.commons.dialogs.FeatureLockedDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.voicerecorder.R
@@ -20,7 +20,7 @@ class WidgetRecordDisplayConfigureActivity : SimpleActivity() {
     private var mWidgetId = 0
     private var mWidgetColor = 0
     private var mWidgetColorWithoutTransparency = 0
-    private var mWidgetLockedDialog: WidgetLockedDialog? = null
+    private var mFeatureLockedDialog: FeatureLockedDialog? = null
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false
@@ -43,7 +43,7 @@ class WidgetRecordDisplayConfigureActivity : SimpleActivity() {
         config_widget_seekbar.setColors(getProperTextColor(), primaryColor, primaryColor)
 
         if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
-            mWidgetLockedDialog = WidgetLockedDialog(this) {
+            mFeatureLockedDialog = FeatureLockedDialog(this) {
                 if (!isOrWasThankYouInstalled()) {
                     finish()
                 }
@@ -55,8 +55,8 @@ class WidgetRecordDisplayConfigureActivity : SimpleActivity() {
         super.onResume()
         window.decorView.setBackgroundColor(0)
 
-        if (mWidgetLockedDialog != null && isOrWasThankYouInstalled()) {
-            mWidgetLockedDialog?.dismissDialog()
+        if (mFeatureLockedDialog != null && isOrWasThankYouInstalled()) {
+            mFeatureLockedDialog?.dismissDialog()
         }
     }
 

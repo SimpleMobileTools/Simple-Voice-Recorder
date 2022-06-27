@@ -16,6 +16,7 @@ import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.helpers.STOP_AMPLITUDE_UPDATE
 import com.simplemobiletools.voicerecorder.services.RecorderService
 import kotlinx.android.synthetic.main.activity_main.*
+import me.grantland.widget.AutofitHelper
 
 class MainActivity : SimpleActivity() {
 
@@ -109,6 +110,7 @@ class MainActivity : SimpleActivity() {
             main_tabs_holder.newTab().setCustomView(R.layout.bottom_tablayout_item).apply {
                 customView?.findViewById<ImageView>(R.id.tab_item_icon)?.setImageDrawable(getDrawable(drawableId))
                 customView?.findViewById<TextView>(R.id.tab_item_label)?.setText(tabLabels[i])
+                AutofitHelper.create(customView?.findViewById(R.id.tab_item_label))
                 main_tabs_holder.addTab(this)
             }
         }
@@ -155,7 +157,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun launchAbout() {
-        val licenses = LICENSE_EVENT_BUS or LICENSE_AUDIO_RECORD_VIEW or LICENSE_ANDROID_LAME
+        val licenses = LICENSE_EVENT_BUS or LICENSE_AUDIO_RECORD_VIEW or LICENSE_ANDROID_LAME or LICENSE_AUTOFITTEXTVIEW
 
         val faqItems = arrayListOf(
             FAQItem(R.string.faq_1_title, R.string.faq_1_text),
