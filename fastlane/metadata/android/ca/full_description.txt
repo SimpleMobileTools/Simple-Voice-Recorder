@@ -1,8 +1,20 @@
-Recordeu el que va dir l'altra persona i quina tasca us van donar després d'una reunió. L'enregistrador simple és fàcilment accessible sense funcions rares, anuncis o permisos innecessaris.
+🎙 Alguna vegada heu volgut recordar el que va dir l'altra persona? El vostre desig ja és una realitat! Amb aquesta gravadora de veu i gravadora d'àudio senzilla, podeu gravar qualsevol àudio d'alta qualitat i altres notes de veu amb molta facilitat!
 
-En una interfície neta es mostra el volum de so actual i una visualització agradable.
+Amb aquesta aplicació de gravació, podeu gravar àudios diferents. Podeu utilitzar aquesta gravadora d'àudio i de veu com a estudi de gravació de música. Aquesta aplicació d'enregistrament us ofereix llibertat per gravar totes les coses que succeeixen al vostre voltant i visualitzar-les més tard.
 
-Un reproductor útil permet escoltar ràpidament els vostres enregistraments, canviar-los el nom o suprimir-los. Colors personalitzables.
+Aquesta aplicació gratuïta va directament al gra, no conté cap funció fantàstica que no utilitzeu. Només vós i la gravadora de veu o d'àudio. Mostra el volum de so actual en una visualització agradable amb la qual us podeu divertir molt. Proporciona una interfície d'usuari realment intuïtiva i neta. També podeu prendre notes d'àudio des d'aquesta aplicació d'enregistrament o guardar notes de veu per escoltar-les més tard. Aquesta aplicació d'enregistrament també us ofereix una característica única i senzilla d'estudi de gravació de música on podeu gravar música amb la gravadora d'àudio. Després d'això, podeu canviar la qualitat de la música i editar-la com qualsevol estudi de gravació musical.
 
-<b>Consulteu el conjunt complet d'eines Simples</b>
+Aquesta aplicació d'enregistrament també ofereix una gravadora d'àudio i un reproductor de veu útils perquè pugueu escoltar ràpidament les vostres gravacions dins d'aquesta aplicació de gravació, potser canviar-ne el nom o eliminar-les. Podeu personalitzar el format de data i hora mostrat per millorar l'experiència de l'usuari. També podeu utilitzar aquesta aplicació de gravació com a estudi de gravació de música.
+
+Opcionalment, podeu amagar la notificació superior durant la gravació per preservar la vostra privadesa. Podeu desar notes de veu fent servir aquesta gravadora de veu per mantenir un registre de qui va dir què. D'aquesta manera, també podeu conservar diferents notes de veu, com ara reunions importants, conferències i moltes més notes de veu. Aquesta gravadora de veu us dóna llibertat per utilitzar aquesta aplicació com vulgueu.
+
+No conté anuncis ni permisos innecessaris. És totalment de codi obert, proporciona colors personalitzables.
+
+<b>Consulteu el conjunt complet d'eines simples aquí:</b>
 https://www.simplemobiletools.com
+
+Facebook:
+https://www.facebook.com/simplemobiletools
+
+Reddit:
+https://www.reddit.com/r/SimpleMobileTools
