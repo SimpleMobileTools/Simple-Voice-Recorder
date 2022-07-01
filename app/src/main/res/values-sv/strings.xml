@@ -7,14 +7,14 @@
     <string name="no_recordings_found">Inga inspelningar skapad med denna app\nhar hittats</string>
     <string name="no_recordings_in_folder_found">Inga inspelningar har hittats\ni den valda mappen</string>
     <string name="paused">Pausad</string>
-    <string name="recorder">Recorder</string>
-    <string name="player">Player</string>
+    <string name="recorder">Inspelning</string>
+    <string name="player">Uppspelning</string>
     <!-- Confirmation dialog -->
     <!-- Are you sure you want to delete 5 recordings? -->
     <string name="delete_recordings_confirmation">Radera %s\?</string>
     <plurals name="delete_recordings">
         <item quantity="one">%d inspelning</item>
-        <item quantity="other">%d Inspelningar</item>
+        <item quantity="other">%d inspelningar</item>
     </plurals>
     <!-- Settings -->
     <string name="try_hiding_notification">Försök att gömma inspelnings notifikationen</string>
