@@ -1,8 +1,5 @@
 package com.simplemobiletools.voicerecorder.adapters
 
-import android.content.ContentUris
-import android.content.Context
-import android.net.Uri
 import android.provider.MediaStore
 import android.provider.MediaStore.Audio.Media
 import android.view.*
@@ -16,7 +13,6 @@ import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.helpers.isRPlus
-import com.simplemobiletools.commons.models.FileDirItem
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
@@ -209,25 +205,6 @@ class RecordingsAdapter(
                 }
             }
         }
-    }
-
-    fun Context.getFileUrisFromFileDirItems2(fileDirItems: List<FileDirItem>): Pair<java.util.ArrayList<String>, java.util.ArrayList<Uri>> {
-        val fileUris = java.util.ArrayList<Uri>()
-        val successfulFilePaths = java.util.ArrayList<String>()
-        val allIds = getMediaStoreIds(this)
-        val filePaths = fileDirItems.map { it.path }
-        filePaths.forEach { path ->
-            for ((filePath, mediaStoreId) in allIds) {
-                if (filePath.lowercase() == path.lowercase()) {
-                    val baseUri = getFileUri(filePath)
-                    val uri = ContentUris.withAppendedId(baseUri, mediaStoreId)
-                    fileUris.add(uri)
-                    successfulFilePaths.add(path)
-                }
-            }
-        }
-
-        return Pair(successfulFilePaths, fileUris)
     }
 
     fun updateCurrentRecording(newId: Int) {

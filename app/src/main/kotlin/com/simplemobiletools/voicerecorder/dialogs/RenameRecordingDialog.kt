@@ -6,7 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
-import com.simplemobiletools.commons.helpers.isQPlus
+import com.simplemobiletools.commons.helpers.isRPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.helpers.getAudioFileContentUri
@@ -41,7 +41,7 @@ class RenameRecordingDialog(val activity: BaseSimpleActivity, val recording: Rec
                         }
 
                         ensureBackgroundThread {
-                            if (isQPlus()) {
+                            if (isRPlus()) {
                                 updateMediaStoreTitle(recording, newTitle)
                             } else {
                                 updateLegacyFilename(recording, newTitle)
