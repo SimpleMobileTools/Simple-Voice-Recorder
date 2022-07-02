@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.8.2 *(2022-07-02)*
+----------------------------
+
+ * Fixed renaming and deleting on Android 10
+ * Added some translation and UX improvements
+
 Version 5.8.1 *(2022-06-24)*
 ----------------------------
 
