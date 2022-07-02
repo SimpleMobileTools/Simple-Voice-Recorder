@@ -175,7 +175,13 @@ class RecordingsAdapter(
                     val uri = Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
                     val selection = "${Media._ID} = ?"
                     val selectionArgs = arrayOf(it.id.toString())
-                    activity.contentResolver.delete(uri, selection, selectionArgs)
+                    val result = activity.contentResolver.delete(uri, selection, selectionArgs)
+
+                    if (result == 0) {
+                        recordingsToRemove.forEach {
+                            activity.deleteFile(File(it.path).toFileDirItem(activity))
+                        }
+                    }
                 }
                 doDeleteAnimation(oldRecordingIndex, recordingsToRemove, positions)
             }
