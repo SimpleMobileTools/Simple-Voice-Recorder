@@ -1,57 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Voice Recorder</string>
-    <string name="app_launcher_name">Voice Recorder</string>
-    <string name="recording_saved_successfully">Recording saved successfully</string>
-    <string name="recording">Recording</string>
-    <string name="no_recordings_found">No recordings created by this app\nhave been found</string>
-    <string name="no_recordings_in_folder_found">No recordings have been found\nin the selected folder</string>
-    <string name="paused">Paused</string>
-    <string name="recorder">Recorder</string>
-    <string name="player">Player</string>
+    <string name="app_name">Jednostavno snimanje glasa</string>
+    <string name="app_launcher_name">Snimanje glasa</string>
+    <string name="recording_saved_successfully">Snimanje uspješno spremljeno</string>
+    <string name="recording">Snimanje</string>
+    <string name="no_recordings_found">Nisu pronađene snimke stvorene
+\novom aplikacijom</string>
+    <string name="no_recordings_in_folder_found">Nisu pronađene snimke
+\nu odabranoj mapi</string>
+    <string name="paused">Pauzirano</string>
+    <string name="recorder">Snimač</string>
+    <string name="player">Izvođač</string>
     <!-- Confirmation dialog -->
     <!-- Are you sure you want to delete 5 recordings? -->
-    <string name="delete_recordings_confirmation">Delete %s\?</string>
+    <string name="delete_recordings_confirmation">Izbrisati %s\?</string>
     <plurals name="delete_recordings">
-        <item quantity="one">%d recording</item>
-        <item quantity="other">%d recordings</item>
+        <item quantity="one">%d snimka</item>
+        <item quantity="few">%d snimke</item>
+        <item quantity="other">%d snimki</item>
     </plurals>
     <!-- Settings -->
-    <string name="try_hiding_notification">Try hiding the recording notification</string>
-    <string name="save_recordings_in">Save recordings in</string>
-    <string name="bitrate">Bitrate</string>
-    <string name="record_after_launch">Start recording automatically after launching the app</string>
+    <string name="try_hiding_notification">Pokušaj sakriti obavijesti snimanja</string>
+    <string name="save_recordings_in">Spremi snimanja u</string>
+    <string name="bitrate">Brzina prijenosa</string>
+    <string name="record_after_launch">Započni automatsko snimanje nakon pokretanja aplikacije</string>
     <!-- FAQ -->
-    <string name="faq_1_title">Can I hide the notification icon during recording?</string>
-    <string name="faq_1_text">Well, it depends. While you use your device it is no longer possible to fully hide the notifications of apps like this.
-        If you check the proper setting item, the app will do its best to hide it. You can hide it on the lockscreen though, if you disable the displaying of sensitive notifications in your device settings.</string>
+    <string name="faq_1_title">Mogu li sakriti ikonu obavijesti tijekom snimanja\?</string>
+    <string name="faq_1_text">Ovisi. Dok koristiš svoj uređaj više nije moguće u potpunosti sakriti obavijesti ovakvih aplikacija. Ako označiš ispravnu stavku postavke, aplikacija će je pokušati sakriti. Možeš je sakriti na zaključanom ekranu, ako isključiš prikaz osobnih obavijesti u postavkama uređaja.</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Voice Recorder - Record any audio easily</string>
+    <string name="app_title">Jednostavno snimanje glasa – Snimi audio snimke</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">An easy way of recording any discussion or sounds without ads or internet access</string>
-    <string name="app_long_description">
-        Remember what the other person said and what task you were given after a meeting.
-
-        The simple recorder is easily accessible with no fancy features, ads or unneeded permissions.
-
-        The current sound volume and a nice visualization is shown in a clean interface.
-
-        A helpful player lets you listen to your recordings quickly, rename, or delete them.
-
-        It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
-
-        Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
-
-        <b>Check out the full suite of Simple Tools here:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
+    <string name="app_short_description">Jednostavan način snimanja rasprave, zvukova bez oglasa ili pristupa internetu</string>
+    <string name="app_long_description"> Zapamti što je druga osoba rekla i koji ti je zadatak dodijeljen nakon sastanka. Jednostavan snimač je dostupan bez posebnih značajki, oglasa ili nepotrebnih dozvola. Aktualna glasnoća zvuka i lijepa vizualizacija prikazani su u čistom sučelju. Koristan izvođač omogućuje brzo preslušavanje, preimenovanje ili brisanje snimaka. Aplikacija je izrađena u material-dizajnu i standardno koristi tamnu temu, pruža izvrsno korisničko iskustvo za jednostavnu upotrebu. Nedostatak pristupa internetu pruža bolju privatnost, sigurnost i stabilnost od drugih aplikacija. Ne sadrži oglase niti nepotrebne dozvole. Potpuno je otvorenog koda, pruža prilagodljive boje. <b>Pogledaj cijeli paket „Jednostavni alati” ovdje:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
