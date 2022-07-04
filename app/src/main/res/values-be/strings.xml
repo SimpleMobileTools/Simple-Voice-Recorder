@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="record_after_launch">Аўтаматычна пачынаць запіс пры запуску</string>
-    <string name="paused">Паўза</string>
     <string name="app_name">Simple Voice Recorder</string>
     <string name="app_launcher_name">Дыктафон</string>
     <string name="recording_saved_successfully">Запіс паспяхова захаваны</string>
     <string name="recording">Запіс</string>
-    <string name="faq_1_title">Ці магчыма схаваць значок апавяшчэння падчас запісу\?</string>
-    <string name="faq_1_text">Well, it depends. While you use your device it is no longer possible to fully hide the notifications of apps like this. If you check the proper setting item, the app will do its best to hide it. You can hide it on the lockscreen though, if you disable the displaying of sensitive notifications in your device settings.</string>
-    <string name="app_title">Simple Voice Recorder - Record any audio easily</string>
-    <string name="app_short_description">An easy way of recording any discussion or sounds without ads or internet access</string>
-    <string name="no_recordings_found">Створаныя гэтым прыкладаннем запісы
-\nне знойдзены</string>
-    <string name="no_recordings_in_folder_found">У абранай папке запісы
-\nне знойдзены</string>
+    <string name="no_recordings_found">Створаныя гэтым прыкладаннем запісы\nне знойдзены</string>
+    <string name="no_recordings_in_folder_found">У абранай папке запісы\nне знойдзены</string>
+    <string name="paused">Паўза</string>
     <string name="recorder">Recorder</string>
     <string name="player">Player</string>
+    <!-- Confirmation dialog -->
+    <!-- Are you sure you want to delete 5 recordings? -->
     <string name="delete_recordings_confirmation">Выдаліць %s\?</string>
     <plurals name="delete_recordings">
         <item quantity="one">%d запіс</item>
@@ -23,8 +18,16 @@
         <item quantity="many">%d запісаў</item>
         <item quantity="other">%d запісаў</item>
     </plurals>
+    <!-- Settings -->
     <string name="try_hiding_notification">Спрабаваць схаваць апавяшчэнне пры запісу</string>
     <string name="save_recordings_in">Месца захавання запісаў</string>
     <string name="bitrate">Бітрэйт</string>
-    <string name="app_long_description"> Remember what the other person said and what task you were given after a meeting. The simple recorder is easily accessible with no fancy features, ads or unneeded permissions. The current sound volume and a nice visualization is shown in a clean interface. A helpful player lets you listen to your recordings quickly, rename, or delete them. It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps. Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors. <b>Check out the full suite of Simple Tools here:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
+    <string name="record_after_launch">Аўтаматычна пачынаць запіс пры запуску</string>
+    <!-- FAQ -->
+    <string name="faq_1_title">Ці магчыма схаваць значок апавяшчэння падчас запісу\?</string>
+    <string name="faq_1_text">Well, it depends. While you use your device it is no longer possible to fully hide the notifications of apps like this. If you check the proper setting item, the app will do its best to hide it. You can hide it on the lockscreen though, if you disable the displaying of sensitive notifications in your device settings.</string>
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
 </resources>
