@@ -27,12 +27,6 @@
     <string name="faq_1_title">在录音过程中我可以隐藏通知提示图标么？</string>
     <string name="faq_1_text">这个，视情况而定。当您正在使用设备的时候，现在已经不可能完全隐藏像此类应用程序的通知图标了。
         如果您勾选恰当的设定条目，应用程序将秦可能的隐藏自身。您仍可以在锁屏界面隐藏它，如果您在您设备设定中禁用显示敏感内容的通知提示的话。</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">简易录音机 - 轻松录制任意音频</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">没有广告，无需互联网连接即可录制任意讨论或者声音的简便方式</string>
-    <string name="app_long_description"> 记住对方说了什么，会议结束后给了你什么任务。这个简单的录音器很容易访问，没有花哨的功能，广告或不必要的权限。当前音量和良好的可视化显示在一个干净的界面。一个有用的播放器可以让你快速听录音，重命名，或删除它们。本应用界面遵照 Material 设计，默认启用深色主题，提供良好的用户体验，易于使用。没有互联网访问权限，使本应用与其他同类应用相比，可以给你更多的隐私、安全和稳定性。不包含广告或不必要的权限。它是完全开源的，提供可定制的颜色。<b>在此处查看全套的 Simple Tools：</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

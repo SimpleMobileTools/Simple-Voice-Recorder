@@ -28,12 +28,6 @@
     <string name="faq_1_title">Czy mogę ukryć ikonę powiadomienia podczas nagrywania?</string>
     <string name="faq_1_text">To zależy. Podczas korzystania z urządzenia nie da się już całkowicie ukryć powiadomień aplikacji takich jak ta.
         Jeśli zaznaczysz odpowiednie ustawienie, aplikacja spróbuje to zrobić. Możesz jednak ukryć ikonę powiadomienia na ekranie blokady w ustawieniach bezpieczeństwa z ustawień urządzenia.</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Prosty rejestrator głosu - Nagrywaj z łatwością</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Łatwy sposób nagrywania dyskusji lub dźwięku bez reklam i dostępu do Internetu</string>
-    <string name="app_long_description"> Pamiętaj, co powiedziała druga osoba i jakie zadanie otrzymałeś(-aś) po spotkaniu. Prosty rejestrator jest łatwo dostępny bez żadnych wymyślnych funkcji, reklam ani niepotrzebnych uprawnień. Aktualna głośność dźwięku i ładna wizualizacja są pokazane w przejrzystym interfejsie. Pomocny odtwarzacz pozwala szybko odsłuchiwać nagrania, zmieniać ich nazwy lub je usuwać. Domyślnie jest wyposażony w Material Design i ciemny motyw, zapewniając doskonałe doświadczenie użytkownika dla łatwego użytkowania. Brak dostępu do Internetu zapewnia większą prywatność, bezpieczeństwo i stabilność niż inne aplikacje. Nie zawiera reklam ani niepotrzebnych uprawnień. Jest w pełni otwartoźródłowy, zapewnia konfigurowalną kolorystykę. <b>Sprawdź pełen zestaw od Simple Tools tutaj:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

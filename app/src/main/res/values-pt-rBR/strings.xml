@@ -24,12 +24,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">Posso ocultar o ícone de notificação durante a gravação\?</string>
     <string name="faq_1_text">Bem, depende. Enquanto você usa seu dispositivo, não é mais possível ocultar totalmente as notificações de aplicativos como este. Se você verificar o item de configuração adequado, o aplicativo fará o seu melhor para escondê-lo. Você pode escondê-lo na tela de bloqueio desativando a exibição de notificações confidenciais nas configurações do dispositivo.</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Gravador de Voz Simples - Grave áudios facilmente</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Uma maneira fácil de gravar qualquer discussão ou sons sem anúncios ou acesso à Internet</string>
-    <string name="app_long_description"> Lembre-se do que alguém perguntou ou o que foi definido durante aquela longa reunião. O gravador simples é acessível e sem ferramentas difíceis, anúncios ou permissões desnecessárias. O volume atual do som e uma visualização simples são exibidos em uma interface limpa. Um reprodutor útil que permite que você escute suas gravações rapidamente, renomeie-as ou exclua. Vêm com os temas escuro e material design de padrão, e fornece ótima experiência ao usuário para uso facilitado. A ausência de acesso à Internet te dá mais privacidade, segurança e estabilidade que outros apps. Não há anúncios ou permissões desnecessárias. É totalmente de código aberto, e fornece cores personalizáveis. <b>Confira aqui a coleção completa de Simples Tools:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

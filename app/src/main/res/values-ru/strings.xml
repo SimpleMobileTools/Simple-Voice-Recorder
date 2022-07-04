@@ -28,12 +28,6 @@
     <string name="faq_1_title">Можно ли скрыть значок уведомления во время записи?</string>
     <string name="faq_1_text">Ну, это зависит от обстоятельств. Пока вы используете своё устройство, полностью скрыть уведомления о таких приложениях уже невозможно.
         Если вы установите соответствующий пункт в настройках, приложение сделает всё возможное, чтобы скрыть его. Также можно скрыть уведомление на экране блокировки, если отключить отображение конфиденциальных уведомлений в настройках устройства.</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Voice Recorder — простая запись звука</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Лёгкий способ записи любой дискуссии или звука без рекламы и доступа в интернет</string>
-    <string name="app_long_description"> Запомните, что сказал собеседник или какое задание вам дали после встречи. Простой диктофон без ненужных функций, рекламы и непонятных разрешений. Текущая громкость звука и приятная визуализация отображаются в понятном интерфейсе. Полезный проигрыватель позволяет быстро прослушивать записи, переименовывать или удалять их. Оформление выполнено в стиле материального дизайна с тёмной темой в комплекте для лучших ощущений и более лёгкого использования. Отсутствие требования интернета даёт большую конфиденциальность, защиту и стабильность в сравнении с другими приложениями. Рекламы нет, как и требования ненужных разрешений. Все исходные коды открыты, цвета настраиваемы. <b>Полный список программ от Simple Tools:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

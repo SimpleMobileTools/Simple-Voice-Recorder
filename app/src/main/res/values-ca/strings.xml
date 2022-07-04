@@ -24,12 +24,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">Puc ocultar la icona de notificació durant l\'enregistrament\?</string>
     <string name="faq_1_text">Bé, depèn. Mentre feu servir el dispositiu, ja no és possible amagar completament les notificacions d\'aplicacions com aquesta. Si activeu l\'element de configuració adequat, l\'aplicació farà tot el possible per ocultar-la. Tanmateix, podeu ocultar-la a la pantalla de bloqueig si desactiveu la visualització de notificacions confidencials a la configuració del dispositiu.</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Voice Recorder: enregistra fàcilment qualsevol àudio</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Una manera senzilla d\'enregistrar qualsevol debat o so, sense anuncis ni accés a Internet</string>
-    <string name="app_long_description"> Recordeu el que va dir l\'altra persona i quina tasca us van donar després d\'una reunió. L\'enregistrador simple és fàcilment accessible sense funcions rares, anuncis ni permisos innecessaris. En una interfície neta es mostra el volum de so actual i una visualització agradable. Un reproductor útil permet escoltar ràpidament els vostres enregistraments, canviar-los el nom o suprimir-los. De manera predeterminada, inclou el «material design» i un tema fosc, proporciona una gran experiència d\'usuari per a un ús fàcil. La manca d\'accés a Internet us ofereix més privadesa, seguretat i estabilitat que altres aplicacions. No conté anuncis ni permisos innecessaris. És totalment de codi obert, proporciona colors personalitzables. <b>Consulteu el conjunt complet d\'eines simples aquí:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

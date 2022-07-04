@@ -24,12 +24,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">Puis-je masquer l’icône de notification pendant l’enregistrement \?</string>
     <string name="faq_1_text">Eh bien, ça dépend. Pendant que vous utilisez votre appareil, il n’est plus possible de masquer complètement les notifications d’applications comme celle-ci. Si vous cochez l’élément de réglage approprié, l’application fera de son mieux pour les masquer. Vous pouvez cependant la masquer sur l’écran de verrouillage, si vous désactivez l’affichage des notifications sensibles dans les paramètres de votre appareil.</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Voice Recorder – Enregistrez facilement n’importe quel fichier audio</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Un moyen facile d’enregistrer n’importe quelle discussion ou n’importe quel son sans publicité ni accès à Internet</string>
-    <string name="app_long_description"> Souvenez-vous de ce que votre interlocuteur a dit et de la tâche qui vous a été confiée après une réunion. Cet enregistreur simple est facile d\'accès et ne comporte pas de fonctions sophistiquées, de publicités ou d\'autorisations inutiles. Le volume sonore actuel et une belle visualisation sont affichés dans une interface épurée. Un lecteur utile vous permet d\'écouter rapidement vos enregistrements, de les renommer ou de les supprimer. Il est livré avec un design matériel et un thème sombre par défaut, offrant une grande expérience utilisateur pour une utilisation facile. L\'absence d\'accès à Internet vous offre plus de confidentialité, de sécurité et de stabilité que les autres applications. Ne contient pas de publicités ni de permissions inutiles. Il est entièrement opensource, fournit des couleurs personnalisables. <b>Voyez la suite complète de Simple Tools ici :</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

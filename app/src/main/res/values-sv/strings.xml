@@ -24,14 +24,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">Kan jag dölja aviseringsikonen under inspelningen\?</string>
     <string name="faq_1_text">Det beror på. När du använder din enhet är det inte längre möjligt att helt dölja meddelanden från appar som dessa. Om du markerar rätt inställningsobjekt gör appen sitt bästa för att dölja den. Du kan dock dölja den på låsskärmen om du inaktiverar visning av känsliga meddelanden i enhetens inställningar.</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simpel röstinspelare - spela in vilket ljud som helst på ett enkelt sätt</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Ett enkelt sätt att spela in alla diskussioner eller ljud utan annonser</string>
-    <string name="app_long_description">
-        Kom ihåg vad den andra personen sa och vilken uppgift du fick efter ett möte. Den enkla inspelaren är lättillgänglig utan några avancerade funktioner, annonser eller onödiga behörigheter. Den aktuella ljudvolymen och en snygg visualisering visas i ett rent gränssnitt. Med en hjälpsam spelare kan du lyssna på dina inspelningar snabbt, byta namn eller radera dem. Den levereras med materialdesign och mörkt tema som standard, ger bra användarupplevelse för enkel användning. Avsaknaden av internetåtkomst ger dig mer integritet, säkerhet och stabilitet än andra appar. Innehåller inga annonser eller onödiga behörigheter. Den är helt öppen källkod, ger anpassningsbara färger. <b>Kolla in hela sviten av Simple Tools här:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools
-    </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

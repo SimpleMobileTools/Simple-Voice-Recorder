@@ -26,18 +26,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">Posso ocultar o ícone de notificação durante a gravação\?</string>
     <string name="faq_1_text">Depende. Actuamente, já não possível ocultar totalmente as notificações em aplicações deste tipo. Tente nas Definições da aplicação, habilitar a alinea correspondente e nas Definições do sistema, desabilitar a apresentação de notificações desta natureza no ecrã de bloqueio.</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Voice Recorder - Gravação de sons</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Gravação de conversas ou sons, sem anúncios nem acesso à internet</string>
-    <string name="app_long_description">Um gravador simples para que se lembre exactamente de tudo o que foi dito e do que tem a fazer.
-\nVá ajustando o volume durante a gravação, ouça-a logo de seguida no leitor integrado e escolha se a renomeia ou apaga.
-\nDescomplicado.
-\nSem anúncios ou permissões desnecessárias.
-\nCom material design e cores personalizáveis a gosto.
-\nOpen source, licença GPLv3+.
-\n<b>Consulte a gama completa de aplicações Simple Tools aqui:</b> https://www.simplemobiletools.com</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

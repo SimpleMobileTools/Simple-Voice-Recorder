@@ -27,18 +27,6 @@
     <string name="faq_1_title">Bisakah saya menyembunyikan ikon notifikasi selama merekam?</string>
     <string name="faq_1_text">Tergantung. Saat Anda menggunakan perangkat, tidak mungkin lagi untuk menyembunyikan sepenuhnya pemberitahuan aplikasi seperti ini.
         Jika Anda memeriksa item pengaturan yang tepat, aplikasi akan melakukan yang terbaik untuk menyembunyikannya. Anda dapat menyembunyikannya di layar kunci, jika Anda menonaktifkan tampilan pemberitahuan sensitif di pengaturan perangkat Anda.</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Voice Recorder - Rekam audio apa pun dengan mudah</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Cara mudah merekam diskusi atau suara apa pun tanpa iklan atau akses internet</string>
-    <string name="app_long_description"> Ingat apa yang dikatakan orang lain dan tugas apa yang diberikan kepada Anda setelah rapat. Perekam sederhana mudah untuk diakses tanpa fitur mewah, iklan, atau izin yang tidak diperlukan. Volume suara saat ini dan visualisasi yang bagus ditampilkan dalam antarmuka yang bersih. Pemutar yang membantu memungkinkan Anda mendengarkan rekaman dengan cepat, mengganti nama, atau menghapusnya.
-\n
-\nMuncul dengan desain material dan tema gelap secara default, memberikan pengalaman pengguna yang luar biasa untuk penggunaan yang mudah. Kurangnya akses internet memberi Anda lebih banyak privasi, keamanan, dan stabilitas daripada aplikasi lain. Tidak mengandung iklan atau izin yang tidak perlu. Ini sepenuhnya sumber-terbuka, menyediakan warna yang dapat disesuaikan.
-\n
-\n<b>Lihat rangkaian lengkap Simple Tools di sini:</b> https://www.simplemobiletools.com
-\n<b>Facebook:</b> https://www.facebook.com/simplemobiletools
-\n<b>Reddit :</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
