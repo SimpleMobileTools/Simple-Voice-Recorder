@@ -10,7 +10,7 @@ Puoi opzionalmente nascondere la notifica superiore durante la registrazione per
 
 Non contiene annunci o autorizzazioni non necessarie. È completamente open source, fornisce colori personalizzabili.
 
-<b>Dai un'occhiata alla suite completa di Simple Tools qui:</b>
+Dai un'occhiata alla suite completa di Simple Tools qui:
 https://www.simplemobiletools.com
 
 Facebook:
@@ -18,3 +18,6 @@ https://www.facebook.com/simplemobiletools
 
 Reddit:
 https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:
+https://t.me/SimpleMobileTools
