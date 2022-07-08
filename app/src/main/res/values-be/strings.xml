@@ -4,8 +4,10 @@
     <string name="app_launcher_name">Дыктафон</string>
     <string name="recording_saved_successfully">Запіс паспяхова захаваны</string>
     <string name="recording">Запіс</string>
-    <string name="no_recordings_found">Створаныя гэтым прыкладаннем запісы\nне знойдзены</string>
-    <string name="no_recordings_in_folder_found">У абранай папке запісы\nне знойдзены</string>
+    <string name="no_recordings_found">Створаныя гэтым прыкладаннем запісы
+\nне знойдзены</string>
+    <string name="no_recordings_in_folder_found">У абранай папке запісы
+\nне знойдзены</string>
     <string name="paused">Паўза</string>
     <string name="recorder">Дыктафон</string>
     <string name="player">Прайгравальнік</string>
