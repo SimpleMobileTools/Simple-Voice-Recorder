@@ -4,17 +4,19 @@
     <string name="app_launcher_name">Garso Įrašytuvas</string>
     <string name="recording_saved_successfully">Įrašas sėkmingai išsaugotas</string>
     <string name="recording">Įrašoma</string>
-    <string name="no_recordings_found">Nerasta įrašų įrašytų su šia programėle\nbuvo rasta</string>
-    <string name="no_recordings_in_folder_found">Nerasta įrašų\pasirinktame aplanke</string>
+    <string name="no_recordings_found">Nerasta įrašų įrašytų su šia programėle
+\nbuvo rasta</string>
+    <string name="no_recordings_in_folder_found">Nerasta įrašųasirinktame aplanke</string>
     <string name="paused">Paused</string>
     <string name="recorder">Recorder</string>
     <string name="player">Player</string>
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Ar tikrai norite ištrinti %s?</string>
+    <string name="delete_recordings_confirmation">Ar tikrai norite ištrinti %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d įrašą</item>
-        <item quantity="other">%d įrašus</item>
+        <item quantity="few">%d įrašus</item>
+        <item quantity="other"></item>
     </plurals>
     <!-- Settings -->
     <string name="try_hiding_notification">Pabandyti paslėpti įrašymo pranešimą</string>
@@ -22,9 +24,8 @@
     <string name="bitrate">Bitrate</string>
     <string name="record_after_launch">Start recording automatically after launching the app</string>
     <!-- FAQ -->
-    <string name="faq_1_title">Ar galiu paslėpti pranešimo ikonėlę įrašinėjant?</string>
-    <string name="faq_1_text">Well, it depends. While you use your device it is no longer possible to fully hide the notifications of apps like this.
-        If you check the proper setting item, the app will do its best to hide it. You can hide it on the lockscreen though, if you disable the displaying of sensitive notifications in your device settings.</string>
+    <string name="faq_1_title">Ar galiu paslėpti pranešimo ikonėlę įrašinėjant\?</string>
+    <string name="faq_1_text">Well, it depends. While you use your device it is no longer possible to fully hide the notifications of apps like this. If you check the proper setting item, the app will do its best to hide it. You can hide it on the lockscreen though, if you disable the displaying of sensitive notifications in your device settings.</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
