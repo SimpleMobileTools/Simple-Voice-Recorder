@@ -15,7 +15,6 @@
     <string name="delete_recordings_confirmation">Hapus %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
-        <item quantity="one">%d rekaman</item>
         <item quantity="other">%d rekaman</item>
     </plurals>
     <!-- Settings -->
@@ -24,9 +23,8 @@
     <string name="bitrate">Bitrate</string>
     <string name="record_after_launch">Start recording automatically after launching the app</string>
     <!-- FAQ -->
-    <string name="faq_1_title">Bisakah saya menyembunyikan ikon notifikasi selama merekam?</string>
-    <string name="faq_1_text">Tergantung. Saat Anda menggunakan perangkat, tidak mungkin lagi untuk menyembunyikan sepenuhnya pemberitahuan aplikasi seperti ini.
-        Jika Anda memeriksa item pengaturan yang tepat, aplikasi akan melakukan yang terbaik untuk menyembunyikannya. Anda dapat menyembunyikannya di layar kunci, jika Anda menonaktifkan tampilan pemberitahuan sensitif di pengaturan perangkat Anda.</string>
+    <string name="faq_1_title">Bisakah saya menyembunyikan ikon notifikasi selama merekam\?</string>
+    <string name="faq_1_text">Tergantung. Saat Anda menggunakan perangkat, tidak mungkin lagi untuk menyembunyikan sepenuhnya pemberitahuan aplikasi seperti ini. Jika Anda memeriksa item pengaturan yang tepat, aplikasi akan melakukan yang terbaik untuk menyembunyikannya. Anda dapat menyembunyikannya di layar kunci, jika Anda menonaktifkan tampilan pemberitahuan sensitif di pengaturan perangkat Anda.</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
