@@ -1,0 +1,23 @@
+Husk hva som ble sagt eller hva oppgaven du ble tildelt i et møte var.
+
+Den enkle opptakeren tar opp all lyd raskt. Programmet går rett på sak og inneholder ingen funksjoner du ikke trenger.
+
+Nåværende lydstyrke og litt visualisering derav vises i et rent brukergrensesnitt.
+
+En nyttig avspiller lar deg lytte til opptakene dine raskt, og du kan gi dem nye navn eller slette dem.
+
+Gemenhetslig fri programvare, lisensiert GPLv3+
+
+Tilpassbare farger. 
+
+Sjekk det ut her:
+https://www.simplemobiletools.com
+
+Facebook:
+https://www.facebook.com/simplemobiletools
+
+Reddit:
+https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:
+https://t.me/SimpleMobileTools
