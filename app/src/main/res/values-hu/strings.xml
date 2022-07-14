@@ -4,8 +4,10 @@
     <string name="app_launcher_name">Hangrögzítő</string>
     <string name="recording_saved_successfully">Rögzítés sikeresen mentve</string>
     <string name="recording">Rögzítés</string>
-    <string name="no_recordings_found">Nem található az alkalmazás által\nkészített rögzítés</string>
-    <string name="no_recordings_in_folder_found">A kiválasztott mappában\nnem található rögzítés</string>
+    <string name="no_recordings_found">Nem található az alkalmazás által
+\nkészített rögzítés</string>
+    <string name="no_recordings_in_folder_found">A kiválasztott mappában
+\nnem található rögzítés</string>
     <string name="paused">Szüneteltetve</string>
     <string name="recorder">Recorder</string>
     <string name="player">Player</string>

@@ -4,8 +4,10 @@
     <string name="app_launcher_name">מקליט קול</string>
     <string name="recording_saved_successfully">ההקלטה נשמרה בהצלחה</string>
     <string name="recording">הקלטה</string>
-    <string name="no_recordings_found">אין הקלטות שנוצרו על ידי האפליקציה הזו\nנמצא</string>
-    <string name="no_recordings_in_folder_found">לא נמצאו הקלטות\nבתיקייה שנבחרה</string>
+    <string name="no_recordings_found">אין הקלטות שנוצרו על ידי האפליקציה הזו
+\nנמצא</string>
+    <string name="no_recordings_in_folder_found">לא נמצאו הקלטות
+\nבתיקייה שנבחרה</string>
     <string name="paused">מושהה</string>
     <string name="recorder">Recorder</string>
     <string name="player">Player</string>

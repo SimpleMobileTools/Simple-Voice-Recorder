@@ -24,9 +24,8 @@
     <string name="bitrate">Bitrate</string>
     <string name="record_after_launch">Aloita nauhoitus automaattisesti, kun sovellus käynnistetään</string>
     <!-- FAQ -->
-    <string name="faq_1_title">Voinko piilottaa ilmoituskuvakkeen tallennuksen aikana?</string>
-    <string name="faq_1_text">No, se riippuu. Kun käytät laitettasi, tällaisten sovellusten ilmoituksia ei voida enää piilottaa kokonaan.
-         Jos tarkistat oikean asetuskohdan, sovellus tekee parhaansa piilottaakseen sen. Voit kuitenkin piilottaa sen lukitusnäytössä, jos poistat arkaluontoisten ilmoitusten näyttämisen käytöstä laitteen asetuksissa.</string>
+    <string name="faq_1_title">Voinko piilottaa ilmoituskuvakkeen tallennuksen aikana\?</string>
+    <string name="faq_1_text">No, se riippuu. Kun käytät laitettasi, tällaisten sovellusten ilmoituksia ei voida enää piilottaa kokonaan. Jos tarkistat oikean asetuskohdan, sovellus tekee parhaansa piilottaakseen sen. Voit kuitenkin piilottaa sen lukitusnäytössä, jos poistat arkaluontoisten ilmoitusten näyttämisen käytöstä laitteen asetuksissa.</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

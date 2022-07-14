@@ -24,7 +24,7 @@
     <string name="bitrate">Bitrate</string>
     <string name="record_after_launch">Bij het starten van de app direct een opname beginnen</string>
     <!-- FAQ -->
-    <string name="faq_1_title">Kan ik de notificatie tijdens het opnemen verbergen?</string>
+    <string name="faq_1_title">Kan ik de notificatie tijdens het opnemen verbergen\?</string>
     <string name="faq_1_text">Dat ligt eraan. Tijdens het gebruik is het niet langer mogelijk in Android om meldingen van dit soort apps volledig te verbergen. De app bevat wel een instelling waarmee er toch zal worden geprobeerd om dit te bewerkstelligen. In de schermvergrendeling kan de melding wél worden verborgen door het tonen van gevoelige notificaties in de systeeminstellingen uit te schakelen.</string>
     <!--
         Haven't found some strings? There's more at
