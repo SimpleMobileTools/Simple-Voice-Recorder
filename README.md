@@ -1,15 +1,15 @@
 # Simple Voice Recorder
 <img alt="Logo" src="graphics/icon.png" width="120" />
 
-Remember what the other person said and what task you were given after a meeting.
+🎙 Ever wished you remember what the other person said? Your wish is now a reality! With this simple voice recorder and audio recorder, you can record any high quality audio and other voice memos really easily! 
 
-The simple recorder is easily accessible with no fancy features, ads or unneeded permissions.
+With this recording app, you can record different audios. You can use this audio recorder and voice recorder as a music recording studio. This recording app gives you freedom to record each and every thing happening around you and visualize it later.
 
-The current sound volume and a nice visualization is shown in a clean interface.
+This free app goes straight to the point, it contains no fancy features that you won't use. Just you and the voice recorder or audio recorder. It shows the current sound volume on a nice visualization that you can have a lot of fun with. Provides a really intuitive and clean user interface, not much can go wrong there. You can also take audio notes from this recording app or keep voice memos for later to listen. This recording app also provides you a unique and easy feature of music recording studio where you can record music as an audio recorder and record the music. After that, you can change the music's quality and edit it like any music recording studio. 
 
-A helpful player lets you listen to your recordings quickly, rename, or delete them.
+This recording app offers a helpful audio recorder and voice recorder player too so that you can listen to your recordings quickly within this recording app, maybe rename or delete them. You can customize the shown date and time format for better user experience. You can also use this recording app as a music recording studio.
 
-It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
+You can optionally hide the top notification during recording to preserve your privacy. You can have voice memos saved in using this voice recorder to keep record of who said what. This way, you can also keep different voice memos such as important meetings, lectures, and many more voice memos. This voice recorder gives you freedom to use this app however you want.
 
 Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
 
@@ -21,6 +21,9 @@ https://www.facebook.com/simplemobiletools
 
 Reddit:  
 https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:  
+https://t.me/SimpleMobileTools
 
 <a href='https://play.google.com/store/apps/details?id=com.simplemobiletools.voicerecorder'><img src='https://simplemobiletools.com/images/button-google-play.svg' alt='Get it on Google Play' height=45/></a>
 <a href='https://f-droid.org/packages/com.simplemobiletools.voicerecorder/'><img src='https://simplemobiletools.com/images/button-f-droid.png' alt='Get it on F-Droid' height=45 ></a>
