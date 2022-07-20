@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.9.0 *(2022-07-20)*
+----------------------------
+
+ * Adding some materialish elements, especially in the System Theme
+ * Added some translation and UX improvements
+
 Version 5.8.2 *(2022-07-02)*
 ----------------------------
 
