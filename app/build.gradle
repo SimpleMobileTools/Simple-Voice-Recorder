@@ -15,8 +15,8 @@ android {
         applicationId "com.simplemobiletools.voicerecorder"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 25
-        versionName "5.8.2"
+        versionCode 26
+        versionName "5.9.0"
         setProperty("archivesBaseName", "voice-recorder")
         vectorDrawables.useSupportLibrary = true
     }
