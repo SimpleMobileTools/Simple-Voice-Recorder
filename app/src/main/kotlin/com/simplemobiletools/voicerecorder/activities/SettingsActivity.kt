@@ -1,7 +1,6 @@
 package com.simplemobiletools.voicerecorder.activities
 
 import android.os.Bundle
-import android.view.Menu
 import com.simplemobiletools.commons.dialogs.ChangeDateTimeFormatDialog
 import com.simplemobiletools.commons.dialogs.FilePickerDialog
 import com.simplemobiletools.commons.dialogs.RadioGroupDialog
@@ -11,7 +10,10 @@ import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.models.RadioItem
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.extensions.config
-import com.simplemobiletools.voicerecorder.helpers.*
+import com.simplemobiletools.voicerecorder.helpers.BITRATES
+import com.simplemobiletools.voicerecorder.helpers.EXTENSION_M4A
+import com.simplemobiletools.voicerecorder.helpers.EXTENSION_MP3
+import com.simplemobiletools.voicerecorder.helpers.EXTENSION_OGG
 import kotlinx.android.synthetic.main.activity_settings.*
 import java.util.*
 
@@ -44,11 +46,6 @@ class SettingsActivity : SimpleActivity() {
         arrayOf(settings_color_customization_holder, settings_general_settings_holder).forEach {
             it.background.applyColorFilter(getProperBackgroundColor().getContrastColor())
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        updateMenuItemColors(menu)
-        return super.onCreateOptionsMenu(menu)
     }
 
     private fun setupPurchaseThankYou() {
