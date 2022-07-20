@@ -58,6 +58,8 @@ class WidgetRecordDisplayConfigureActivity : SimpleActivity() {
         if (mFeatureLockedDialog != null && isOrWasThankYouInstalled()) {
             mFeatureLockedDialog?.dismissDialog()
         }
+
+        setupToolbar(config_toolbar)
     }
 
     private fun initVariables() {

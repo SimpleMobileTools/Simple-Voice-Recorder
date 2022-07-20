@@ -22,13 +22,13 @@ class RenameRecordingDialog(val activity: BaseSimpleActivity, val recording: Rec
             rename_recording_title.setText(recording.title.substringBeforeLast('.'))
         }
 
-        AlertDialog.Builder(activity)
+        activity.getAlertDialogBuilder()
             .setPositiveButton(R.string.ok, null)
             .setNegativeButton(R.string.cancel, null)
-            .create().apply {
-                activity.setupDialogStuff(view, this, R.string.rename) {
-                    showKeyboard(view.rename_recording_title)
-                    getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+            .apply {
+                activity.setupDialogStuff(view, this, R.string.rename) { alertDialog ->
+                    alertDialog.showKeyboard(view.rename_recording_title)
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                         val newTitle = view.rename_recording_title.value
                         if (newTitle.isEmpty()) {
                             activity.toast(R.string.empty_name)
@@ -49,7 +49,7 @@ class RenameRecordingDialog(val activity: BaseSimpleActivity, val recording: Rec
 
                             activity.runOnUiThread {
                                 callback()
-                                dismiss()
+                                alertDialog.dismiss()
                             }
                         }
                     }

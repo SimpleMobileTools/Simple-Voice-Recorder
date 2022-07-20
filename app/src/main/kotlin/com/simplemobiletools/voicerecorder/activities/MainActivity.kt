@@ -2,8 +2,6 @@ package com.simplemobiletools.voicerecorder.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import com.simplemobiletools.commons.extensions.*
@@ -24,6 +22,7 @@ class MainActivity : SimpleActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         appLaunched(BuildConfig.APPLICATION_ID)
+        setupOptionsMenu()
 
         if (checkAppSideloading()) {
             return
@@ -50,8 +49,9 @@ class MainActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
-        getPagerAdapter()?.onResume()
         setupTabColors()
+        setupToolbar(main_toolbar)
+        getPagerAdapter()?.onResume()
     }
 
     override fun onPause() {
@@ -72,19 +72,15 @@ class MainActivity : SimpleActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
-        updateMenuItemColors(menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.settings -> launchSettings()
-            R.id.about -> launchAbout()
-            else -> return super.onOptionsItemSelected(item)
+    private fun setupOptionsMenu() {
+        main_toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.settings -> launchSettings()
+                R.id.about -> launchAbout()
+                else -> return@setOnMenuItemClickListener false
+            }
+            return@setOnMenuItemClickListener true
         }
-        return true
     }
 
     private fun tryInitVoiceRecorder() {
@@ -142,7 +138,7 @@ class MainActivity : SimpleActivity() {
         updateBottomTabItemColors(inactiveView, false)
 
         main_tabs_holder.getTabAt(view_pager.currentItem)?.select()
-        val bottomBarColor = getBottomTabsBackgroundColor()
+        val bottomBarColor = getBottomNavigationBackgroundColor()
         main_tabs_holder.setBackgroundColor(bottomBarColor)
         updateNavigationBarColor(bottomBarColor)
     }

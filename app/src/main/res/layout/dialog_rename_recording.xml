@@ -4,14 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/activity_margin">
+    android:paddingTop="@dimen/medium_margin">
 
-    <com.simplemobiletools.commons.views.MyEditText
-        android:id="@+id/rename_recording_title"
+    <com.simplemobiletools.commons.views.MyTextInputLayout
+        android:id="@+id/rename_recording_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:textCursorDrawable="@null"
-        android:textSize="@dimen/bigger_text_size" />
+        android:layout_marginStart="@dimen/activity_margin"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/activity_margin"
+        android:layout_marginBottom="@dimen/activity_margin"
+        android:hint="@string/title">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/rename_recording_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords"
+            android:singleLine="true"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/bigger_text_size" />
+
+    </com.simplemobiletools.commons.views.MyTextInputLayout>
 </LinearLayout>
