@@ -9,7 +9,7 @@
     <string name="no_recordings_in_folder_found">Non sono state trovate registrazioni
 \nnella cartela selezionata</string>
     <string name="paused">In pausa</string>
-    <string name="recorder">Recorder</string>
+    <string name="recorder">Registratore</string>
     <string name="player">Lettore</string>
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">Eliminare %s\?</string>
