@@ -9,7 +9,7 @@
     <string name="no_recordings_in_folder_found">Es wurden keine Aufnahmen
 \nim ausgewählten Ordner gefunden</string>
     <string name="paused">Pausiert</string>
-    <string name="recorder">Recorder</string>
+    <string name="recorder">Diktiergerät</string>
     <string name="player">Player</string>
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">%s löschen\?</string>

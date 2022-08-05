@@ -7,25 +7,25 @@
     <string name="no_recordings_found">Nerasta įrašų įrašytų su šia programėle
 \nbuvo rasta</string>
     <string name="no_recordings_in_folder_found">Nerasta įrašųasirinktame aplanke</string>
-    <string name="paused">Paused</string>
-    <string name="recorder">Recorder</string>
+    <string name="paused">Pristabdyta</string>
+    <string name="recorder">Diktofonas</string>
     <string name="player">Player</string>
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Ar tikrai norite ištrinti %s\?</string>
+    <string name="delete_recordings_confirmation">Ištrinti %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d įrašą</item>
         <item quantity="few">%d įrašus</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <!-- Settings -->
     <string name="try_hiding_notification">Pabandyti paslėpti įrašymo pranešimą</string>
     <string name="save_recordings_in">Išsaugoti įrašus</string>
     <string name="bitrate">Bitrate</string>
-    <string name="record_after_launch">Start recording automatically after launching the app</string>
+    <string name="record_after_launch">Pradėkite įrašinėti automatiškai paleidę programėlę</string>
     <!-- FAQ -->
     <string name="faq_1_title">Ar galiu paslėpti pranešimo ikonėlę įrašinėjant\?</string>
-    <string name="faq_1_text">Well, it depends. While you use your device it is no longer possible to fully hide the notifications of apps like this. If you check the proper setting item, the app will do its best to hide it. You can hide it on the lockscreen though, if you disable the displaying of sensitive notifications in your device settings.</string>
+    <string name="faq_1_text">Na, tai priklauso nuo to. Kol naudojatės įrenginiu, visiškai paslėpti tokių programų pranešimų nebeįmanoma. Jei pažymėsite tinkamą nustatymo elementą, programa padarys viską, kad jį paslėptų. Tačiau galite jį paslėpti užrakintame ekrane, jei prietaiso nustatymuose išjungsite jautrių pranešimų rodymą.</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
