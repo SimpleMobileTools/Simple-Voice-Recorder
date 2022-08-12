@@ -1,6 +1,11 @@
 Changelog
 ==========
 
+Version 5.9.1 *(2022-08-12)*
+----------------------------
+
+ * Added some stability, translation and UX improvements
+
 Version 5.9.0 *(2022-07-20)*
 ----------------------------
 
