@@ -1,16 +1,18 @@
-🎙 Ever wished you remember what the other person said? Your wish is now a reality! With this simple voice recorder and audio recorder, you can record any high quality audio and other voice memos really easily! 
+🎙 Volt már olyan, hogy azt kívántad, bárcsak emlékeznél arra, amit a másik mondott? A kívánságod most valósággá válik! Ezzel az egyszerű hangrögzítővel és hangrögzítővel bármilyen jó minőségű hangot és egyéb hangmemóriát rögzíthetsz igazán egyszerűen! 
 
-With this recording app, you can record different audios. You can use this audio recorder and voice recorder as a music recording studio. This recording app gives you freedom to record each and every thing happening around you and visualize it later.
+Ezzel a hangrögzítő alkalmazással különböző hangfelvételeket rögzíthetsz. Ezt a hangrögzítőt és hangrögzítőt zenei hangstúdióként is használhatja. Ez a hangrögzítő alkalmazás megadja a szabadságot, hogy mindent rögzítsen, ami körülötted történik, és később megjelenítse azt.
 
-This free app goes straight to the point, it contains no fancy features that you won't use. Just you and the voice recorder or audio recorder. It shows the current sound volume on a nice visualization that you can have a lot of fun with. Provides a really intuitive and clean user interface, not much can go wrong there. You can also take audio notes from this recording app or keep voice memos for later to listen. This recording app also provides you a unique and easy feature of music recording studio where you can record music as an audio recorder and record the music. After that, you can change the music's quality and edit it like any music recording studio. 
+Ez az ingyenes alkalmazás egyenesen a lényegre tér, nem tartalmaz olyan díszes funkciókat, amelyeket nem fogsz használni. Csak te és a hangrögzítő vagy hangrögzítő. Az aktuális hangerőt egy szép vizualizációban mutatja, amivel nagyon jól szórakozhatsz. Igazán intuitív és letisztult felhasználói felületet biztosít, nem sok mindent lehet ott elrontani. Ebből a hangrögzítő alkalmazásból hangjegyzeteket is készíthetsz, vagy hangmemóriákat tarthatsz, hogy később is meghallgathasd. Ez a hangfelvevő alkalmazás egy egyedülálló és egyszerű funkciót is biztosít egy zenei felvételi stúdiónak, ahol hangrögzítőként felveheti a zenét, és rögzítheti a zenét.
 
-This recording app offers a helpful audio recorder and voice recorder player too so that you can listen to your recordings quickly within this recording app, maybe rename or delete them. You can customize the shown date and time format for better user experience. You can also use this recording app as a music recording studio.
+Ez a felvételi alkalmazás hasznos hangrögzítő és hangrögzítő lejátszót is kínál, így gyorsan meghallgathatja a felvételeket ezen a felvételi alkalmazáson belül, esetleg átnevezheti vagy törölheti őket. A jobb felhasználói élmény érdekében testre szabhatja a megjelenített dátum és idő formátumot.
 
-You can optionally hide the top notification during recording to preserve your privacy. You can have voice memos saved in using this voice recorder to keep record of who said what. This way, you can also keep different voice memos such as important meetings, lectures, and many more voice memos. This voice recorder gives you freedom to use this app however you want.
+Opcionálisan elrejtheti a felső értesítést felvétel közben, hogy megőrizze a magánéletét. Praktikus és testreszabható widgetet kínál a gyors felvételek készítéséhez. Ez a hangrögzítő megadja a szabadságot, hogy úgy használja ezt az alkalmazást, ahogyan csak akarja.
 
-Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
+Alapértelmezés szerint anyagi dizájnnal és sötét témával rendelkezik, ami nagyszerű felhasználói élményt nyújt a könnyű használathoz. Az internet-hozzáférés hiánya nagyobb magánéletet, biztonságot és stabilitást biztosít, mint más alkalmazások.
 
-Check out the full suite of Simple Tools here:
+Nem tartalmaz hirdetéseket vagy felesleges engedélyeket. Teljesen nyílt forráskódú, és testreszabható színeket biztosít.
+
+Tekintse meg a Simple Tools teljes csomagját itt:
 https://www.simplemobiletools.com
 
 Facebook:
