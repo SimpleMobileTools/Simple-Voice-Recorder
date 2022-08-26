@@ -6,7 +6,8 @@
     <string name="recording">Įrašoma</string>
     <string name="no_recordings_found">Nerasta įrašų įrašytų su šia programėle
 \nbuvo rasta</string>
-    <string name="no_recordings_in_folder_found">Nerasta įrašųasirinktame aplanke</string>
+    <string name="no_recordings_in_folder_found">Įrašų nerasta
+\npasirinktame aplanke</string>
     <string name="paused">Pristabdyta</string>
     <string name="recorder">Diktofonas</string>
     <string name="player">Player</string>
