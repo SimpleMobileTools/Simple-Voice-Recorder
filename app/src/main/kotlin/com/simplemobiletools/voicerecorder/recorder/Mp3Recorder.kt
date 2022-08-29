@@ -7,6 +7,7 @@ import android.media.AudioRecord
 import android.media.MediaRecorder
 import com.naman14.androidlame.AndroidLame
 import com.naman14.androidlame.LameBuilder
+import com.simplemobiletools.commons.extensions.showErrorToast
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.helpers.SAMPLE_RATE
@@ -68,7 +69,12 @@ class Mp3Recorder(val context: Context) : Recorder {
             .build()
 
         ensureBackgroundThread {
-            audioRecord.startRecording()
+            try {
+                audioRecord.startRecording()
+            } catch (e: Exception) {
+                context.showErrorToast(e)
+                return@ensureBackgroundThread
+            }
 
             while (!isStopped.get()) {
                 if (!isPaused.get()) {
