@@ -13,7 +13,9 @@ import android.provider.MediaStore
 import android.provider.MediaStore.Audio.Media
 import androidx.core.app.NotificationCompat
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.*
+import com.simplemobiletools.commons.helpers.ensureBackgroundThread
+import com.simplemobiletools.commons.helpers.isOreoPlus
+import com.simplemobiletools.commons.helpers.isRPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SplashActivity
 import com.simplemobiletools.voicerecorder.extensions.config

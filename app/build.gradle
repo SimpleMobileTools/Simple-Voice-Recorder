@@ -63,7 +63,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.SimpleMobileTools:Simple-Commons:b2a2c40a27'
+    implementation 'com.github.SimpleMobileTools:Simple-Commons:7cfc56e855'
     implementation 'org.greenrobot:eventbus:3.3.1'
     implementation 'com.github.Armen101:AudioRecordView:1.0.4'
     implementation 'androidx.documentfile:documentfile:1.0.1'

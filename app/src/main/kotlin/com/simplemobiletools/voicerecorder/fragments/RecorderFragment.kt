@@ -6,8 +6,11 @@ import android.graphics.drawable.Drawable
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
+import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.PERMISSION_POST_NOTIFICATIONS
 import com.simplemobiletools.commons.helpers.isNougatPlus
+import com.simplemobiletools.commons.helpers.isTiramisuPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.helpers.*
 import com.simplemobiletools.voicerecorder.models.Events
@@ -25,7 +28,10 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
 
     override fun onResume() {
         setupColors()
-        if (!RecorderService.isRunning) status = RECORDING_STOPPED
+        if (!RecorderService.isRunning) {
+            status = RECORDING_STOPPED
+        }
+
         refreshView()
     }
 
@@ -43,7 +49,17 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
 
         updateRecordingDuration(0)
         toggle_recording_button.setOnClickListener {
-            toggleRecording()
+            if (isTiramisuPlus()) {
+                (context as? BaseSimpleActivity)?.handlePermission(PERMISSION_POST_NOTIFICATIONS) {
+                    if (it) {
+                        toggleRecording()
+                    } else {
+                        context.toast(R.string.no_post_notifications_permissions)
+                    }
+                }
+            } else {
+                toggleRecording()
+            }
         }
 
         toggle_pause_button.setOnClickListener {
