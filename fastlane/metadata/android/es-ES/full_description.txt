@@ -1,4 +1,4 @@
-🎙 ¿Alguna vez has deseado recordar lo que dijo la otra persona? ¡Su deseo es ahora una realidad! Con esta sencilla grabadora de voz y de audio, puedes grabar cualquier audio de alta calidad y otras notas de voz con mucha facilidad. 
+🎙 ¿Alguna vez has deseado recordar lo que dijo la otra persona? ¡Su deseo es ahora una realidad! ¡Con esta sencilla grabadora de voz y audio, puedes grabar cualquier audio de alta calidad y otras notas de voz muy fácilmente!
 
 Con esta aplicación de grabación, puedes grabar diferentes audios. Puedes utilizar esta grabadora de audio y voz como un estudio de grabación de música. Esta aplicación de grabación te da la libertad de grabar todas y cada una de las cosas que ocurren a tu alrededor y visualizarlas más tarde.
 
@@ -14,12 +14,9 @@ No contiene anuncios ni permisos innecesarios. Es totalmente opensource, proporc
 
 Consulta el conjunto completo de Simple Tools aquí:
 https://www.simplemobiletools.com
-
 Facebook:
 https://www.facebook.com/simplemobiletools
-
 Reddit:
 https://www.reddit.com/r/SimpleMobileTools
-
 Telegram:
 https://t.me/SimpleMobileTools
