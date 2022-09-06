@@ -2,26 +2,26 @@
 <resources>
     <string name="app_name">Simpleボイスレコーダー</string>
     <string name="app_launcher_name">ボイスレコーダー</string>
-    <string name="recording_saved_successfully">録音が正常に保存されました</string>
+    <string name="recording_saved_successfully">録音の保存に成功しました</string>
     <string name="recording">録音</string>
-    <string name="no_recordings_found">このアプリで作成された録画はありません
-\nが見つかりました</string>
-    <string name="no_recordings_in_folder_found">録画が見つかりませんでした
-\nを選択します</string>
+    <string name="no_recordings_found">このアプリで録音されたファイルは
+\n見つかりませんでした</string>
+    <string name="no_recordings_in_folder_found">選択したフォルダに録音したファイルが
+\n見つかりませんでした</string>
     <string name="paused">停止</string>
     <string name="recorder">Recorder</string>
     <string name="player">Player</string>
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">削除%s？</string>
+    <string name="delete_recordings_confirmation">%sを削除しますか？</string>
     <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="other">%d 件の録音</item>
     </plurals>
     <!-- Settings -->
     <string name="try_hiding_notification">録音通知を隠す</string>
-    <string name="save_recordings_in">録音を保存する</string>
-    <string name="bitrate">Bitrate</string>
-    <string name="record_after_launch">アプリ起動後、自動で録画開始</string>
+    <string name="save_recordings_in">録音の保存場所</string>
+    <string name="bitrate">ビットレート</string>
+    <string name="record_after_launch">アプリ起動後に自動で録音を開始</string>
     <!-- FAQ -->
     <string name="faq_1_title">録音中に通知を非表示にすることは出来ますか？</string>
     <string name="faq_1_text">場合によります。デバイスの使用中は、このようなアプリの通知を全て非表示にすることは不可能です。 適切な設定項目にチェックを入れると、通知表示は出来るだけ隠されます。ロックスクリーン上での非表示の仕方は、デバイスの設定から通知の表示を無効にすると可能です。</string>
