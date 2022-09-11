@@ -2,7 +2,6 @@ package com.simplemobiletools.voicerecorder.activities
 
 import android.content.Intent
 import com.simplemobiletools.commons.extensions.toast
-import com.simplemobiletools.commons.helpers.PERMISSION_POST_NOTIFICATIONS
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.services.RecorderService
 
@@ -14,8 +13,8 @@ class BackgroundRecordActivity : SimpleActivity() {
     override fun onResume() {
         super.onResume()
         if (intent.action == RECORD_INTENT_ACTION) {
-            handlePermission(PERMISSION_POST_NOTIFICATIONS) {
-                if (it) {
+            handleNotificationPermission { granted ->
+                if (granted) {
                     Intent(this@BackgroundRecordActivity, RecorderService::class.java).apply {
                         try {
                             if (RecorderService.isRunning) {
