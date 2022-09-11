@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.10.1 *(2022-09-11)*
+----------------------------
+
+ * Fixed recording from the widget
+ * Added some translation improvements
+
 Version 5.10.0 *(2022-09-01)*
 ----------------------------
 
