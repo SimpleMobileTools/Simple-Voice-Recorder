@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simple Voice Recorder</string>
-    <string name="app_launcher_name">Voice Recorder</string>
-    <string name="recording_saved_successfully">Recording saved successfully</string>
-    <string name="recording">Recording</string>
-    <string name="no_recordings_found">No recordings created by this app
-\nhave been found</string>
-    <string name="no_recordings_in_folder_found">No recordings have been found
-\nin the selected folder</string>
-    <string name="paused">Paused</string>
-    <string name="recorder">Recorder</string>
-    <string name="player">Player</string>
-    <string name="delete_recordings_confirmation">Delete %s\?</string>
+    <string name="app_launcher_name">Snemalnik zvoka</string>
+    <string name="recording_saved_successfully">Posnetek je uspešno shranjen</string>
+    <string name="recording">Snemanje</string>
+    <string name="no_recordings_found">Ni bilo mogoče najti posnetkov,
+\nki jih je ustvarila ta aplikacija</string>
+    <string name="no_recordings_in_folder_found">V izbrani mapi ni bilo najdenih
+\nnobenih posnetkov</string>
+    <string name="paused">Zaustavljeno</string>
+    <string name="recorder">Snemalnik</string>
+    <string name="player">Predvajalnik</string>
+    <string name="delete_recordings_confirmation">Izbrišem %s\?</string>
     <plurals name="delete_recordings">
-        <item quantity="one">%d recording</item>
-        <item quantity="two">%d recordings</item>
-        <item quantity="few">%d recordings</item>
-        <item quantity="other">%d recordings</item>
+        <item quantity="one">%d posnetek</item>
+        <item quantity="two">%d posnetka</item>
+        <item quantity="few">%d posnetki</item>
+        <item quantity="other">%d posnetkov</item>
     </plurals>
-    <string name="try_hiding_notification">Try hiding the recording notification</string>
-    <string name="save_recordings_in">Save recordings in</string>
-    <string name="bitrate">Bitrate</string>
-    <string name="record_after_launch">Start recording automatically after launching the app</string>
-    <string name="faq_1_title">Can I hide the notification icon during recording\?</string>
-    <string name="faq_1_text">Well, it depends. While you use your device it is no longer possible to fully hide the notifications of apps like this. If you check the proper setting item, the app will do its best to hide it. You can hide it on the lockscreen though, if you disable the displaying of sensitive notifications in your device settings.</string>
+    <string name="try_hiding_notification">Poizkusi skriti obvestilo o snemanju</string>
+    <string name="save_recordings_in">Shrani posnetke v</string>
+    <string name="bitrate">Bitna hitrost</string>
+    <string name="record_after_launch">Prični s samodejnim snemanjem takoj po zagonu aplikacije</string>
+    <string name="faq_1_title">Ali lahko med snemanjem skrijem ikono obvestila\?</string>
+    <string name="faq_1_text">Odvisno. Med uporabo naprave ni več mogoče v celoti skriti obvestil aplikacij, kot je ta. Če označite ustrezen element nastavitve, se bo aplikacija potrudila, da ga skrije. Lahko pa ga skrijete na zaklenjenem zaslonu, če v nastavitvah naprave onemogočite prikazovanje občutljivih obvestil.</string>
 </resources>
