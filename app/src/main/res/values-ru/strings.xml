@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Voice Recorder</string>
+    <string name="app_name">Простой диктофон</string>
     <string name="app_launcher_name">Диктофон</string>
     <string name="recording_saved_successfully">Запись успешно сохранена</string>
     <string name="recording">Запись</string>
@@ -9,7 +9,7 @@
     <string name="no_recordings_in_folder_found">В выбранной папке не найдено
 \nни одной записи</string>
     <string name="paused">Пауза</string>
-    <string name="recorder">Recorder</string>
+    <string name="recorder">Рекордер</string>
     <string name="player">Проигрыватель</string>
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">Удалить %s\?</string>
