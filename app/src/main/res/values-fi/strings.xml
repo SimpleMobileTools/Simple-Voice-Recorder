@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Voice Recorder</string>
+    <string name="app_name">Yksinkertainen äänitallennin</string>
     <string name="app_launcher_name">Ääninauhuri</string>
     <string name="recording_saved_successfully">Nauhoitus tallennettu onnistuneesti</string>
     <string name="recording">Tallenne</string>
@@ -9,8 +9,8 @@
     <string name="no_recordings_in_folder_found">Nauhoituksia ei löytynyt
 \nvalitusta kansiosta</string>
     <string name="paused">Keskeytetty</string>
-    <string name="recorder">Recorder</string>
-    <string name="player">Player</string>
+    <string name="recorder">Tallennin</string>
+    <string name="player">Pelaaja</string>
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">Haluatko varmasti poistaa kohteen %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
