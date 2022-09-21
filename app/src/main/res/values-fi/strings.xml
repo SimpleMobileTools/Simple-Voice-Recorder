@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Yksinkertainen äänitallennin</string>
+    <string name="app_name">Yksinkertainen ääninauhuri</string>
     <string name="app_launcher_name">Ääninauhuri</string>
     <string name="recording_saved_successfully">Nauhoitus tallennettu onnistuneesti</string>
     <string name="recording">Tallenne</string>
