@@ -9,8 +9,8 @@
     <string name="no_recordings_in_folder_found">Valitud kaustas ei leidu
 \nühtegi salvestust</string>
     <string name="paused">Peatatud</string>
-    <string name="recorder">Recorder</string>
-    <string name="player">Player</string>
+    <string name="recorder">Salvesti</string>
+    <string name="player">Mängija</string>
     <!-- Confirmation dialog -->
     <!-- Are you sure you want to delete 5 recordings? -->
     <string name="delete_recordings_confirmation">Kas kustutame %s\?</string>
