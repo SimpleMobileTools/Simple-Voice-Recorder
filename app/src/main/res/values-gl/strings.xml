@@ -4,12 +4,12 @@
     <string name="app_launcher_name">Gravador de voz</string>
     <string name="recording_saved_successfully">A gravación gardouse exitosamente</string>
     <string name="recording">Gravación</string>
-    <string name="no_recordings_found">Non se atoparon grabacións creadas por esta aplicación</string>
+    <string name="no_recordings_found">Non atoparonse ningunha gravación creada por esta aplicación.</string>
     <string name="no_recordings_in_folder_found">Non foron atopados grabacións
 \nno cartafol seleccionado</string>
     <string name="paused">En pausa</string>
     <string name="recorder">Recorder</string>
-    <string name="player">Reproductor</string>
+    <string name="player">Reprodutor</string>
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">Queres eliminar %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
