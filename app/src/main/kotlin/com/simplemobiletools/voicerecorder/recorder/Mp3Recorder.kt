@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.media.AudioFormat
 import android.media.AudioRecord
-import android.media.MediaRecorder
 import com.naman14.androidlame.AndroidLame
 import com.naman14.androidlame.LameBuilder
 import com.simplemobiletools.commons.extensions.showErrorToast
@@ -33,7 +32,7 @@ class Mp3Recorder(val context: Context) : Recorder {
 
     @SuppressLint("MissingPermission")
     private val audioRecord = AudioRecord(
-        MediaRecorder.AudioSource.CAMCORDER,
+        context.config.audio_source,
         SAMPLE_RATE,
         AudioFormat.CHANNEL_IN_MONO,
         AudioFormat.ENCODING_PCM_16BIT,

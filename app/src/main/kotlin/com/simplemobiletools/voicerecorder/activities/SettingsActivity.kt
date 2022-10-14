@@ -11,6 +11,7 @@ import com.simplemobiletools.commons.helpers.isTiramisuPlus
 import com.simplemobiletools.commons.models.RadioItem
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.extensions.config
+import com.simplemobiletools.voicerecorder.helpers.AUDIO_SOURCE
 import com.simplemobiletools.voicerecorder.helpers.BITRATES
 import com.simplemobiletools.voicerecorder.helpers.EXTENSION_M4A
 import com.simplemobiletools.voicerecorder.helpers.EXTENSION_MP3
@@ -39,6 +40,7 @@ class SettingsActivity : SimpleActivity() {
         setupSaveRecordingsFolder()
         setupExtension()
         setupBitrate()
+        setupAudioSource()
         setupRecordAfterLaunch()
         updateTextColors(settings_nested_scrollview)
 
@@ -170,6 +172,18 @@ class SettingsActivity : SimpleActivity() {
         settings_record_after_launch_holder.setOnClickListener {
             settings_record_after_launch.toggle()
             config.recordAfterLaunch = settings_record_after_launch.isChecked
+        }
+    }
+
+    private fun setupAudioSource() {
+        settings_audio_source.text = config.getAudioSourceText(config.audio_source)
+        settings_audio_source_holder.setOnClickListener {
+            val items = AUDIO_SOURCE.map { RadioItem(it, config.getAudioSourceText(it)) } as ArrayList
+
+            RadioGroupDialog(this@SettingsActivity, items, config.audio_source) {
+                config.audio_source = it as Int
+                settings_audio_source.text = config.getAudioSourceText(config.audio_source)
+            }
         }
     }
 }
