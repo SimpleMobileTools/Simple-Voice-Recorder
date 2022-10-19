@@ -4,7 +4,8 @@
     <string name="app_launcher_name">Gravador de voz</string>
     <string name="recording_saved_successfully">A gravación gardouse exitosamente</string>
     <string name="recording">Gravación</string>
-    <string name="no_recordings_found">Non atoparonse ningunha gravación creada por esta aplicación.</string>
+    <string name="no_recordings_found">No se atopou grabacions feitas por esta aplicación 
+\natoparonse</string>
     <string name="no_recordings_in_folder_found">Non foron atopados grabacións
 \nno cartafol seleccionado</string>
     <string name="paused">En pausa</string>

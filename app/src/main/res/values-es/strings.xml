@@ -4,7 +4,7 @@
     <string name="app_launcher_name">Grabadora de voz</string>
     <string name="recording_saved_successfully">Grabación guardada con éxito</string>
     <string name="recording">Grabando</string>
-    <string name="no_recordings_found">No se han encontrado grabaciones creadas por esta aplicación 
+    <string name="no_recordings_found">No se han encontrado grabaciones creadas por esta aplicación
 \nse han encontrado</string>
     <string name="no_recordings_in_folder_found">No se han encontrado grabaciones
 \nen la carpeta seleccionada</string>
@@ -25,7 +25,7 @@
     <string name="record_after_launch">Comienza a grabar automáticamente después de iniciar la aplicación</string>
     <!-- FAQ -->
     <string name="faq_1_title">¿Puedo ocultar el icono de las notificaciones durante la grabación\?</string>
-    <string name="faq_1_text">Pues depende. Mientras usas tu dispositivo ya no es posible ocultar completamente las notificaciones de aplicaciones como ésta. Si marcas la opción de ajuste adecuada, la aplicación hará todo lo posible por ocultarla. Sin embargo, puedes ocultarla en la pantalla de bloqueo si desactivas la visualización de notificaciones sensibles en los ajustes de tu dispositivo.</string>
+    <string name="faq_1_text">Bueno, eso depende. Mientras usa su dispositivo, ya no es posible ocultar completamente las notificaciones de aplicaciones como esta. Si marca el elemento de configuración adecuado, la aplicación hará todo lo posible para ocultarlo. Sin embargo, puede ocultarlo en la pantalla de bloqueo si deshabilita la visualización de notificaciones confidenciales en la configuración de su dispositivo.</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
