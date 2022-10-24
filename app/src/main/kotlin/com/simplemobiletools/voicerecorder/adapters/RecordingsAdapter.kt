@@ -273,8 +273,8 @@ class RecordingsAdapter(
                         }
                     }
                     R.id.cab_delete -> {
-                        executeItemMenuOperation(recordingId) {
-                            deleteMediaStoreRecordings()
+                        executeItemMenuOperation(recordingId, removeAfterCallback = false) {
+                            askConfirmDelete()
                         }
                     }
                 }
@@ -285,9 +285,11 @@ class RecordingsAdapter(
         }
     }
 
-    private fun executeItemMenuOperation(callId: Int, callback: () -> Unit) {
+    private fun executeItemMenuOperation(callId: Int, removeAfterCallback: Boolean = true, callback: () -> Unit) {
         selectedKeys.add(callId)
         callback()
-        selectedKeys.remove(callId)
+        if (removeAfterCallback) {
+            selectedKeys.remove(callId)
+        }
     }
 }
