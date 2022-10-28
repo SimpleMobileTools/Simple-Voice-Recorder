@@ -25,8 +25,16 @@
     <!-- Settings -->
     <string name="try_hiding_notification">حاول إخفاء إشعار التسجيل</string>
     <string name="save_recordings_in">حفظ التسجيلات في</string>
+    <string name="audio_source">Audio source</string>
     <string name="bitrate">Bitrate</string>
     <string name="record_after_launch">ابدأ التسجيل تلقائيًا بعد تشغيل التطبيق</string>
+    <!-- Settings Audio source selection -->
+    <string name="audio_source_camcorder">Camera</string>
+    <string name="audio_source_default">Android default</string>
+    <string name="audio_source_unprocessed">Unprocessed</string>
+    <string name="audio_source_microphone">Microphone</string>
+    <string name="audio_source_voice_communication">Voice communication</string>
+    <string name="audio_source_voice_performance">Voice performance</string>
     <!-- FAQ -->
     <string name="faq_1_title">هل يمكنني إخفاء رمز الإشعار أثناء التسجيل؟</string>
     <string name="faq_1_text">حسنًا ، هذا يعتمد. أثناء استخدامك لجهازك ، لم يعد من الممكن إخفاء إشعارات تطبيقات كهذه تمامًا. إذا قمت بالتحقق من عنصر الإعداد المناسب ، فسيبذل التطبيق قصارى جهده لإخفائه. ومع ذلك ، يمكنك إخفائه على شاشة القفل ، إذا قمت بتعطيل عرض الإشعارات الحساسة في إعدادات جهازك.</string>

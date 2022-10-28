@@ -22,8 +22,16 @@
     <!-- Settings -->
     <string name="try_hiding_notification">Pokušaj sakriti obavijesti snimanja</string>
     <string name="save_recordings_in">Spremi snimanja u</string>
+    <string name="audio_source">Audio source</string>
     <string name="bitrate">Brzina prijenosa</string>
     <string name="record_after_launch">Započni automatsko snimanje nakon pokretanja aplikacije</string>
+    <!-- Settings Audio source selection -->
+    <string name="audio_source_camcorder">Camera</string>
+    <string name="audio_source_default">Android default</string>
+    <string name="audio_source_unprocessed">Unprocessed</string>
+    <string name="audio_source_microphone">Microphone</string>
+    <string name="audio_source_voice_communication">Voice communication</string>
+    <string name="audio_source_voice_performance">Voice performance</string>
     <!-- FAQ -->
     <string name="faq_1_title">Mogu li sakriti ikonu obavijesti tijekom snimanja\?</string>
     <string name="faq_1_text">Ovisi. Dok koristiš svoj uređaj više nije moguće u potpunosti sakriti obavijesti ovakvih aplikacija. Ako označiš ispravnu stavku postavke, aplikacija će je pokušati sakriti. Možeš je sakriti na zaključanom ekranu, ako isključiš prikaz osobnih obavijesti u postavkama uređaja.</string>

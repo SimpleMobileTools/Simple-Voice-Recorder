@@ -21,8 +21,16 @@
     <!-- Settings -->
     <string name="try_hiding_notification">Δοκιμάστε να αποκρύψετε την ειδοποίηση εγγραφής</string>
     <string name="save_recordings_in">Αποθήκευση εγγραφών σε</string>
+    <string name="audio_source">Audio source</string>
     <string name="bitrate">Bitrate</string>
     <string name="record_after_launch">Αυτόματη έναρξη εγγραφής μετά την εκκίνηση της</string>
+    <!-- Settings Audio source selection -->
+    <string name="audio_source_camcorder">Camera</string>
+    <string name="audio_source_default">Android default</string>
+    <string name="audio_source_unprocessed">Unprocessed</string>
+    <string name="audio_source_microphone">Microphone</string>
+    <string name="audio_source_voice_communication">Voice communication</string>
+    <string name="audio_source_voice_performance">Voice performance</string>
     <!-- FAQ -->
     <string name="faq_1_title">Μπορώ να αποκρύψω το εικονίδιο ειδοποίησης κατά την εγγραφή;</string>
     <string name="faq_1_text">Εξαρτάται. Ενώ χρησιμοποιείτε τη συσκευή σας, δεν είναι πλέον δυνατή η πλήρης απόκρυψη των ειδοποιήσεων εφαρμογών όπως αυτή. Εάν ελέγξετε το κατάλληλο στοιχείο ρύθμισης, η εφαρμογή θα κάνει ό,τι μπορεί για να το αποκρύψει. Ωστόσο, μπορείτε να την αποκρύψετε στην οθόνη κλειδώματος, αν απενεργοποιήσετε την εμφάνιση ευαίσθητων ειδοποιήσεων στις ρυθμίσεις της συσκευής σας.</string>
