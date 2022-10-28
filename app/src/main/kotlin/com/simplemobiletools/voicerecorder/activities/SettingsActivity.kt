@@ -1,17 +1,18 @@
 package com.simplemobiletools.voicerecorder.activities
 
+import android.media.MediaRecorder
 import android.os.Bundle
 import com.simplemobiletools.commons.dialogs.ChangeDateTimeFormatDialog
 import com.simplemobiletools.commons.dialogs.FilePickerDialog
 import com.simplemobiletools.commons.dialogs.RadioGroupDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.NavigationIcon
+import com.simplemobiletools.commons.helpers.isNougatPlus
 import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.helpers.isTiramisuPlus
 import com.simplemobiletools.commons.models.RadioItem
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.extensions.config
-import com.simplemobiletools.voicerecorder.helpers.AUDIO_SOURCE
 import com.simplemobiletools.voicerecorder.helpers.BITRATES
 import com.simplemobiletools.voicerecorder.helpers.EXTENSION_M4A
 import com.simplemobiletools.voicerecorder.helpers.EXTENSION_MP3
@@ -176,14 +177,34 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupAudioSource() {
-        settings_audio_source.text = config.getAudioSourceText(config.audio_source)
+        settings_audio_source.text = config.getAudioSourceText(config.audioSource)
         settings_audio_source_holder.setOnClickListener {
-            val items = AUDIO_SOURCE.map { RadioItem(it, config.getAudioSourceText(it)) } as ArrayList
+            val items = getAudioSources().map { RadioItem(it, config.getAudioSourceText(it)) } as ArrayList
 
-            RadioGroupDialog(this@SettingsActivity, items, config.audio_source) {
-                config.audio_source = it as Int
-                settings_audio_source.text = config.getAudioSourceText(config.audio_source)
+            RadioGroupDialog(this@SettingsActivity, items, config.audioSource) {
+                config.audioSource = it as Int
+                settings_audio_source.text = config.getAudioSourceText(config.audioSource)
             }
         }
+    }
+
+    private fun getAudioSources(): ArrayList<Int> {
+        val availableSources = arrayListOf(
+            MediaRecorder.AudioSource.CAMCORDER,
+            MediaRecorder.AudioSource.DEFAULT,
+            MediaRecorder.AudioSource.MIC,
+            MediaRecorder.AudioSource.VOICE_RECOGNITION,
+            MediaRecorder.AudioSource.VOICE_COMMUNICATION
+        )
+
+        if (isNougatPlus()) {
+            availableSources.add(MediaRecorder.AudioSource.UNPROCESSED)
+        }
+
+        if (isQPlus()) {
+            availableSources.add(MediaRecorder.AudioSource.VOICE_PERFORMANCE)
+        }
+
+        return availableSources
     }
 }
