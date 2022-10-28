@@ -2,7 +2,6 @@ package com.simplemobiletools.voicerecorder.helpers
 
 import android.annotation.SuppressLint
 import android.content.ContentUris
-import android.media.MediaRecorder
 import android.net.Uri
 import android.provider.MediaStore
 import android.provider.MediaStore.Audio.Media
@@ -19,15 +18,6 @@ const val EXTENSION_M4A = 0
 const val EXTENSION_MP3 = 1
 const val EXTENSION_OGG = 2
 
-val AUDIO_SOURCE = arrayListOf(
-    MediaRecorder.AudioSource.CAMCORDER,
-    MediaRecorder.AudioSource.DEFAULT,
-    MediaRecorder.AudioSource.UNPROCESSED,
-    MediaRecorder.AudioSource.MIC,
-    MediaRecorder.AudioSource.VOICE_COMMUNICATION,
-    MediaRecorder.AudioSource.VOICE_PERFORMANCE)
-const val DEFAULT_AUDIO_SOURCE = MediaRecorder.AudioSource.CAMCORDER
-
 val BITRATES = arrayListOf(32000, 64000, 96000, 128000, 160000, 192000, 256000, 320000)
 const val DEFAULT_BITRATE = 128000
 const val SAMPLE_RATE = 44100
@@ -43,7 +33,7 @@ const val TOGGLE_WIDGET_UI = "toggle_widget_ui"
 const val HIDE_NOTIFICATION = "hide_notification"
 const val SAVE_RECORDINGS = "save_recordings"
 const val EXTENSION = "extension"
-const val AUDIO_SRC = "audio_source"
+const val AUDIO_SOURCE = "audio_source"
 const val BITRATE = "bitrate"
 const val RECORD_AFTER_LAUNCH = "record_after_launch"
 
