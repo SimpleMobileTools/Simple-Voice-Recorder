@@ -10,7 +10,7 @@ import java.io.FileDescriptor
 class MediaRecorderWrapper(val context: Context) : Recorder {
 
     private var recorder = MediaRecorder().apply {
-        setAudioSource(context.config.audio_source)
+        setAudioSource(context.config.audioSource)
         setOutputFormat(context.config.getOutputFormat())
         setAudioEncoder(context.config.getAudioEncoder())
         setAudioEncodingBitRate(context.config.bitrate)
