@@ -240,7 +240,8 @@
                     style="@style/SettingsHolderTextViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ripple_bottom_corners">
+                    android:background="@drawable/ripple_background">
+
                     <com.simplemobiletools.commons.views.MyTextView
                         android:id="@+id/settings_audio_source_label"
                         style="@style/SettingsTextLabelStyle"
@@ -256,6 +257,7 @@
                         android:layout_below="@+id/settings_audio_source_label"
                         tools:text="128 kbps" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:id="@+id/settings_bitrate_holder"
                     style="@style/SettingsHolderTextViewStyle"
