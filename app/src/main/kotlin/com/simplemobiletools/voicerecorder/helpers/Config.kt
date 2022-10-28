@@ -23,19 +23,21 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getInt(EXTENSION, EXTENSION_M4A)
         set(extension) = prefs.edit().putInt(EXTENSION, extension).apply()
 
-    var audio_source: Int
-        get() = prefs.getInt(AUDIO_SRC, DEFAULT_AUDIO_SOURCE)
-        set(audio_source) = prefs.edit().putInt(AUDIO_SRC, audio_source).apply()
+    var audioSource: Int
+        get() = prefs.getInt(AUDIO_SOURCE, MediaRecorder.AudioSource.CAMCORDER)
+        set(audioSource) = prefs.edit().putInt(AUDIO_SOURCE, audioSource).apply()
 
-    fun getAudioSourceText(audio_source: Int) = context.getString(when (audio_source) {
-        MediaRecorder.AudioSource.CAMCORDER -> R.string.audio_source_camcorder
-        MediaRecorder.AudioSource.DEFAULT ->  R.string.audio_source_default
-        MediaRecorder.AudioSource.UNPROCESSED -> R.string.audio_source_unprocessed
-        MediaRecorder.AudioSource.MIC -> R.string.audio_source_microphone
-        MediaRecorder.AudioSource.VOICE_COMMUNICATION -> R.string.audio_source_voice_communication
-        MediaRecorder.AudioSource.VOICE_PERFORMANCE -> R.string.audio_source_voice_performance
-        else -> R.string.audio_source_camcorder
-    })
+    fun getAudioSourceText(audio_source: Int) = context.getString(
+        when (audio_source) {
+            MediaRecorder.AudioSource.DEFAULT -> R.string.audio_source_default
+            MediaRecorder.AudioSource.MIC -> R.string.audio_source_microphone
+            MediaRecorder.AudioSource.VOICE_RECOGNITION -> R.string.audio_source_voice_recognition
+            MediaRecorder.AudioSource.VOICE_COMMUNICATION -> R.string.audio_source_voice_communication
+            MediaRecorder.AudioSource.UNPROCESSED -> R.string.audio_source_unprocessed
+            MediaRecorder.AudioSource.VOICE_PERFORMANCE -> R.string.audio_source_voice_performance
+            else -> R.string.audio_source_camcorder
+        }
+    )
 
     var bitrate: Int
         get() = prefs.getInt(BITRATE, DEFAULT_BITRATE)
@@ -45,11 +47,13 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(RECORD_AFTER_LAUNCH, false)
         set(recordAfterLaunch) = prefs.edit().putBoolean(RECORD_AFTER_LAUNCH, recordAfterLaunch).apply()
 
-    fun getExtensionText() = context.getString(when (extension) {
-        EXTENSION_M4A -> R.string.m4a
-        EXTENSION_OGG -> R.string.ogg
-        else -> R.string.mp3
-    })
+    fun getExtensionText() = context.getString(
+        when (extension) {
+            EXTENSION_M4A -> R.string.m4a
+            EXTENSION_OGG -> R.string.ogg
+            else -> R.string.mp3
+        }
+    )
 
     fun getOutputFormat() = when (extension) {
         EXTENSION_OGG -> MediaRecorder.OutputFormat.OGG
