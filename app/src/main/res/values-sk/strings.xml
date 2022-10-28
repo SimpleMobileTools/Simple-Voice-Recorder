@@ -30,6 +30,7 @@
     <string name="audio_source_default">Predvolený zdroj</string>
     <string name="audio_source_unprocessed">Nespracovaný</string>
     <string name="audio_source_microphone">Mikrofón</string>
+    <string name="audio_source_voice_recognition">Rozpoznávanie hlasu</string>
     <string name="audio_source_voice_communication">Hlasová komunikácia</string>
     <string name="audio_source_voice_performance">Hlasový výkon</string>
     <!-- FAQ -->

@@ -28,6 +28,7 @@
     <string name="audio_source_default">Android default</string>
     <string name="audio_source_unprocessed">Unprocessed</string>
     <string name="audio_source_microphone">Microphone</string>
+    <string name="audio_source_voice_recognition">Voice recognition</string>
     <string name="audio_source_voice_communication">Voice communication</string>
     <string name="audio_source_voice_performance">Voice performance</string>
     <!-- FAQ -->
