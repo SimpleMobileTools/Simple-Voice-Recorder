@@ -32,7 +32,7 @@ class Mp3Recorder(val context: Context) : Recorder {
 
     @SuppressLint("MissingPermission")
     private val audioRecord = AudioRecord(
-        context.config.audio_source,
+        context.config.audioSource,
         SAMPLE_RATE,
         AudioFormat.CHANNEL_IN_MONO,
         AudioFormat.ENCODING_PCM_16BIT,
