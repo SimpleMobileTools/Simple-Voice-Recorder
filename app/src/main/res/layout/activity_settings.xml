@@ -236,6 +236,29 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/settings_audio_source_holder"
+                    style="@style/SettingsHolderTextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple_background">
+
+                    <com.simplemobiletools.commons.views.MyTextView
+                        android:id="@+id/settings_audio_source_label"
+                        style="@style/SettingsTextLabelStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/audio_source" />
+
+                    <com.simplemobiletools.commons.views.MyTextView
+                        android:id="@+id/settings_audio_source"
+                        style="@style/SettingsTextValueStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/settings_audio_source_label"
+                        tools:text="128 kbps" />
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:id="@+id/settings_bitrate_holder"
                     style="@style/SettingsHolderTextViewStyle"
                     android:layout_width="match_parent"

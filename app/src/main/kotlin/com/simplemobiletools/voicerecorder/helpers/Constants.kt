@@ -33,6 +33,7 @@ const val TOGGLE_WIDGET_UI = "toggle_widget_ui"
 const val HIDE_NOTIFICATION = "hide_notification"
 const val SAVE_RECORDINGS = "save_recordings"
 const val EXTENSION = "extension"
+const val AUDIO_SOURCE = "audio_source"
 const val BITRATE = "bitrate"
 const val RECORD_AFTER_LAUNCH = "record_after_launch"
 

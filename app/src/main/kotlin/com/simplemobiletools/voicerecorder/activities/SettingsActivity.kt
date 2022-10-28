@@ -1,11 +1,13 @@
 package com.simplemobiletools.voicerecorder.activities
 
+import android.media.MediaRecorder
 import android.os.Bundle
 import com.simplemobiletools.commons.dialogs.ChangeDateTimeFormatDialog
 import com.simplemobiletools.commons.dialogs.FilePickerDialog
 import com.simplemobiletools.commons.dialogs.RadioGroupDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.NavigationIcon
+import com.simplemobiletools.commons.helpers.isNougatPlus
 import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.helpers.isTiramisuPlus
 import com.simplemobiletools.commons.models.RadioItem
@@ -39,6 +41,7 @@ class SettingsActivity : SimpleActivity() {
         setupSaveRecordingsFolder()
         setupExtension()
         setupBitrate()
+        setupAudioSource()
         setupRecordAfterLaunch()
         updateTextColors(settings_nested_scrollview)
 
@@ -171,5 +174,37 @@ class SettingsActivity : SimpleActivity() {
             settings_record_after_launch.toggle()
             config.recordAfterLaunch = settings_record_after_launch.isChecked
         }
+    }
+
+    private fun setupAudioSource() {
+        settings_audio_source.text = config.getAudioSourceText(config.audioSource)
+        settings_audio_source_holder.setOnClickListener {
+            val items = getAudioSources().map { RadioItem(it, config.getAudioSourceText(it)) } as ArrayList
+
+            RadioGroupDialog(this@SettingsActivity, items, config.audioSource) {
+                config.audioSource = it as Int
+                settings_audio_source.text = config.getAudioSourceText(config.audioSource)
+            }
+        }
+    }
+
+    private fun getAudioSources(): ArrayList<Int> {
+        val availableSources = arrayListOf(
+            MediaRecorder.AudioSource.CAMCORDER,
+            MediaRecorder.AudioSource.DEFAULT,
+            MediaRecorder.AudioSource.MIC,
+            MediaRecorder.AudioSource.VOICE_RECOGNITION,
+            MediaRecorder.AudioSource.VOICE_COMMUNICATION
+        )
+
+        if (isNougatPlus()) {
+            availableSources.add(MediaRecorder.AudioSource.UNPROCESSED)
+        }
+
+        if (isQPlus()) {
+            availableSources.add(MediaRecorder.AudioSource.VOICE_PERFORMANCE)
+        }
+
+        return availableSources
     }
 }
