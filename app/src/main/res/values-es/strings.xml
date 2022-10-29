@@ -16,6 +16,7 @@
     <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d grabación</item>
+        <item quantity="many">%d grabaciones</item>
         <item quantity="other">%d grabaciones</item>
     </plurals>
     <!-- Settings -->
@@ -25,12 +26,12 @@
     <string name="bitrate">Velocidad de bits</string>
     <string name="record_after_launch">Comienza a grabar automáticamente después de iniciar la aplicación</string>
     <!-- Settings Audio source selection -->
-    <string name="audio_source_camcorder">Camera</string>
+    <string name="audio_source_camcorder">Cámara</string>
     <string name="audio_source_default">Android default</string>
-    <string name="audio_source_unprocessed">Unprocessed</string>
-    <string name="audio_source_microphone">Microphone</string>
-    <string name="audio_source_voice_recognition">Voice recognition</string>
-    <string name="audio_source_voice_communication">Voice communication</string>
+    <string name="audio_source_unprocessed">Sin procesar</string>
+    <string name="audio_source_microphone">Micrófono</string>
+    <string name="audio_source_voice_recognition">Reconocimiento de la voz</string>
+    <string name="audio_source_voice_communication">Comunicación por voz</string>
     <string name="audio_source_voice_performance">Voice performance</string>
     <!-- FAQ -->
     <string name="faq_1_title">¿Puedo ocultar el icono de las notificaciones durante la grabación\?</string>
