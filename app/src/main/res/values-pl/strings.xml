@@ -4,16 +4,14 @@
     <string name="app_launcher_name">Rejestrator głosu</string>
     <string name="recording_saved_successfully">Nagranie zostało zapisane</string>
     <string name="recording">Nagrywanie</string>
-    <string name="no_recordings_found">Nie znaleziono nagrań utworzonych
-\nprzez tę aplikację</string>
-    <string name="no_recordings_in_folder_found">Nie znaleziono nagrań
-\nw wybranym folderze</string>
+    <string name="no_recordings_found">Nie znaleziono nagrań utworzonych\nprzez tę aplikację</string>
+    <string name="no_recordings_in_folder_found">Nie znaleziono nagrań\nw wybranym folderze</string>
     <string name="paused">Wstrzymane</string>
     <string name="recorder">Rejestrator</string>
     <string name="player">Odtwarzacz</string>
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Czy usunąć %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
+    <string name="delete_recordings_confirmation">Czy usunąć %s\?</string>
     <plurals name="delete_recordings">
         <item quantity="one">%d nagranie</item>
         <item quantity="few">%d nagrania</item>
@@ -23,19 +21,19 @@
     <!-- Settings -->
     <string name="try_hiding_notification">Próbuj ukrywać powiadomienie o nagrywaniu</string>
     <string name="save_recordings_in">Zapisuj nagrania w</string>
-    <string name="audio_source">Audio source</string>
+    <string name="audio_source">Źródło dźwięku</string>
     <string name="bitrate">Przepływność</string>
     <string name="record_after_launch">Rozpoczynaj nagrywanie automatycznie przy uruchomieniu aplikacji</string>
     <!-- Settings Audio source selection -->
-    <string name="audio_source_camcorder">Camera</string>
-    <string name="audio_source_default">Android default</string>
-    <string name="audio_source_unprocessed">Unprocessed</string>
-    <string name="audio_source_microphone">Microphone</string>
-    <string name="audio_source_voice_recognition">Voice recognition</string>
-    <string name="audio_source_voice_communication">Voice communication</string>
-    <string name="audio_source_voice_performance">Voice performance</string>
+    <string name="audio_source_camcorder">Aparat</string>
+    <string name="audio_source_default">Domyślne dla Androida</string>
+    <string name="audio_source_unprocessed">Nieprzetworzone</string>
+    <string name="audio_source_microphone">Mikrofon</string>
+    <string name="audio_source_voice_recognition">Rozpoznawanie głosu</string>
+    <string name="audio_source_voice_communication">Komunikacja głosowa</string>
+    <string name="audio_source_voice_performance">Występ głosowy</string>
     <!-- FAQ -->
-    <string name="faq_1_title">Czy mogę ukryć ikonę powiadomienia podczas nagrywania\?</string>
+    <string name="faq_1_title">Czy mogę ukryć ikonę powiadomienia podczas nagrywania?</string>
     <string name="faq_1_text">To zależy. Podczas korzystania z urządzenia nie da się już całkowicie ukryć powiadomień aplikacji takich jak ta. Jeśli zaznaczysz odpowiednie ustawienie, aplikacja spróbuje to zrobić. Możesz jednak ukryć ikonę powiadomienia na ekranie blokady w ustawieniach bezpieczeństwa z ustawień urządzenia.</string>
     <!--
         Haven't found some strings? There's more at
