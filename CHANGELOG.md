@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.10.3 *(2022-10-31)*
+----------------------------
+
+ * Allow changing the recording audio source
+ * Added some translation and UX improvements
+
 Version 5.10.2 *(2022-10-06)*
 ----------------------------
 
