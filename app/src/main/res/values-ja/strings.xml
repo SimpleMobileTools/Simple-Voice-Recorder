@@ -26,7 +26,7 @@
     <!-- Settings Audio source selection -->
     <string name="audio_source_camcorder">カメラ</string>
     <string name="audio_source_default">Androidのデフォルト</string>
-    <string name="audio_source_unprocessed">未処理 (生)</string>
+    <string name="audio_source_unprocessed">未加工 (生)</string>
     <string name="audio_source_microphone">マイク</string>
     <string name="audio_source_voice_recognition">音声認識</string>
     <string name="audio_source_voice_communication">音声通話</string>
