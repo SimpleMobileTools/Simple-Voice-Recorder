@@ -128,7 +128,7 @@ class RecordingsAdapter(
 
     private fun askConfirmDelete() {
         val itemsCnt = selectedKeys.size
-        val firstItem = getSelectedItems().first()
+        val firstItem = getSelectedItems().firstOrNull() ?: return
         val items = if (itemsCnt == 1) {
             "\"${firstItem.title}\""
         } else {
