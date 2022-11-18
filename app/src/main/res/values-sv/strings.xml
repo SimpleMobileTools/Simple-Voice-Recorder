@@ -2,11 +2,11 @@
 <resources>
     <string name="app_name">Simpel röstinspelning</string>
     <string name="app_launcher_name">Röstinspelning</string>
-    <string name="recording_saved_successfully">Inspelning framgångsrikt sparad</string>
+    <string name="recording_saved_successfully">Inspelningen har sparats</string>
     <string name="recording">Spelar in</string>
-    <string name="no_recordings_found">Inga inspelningar skapad med denna app
-\nhar hittats</string>
-    <string name="no_recordings_in_folder_found">Inga inspelningar har hittats
+    <string name="no_recordings_found">Inga inspelningar som har skapats av den här appen
+\nhittades</string>
+    <string name="no_recordings_in_folder_found">Inga inspelningar hittades
 \ni den valda mappen</string>
     <string name="paused">Pausad</string>
     <string name="recorder">Inspelning</string>
@@ -19,19 +19,19 @@
         <item quantity="other">%d inspelningar</item>
     </plurals>
     <!-- Settings -->
-    <string name="try_hiding_notification">Försök att gömma inspelnings notifikationen</string>
+    <string name="try_hiding_notification">Försök dölja inspelningsaviseringen</string>
     <string name="save_recordings_in">Spara inspelningar i</string>
-    <string name="audio_source">Audio source</string>
+    <string name="audio_source">Ljudkälla</string>
     <string name="bitrate">Bithastighet</string>
     <string name="record_after_launch">Börja spela in automatiskt när du startar appen</string>
     <!-- Settings Audio source selection -->
-    <string name="audio_source_camcorder">Camera</string>
-    <string name="audio_source_default">Android default</string>
-    <string name="audio_source_unprocessed">Unprocessed</string>
-    <string name="audio_source_microphone">Microphone</string>
-    <string name="audio_source_voice_recognition">Voice recognition</string>
-    <string name="audio_source_voice_communication">Voice communication</string>
-    <string name="audio_source_voice_performance">Voice performance</string>
+    <string name="audio_source_camcorder">Kamera</string>
+    <string name="audio_source_default">Standardljudkälla</string>
+    <string name="audio_source_unprocessed">Obearbetat ljud</string>
+    <string name="audio_source_microphone">Mikrofon</string>
+    <string name="audio_source_voice_recognition">Röstigenkänning</string>
+    <string name="audio_source_voice_communication">Röstkommunikation</string>
+    <string name="audio_source_voice_performance">Röstframförande</string>
     <!-- FAQ -->
     <string name="faq_1_title">Kan jag dölja aviseringsikonen under inspelningen\?</string>
     <string name="faq_1_text">Det beror på. När du använder din enhet är det inte längre möjligt att helt dölja meddelanden från appar som dessa. Om du markerar rätt inställningsobjekt gör appen sitt bästa för att dölja den. Du kan dock dölja den på låsskärmen om du inaktiverar visning av känsliga meddelanden i enhetens inställningar.</string>
