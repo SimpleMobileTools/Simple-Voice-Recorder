@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.10.4 *(2022-11-20)*
+----------------------------
+
+ * Require Simple Thank You for customizing the save folder
+ * Added some stability, translation and UX improvements
+
 Version 5.10.3 *(2022-10-31)*
 ----------------------------
 
