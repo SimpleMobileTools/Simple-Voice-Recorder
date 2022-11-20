@@ -3,6 +3,7 @@ package com.simplemobiletools.voicerecorder.activities
 import android.media.MediaRecorder
 import android.os.Bundle
 import com.simplemobiletools.commons.dialogs.ChangeDateTimeFormatDialog
+import com.simplemobiletools.commons.dialogs.FeatureLockedDialog
 import com.simplemobiletools.commons.dialogs.FilePickerDialog
 import com.simplemobiletools.commons.dialogs.RadioGroupDialog
 import com.simplemobiletools.commons.extensions.*
@@ -113,24 +114,29 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupSaveRecordingsFolder() {
+        settings_save_recordings_label.text = addLockedLabelIfNeeded(R.string.save_recordings_in)
         settings_save_recordings.text = humanizePath(config.saveRecordingsFolder)
         settings_save_recordings_holder.setOnClickListener {
-            FilePickerDialog(this, config.saveRecordingsFolder, false, showFAB = true) {
-                val path = it
-                handleSAFDialog(path) { grantedSAF ->
-                    if (!grantedSAF) {
-                        return@handleSAFDialog
-                    }
-
-                    handleSAFDialogSdk30(path) { grantedSAF30 ->
-                        if (!grantedSAF30) {
-                            return@handleSAFDialogSdk30
+            if (isOrWasThankYouInstalled()) {
+                FilePickerDialog(this, config.saveRecordingsFolder, false, showFAB = true) {
+                    val path = it
+                    handleSAFDialog(path) { grantedSAF ->
+                        if (!grantedSAF) {
+                            return@handleSAFDialog
                         }
 
-                        config.saveRecordingsFolder = path
-                        settings_save_recordings.text = humanizePath(config.saveRecordingsFolder)
+                        handleSAFDialogSdk30(path) { grantedSAF30 ->
+                            if (!grantedSAF30) {
+                                return@handleSAFDialogSdk30
+                            }
+
+                            config.saveRecordingsFolder = path
+                            settings_save_recordings.text = humanizePath(config.saveRecordingsFolder)
+                        }
                     }
                 }
+            } else {
+                FeatureLockedDialog(this) { }
             }
         }
     }
