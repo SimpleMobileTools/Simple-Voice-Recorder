@@ -33,7 +33,7 @@
     <string name="audio_source_voice_performance">ボイスパフォーマンス</string>
     <!-- FAQ -->
     <string name="faq_1_title">録音中に通知を非表示にすることは出来ますか？</string>
-    <string name="faq_1_text">場合によります。デバイスの使用中は、このようなアプリの通知を全て非表示にすることは不可能です。 適切な設定項目にチェックを入れると、通知表示は出来るだけ隠されます。ロックスクリーン上での非表示の仕方は、デバイスの設定から通知の表示を無効にすると可能です。</string>
+    <string name="faq_1_text">場合によります。デバイスの使用中は、このようなアプリの通知を全て非表示にすることは不可能です。適切な設定の項目にチェックを入れれば、ある程度は非表示に出来ます。デバイスの設定で「機密性の高い通知」の表示を無効にすると、ロック画面での表示を抑えることが可能です。</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
