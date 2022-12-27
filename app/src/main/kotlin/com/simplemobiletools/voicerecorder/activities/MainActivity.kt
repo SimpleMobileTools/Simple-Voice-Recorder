@@ -19,11 +19,14 @@ import me.grantland.widget.AutofitHelper
 class MainActivity : SimpleActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         appLaunched(BuildConfig.APPLICATION_ID)
         setupOptionsMenu()
         refreshMenuItems()
+
+        updateMaterialActivityViews(main_coordinator, main_holder, false)
 
         if (checkAppSideloading()) {
             return
@@ -51,7 +54,7 @@ class MainActivity : SimpleActivity() {
     override fun onResume() {
         super.onResume()
         setupTabColors()
-        setupToolbar(main_toolbar)
+        setupToolbar(main_toolbar, statusBarColor = getProperBackgroundColor())
         getPagerAdapter()?.onResume()
     }
 
