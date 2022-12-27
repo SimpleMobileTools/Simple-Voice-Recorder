@@ -191,12 +191,13 @@ class RecordingsAdapter(
     }
 
     private fun doDeleteAnimation(oldRecordingIndex: Int, recordingsToRemove: ArrayList<Recording>, positions: ArrayList<Int>) {
-        recordings.removeAll(recordingsToRemove)
+        recordings.removeAll(recordingsToRemove.toSet())
         activity.runOnUiThread {
             if (recordings.isEmpty()) {
                 refreshListener.refreshRecordings()
                 finishActMode()
             } else {
+                positions.sortDescending()
                 removeSelectedItems(positions)
                 if (recordingsToRemove.map { it.id }.contains(currRecordingId)) {
                     val newRecordingIndex = Math.min(oldRecordingIndex, recordings.size - 1)
@@ -247,6 +248,11 @@ class RecordingsAdapter(
     override fun onChange(position: Int) = recordings.getOrNull(position)?.title ?: ""
 
     private fun showPopupMenu(view: View, recording: Recording) {
+        if (selectedKeys.isNotEmpty()) {
+            selectedKeys.clear()
+            notifyDataSetChanged()
+        }
+
         finishActMode()
         val theme = activity.getPopupMenuTheme()
         val contextTheme = ContextThemeWrapper(activity, theme)
