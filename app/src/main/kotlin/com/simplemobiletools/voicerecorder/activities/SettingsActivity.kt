@@ -1,5 +1,6 @@
 package com.simplemobiletools.voicerecorder.activities
 
+import android.content.Intent
 import android.media.MediaRecorder
 import android.os.Bundle
 import com.simplemobiletools.commons.dialogs.ChangeDateTimeFormatDialog
@@ -7,10 +8,7 @@ import com.simplemobiletools.commons.dialogs.FeatureLockedDialog
 import com.simplemobiletools.commons.dialogs.FilePickerDialog
 import com.simplemobiletools.commons.dialogs.RadioGroupDialog
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.NavigationIcon
-import com.simplemobiletools.commons.helpers.isNougatPlus
-import com.simplemobiletools.commons.helpers.isQPlus
-import com.simplemobiletools.commons.helpers.isTiramisuPlus
+import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.RadioItem
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.extensions.config
@@ -39,6 +37,7 @@ class SettingsActivity : SimpleActivity() {
 
         setupPurchaseThankYou()
         setupCustomizeColors()
+        setupCustomizeWidgetColors()
         setupUseEnglish()
         setupLanguage()
         setupChangeDateTimeFormat()
@@ -66,6 +65,15 @@ class SettingsActivity : SimpleActivity() {
         settings_color_customization_label.text = getCustomizeColorsString()
         settings_color_customization_holder.setOnClickListener {
             handleCustomizeColorsClick()
+        }
+    }
+
+    private fun setupCustomizeWidgetColors() {
+        settings_widget_color_customization_holder.setOnClickListener {
+            Intent(this, WidgetRecordDisplayConfigureActivity::class.java).apply {
+                putExtra(IS_CUSTOMIZING_COLORS, true)
+                startActivity(this)
+            }
         }
     }
 
