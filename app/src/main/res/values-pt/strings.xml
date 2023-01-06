@@ -9,7 +9,7 @@
     <string name="no_recordings_in_folder_found">Não foram encontradas gravações
 \nna pasta selecionada</string>
     <string name="paused">Em pausa</string>
-    <string name="recorder">Recorder</string>
+    <string name="recorder">Gravador</string>
     <string name="player">Reprodutor</string>
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">Apagar %s\?</string>
@@ -25,10 +25,10 @@
     <string name="bitrate">Taxa de dados</string>
     <string name="record_after_launch">Iniciar gravação automaticamente ao iniciar a aplicação</string>
     <!-- Settings Audio source selection -->
-    <string name="audio_source_camcorder">Camera</string>
-    <string name="audio_source_default">Android default</string>
+    <string name="audio_source_camcorder">Câmera</string>
+    <string name="audio_source_default">Predefinição Android</string>
     <string name="audio_source_unprocessed">Unprocessed</string>
-    <string name="audio_source_microphone">Microphone</string>
+    <string name="audio_source_microphone">Microfone</string>
     <string name="audio_source_voice_recognition">Voice recognition</string>
     <string name="audio_source_voice_communication">Voice communication</string>
     <string name="audio_source_voice_performance">Voice performance</string>
