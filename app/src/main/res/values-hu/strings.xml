@@ -2,25 +2,25 @@
 <resources>
     <string name="app_name">Egyszerű hangrögzítő</string>
     <string name="app_launcher_name">Hangrögzítő</string>
-    <string name="recording_saved_successfully">Rögzítés sikeresen mentve</string>
-    <string name="recording">Rögzítés</string>
+    <string name="recording_saved_successfully">A felvétel sikeresen mentve</string>
+    <string name="recording">Felvétel</string>
     <string name="no_recordings_found">Nem található az alkalmazás által
-\nkészített rögzítés</string>
+\nrögzített felvétel</string>
     <string name="no_recordings_in_folder_found">A kiválasztott mappában
-\nnem található rögzítés</string>
+\nnem található felvétel</string>
     <string name="paused">Szüneteltetve</string>
-    <string name="recorder">Recorder</string>
+    <string name="recorder">Rögzítő</string>
     <string name="player">Lejátszó</string>
     <!-- Confirmation dialog -->
     <!-- Are you sure you want to delete 5 recordings? -->
     <string name="delete_recordings_confirmation">Töröl %s\?</string>
     <plurals name="delete_recordings">
-        <item quantity="one">%d rögzítést</item>
-        <item quantity="other">%d rögzítést</item>
+        <item quantity="one">%d felvételt</item>
+        <item quantity="other">%d felvételt</item>
     </plurals>
     <!-- Settings -->
     <string name="try_hiding_notification">Próbálja elrejteni a rögzítési értesítéseket</string>
-    <string name="save_recordings_in">Rögzítések mentési helye</string>
+    <string name="save_recordings_in">Felvételek mentési helye</string>
     <string name="audio_source">Hangforrás</string>
     <string name="bitrate">Bitsebesség</string>
     <string name="record_after_launch">Rögzítés automatikus indítása az alkalmazás indításakor</string>
@@ -30,8 +30,8 @@
     <string name="audio_source_unprocessed">Feldolgozatlan</string>
     <string name="audio_source_microphone">Mikrofon</string>
     <string name="audio_source_voice_recognition">Hangfelismerés</string>
-    <string name="audio_source_voice_communication">Voice communication</string>
-    <string name="audio_source_voice_performance">Voice performance</string>
+    <string name="audio_source_voice_communication">Hangkommunikáció</string>
+    <string name="audio_source_voice_performance">Hangteljesítmény</string>
     <!-- FAQ -->
     <string name="faq_1_title">Elrejthetem az értesítéseket rögzítés közben\?</string>
     <string name="faq_1_text">Az attól függ. Amíg használja az eszközt, addig nem lehetséges az ehhez hasonló alkalmazások értesítéseinek elrejtése. Ha bekapcsolja a megfelelő beállítást, akkor az alkalmazás megpróbálja elrejteni őket. A zárképernyőn viszont elrejtheti őket, ha letiltja az érzékeny értesítéseket az eszköz beállításaiban.</string>
