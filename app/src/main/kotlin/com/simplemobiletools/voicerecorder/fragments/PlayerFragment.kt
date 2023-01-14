@@ -390,6 +390,10 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         player_progress_max.text = (recording?.duration ?: 0).getFormattedDuration()
     }
 
+    fun onSearchTextChanged(text: String) {
+
+    }
+
     private fun togglePlayPause() {
         if (getIsPlaying()) {
             pausePlayback()

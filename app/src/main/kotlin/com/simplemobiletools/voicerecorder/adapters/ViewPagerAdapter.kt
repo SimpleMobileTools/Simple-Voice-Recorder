@@ -43,4 +43,8 @@ class ViewPagerAdapter(private val activity: SimpleActivity) : PagerAdapter() {
     }
 
     fun finishActMode() = (mFragments[1] as? PlayerFragment)?.finishActMode()
+
+    fun searchTextChanged(text: String) {
+        (mFragments[1] as? PlayerFragment)?.onSearchTextChanged(text)
+    }
 }

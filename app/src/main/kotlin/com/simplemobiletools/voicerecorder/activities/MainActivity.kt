@@ -95,6 +95,14 @@ class MainActivity : SimpleActivity() {
         main_menu.toggleHideOnScroll(false)
         main_menu.setupMenu()
 
+        main_menu.onSearchOpenListener = {
+            view_pager.currentItem = 1
+        }
+
+        main_menu.onSearchTextChangedListener = { text ->
+            getPagerAdapter()?.searchTextChanged(text)
+        }
+
         main_menu.getToolbar().setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.more_apps_from_us -> launchMoreAppsFromUsIntent()
@@ -142,6 +150,9 @@ class MainActivity : SimpleActivity() {
         main_tabs_holder.onTabSelectionChanged(
             tabUnselectedAction = {
                 updateBottomTabItemColors(it.customView, false)
+                if (it.position == 1) {
+                    main_menu.closeSearch()
+                }
             },
             tabSelectedAction = {
                 view_pager.currentItem = it.position
