@@ -41,6 +41,8 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     private var player: MediaPlayer? = null
     private var progressTimer = Timer()
     private var playedRecordingIDs = Stack<Int>()
+    private var itemsIgnoringSearch = ArrayList<Recording>()
+    private var lastSearchQuery = ""
     private var bus: EventBus? = null
     private var prevSavePath = ""
     private var playOnPreparation = true
@@ -48,7 +50,8 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     override fun onResume() {
         setupColors()
         if (prevSavePath.isNotEmpty() && context!!.config.saveRecordingsFolder != prevSavePath) {
-            setupAdapter()
+            itemsIgnoringSearch = getRecordings()
+            setupAdapter(itemsIgnoringSearch)
         } else {
             getRecordingsAdapter()?.updateTextColor(context.getProperTextColor())
         }
@@ -71,7 +74,8 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         bus = EventBus.getDefault()
         bus!!.register(this)
         setupColors()
-        setupAdapter()
+        itemsIgnoringSearch = getRecordings()
+        setupAdapter(itemsIgnoringSearch)
         initMediaPlayer()
         setupViews()
         storePrevPath()
@@ -132,18 +136,26 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     }
 
     override fun refreshRecordings() {
-        setupAdapter()
+        itemsIgnoringSearch = getRecordings()
+        setupAdapter(itemsIgnoringSearch)
     }
 
-    private fun setupAdapter() {
+    private fun setupAdapter(recordings: ArrayList<Recording>) {
         ensureBackgroundThread {
-            val recordings = getRecordings()
-
             Handler(Looper.getMainLooper()).post {
                 recordings_fastscroller.beVisibleIf(recordings.isNotEmpty())
                 recordings_placeholder.beVisibleIf(recordings.isEmpty())
                 if (recordings.isEmpty()) {
-                    val stringId = if (isQPlus()) R.string.no_recordings_found else R.string.no_recordings_in_folder_found
+                    val stringId = if (lastSearchQuery.isEmpty()) {
+                        if (isQPlus()) {
+                            R.string.no_recordings_found
+                        } else {
+                            R.string.no_recordings_in_folder_found
+                        }
+                    } else {
+                        R.string.no_items_found
+                    }
+
                     recordings_placeholder.text = context.getString(stringId)
                     resetProgress(null)
                     player?.stop()
@@ -391,7 +403,9 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     }
 
     fun onSearchTextChanged(text: String) {
-
+        lastSearchQuery = text
+        val filtered = itemsIgnoringSearch.filter { it.title.contains(text, true) }.toMutableList() as ArrayList<Recording>
+        setupAdapter(filtered)
     }
 
     private fun togglePlayPause() {
