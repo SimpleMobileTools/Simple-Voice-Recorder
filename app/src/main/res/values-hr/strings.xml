@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Jednostavno snimanje glasa</string>
-    <string name="app_launcher_name">Snimanje glasa</string>
+    <string name="app_name">Jednostavan diktafon</string>
+    <string name="app_launcher_name">Diktafon</string>
     <string name="recording_saved_successfully">Snimanje uspješno spremljeno</string>
     <string name="recording">Snimanje</string>
     <string name="no_recordings_found">Nisu pronađene snimke stvorene

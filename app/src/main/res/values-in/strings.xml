@@ -10,7 +10,7 @@
 \ndi folder yang dipilih</string>
     <string name="paused">Dijeda</string>
     <string name="recorder">Recorder</string>
-    <string name="player">Player</string>
+    <string name="player">Pemutar</string>
     <!-- Confirmation dialog -->
     <string name="delete_recordings_confirmation">Hapus %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
@@ -20,17 +20,17 @@
     <!-- Settings -->
     <string name="try_hiding_notification">Coba sembunyikan pemberitahuan rekaman</string>
     <string name="save_recordings_in">Simpan rekaman di</string>
-    <string name="audio_source">Audio source</string>
+    <string name="audio_source">Sumber audio</string>
     <string name="bitrate">Bitrate</string>
-    <string name="record_after_launch">Start recording automatically after launching the app</string>
+    <string name="record_after_launch">Mulai rekam secara otomatis setelah membuka aplikasi</string>
     <!-- Settings Audio source selection -->
-    <string name="audio_source_camcorder">Camera</string>
-    <string name="audio_source_default">Android default</string>
-    <string name="audio_source_unprocessed">Unprocessed</string>
-    <string name="audio_source_microphone">Microphone</string>
-    <string name="audio_source_voice_recognition">Voice recognition</string>
-    <string name="audio_source_voice_communication">Voice communication</string>
-    <string name="audio_source_voice_performance">Voice performance</string>
+    <string name="audio_source_camcorder">Kamera</string>
+    <string name="audio_source_default">Bawaan Android</string>
+    <string name="audio_source_unprocessed">Tidak diproses</string>
+    <string name="audio_source_microphone">Mikrofon</string>
+    <string name="audio_source_voice_recognition">Pengenalan suara</string>
+    <string name="audio_source_voice_communication">Komunikasi suara</string>
+    <string name="audio_source_voice_performance">Performa suara</string>
     <!-- FAQ -->
     <string name="faq_1_title">Bisakah saya menyembunyikan ikon notifikasi selama merekam\?</string>
     <string name="faq_1_text">Tergantung. Saat Anda menggunakan perangkat, tidak mungkin lagi untuk menyembunyikan sepenuhnya pemberitahuan aplikasi seperti ini. Jika Anda memeriksa item pengaturan yang tepat, aplikasi akan melakukan yang terbaik untuk menyembunyikannya. Anda dapat menyembunyikannya di layar kunci, jika Anda menonaktifkan tampilan pemberitahuan sensitif di pengaturan perangkat Anda.</string>
