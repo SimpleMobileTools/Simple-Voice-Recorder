@@ -1,0 +1,2 @@
+ * Allow searching recordings
+ * Added some UI and translation improvements

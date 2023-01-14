@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.11.1 *(2023-01-14)*
+----------------------------
+
+ * Allow searching recordings
+ * Added some UI and translation improvements
+
 Version 5.11.0 *(2022-12-27)*
 ----------------------------
 
