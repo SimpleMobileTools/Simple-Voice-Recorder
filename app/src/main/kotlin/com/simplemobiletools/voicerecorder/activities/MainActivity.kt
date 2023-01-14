@@ -26,7 +26,7 @@ class MainActivity : SimpleActivity() {
         setupOptionsMenu()
         refreshMenuItems()
 
-        updateMaterialActivityViews(main_coordinator, main_holder, useTransparentNavigation = false, useTopSearchMenu = false)
+        updateMaterialActivityViews(main_coordinator, main_holder, useTransparentNavigation = false, useTopSearchMenu = true)
 
         if (checkAppSideloading()) {
             return
@@ -54,7 +54,7 @@ class MainActivity : SimpleActivity() {
     override fun onResume() {
         super.onResume()
         setupTabColors()
-        setupToolbar(main_toolbar, statusBarColor = getProperBackgroundColor())
+        updateMenuColors()
         getPagerAdapter()?.onResume()
     }
 
@@ -76,14 +76,26 @@ class MainActivity : SimpleActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        if (main_menu.isSearchOpen) {
+            main_menu.closeSearch()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
     private fun refreshMenuItems() {
-        main_toolbar.menu.apply {
+        main_menu.getToolbar().menu.apply {
             findItem(R.id.more_apps_from_us).isVisible = !resources.getBoolean(R.bool.hide_google_relations)
         }
     }
 
     private fun setupOptionsMenu() {
-        main_toolbar.setOnMenuItemClickListener { menuItem ->
+        main_menu.getToolbar().inflateMenu(R.menu.menu)
+        main_menu.toggleHideOnScroll(false)
+        main_menu.setupMenu()
+
+        main_menu.getToolbar().setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.more_apps_from_us -> launchMoreAppsFromUsIntent()
                 R.id.settings -> launchSettings()
@@ -92,6 +104,11 @@ class MainActivity : SimpleActivity() {
             }
             return@setOnMenuItemClickListener true
         }
+    }
+
+    private fun updateMenuColors() {
+        updateStatusbarColor(getProperBackgroundColor())
+        main_menu.updateColors()
     }
 
     private fun tryInitVoiceRecorder() {
