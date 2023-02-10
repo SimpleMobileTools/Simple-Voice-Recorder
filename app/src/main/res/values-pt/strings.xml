@@ -16,6 +16,7 @@
     <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
         <item quantity="one">%d gravação</item>
+        <item quantity="many">%d gravações</item>
         <item quantity="other">%d gravações</item>
     </plurals>
     <!-- Settings -->
@@ -27,10 +28,10 @@
     <!-- Settings Audio source selection -->
     <string name="audio_source_camcorder">Câmera</string>
     <string name="audio_source_default">Predefinição Android</string>
-    <string name="audio_source_unprocessed">Unprocessed</string>
+    <string name="audio_source_unprocessed">Não processado</string>
     <string name="audio_source_microphone">Microfone</string>
-    <string name="audio_source_voice_recognition">Voice recognition</string>
-    <string name="audio_source_voice_communication">Voice communication</string>
+    <string name="audio_source_voice_recognition">Reconhecimento de voz</string>
+    <string name="audio_source_voice_communication">Comunicação por voz</string>
     <string name="audio_source_voice_performance">Voice performance</string>
     <!-- FAQ -->
     <string name="faq_1_title">Posso ocultar o ícone de notificação durante a gravação\?</string>
