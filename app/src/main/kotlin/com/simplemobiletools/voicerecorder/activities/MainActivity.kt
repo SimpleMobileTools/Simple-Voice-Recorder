@@ -1,7 +1,9 @@
 package com.simplemobiletools.voicerecorder.activities
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.ImageView
 import android.widget.TextView
 import com.simplemobiletools.commons.extensions.*
@@ -12,11 +14,17 @@ import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.adapters.ViewPagerAdapter
 import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.helpers.STOP_AMPLITUDE_UPDATE
+import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.services.RecorderService
 import kotlinx.android.synthetic.main.activity_main.*
 import me.grantland.widget.AutofitHelper
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class MainActivity : SimpleActivity() {
+
+    private var bus: EventBus? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
@@ -41,6 +49,8 @@ class MainActivity : SimpleActivity() {
             }
         }
 
+        bus = EventBus.getDefault()
+        bus!!.register(this)
         if (config.recordAfterLaunch && !RecorderService.isRunning) {
             Intent(this@MainActivity, RecorderService::class.java).apply {
                 try {
@@ -65,6 +75,7 @@ class MainActivity : SimpleActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        bus?.unregister(this)
         getPagerAdapter()?.onDestroy()
 
         Intent(this@MainActivity, RecorderService::class.java).apply {
@@ -79,6 +90,9 @@ class MainActivity : SimpleActivity() {
     override fun onBackPressed() {
         if (main_menu.isSearchOpen) {
             main_menu.closeSearch()
+        } else if (isThirdPartyIntent()) {
+            setResult(Activity.RESULT_CANCELED, null)
+            super.onBackPressed()
         } else {
             super.onBackPressed()
         }
@@ -166,8 +180,12 @@ class MainActivity : SimpleActivity() {
             (view_pager.adapter as ViewPagerAdapter).finishActMode()
         }
 
-        view_pager.currentItem = config.lastUsedViewPagerPage
-        main_tabs_holder.getTabAt(config.lastUsedViewPagerPage)?.select()
+        if (isThirdPartyIntent()) {
+            view_pager.currentItem = 0
+        } else {
+            view_pager.currentItem = config.lastUsedViewPagerPage
+            main_tabs_holder.getTabAt(config.lastUsedViewPagerPage)?.select()
+        }
     }
 
     private fun setupTabColors() {
@@ -205,5 +223,19 @@ class MainActivity : SimpleActivity() {
         }
 
         startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)
+    }
+
+    private fun isThirdPartyIntent() = intent?.action == MediaStore.Audio.Media.RECORD_SOUND_ACTION
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun recordingSaved(event: Events.RecordingSaved) {
+        if (isThirdPartyIntent()) {
+            Intent().apply {
+                data = event.uri!!
+                flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+                setResult(Activity.RESULT_OK, this)
+            }
+            finish()
+        }
     }
 }

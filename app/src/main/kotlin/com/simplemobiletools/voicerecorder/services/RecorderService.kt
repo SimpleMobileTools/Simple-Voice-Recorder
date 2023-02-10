@@ -7,6 +7,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.media.MediaScannerConnection
+import android.net.Uri
 import android.os.Build
 import android.os.IBinder
 import android.provider.MediaStore
@@ -202,7 +203,7 @@ class RecorderService : Service() {
             val outputStream = contentResolver.openOutputStream(newUri)
             val inputStream = getFileInputStreamSync(currFilePath)
             inputStream!!.copyTo(outputStream!!, DEFAULT_BUFFER_SIZE)
-            recordingSavedSuccessfully()
+            recordingSavedSuccessfully(newUri)
         } catch (e: Exception) {
             showErrorToast(e)
         }
@@ -213,11 +214,12 @@ class RecorderService : Service() {
             this,
             arrayOf(currFilePath),
             arrayOf(currFilePath.getMimeType())
-        ) { _, _ -> recordingSavedSuccessfully() }
+        ) { _, uri -> recordingSavedSuccessfully(uri) }
     }
 
-    private fun recordingSavedSuccessfully() {
+    private fun recordingSavedSuccessfully(savedUri: Uri) {
         toast(R.string.recording_saved_successfully)
+        EventBus.getDefault().post(Events.RecordingSaved(savedUri))
     }
 
     private fun getDurationUpdateTask() = object : TimerTask() {
