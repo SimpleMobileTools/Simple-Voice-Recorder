@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.11.2 *(2023-02-10)*
+----------------------------
+
+ * Add handling for third party recording intents
+ * Added some UI and translation improvements
+
 Version 5.11.1 *(2023-01-14)*
 ----------------------------
 
