@@ -2,13 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="AppCompatResource">
+    tools:ignore="AppCompatResource,AlwaysShowAction">
     <item
         android:id="@+id/cab_rename"
         android:icon="@drawable/ic_rename_vector"
         android:showAsAction="always"
-        android:title="@string/rename"
-        tools:ignore="AlwaysShowAction" />
+        android:title="@string/rename" />
     <item
         android:id="@+id/cab_share"
         android:icon="@drawable/ic_share_vector"
