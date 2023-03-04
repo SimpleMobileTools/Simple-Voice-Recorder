@@ -8,10 +8,10 @@
 \nhave been found</string>
     <string name="no_recordings_in_folder_found">No recordings have been found
 \nin the selected folder</string>
-    <string name="paused">Paused</string>
+    <string name="paused">Đã tạm dừng</string>
     <string name="recorder">Recorder</string>
     <string name="player">Player</string>
-    <string name="delete_recordings_confirmation">Delete %s\?</string>
+    <string name="delete_recordings_confirmation">Xóa %s\?</string>
     <plurals name="delete_recordings">
         <item quantity="other">%d recording</item>
     </plurals>
