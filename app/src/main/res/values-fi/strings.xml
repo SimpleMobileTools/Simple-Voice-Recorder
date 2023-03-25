@@ -2,39 +2,39 @@
 <resources>
     <string name="app_name">Yksinkertainen ääninauhuri</string>
     <string name="app_launcher_name">Ääninauhuri</string>
-    <string name="recording_saved_successfully">Nauhoitus tallennettu onnistuneesti</string>
-    <string name="recording">Tallenne</string>
+    <string name="recording_saved_successfully">Äänitteen tallennus onnistui</string>
+    <string name="recording">Äänite</string>
     <string name="no_recordings_found">Tällä sovelluksella luotuja
-\nnauhoituksia ei löytynyt</string>
-    <string name="no_recordings_in_folder_found">Nauhoituksia ei löytynyt
+\näänitteitä ei löytynyt</string>
+    <string name="no_recordings_in_folder_found">Äänitteitä ei löytynyt
 \nvalitusta kansiosta</string>
-    <string name="paused">Keskeytetty</string>
+    <string name="paused">Tauotettu</string>
     <string name="recorder">Tallennin</string>
-    <string name="player">Pelaaja</string>
+    <string name="player">Soitin</string>
     <!-- Confirmation dialog -->
-    <string name="delete_recordings_confirmation">Haluatko varmasti poistaa kohteen %s\?</string>
+    <string name="delete_recordings_confirmation">Poistetaanko %s\?</string>
     <!-- Are you sure you want to delete 5 recordings? -->
     <plurals name="delete_recordings">
-        <item quantity="one">%d tallenteen</item>
-        <item quantity="other">%d tallennetta</item>
+        <item quantity="one">%d äänite</item>
+        <item quantity="other">%d äänitettä</item>
     </plurals>
     <!-- Settings -->
-    <string name="try_hiding_notification">Yritä piilottaa tallennusilmoitus</string>
-    <string name="save_recordings_in">Tallenna tallenteet</string>
-    <string name="audio_source">Audio source</string>
-    <string name="bitrate">Bitrate</string>
-    <string name="record_after_launch">Aloita nauhoitus automaattisesti, kun sovellus käynnistetään</string>
+    <string name="try_hiding_notification">Pyri piilottamaan äänitysilmoitus</string>
+    <string name="save_recordings_in">Tallenna äänktteet kohterseen</string>
+    <string name="audio_source">Äänilähde</string>
+    <string name="bitrate">Bittinopeus</string>
+    <string name="record_after_launch">Käynnistä äänitys automaattisesti sovelluksen käynnistyessä</string>
     <!-- Settings Audio source selection -->
-    <string name="audio_source_camcorder">Camera</string>
-    <string name="audio_source_default">Android default</string>
-    <string name="audio_source_unprocessed">Unprocessed</string>
-    <string name="audio_source_microphone">Microphone</string>
-    <string name="audio_source_voice_recognition">Voice recognition</string>
-    <string name="audio_source_voice_communication">Voice communication</string>
-    <string name="audio_source_voice_performance">Voice performance</string>
+    <string name="audio_source_camcorder">Kamera</string>
+    <string name="audio_source_default">Androidin oletus</string>
+    <string name="audio_source_unprocessed">Käsittelemätön</string>
+    <string name="audio_source_microphone">Mikrofoni</string>
+    <string name="audio_source_voice_recognition">Äänitunnistus</string>
+    <string name="audio_source_voice_communication">Ääniviestintä</string>
+    <string name="audio_source_voice_performance">Ääniesitys</string>
     <!-- FAQ -->
     <string name="faq_1_title">Voinko piilottaa ilmoituskuvakkeen tallennuksen aikana\?</string>
-    <string name="faq_1_text">No, se riippuu. Kun käytät laitettasi, tällaisten sovellusten ilmoituksia ei voida enää piilottaa kokonaan. Jos tarkistat oikean asetuskohdan, sovellus tekee parhaansa piilottaakseen sen. Voit kuitenkin piilottaa sen lukitusnäytössä, jos poistat arkaluontoisten ilmoitusten näyttämisen käytöstä laitteen asetuksissa.</string>
+    <string name="faq_1_text">No, se riippuu. Laitetta käytettäessä tällaisten sovellusten ilmoituksia ei ole enää mahdollista piilottaa täysin. Jos valitset kyseiseisen asetuksen, sovellus pyrkii parhaansa mukaan piilottamaan sen. Voit tosin piilottaa sen lukitusnäytöstä, jos poistat arkaluontoisten ilmoitusten näytön käytöstä laitteen asetuksista.</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
