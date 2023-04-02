@@ -146,7 +146,7 @@ class SettingsActivity : SimpleActivity() {
             )
 
             if (isQPlus()) {
-                items.add(RadioItem(EXTENSION_OGG, getString(R.string.ogg)))
+                items.add(RadioItem(EXTENSION_OGG, getString(R.string.ogg_opus)))
             }
 
             RadioGroupDialog(this@SettingsActivity, items, config.extension) {

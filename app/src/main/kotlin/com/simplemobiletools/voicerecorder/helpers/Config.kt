@@ -50,6 +50,14 @@ class Config(context: Context) : BaseConfig(context) {
     fun getExtensionText() = context.getString(
         when (extension) {
             EXTENSION_M4A -> R.string.m4a
+            EXTENSION_OGG -> R.string.ogg_opus
+            else -> R.string.mp3
+        }
+    )
+
+    fun getExtension() = context.getString(
+        when (extension) {
+            EXTENSION_M4A -> R.string.m4a
             EXTENSION_OGG -> R.string.ogg
             else -> R.string.mp3
         }
