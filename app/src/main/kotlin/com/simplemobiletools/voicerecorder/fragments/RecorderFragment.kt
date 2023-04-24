@@ -142,6 +142,7 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
         toggle_recording_button.setImageDrawable(getToggleButtonIcon())
         toggle_pause_button.beVisibleIf(status != RECORDING_STOPPED && isNougatPlus())
         if (status == RECORDING_PAUSED) {
+            pauseBlinkTimer.cancel()
             pauseBlinkTimer = Timer()
             pauseBlinkTimer.scheduleAtFixedRate(getPauseBlinkTask(), 500, 500)
         } else {
