@@ -86,7 +86,7 @@ class RecorderService : Service() {
             defaultFolder.absolutePath
         }
 
-        currFilePath = "$baseFolder/${getCurrentFormattedDateTime()}.${config.getExtensionText()}"
+        currFilePath = "$baseFolder/${getCurrentFormattedDateTime()}.${config.getExtension()}"
 
         try {
             recorder = if (recordMp3()) {
