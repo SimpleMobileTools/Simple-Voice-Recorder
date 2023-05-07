@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
+import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.isNougatPlus
 import com.simplemobiletools.voicerecorder.R
@@ -51,7 +52,7 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
                 if (granted) {
                     toggleRecording()
                 } else {
-                    context.toast(R.string.no_post_notifications_permissions)
+                    PermissionRequiredDialog(context as BaseSimpleActivity, R.string.allow_notifications_voice_recorder)
                 }
             }
         }
