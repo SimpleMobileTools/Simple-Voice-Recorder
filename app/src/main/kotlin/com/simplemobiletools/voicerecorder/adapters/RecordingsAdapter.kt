@@ -219,6 +219,7 @@ class RecordingsAdapter(
 
     private fun setupView(view: View, recording: Recording) {
         view.apply {
+            setupViewBackground(activity)
             recording_frame?.isSelected = selectedKeys.contains(recording.id)
 
             arrayListOf<TextView>(recording_title, recording_date, recording_duration, recording_size).forEach {
