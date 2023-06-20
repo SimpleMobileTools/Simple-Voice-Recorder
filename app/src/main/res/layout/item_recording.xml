@@ -1,68 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/recording_frame"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/tiny_margin">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/item_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/activity_margin"
-        android:paddingTop="@dimen/activity_margin"
-        android:paddingBottom="@dimen/activity_margin">
+        android:paddingTop="@dimen/medium_margin"
+        android:paddingBottom="@dimen/medium_margin">
 
         <TextView
             android:id="@+id/recording_title"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/recording_duration"
             android:ellipsize="end"
+            android:includeFontPadding="false"
             android:maxLines="1"
             android:paddingEnd="@dimen/activity_margin"
             android:textSize="@dimen/big_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/recording_date"
+            app:layout_constraintEnd_toStartOf="@+id/recording_duration"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintVertical_chainStyle="packed"
             tools:text="2020_03_30_22_49_52" />
 
         <TextView
             android:id="@+id/recording_date"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/recording_title"
-            android:layout_toStartOf="@+id/recording_size"
             android:alpha="0.6"
             android:ellipsize="end"
             android:maxLines="1"
             android:paddingEnd="@dimen/activity_margin"
             android:textSize="@dimen/normal_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/recording_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recording_title"
+            app:layout_constraintVertical_bias="0.5"
             tools:text="28 March, 20:20" />
 
         <TextView
             android:id="@+id/recording_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/recording_title"
-            android:layout_alignBottom="@+id/recording_title"
-            android:layout_toStartOf="@+id/overflow_menu_icon"
             android:ellipsize="end"
-            android:gravity="center_vertical"
             android:maxLines="1"
             android:textSize="@dimen/normal_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/recording_title"
+            app:layout_constraintEnd_toStartOf="@+id/overflow_menu_icon"
+            app:layout_constraintTop_toTopOf="@+id/recording_title"
             tools:text="00:05" />
 
         <TextView
             android:id="@+id/recording_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/recording_date"
-            android:layout_alignBottom="@+id/recording_date"
-            android:layout_toStartOf="@+id/overflow_menu_icon"
             android:alpha="0.6"
             android:ellipsize="end"
-            android:gravity="center_vertical"
             android:maxLines="1"
             android:textSize="@dimen/normal_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/recording_date"
+            app:layout_constraintEnd_toStartOf="@+id/overflow_menu_icon"
+            app:layout_constraintTop_toTopOf="@+id/recording_date"
             tools:text="3 MB" />
 
         <ImageView
@@ -70,16 +78,17 @@
             style="@style/OverflowMenuIconStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:visibility="visible" />
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/overflow_menu_anchor"
             style="@style/OverflowMenuAnchorStyle"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
