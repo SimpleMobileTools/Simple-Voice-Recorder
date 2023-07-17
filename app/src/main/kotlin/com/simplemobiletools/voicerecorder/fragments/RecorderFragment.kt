@@ -14,11 +14,15 @@ import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.helpers.*
 import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.services.RecorderService
-import kotlinx.android.synthetic.main.fragment_recorder.view.*
+import kotlinx.android.synthetic.main.fragment_recorder.view.recorder_visualizer
+import kotlinx.android.synthetic.main.fragment_recorder.view.recording_duration
+import kotlinx.android.synthetic.main.fragment_recorder.view.toggle_pause_button
+import kotlinx.android.synthetic.main.fragment_recorder.view.toggle_recording_button
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import java.util.*
+import java.util.Timer
+import java.util.TimerTask
 
 class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet) {
     private var status = RECORDING_STOPPED
@@ -52,7 +56,9 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
                 if (granted) {
                     toggleRecording()
                 } else {
-                    PermissionRequiredDialog(context as BaseSimpleActivity, R.string.allow_notifications_voice_recorder)
+                    PermissionRequiredDialog(context as BaseSimpleActivity, R.string.allow_notifications_voice_recorder, {
+                        (context as BaseSimpleActivity).openNotificationSettings()
+                    })
                 }
             }
         }
