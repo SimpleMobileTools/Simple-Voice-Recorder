@@ -9,7 +9,7 @@
     <string name="no_recordings_in_folder_found">Valitud kaustas ei leidu
 \nühtegi salvestust</string>
     <string name="paused">Peatatud</string>
-    <string name="recorder">Salvesti</string>
+    <string name="recorder">Salvestaja</string>
     <string name="player">Mängija</string>
     <!-- Confirmation dialog -->
     <!-- Are you sure you want to delete 5 recordings? -->
@@ -26,7 +26,7 @@
     <string name="record_after_launch">Rakenduse käivitamisel alusta kohe salvestamist</string>
     <!-- Settings Audio source selection -->
     <string name="audio_source_camcorder">Kaamera</string>
-    <string name="audio_source_default">Vaikimisi Androidi audio</string>
+    <string name="audio_source_default">Vaikimisi Androidi helisisend</string>
     <string name="audio_source_unprocessed">Töötlemata</string>
     <string name="audio_source_microphone">Mikrofon</string>
     <string name="audio_source_voice_recognition">Häältuvastus</string>
