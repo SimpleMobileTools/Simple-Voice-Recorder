@@ -1,28 +1,24 @@
 package com.simplemobiletools.voicerecorder.fragments
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.media.AudioManager
-import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.os.PowerManager
 import android.provider.DocumentsContract
-import android.provider.MediaStore
-import android.provider.MediaStore.Audio.Media
 import android.util.AttributeSet
 import android.widget.SeekBar
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isQPlus
-import com.simplemobiletools.commons.helpers.isRPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
 import com.simplemobiletools.voicerecorder.adapters.RecordingsAdapter
 import com.simplemobiletools.voicerecorder.extensions.config
+import com.simplemobiletools.voicerecorder.extensions.getAllRecordings
 import com.simplemobiletools.voicerecorder.helpers.getAudioFileContentUri
 import com.simplemobiletools.voicerecorder.interfaces.RefreshRecordingsListener
 import com.simplemobiletools.voicerecorder.models.Events
@@ -31,9 +27,9 @@ import kotlinx.android.synthetic.main.fragment_player.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import java.io.File
-import java.util.*
-import kotlin.math.roundToLong
+import java.util.Stack
+import java.util.Timer
+import java.util.TimerTask
 
 class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet), RefreshRecordingsListener {
     private val FAST_FORWARD_SKIP_MS = 10000
@@ -45,18 +41,19 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     private var lastSearchQuery = ""
     private var bus: EventBus? = null
     private var prevSavePath = ""
+    private var prevRecycleBinState = context.config.useRecycleBin
     private var playOnPreparation = true
 
     override fun onResume() {
         setupColors()
-        if (prevSavePath.isNotEmpty() && context!!.config.saveRecordingsFolder != prevSavePath) {
+        if (prevSavePath.isNotEmpty() && context!!.config.saveRecordingsFolder != prevSavePath || context.config.useRecycleBin != prevRecycleBinState) {
             itemsIgnoringSearch = getRecordings()
             setupAdapter(itemsIgnoringSearch)
         } else {
             getRecordingsAdapter()?.updateTextColor(context.getProperTextColor())
         }
 
-        storePrevPath()
+        storePrevState()
     }
 
     override fun onDestroy() {
@@ -78,7 +75,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         setupAdapter(itemsIgnoringSearch)
         initMediaPlayer()
         setupViews()
-        storePrevPath()
+        storePrevState()
     }
 
     private fun setupViews() {
@@ -183,119 +180,8 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     }
 
     private fun getRecordings(): ArrayList<Recording> {
-        val recordings = ArrayList<Recording>()
-        return when {
-            isRPlus() -> {
-                recordings.addAll(getMediaStoreRecordings())
-                recordings.addAll(getSAFRecordings())
-                recordings
-            }
-            isQPlus() -> {
-                recordings.addAll(getMediaStoreRecordings())
-                recordings.addAll(getLegacyRecordings())
-                recordings
-            }
-            else -> {
-                recordings.addAll(getLegacyRecordings())
-                recordings
-            }
-        }.apply {
+        return context.getAllRecordings().apply {
             sortByDescending { it.timestamp }
-        }
-    }
-
-    @SuppressLint("InlinedApi")
-    private fun getMediaStoreRecordings(): ArrayList<Recording> {
-        val recordings = ArrayList<Recording>()
-
-        val uri = Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
-        val projection = arrayOf(
-            Media._ID,
-            Media.DISPLAY_NAME,
-            Media.DATE_ADDED,
-            Media.DURATION,
-            Media.SIZE
-        )
-
-        val selection = "${Media.OWNER_PACKAGE_NAME} = ?"
-        val selectionArgs = arrayOf(context.packageName)
-        val sortOrder = "${Media.DATE_ADDED} DESC"
-
-        context.queryCursor(uri, projection, selection, selectionArgs, sortOrder, true) { cursor ->
-            val id = cursor.getIntValue(Media._ID)
-            val title = cursor.getStringValue(Media.DISPLAY_NAME)
-            val timestamp = cursor.getIntValue(Media.DATE_ADDED)
-            var duration = cursor.getLongValue(Media.DURATION) / 1000
-            var size = cursor.getIntValue(Media.SIZE)
-
-            if (duration == 0L) {
-                duration = getDurationFromUri(getAudioFileContentUri(id.toLong()))
-            }
-
-            if (size == 0) {
-                size = getSizeFromUri(id.toLong())
-            }
-
-            val recording = Recording(id, title, "", timestamp, duration.toInt(), size)
-            recordings.add(recording)
-        }
-
-        return recordings
-    }
-
-    private fun getLegacyRecordings(): ArrayList<Recording> {
-        val recordings = ArrayList<Recording>()
-        val files = File(context.config.saveRecordingsFolder).listFiles() ?: return recordings
-
-        files.filter { it.isAudioFast() }.forEach {
-            val id = it.hashCode()
-            val title = it.name
-            val path = it.absolutePath
-            val timestamp = (it.lastModified() / 1000).toInt()
-            val duration = context.getDuration(it.absolutePath) ?: 0
-            val size = it.length().toInt()
-            val recording = Recording(id, title, path, timestamp, duration, size)
-            recordings.add(recording)
-        }
-        return recordings
-    }
-
-    private fun getSAFRecordings(): ArrayList<Recording> {
-        val recordings = ArrayList<Recording>()
-        val files = context.getDocumentSdk30(context.config.saveRecordingsFolder)?.listFiles() ?: return recordings
-
-        files.filter { it.type?.startsWith("audio") == true && !it.name.isNullOrEmpty() }.forEach {
-            val id = it.hashCode()
-            val title = it.name!!
-            val path = it.uri.toString()
-            val timestamp = (it.lastModified() / 1000).toInt()
-            val duration = getDurationFromUri(it.uri)
-            val size = it.length().toInt()
-            val recording = Recording(id, title, path, timestamp, duration.toInt(), size)
-            recordings.add(recording)
-        }
-
-        recordings.sortByDescending { it.timestamp }
-        return recordings
-    }
-
-    private fun getDurationFromUri(uri: Uri): Long {
-        return try {
-            val retriever = MediaMetadataRetriever()
-            retriever.setDataSource(context, uri)
-            val time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)!!
-            (time.toLong() / 1000.toDouble()).roundToLong()
-        } catch (e: Exception) {
-            0L
-        }
-    }
-
-    private fun getSizeFromUri(id: Long): Int {
-        val recordingUri = getAudioFileContentUri(id)
-        return try {
-            context.contentResolver.openInputStream(recordingUri)?.available() ?: 0
-        } catch (e: Exception) {
-            0
         }
     }
 
@@ -336,9 +222,11 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
                     DocumentsContract.isDocumentUri(context, uri) -> {
                         setDataSource(context, uri)
                     }
+
                     recording.path.isEmpty() -> {
                         setDataSource(context, getAudioFileContentUri(recording.id.toLong()))
                     }
+
                     else -> {
                         setDataSource(recording.path)
                     }
@@ -452,8 +340,9 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     private fun getRecordingsAdapter() = recordings_list.adapter as? RecordingsAdapter
 
-    private fun storePrevPath() {
+    private fun storePrevState() {
         prevSavePath = context!!.config.saveRecordingsFolder
+        prevRecycleBinState = context.config.useRecycleBin
     }
 
     private fun setupColors() {
@@ -474,6 +363,11 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun recordingCompleted(event: Events.RecordingCompleted) {
+        refreshRecordings()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun recordingMovedToRecycleBin(event: Events.RecordingTrashUpdated) {
         refreshRecordings()
     }
 }

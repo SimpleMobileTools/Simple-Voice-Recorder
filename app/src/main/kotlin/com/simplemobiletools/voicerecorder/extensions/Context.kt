@@ -1,5 +1,6 @@
 package com.simplemobiletools.voicerecorder.extensions
 
+import android.annotation.SuppressLint
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
@@ -7,14 +8,18 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
+import android.media.MediaMetadataRetriever
+import android.net.Uri
 import android.os.Environment
-import com.simplemobiletools.commons.extensions.internalStoragePath
-import com.simplemobiletools.commons.helpers.isQPlus
+import android.provider.MediaStore
+import android.provider.MediaStore.Audio.Media
+import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.voicerecorder.R
-import com.simplemobiletools.voicerecorder.helpers.Config
-import com.simplemobiletools.voicerecorder.helpers.IS_RECORDING
-import com.simplemobiletools.voicerecorder.helpers.MyWidgetRecordDisplayProvider
-import com.simplemobiletools.voicerecorder.helpers.TOGGLE_WIDGET_UI
+import com.simplemobiletools.voicerecorder.helpers.*
+import com.simplemobiletools.voicerecorder.models.Recording
+import java.io.File
+import kotlin.math.roundToLong
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
 
@@ -49,5 +54,149 @@ fun Context.getDefaultRecordingsRelativePath(): String {
         "${Environment.DIRECTORY_MUSIC}/Recordings"
     } else {
         getString(R.string.app_name)
+    }
+}
+
+@SuppressLint("InlinedApi")
+fun Context.getMediaStoreRecordings(trashed: Boolean = false): ArrayList<Recording> {
+    val recordings = ArrayList<Recording>()
+
+    val uri = Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+    val projection = arrayOf(
+        Media._ID,
+        Media.DISPLAY_NAME,
+        Media.DATE_ADDED,
+        Media.DURATION,
+        Media.SIZE
+    )
+
+    var selection = "${Media.OWNER_PACKAGE_NAME} = ?"
+    var selectionArgs = arrayOf(packageName)
+    val sortOrder = "${Media.DATE_ADDED} DESC"
+
+    if (config.useRecycleBin) {
+        val trashedValue = if (trashed) 1 else 0
+        selection += " AND ${Media.IS_TRASHED} = ?"
+        selectionArgs = selectionArgs.plus(trashedValue.toString())
+    }
+
+    queryCursor(uri, projection, selection, selectionArgs, sortOrder, true) { cursor ->
+        val id = cursor.getIntValue(Media._ID)
+        val title = cursor.getStringValue(Media.DISPLAY_NAME)
+        val timestamp = cursor.getIntValue(Media.DATE_ADDED)
+        var duration = cursor.getLongValue(Media.DURATION) / 1000
+        var size = cursor.getIntValue(Media.SIZE)
+
+        if (duration == 0L) {
+            duration = getDurationFromUri(getAudioFileContentUri(id.toLong()))
+        }
+
+        if (size == 0) {
+            size = getSizeFromUri(id.toLong())
+        }
+
+        val recording = Recording(id, title, "", timestamp, duration.toInt(), size)
+        recordings.add(recording)
+    }
+
+    return recordings
+}
+
+fun Context.getLegacyRecordings(trashed: Boolean = false): ArrayList<Recording> {
+    val recordings = ArrayList<Recording>()
+    val folder = if (trashed) {
+        trashFolder
+    } else {
+        config.saveRecordingsFolder
+    }
+    val files = File(folder).listFiles() ?: return recordings
+
+    files.filter { it.isAudioFast() }.forEach {
+        val id = it.hashCode()
+        val title = it.name
+        val path = it.absolutePath
+        val timestamp = (it.lastModified() / 1000).toInt()
+        val duration = getDuration(it.absolutePath) ?: 0
+        val size = it.length().toInt()
+        val recording = Recording(id, title, path, timestamp, duration, size)
+        recordings.add(recording)
+    }
+    return recordings
+}
+
+fun Context.getSAFRecordings(trashed: Boolean = false): ArrayList<Recording> {
+    val recordings = ArrayList<Recording>()
+    val folder = if (trashed) {
+        trashFolder
+    } else {
+        config.saveRecordingsFolder
+    }
+    val files = getDocumentSdk30(folder)?.listFiles() ?: return recordings
+
+    files.filter { it.type?.startsWith("audio") == true && !it.name.isNullOrEmpty() }.forEach {
+        val id = it.hashCode()
+        val title = it.name!!
+        val path = it.uri.toString()
+        val timestamp = (it.lastModified() / 1000).toInt()
+        val duration = getDurationFromUri(it.uri)
+        val size = it.length().toInt()
+        val recording = Recording(id, title, path, timestamp, duration.toInt(), size)
+        recordings.add(recording)
+    }
+
+    recordings.sortByDescending { it.timestamp }
+    return recordings
+}
+
+fun Context.getAllRecordings(trashed: Boolean = false): ArrayList<Recording> {
+    val recordings = ArrayList<Recording>()
+    return when {
+        isRPlus() -> {
+            recordings.addAll(getMediaStoreRecordings(trashed))
+            recordings.addAll(getSAFRecordings(trashed))
+            recordings
+        }
+
+        isQPlus() -> {
+            recordings.addAll(getMediaStoreRecordings(trashed))
+            recordings.addAll(getLegacyRecordings(trashed))
+            recordings
+        }
+
+        else -> {
+            recordings.addAll(getLegacyRecordings(trashed))
+            recordings
+        }
+    }
+}
+
+val Context.trashFolder
+    get() = "${config.saveRecordingsFolder}/.trash"
+
+fun Context.getOrCreateTrashFolder(): String {
+    val folder = File(trashFolder)
+    if (!folder.exists()) {
+        folder.mkdir()
+    }
+    return trashFolder
+}
+
+private fun Context.getSizeFromUri(id: Long): Int {
+    val recordingUri = getAudioFileContentUri(id)
+    return try {
+        contentResolver.openInputStream(recordingUri)?.available() ?: 0
+    } catch (e: Exception) {
+        0
+    }
+}
+
+private fun Context.getDurationFromUri(uri: Uri): Long {
+    return try {
+        val retriever = MediaMetadataRetriever()
+        retriever.setDataSource(this, uri)
+        val time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)!!
+        (time.toLong() / 1000.toDouble()).roundToLong()
+    } catch (e: Exception) {
+        0L
     }
 }

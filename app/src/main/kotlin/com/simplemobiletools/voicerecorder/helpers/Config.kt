@@ -72,4 +72,12 @@ class Config(context: Context) : BaseConfig(context) {
         EXTENSION_OGG -> MediaRecorder.AudioEncoder.OPUS
         else -> MediaRecorder.AudioEncoder.AAC
     }
+
+    var useRecycleBin: Boolean
+        get() = prefs.getBoolean(USE_RECYCLE_BIN, true)
+        set(useRecycleBin) = prefs.edit().putBoolean(USE_RECYCLE_BIN, useRecycleBin).apply()
+
+    var lastRecycleBinCheck: Long
+        get() = prefs.getLong(LAST_RECYCLE_BIN_CHECK, 0L)
+        set(lastRecycleBinCheck) = prefs.edit().putLong(LAST_RECYCLE_BIN_CHECK, lastRecycleBinCheck).apply()
 }
