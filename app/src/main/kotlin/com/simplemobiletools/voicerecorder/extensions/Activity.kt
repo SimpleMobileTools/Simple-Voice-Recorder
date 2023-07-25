@@ -31,7 +31,8 @@ fun BaseSimpleActivity.deleteRecordings(recordingsToRemove: Collection<Recording
                 val result = contentResolver.delete(uri, selection, selectionArgs)
 
                 if (result == 0) {
-                    deleteFile(File(it.path).toFileDirItem(this))
+                    val fileDirItem = File(it.path).toFileDirItem(this)
+                    deleteFile(fileDirItem)
                 }
             }
             callback(true)
@@ -39,7 +40,8 @@ fun BaseSimpleActivity.deleteRecordings(recordingsToRemove: Collection<Recording
 
         else -> {
             recordingsToRemove.forEach {
-                deleteFile(File(it.path).toFileDirItem(this))
+                val fileDirItem = File(it.path).toFileDirItem(this)
+                deleteFile(fileDirItem)
             }
             callback(true)
         }
