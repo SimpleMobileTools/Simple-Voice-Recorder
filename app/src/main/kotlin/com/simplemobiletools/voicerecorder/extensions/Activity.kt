@@ -159,11 +159,19 @@ fun BaseSimpleActivity.moveRecordingsToRecycleBin(recordingsToMove: Collection<R
 }
 
 fun BaseSimpleActivity.checkRecycleBinItems() {
+    if (isQPlus()) {
+        // System is handling recycle bin on Q+ devices
+        return
+    }
+
     if (config.useRecycleBin && config.lastRecycleBinCheck < System.currentTimeMillis() - DAY_SECONDS * 1000) {
         config.lastRecycleBinCheck = System.currentTimeMillis()
         ensureBackgroundThread {
             try {
-                deleteRecordings(getLegacyRecordings(trashed = true).filter { it.timestamp < System.currentTimeMillis() - MONTH_SECONDS * 1000L }) {}
+                val recordingsToRemove = getLegacyRecordings(trashed = true).filter { it.timestamp < System.currentTimeMillis() - MONTH_SECONDS * 1000L }
+                if (recordingsToRemove.isNotEmpty()) {
+                    deleteRecordings(recordingsToRemove) {}
+                }
             } catch (e: Exception) {
             }
         }
