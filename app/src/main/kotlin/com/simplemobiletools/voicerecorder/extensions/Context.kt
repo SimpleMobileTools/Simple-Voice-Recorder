@@ -3,13 +3,16 @@ package com.simplemobiletools.voicerecorder.extensions
 import android.annotation.SuppressLint
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
+import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.media.MediaMetadataRetriever
 import android.net.Uri
+import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.provider.MediaStore.Audio.Media
@@ -58,6 +61,37 @@ fun Context.getDefaultRecordingsRelativePath(): String {
 }
 
 @SuppressLint("InlinedApi")
+fun Context.getNewMediaStoreRecordings(trashed: Boolean = false): ArrayList<Recording> {
+    val recordings = ArrayList<Recording>()
+
+    val uri = Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+    val projection = arrayOf(
+        Media._ID,
+        Media.DISPLAY_NAME,
+        Media.DATE_ADDED,
+        Media.DURATION,
+        Media.SIZE
+    )
+
+    val bundle = Bundle().apply {
+        putStringArray(ContentResolver.QUERY_ARG_SORT_COLUMNS, arrayOf(Media.DATE_ADDED))
+        putInt(ContentResolver.QUERY_ARG_SORT_DIRECTION, ContentResolver.QUERY_SORT_DIRECTION_DESCENDING)
+        putString(ContentResolver.QUERY_ARG_SQL_SELECTION, "${Media.OWNER_PACKAGE_NAME} = ?")
+        putStringArray(ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS, arrayOf(packageName))
+        if (config.useRecycleBin) {
+            val trashedValue = if (trashed) MediaStore.MATCH_ONLY else MediaStore.MATCH_EXCLUDE
+            putInt(MediaStore.QUERY_ARG_MATCH_TRASHED, trashedValue)
+        }
+    }
+    queryCursor(uri, projection, bundle, true) { cursor ->
+        val recording = readRecordingFromCursor(cursor)
+        recordings.add(recording)
+    }
+
+    return recordings
+}
+
+@SuppressLint("InlinedApi")
 fun Context.getMediaStoreRecordings(trashed: Boolean = false): ArrayList<Recording> {
     val recordings = ArrayList<Recording>()
 
@@ -81,21 +115,7 @@ fun Context.getMediaStoreRecordings(trashed: Boolean = false): ArrayList<Recordi
     }
 
     queryCursor(uri, projection, selection, selectionArgs, sortOrder, true) { cursor ->
-        val id = cursor.getIntValue(Media._ID)
-        val title = cursor.getStringValue(Media.DISPLAY_NAME)
-        val timestamp = cursor.getIntValue(Media.DATE_ADDED)
-        var duration = cursor.getLongValue(Media.DURATION) / 1000
-        var size = cursor.getIntValue(Media.SIZE)
-
-        if (duration == 0L) {
-            duration = getDurationFromUri(getAudioFileContentUri(id.toLong()))
-        }
-
-        if (size == 0) {
-            size = getSizeFromUri(id.toLong())
-        }
-
-        val recording = Recording(id, title, "", timestamp, duration.toInt(), size)
+        val recording = readRecordingFromCursor(cursor)
         recordings.add(recording)
     }
 
@@ -152,7 +172,7 @@ fun Context.getAllRecordings(trashed: Boolean = false): ArrayList<Recording> {
     val recordings = ArrayList<Recording>()
     return when {
         isRPlus() -> {
-            recordings.addAll(getMediaStoreRecordings(trashed))
+            recordings.addAll(getNewMediaStoreRecordings(trashed))
             recordings.addAll(getSAFRecordings(trashed))
             recordings
         }
@@ -179,6 +199,24 @@ fun Context.getOrCreateTrashFolder(): String {
         folder.mkdir()
     }
     return trashFolder
+}
+
+private fun Context.readRecordingFromCursor(cursor: Cursor): Recording {
+    val id = cursor.getIntValue(Media._ID)
+    val title = cursor.getStringValue(Media.DISPLAY_NAME)
+    val timestamp = cursor.getIntValue(Media.DATE_ADDED)
+    var duration = cursor.getLongValue(Media.DURATION) / 1000
+    var size = cursor.getIntValue(Media.SIZE)
+
+    if (duration == 0L) {
+        duration = getDurationFromUri(getAudioFileContentUri(id.toLong()))
+    }
+
+    if (size == 0) {
+        size = getSizeFromUri(id.toLong())
+    }
+
+    return Recording(id, title, "", timestamp, duration.toInt(), size)
 }
 
 private fun Context.getSizeFromUri(id: Long): Int {

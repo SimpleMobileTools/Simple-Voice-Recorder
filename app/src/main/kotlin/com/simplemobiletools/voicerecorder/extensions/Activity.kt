@@ -3,13 +3,13 @@ package com.simplemobiletools.voicerecorder.extensions
 import android.content.ContentValues
 import android.provider.MediaStore
 import android.provider.MediaStore.Audio.Media
-import androidx.core.net.toUri
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.extensions.deleteFile
 import com.simplemobiletools.commons.extensions.getParentPath
 import com.simplemobiletools.commons.extensions.toFileDirItem
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FileDirItem
+import com.simplemobiletools.voicerecorder.helpers.getAudioFileContentUri
 import com.simplemobiletools.voicerecorder.models.Recording
 import java.io.File
 
@@ -17,7 +17,7 @@ fun BaseSimpleActivity.deleteRecordings(recordingsToRemove: Collection<Recording
     when {
         isRPlus() -> {
             val fileUris = recordingsToRemove.map { recording ->
-                "${Media.EXTERNAL_CONTENT_URI}/${recording.id.toLong()}".toUri()
+                getAudioFileContentUri(recording.id.toLong())
             }
 
             deleteSDK30Uris(fileUris, callback)
@@ -52,7 +52,7 @@ fun BaseSimpleActivity.restoreRecordings(recordingsToRestore: Collection<Recordi
     when {
         isRPlus() -> {
             val fileUris = recordingsToRestore.map { recording ->
-                "${Media.EXTERNAL_CONTENT_URI}/${recording.id.toLong()}".toUri()
+                getAudioFileContentUri(recording.id.toLong())
             }
 
             trashSDK30Uris(fileUris, false, callback)
@@ -107,7 +107,7 @@ fun BaseSimpleActivity.moveRecordingsToRecycleBin(recordingsToMove: Collection<R
     when {
         isRPlus() -> {
             val fileUris = recordingsToMove.map { recording ->
-                "${Media.EXTERNAL_CONTENT_URI}/${recording.id.toLong()}".toUri()
+                getAudioFileContentUri(recording.id.toLong())
             }
 
             trashSDK30Uris(fileUris, true, callback)
