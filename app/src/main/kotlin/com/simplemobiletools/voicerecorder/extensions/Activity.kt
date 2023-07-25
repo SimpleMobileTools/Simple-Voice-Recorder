@@ -13,7 +13,7 @@ import com.simplemobiletools.commons.models.FileDirItem
 import com.simplemobiletools.voicerecorder.models.Recording
 import java.io.File
 
-fun BaseSimpleActivity.deleteRecordings(recordingsToRemove: Collection<Recording>, callback: (Boolean) -> Unit) {
+fun BaseSimpleActivity.deleteRecordings(recordingsToRemove: Collection<Recording>, callback: (success: Boolean) -> Unit) {
     when {
         isRPlus() -> {
             val fileUris = recordingsToRemove.map { recording ->
@@ -46,7 +46,7 @@ fun BaseSimpleActivity.deleteRecordings(recordingsToRemove: Collection<Recording
     }
 }
 
-fun BaseSimpleActivity.restoreRecordings(recordingsToRestore: Collection<Recording>, callback: (Boolean) -> Unit) {
+fun BaseSimpleActivity.restoreRecordings(recordingsToRestore: Collection<Recording>, callback: (success: Boolean) -> Unit) {
     when {
         isRPlus() -> {
             val fileUris = recordingsToRestore.map { recording ->
@@ -101,7 +101,7 @@ fun BaseSimpleActivity.restoreRecordings(recordingsToRestore: Collection<Recordi
     }
 }
 
-fun BaseSimpleActivity.moveRecordingsToRecycleBin(recordingsToMove: Collection<Recording>, callback: (Boolean) -> Unit) {
+fun BaseSimpleActivity.moveRecordingsToRecycleBin(recordingsToMove: Collection<Recording>, callback: (success: Boolean) -> Unit) {
     when {
         isRPlus() -> {
             val fileUris = recordingsToMove.map { recording ->
