@@ -12,6 +12,7 @@ import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.adapters.ViewPagerAdapter
+import com.simplemobiletools.voicerecorder.extensions.checkRecycleBinItems
 import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.helpers.STOP_AMPLITUDE_UPDATE
 import com.simplemobiletools.voicerecorder.models.Events
@@ -40,6 +41,10 @@ class MainActivity : SimpleActivity() {
             return
         }
 
+        if (savedInstanceState == null) {
+            checkRecycleBinItems()
+        }
+
         handlePermission(PERMISSION_RECORD_AUDIO) {
             if (it) {
                 tryInitVoiceRecorder()
@@ -65,6 +70,9 @@ class MainActivity : SimpleActivity() {
         super.onResume()
         setupTabColors()
         updateMenuColors()
+        if (getPagerAdapter()?.showRecycleBin != config.useRecycleBin) {
+            setupViewPager()
+        }
         getPagerAdapter()?.onResume()
     }
 
@@ -149,8 +157,12 @@ class MainActivity : SimpleActivity() {
 
     private fun setupViewPager() {
         main_tabs_holder.removeAllTabs()
-        val tabDrawables = arrayOf(R.drawable.ic_microphone_vector, R.drawable.ic_headset_vector)
-        val tabLabels = arrayOf(R.string.recorder, R.string.player)
+        var tabDrawables = arrayOf(R.drawable.ic_microphone_vector, R.drawable.ic_headset_vector)
+        var tabLabels = arrayOf(R.string.recorder, R.string.player)
+        if (config.useRecycleBin) {
+            tabDrawables += R.drawable.ic_delete_vector
+            tabLabels += R.string.recycle_bin
+        }
 
         tabDrawables.forEachIndexed { i, drawableId ->
             main_tabs_holder.newTab().setCustomView(R.layout.bottom_tablayout_item).apply {
@@ -174,7 +186,7 @@ class MainActivity : SimpleActivity() {
             }
         )
 
-        view_pager.adapter = ViewPagerAdapter(this)
+        view_pager.adapter = ViewPagerAdapter(this, config.useRecycleBin)
         view_pager.onPageChangeListener {
             main_tabs_holder.getTabAt(it)?.select()
             (view_pager.adapter as ViewPagerAdapter).finishActMode()

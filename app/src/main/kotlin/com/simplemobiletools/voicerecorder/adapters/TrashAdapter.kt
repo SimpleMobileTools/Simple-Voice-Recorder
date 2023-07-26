@@ -5,48 +5,35 @@ import android.widget.PopupMenu
 import android.widget.TextView
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
+import com.simplemobiletools.commons.dialogs.ConfirmationDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
-import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.views.MyRecyclerView
-import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
-import com.simplemobiletools.voicerecorder.dialogs.DeleteConfirmationDialog
-import com.simplemobiletools.voicerecorder.dialogs.RenameRecordingDialog
-import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.extensions.deleteRecordings
-import com.simplemobiletools.voicerecorder.extensions.moveRecordingsToRecycleBin
-import com.simplemobiletools.voicerecorder.helpers.getAudioFileContentUri
+import com.simplemobiletools.voicerecorder.extensions.restoreRecordings
 import com.simplemobiletools.voicerecorder.interfaces.RefreshRecordingsListener
 import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.models.Recording
 import kotlinx.android.synthetic.main.item_recording.view.*
 import org.greenrobot.eventbus.EventBus
 
-class RecordingsAdapter(
+class TrashAdapter(
     activity: SimpleActivity,
     var recordings: ArrayList<Recording>,
     val refreshListener: RefreshRecordingsListener,
-    recyclerView: MyRecyclerView,
-    itemClick: (Any) -> Unit
+    recyclerView: MyRecyclerView
 ) :
-    MyRecyclerViewAdapter(activity, recyclerView, itemClick), RecyclerViewFastScroller.OnPopupTextUpdate {
-
-    var currRecordingId = 0
+    MyRecyclerViewAdapter(activity, recyclerView, {}), RecyclerViewFastScroller.OnPopupTextUpdate {
 
     init {
         setupDragListener(true)
     }
 
-    override fun getActionMenuId() = R.menu.cab_recordings
+    override fun getActionMenuId() = R.menu.cab_trash
 
-    override fun prepareActionMode(menu: Menu) {
-        menu.apply {
-            findItem(R.id.cab_rename).isVisible = isOneItemSelected()
-            findItem(R.id.cab_open_with).isVisible = isOneItemSelected()
-        }
-    }
+    override fun prepareActionMode(menu: Menu) {}
 
     override fun actionItemPressed(id: Int) {
         if (selectedKeys.isEmpty()) {
@@ -54,11 +41,9 @@ class RecordingsAdapter(
         }
 
         when (id) {
-            R.id.cab_rename -> renameRecording()
-            R.id.cab_share -> shareRecordings()
+            R.id.cab_restore -> restoreRecordings()
             R.id.cab_delete -> askConfirmDelete()
             R.id.cab_select_all -> selectAll()
-            R.id.cab_open_with -> openRecordingWith()
         }
     }
 
@@ -96,34 +81,20 @@ class RecordingsAdapter(
         }
     }
 
-    private fun renameRecording() {
-        val recording = getItemWithKey(selectedKeys.first()) ?: return
-        RenameRecordingDialog(activity, recording) {
-            finishActMode()
-            refreshListener.refreshRecordings()
-        }
-    }
-
-    private fun openRecordingWith() {
-        val recording = getItemWithKey(selectedKeys.first()) ?: return
-        val path = if (isQPlus()) {
-            getAudioFileContentUri(recording.id.toLong()).toString()
-        } else {
-            recording.path
+    private fun restoreRecordings() {
+        if (selectedKeys.isEmpty()) {
+            return
         }
 
-        activity.openPathIntent(path, false, BuildConfig.APPLICATION_ID, "audio/*")
-    }
+        val recordingsToRestore = recordings.filter { selectedKeys.contains(it.id) } as ArrayList<Recording>
+        val positions = getSelectedItemPositions()
 
-    private fun shareRecordings() {
-        val selectedItems = getSelectedItems()
-        val paths = selectedItems.map {
-            it.path.ifEmpty {
-                getAudioFileContentUri(it.id.toLong()).toString()
+        activity.restoreRecordings(recordingsToRestore) { success ->
+            if (success) {
+                doDeleteAnimation(recordingsToRestore, positions)
+                EventBus.getDefault().post(Events.RecordingTrashUpdated())
             }
         }
-
-        activity.sharePathsIntent(paths, BuildConfig.APPLICATION_ID)
     }
 
     private fun askConfirmDelete() {
@@ -135,21 +106,12 @@ class RecordingsAdapter(
             resources.getQuantityString(R.plurals.delete_recordings, itemsCnt, itemsCnt)
         }
 
-        val baseString = if (activity.config.useRecycleBin) {
-            R.string.move_to_recycle_bin_confirmation
-        } else {
-            R.string.delete_recordings_confirmation
-        }
+        val baseString = R.string.delete_recordings_confirmation
         val question = String.format(resources.getString(baseString), items)
 
-        DeleteConfirmationDialog(activity, question, activity.config.useRecycleBin) { skipRecycleBin ->
+        ConfirmationDialog(activity, question) {
             ensureBackgroundThread {
-                val toRecycleBin = !skipRecycleBin && activity.config.useRecycleBin
-                if (toRecycleBin) {
-                    moveMediaStoreRecordingsToRecycleBin()
-                } else {
-                    deleteMediaStoreRecordings()
-                }
+                deleteMediaStoreRecordings()
             }
         }
     }
@@ -159,35 +121,17 @@ class RecordingsAdapter(
             return
         }
 
-        val oldRecordingIndex = recordings.indexOfFirst { it.id == currRecordingId }
         val recordingsToRemove = recordings.filter { selectedKeys.contains(it.id) } as ArrayList<Recording>
         val positions = getSelectedItemPositions()
 
         activity.deleteRecordings(recordingsToRemove) { success ->
             if (success) {
-                doDeleteAnimation(oldRecordingIndex, recordingsToRemove, positions)
+                doDeleteAnimation(recordingsToRemove, positions)
             }
         }
     }
 
-    private fun moveMediaStoreRecordingsToRecycleBin() {
-        if (selectedKeys.isEmpty()) {
-            return
-        }
-
-        val oldRecordingIndex = recordings.indexOfFirst { it.id == currRecordingId }
-        val recordingsToRemove = recordings.filter { selectedKeys.contains(it.id) } as ArrayList<Recording>
-        val positions = getSelectedItemPositions()
-
-        activity.moveRecordingsToRecycleBin(recordingsToRemove) { success ->
-            if (success) {
-                doDeleteAnimation(oldRecordingIndex, recordingsToRemove, positions)
-                EventBus.getDefault().post(Events.RecordingTrashUpdated())
-            }
-        }
-    }
-
-    private fun doDeleteAnimation(oldRecordingIndex: Int, recordingsToRemove: ArrayList<Recording>, positions: ArrayList<Int>) {
+    private fun doDeleteAnimation(recordingsToRemove: ArrayList<Recording>, positions: ArrayList<Int>) {
         recordings.removeAll(recordingsToRemove.toSet())
         activity.runOnUiThread {
             if (recordings.isEmpty()) {
@@ -196,20 +140,8 @@ class RecordingsAdapter(
             } else {
                 positions.sortDescending()
                 removeSelectedItems(positions)
-                if (recordingsToRemove.map { it.id }.contains(currRecordingId)) {
-                    val newRecordingIndex = Math.min(oldRecordingIndex, recordings.size - 1)
-                    val newRecording = recordings[newRecordingIndex]
-                    refreshListener.playRecording(newRecording, false)
-                }
             }
         }
-    }
-
-    fun updateCurrentRecording(newId: Int) {
-        val oldId = currRecordingId
-        currRecordingId = newId
-        notifyItemChanged(recordings.indexOfFirst { it.id == oldId })
-        notifyItemChanged(recordings.indexOfFirst { it.id == newId })
     }
 
     private fun getSelectedItems() = recordings.filter { selectedKeys.contains(it.id) } as ArrayList<Recording>
@@ -221,10 +153,6 @@ class RecordingsAdapter(
 
             arrayListOf<TextView>(recording_title, recording_date, recording_duration, recording_size).forEach {
                 it.setTextColor(textColor)
-            }
-
-            if (recording.id == currRecordingId) {
-                recording_title.setTextColor(context.getProperPrimaryColor())
             }
 
             recording_title.text = recording.title
@@ -258,24 +186,13 @@ class RecordingsAdapter(
         PopupMenu(contextTheme, view, Gravity.END).apply {
             inflate(getActionMenuId())
             menu.findItem(R.id.cab_select_all).isVisible = false
+            menu.findItem(R.id.cab_restore).title = resources.getString(R.string.restore_this_file)
             setOnMenuItemClickListener { item ->
                 val recordingId = recording.id
                 when (item.itemId) {
-                    R.id.cab_rename -> {
-                        executeItemMenuOperation(recordingId) {
-                            renameRecording()
-                        }
-                    }
-
-                    R.id.cab_share -> {
-                        executeItemMenuOperation(recordingId) {
-                            shareRecordings()
-                        }
-                    }
-
-                    R.id.cab_open_with -> {
-                        executeItemMenuOperation(recordingId) {
-                            openRecordingWith()
+                    R.id.cab_restore -> {
+                        executeItemMenuOperation(recordingId, removeAfterCallback = false) {
+                            restoreRecordings()
                         }
                     }
 

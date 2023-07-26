@@ -3,24 +3,26 @@ package com.simplemobiletools.voicerecorder.activities
 import android.content.Intent
 import android.media.MediaRecorder
 import android.os.Bundle
-import com.simplemobiletools.commons.dialogs.ChangeDateTimeFormatDialog
-import com.simplemobiletools.commons.dialogs.FeatureLockedDialog
-import com.simplemobiletools.commons.dialogs.FilePickerDialog
-import com.simplemobiletools.commons.dialogs.RadioGroupDialog
+import com.simplemobiletools.commons.dialogs.*
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.RadioItem
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.extensions.config
+import com.simplemobiletools.voicerecorder.extensions.emptyTheRecycleBin
+import com.simplemobiletools.voicerecorder.extensions.getAllRecordings
 import com.simplemobiletools.voicerecorder.helpers.BITRATES
 import com.simplemobiletools.voicerecorder.helpers.EXTENSION_M4A
 import com.simplemobiletools.voicerecorder.helpers.EXTENSION_MP3
 import com.simplemobiletools.voicerecorder.helpers.EXTENSION_OGG
+import com.simplemobiletools.voicerecorder.models.Events
 import kotlinx.android.synthetic.main.activity_settings.*
-import java.util.*
+import org.greenrobot.eventbus.EventBus
+import java.util.Locale
 import kotlin.system.exitProcess
 
 class SettingsActivity : SimpleActivity() {
+    private var recycleBinContentSize = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
@@ -47,9 +49,11 @@ class SettingsActivity : SimpleActivity() {
         setupBitrate()
         setupAudioSource()
         setupRecordAfterLaunch()
+        setupUseRecycleBin()
+        setupEmptyRecycleBin()
         updateTextColors(settings_nested_scrollview)
 
-        arrayOf(settings_color_customization_section_label, settings_general_settings_label).forEach {
+        arrayOf(settings_color_customization_section_label, settings_general_settings_label, settings_recycle_bin_label).forEach {
             it.setTextColor(getProperPrimaryColor())
         }
     }
@@ -175,6 +179,48 @@ class SettingsActivity : SimpleActivity() {
         settings_record_after_launch_holder.setOnClickListener {
             settings_record_after_launch.toggle()
             config.recordAfterLaunch = settings_record_after_launch.isChecked
+        }
+    }
+
+    private fun setupUseRecycleBin() {
+        updateRecycleBinButtons()
+        settings_use_recycle_bin.isChecked = config.useRecycleBin
+        settings_use_recycle_bin_holder.setOnClickListener {
+            settings_use_recycle_bin.toggle()
+            config.useRecycleBin = settings_use_recycle_bin.isChecked
+            updateRecycleBinButtons()
+        }
+    }
+
+    private fun updateRecycleBinButtons() {
+        settings_empty_recycle_bin_holder.beVisibleIf(config.useRecycleBin)
+    }
+
+    private fun setupEmptyRecycleBin() {
+        ensureBackgroundThread {
+            try {
+                recycleBinContentSize = getAllRecordings(trashed = true).sumByInt {
+                    it.size
+                }
+            } catch (ignored: Exception) {
+            }
+
+            runOnUiThread {
+                settings_empty_recycle_bin_size.text = recycleBinContentSize.formatSize()
+            }
+        }
+
+        settings_empty_recycle_bin_holder.setOnClickListener {
+            if (recycleBinContentSize == 0) {
+                toast(R.string.recycle_bin_empty)
+            } else {
+                ConfirmationDialog(this, "", R.string.empty_recycle_bin_confirmation, R.string.yes, R.string.no) {
+                    emptyTheRecycleBin()
+                    recycleBinContentSize = 0
+                    settings_empty_recycle_bin_size.text = 0.formatSize()
+                    EventBus.getDefault().post(Events.RecordingTrashUpdated())
+                }
+            }
         }
     }
 
