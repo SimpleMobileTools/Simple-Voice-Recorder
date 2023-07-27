@@ -1,11 +1,8 @@
 package com.simplemobiletools.voicerecorder.fragments
 
 import android.content.Context
-import android.os.Handler
-import android.os.Looper
 import android.util.AttributeSet
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
 import com.simplemobiletools.voicerecorder.adapters.TrashAdapter
@@ -63,34 +60,30 @@ class TrashFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerF
     override fun playRecording(recording: Recording, playOnPrepared: Boolean) {}
 
     private fun setupAdapter(recordings: ArrayList<Recording>) {
-        ensureBackgroundThread {
-            Handler(Looper.getMainLooper()).post {
-                recordings_fastscroller.beVisibleIf(recordings.isNotEmpty())
-                recordings_placeholder.beVisibleIf(recordings.isEmpty())
-                if (recordings.isEmpty()) {
-                    val stringId = if (lastSearchQuery.isEmpty()) {
-                        R.string.recycle_bin_empty
-                    } else {
-                        R.string.no_items_found
-                    }
-
-                    recordings_placeholder.text = context.getString(stringId)
-                }
-
-                val adapter = getRecordingsAdapter()
-                if (adapter == null) {
-                    TrashAdapter(context as SimpleActivity, recordings, this, recordings_list)
-                        .apply {
-                            recordings_list.adapter = this
-                        }
-
-                    if (context.areSystemAnimationsEnabled) {
-                        recordings_list.scheduleLayoutAnimation()
-                    }
-                } else {
-                    adapter.updateItems(recordings)
-                }
+        recordings_fastscroller.beVisibleIf(recordings.isNotEmpty())
+        recordings_placeholder.beVisibleIf(recordings.isEmpty())
+        if (recordings.isEmpty()) {
+            val stringId = if (lastSearchQuery.isEmpty()) {
+                R.string.recycle_bin_empty
+            } else {
+                R.string.no_items_found
             }
+
+            recordings_placeholder.text = context.getString(stringId)
+        }
+
+        val adapter = getRecordingsAdapter()
+        if (adapter == null) {
+            TrashAdapter(context as SimpleActivity, recordings, this, recordings_list)
+                .apply {
+                    recordings_list.adapter = this
+                }
+
+            if (context.areSystemAnimationsEnabled) {
+                recordings_list.scheduleLayoutAnimation()
+            }
+        } else {
+            adapter.updateItems(recordings)
         }
     }
 

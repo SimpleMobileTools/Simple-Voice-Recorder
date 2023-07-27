@@ -12,7 +12,6 @@ import android.provider.DocumentsContract
 import android.util.AttributeSet
 import android.widget.SeekBar
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
@@ -138,44 +137,40 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     }
 
     private fun setupAdapter(recordings: ArrayList<Recording>) {
-        ensureBackgroundThread {
-            Handler(Looper.getMainLooper()).post {
-                recordings_fastscroller.beVisibleIf(recordings.isNotEmpty())
-                recordings_placeholder.beVisibleIf(recordings.isEmpty())
-                if (recordings.isEmpty()) {
-                    val stringId = if (lastSearchQuery.isEmpty()) {
-                        if (isQPlus()) {
-                            R.string.no_recordings_found
-                        } else {
-                            R.string.no_recordings_in_folder_found
-                        }
-                    } else {
-                        R.string.no_items_found
-                    }
-
-                    recordings_placeholder.text = context.getString(stringId)
-                    resetProgress(null)
-                    player?.stop()
-                }
-
-                val adapter = getRecordingsAdapter()
-                if (adapter == null) {
-                    RecordingsAdapter(context as SimpleActivity, recordings, this, recordings_list) {
-                        playRecording(it as Recording, true)
-                        if (playedRecordingIDs.isEmpty() || playedRecordingIDs.peek() != it.id) {
-                            playedRecordingIDs.push(it.id)
-                        }
-                    }.apply {
-                        recordings_list.adapter = this
-                    }
-
-                    if (context.areSystemAnimationsEnabled) {
-                        recordings_list.scheduleLayoutAnimation()
-                    }
+        recordings_fastscroller.beVisibleIf(recordings.isNotEmpty())
+        recordings_placeholder.beVisibleIf(recordings.isEmpty())
+        if (recordings.isEmpty()) {
+            val stringId = if (lastSearchQuery.isEmpty()) {
+                if (isQPlus()) {
+                    R.string.no_recordings_found
                 } else {
-                    adapter.updateItems(recordings)
+                    R.string.no_recordings_in_folder_found
                 }
+            } else {
+                R.string.no_items_found
             }
+
+            recordings_placeholder.text = context.getString(stringId)
+            resetProgress(null)
+            player?.stop()
+        }
+
+        val adapter = getRecordingsAdapter()
+        if (adapter == null) {
+            RecordingsAdapter(context as SimpleActivity, recordings, this, recordings_list) {
+                playRecording(it as Recording, true)
+                if (playedRecordingIDs.isEmpty() || playedRecordingIDs.peek() != it.id) {
+                    playedRecordingIDs.push(it.id)
+                }
+            }.apply {
+                recordings_list.adapter = this
+            }
+
+            if (context.areSystemAnimationsEnabled) {
+                recordings_list.scheduleLayoutAnimation()
+            }
+        } else {
+            adapter.updateItems(recordings)
         }
     }
 
