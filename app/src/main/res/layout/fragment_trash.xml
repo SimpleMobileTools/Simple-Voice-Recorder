@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.simplemobiletools.voicerecorder.fragments.TrashFragment xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/trash_holder"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.simplemobiletools.commons.views.MyTextView
+        android:id="@+id/trash_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alpha="0.8"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/small_margin"
+        android:padding="@dimen/activity_margin"
+        android:text="@string/recycle_bin_empty"
+        android:textSize="@dimen/bigger_text_size"
+        android:textStyle="italic"
+        android:visibility="visible" />
+
+    <com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
+        android:id="@+id/trash_fastscroller"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.simplemobiletools.commons.views.MyRecyclerView
+            android:id="@+id/trash_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:layoutAnimation="@anim/layout_animation"
+            android:scrollbars="none"
+            app:layoutManager="com.simplemobiletools.commons.views.MyLinearLayoutManager" />
+
+    </com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller>
+</com.simplemobiletools.voicerecorder.fragments.TrashFragment>
