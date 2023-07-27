@@ -178,7 +178,7 @@ class MainActivity : SimpleActivity() {
         main_tabs_holder.onTabSelectionChanged(
             tabUnselectedAction = {
                 updateBottomTabItemColors(it.customView, false)
-                if (it.position == 1) {
+                if (it.position == 1 || it.position == 2) {
                     main_menu.closeSearch()
                 }
             },
