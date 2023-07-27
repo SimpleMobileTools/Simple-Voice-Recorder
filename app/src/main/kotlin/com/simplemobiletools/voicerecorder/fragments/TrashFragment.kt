@@ -11,10 +11,10 @@ import com.simplemobiletools.voicerecorder.extensions.getAllRecordings
 import com.simplemobiletools.voicerecorder.interfaces.RefreshRecordingsListener
 import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.models.Recording
-import kotlinx.android.synthetic.main.fragment_trash.view.player_holder
-import kotlinx.android.synthetic.main.fragment_trash.view.recordings_fastscroller
-import kotlinx.android.synthetic.main.fragment_trash.view.recordings_list
-import kotlinx.android.synthetic.main.fragment_trash.view.recordings_placeholder
+import kotlinx.android.synthetic.main.fragment_trash.view.trash_holder
+import kotlinx.android.synthetic.main.fragment_trash.view.trash_fastscroller
+import kotlinx.android.synthetic.main.fragment_trash.view.trash_list
+import kotlinx.android.synthetic.main.fragment_trash.view.trash_placeholder
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -60,8 +60,8 @@ class TrashFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerF
     override fun playRecording(recording: Recording, playOnPrepared: Boolean) {}
 
     private fun setupAdapter(recordings: ArrayList<Recording>) {
-        recordings_fastscroller.beVisibleIf(recordings.isNotEmpty())
-        recordings_placeholder.beVisibleIf(recordings.isEmpty())
+        trash_fastscroller.beVisibleIf(recordings.isNotEmpty())
+        trash_placeholder.beVisibleIf(recordings.isEmpty())
         if (recordings.isEmpty()) {
             val stringId = if (lastSearchQuery.isEmpty()) {
                 R.string.recycle_bin_empty
@@ -69,18 +69,18 @@ class TrashFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerF
                 R.string.no_items_found
             }
 
-            recordings_placeholder.text = context.getString(stringId)
+            trash_placeholder.text = context.getString(stringId)
         }
 
         val adapter = getRecordingsAdapter()
         if (adapter == null) {
-            TrashAdapter(context as SimpleActivity, recordings, this, recordings_list)
+            TrashAdapter(context as SimpleActivity, recordings, this, trash_list)
                 .apply {
-                    recordings_list.adapter = this
+                    trash_list.adapter = this
                 }
 
             if (context.areSystemAnimationsEnabled) {
-                recordings_list.scheduleLayoutAnimation()
+                trash_list.scheduleLayoutAnimation()
             }
         } else {
             adapter.updateItems(recordings)
@@ -99,7 +99,7 @@ class TrashFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerF
         setupAdapter(filtered)
     }
 
-    private fun getRecordingsAdapter() = recordings_list.adapter as? TrashAdapter
+    private fun getRecordingsAdapter() = trash_list.adapter as? TrashAdapter
 
     private fun storePrevPath() {
         prevSavePath = context!!.config.saveRecordingsFolder
@@ -107,8 +107,8 @@ class TrashFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerF
 
     private fun setupColors() {
         val properPrimaryColor = context.getProperPrimaryColor()
-        recordings_fastscroller.updateColors(properPrimaryColor)
-        context.updateTextColors(player_holder)
+        trash_fastscroller.updateColors(properPrimaryColor)
+        context.updateTextColors(trash_holder)
     }
 
     fun finishActMode() = getRecordingsAdapter()?.finishActMode()

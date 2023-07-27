@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.simplemobiletools.voicerecorder.fragments.TrashFragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/player_holder"
+    android:id="@+id/trash_holder"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.simplemobiletools.commons.views.MyTextView
-        android:id="@+id/recordings_placeholder"
+        android:id="@+id/trash_placeholder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:alpha="0.8"
@@ -19,14 +19,13 @@
         android:visibility="visible" />
 
     <com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
-        android:id="@+id/recordings_fastscroller"
+        android:id="@+id/trash_fastscroller"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/player_controls_wrapper"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.simplemobiletools.commons.views.MyRecyclerView
-            android:id="@+id/recordings_list"
+            android:id="@+id/trash_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
