@@ -187,11 +187,7 @@ class MainActivity : SimpleActivity() {
         )
 
         view_pager.adapter = ViewPagerAdapter(this, config.useRecycleBin)
-        view_pager.offscreenPageLimit = if (config.useRecycleBin) {
-            2
-        } else {
-            1
-        }
+        view_pager.offscreenPageLimit = 2
         view_pager.onPageChangeListener {
             main_tabs_holder.getTabAt(it)?.select()
             (view_pager.adapter as ViewPagerAdapter).finishActMode()
