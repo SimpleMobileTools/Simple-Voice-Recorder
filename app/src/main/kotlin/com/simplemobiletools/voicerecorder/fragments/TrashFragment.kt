@@ -11,8 +11,8 @@ import com.simplemobiletools.voicerecorder.extensions.getAllRecordings
 import com.simplemobiletools.voicerecorder.interfaces.RefreshRecordingsListener
 import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.models.Recording
-import kotlinx.android.synthetic.main.fragment_trash.view.trash_holder
 import kotlinx.android.synthetic.main.fragment_trash.view.trash_fastscroller
+import kotlinx.android.synthetic.main.fragment_trash.view.trash_holder
 import kotlinx.android.synthetic.main.fragment_trash.view.trash_list
 import kotlinx.android.synthetic.main.fragment_trash.view.trash_placeholder
 import org.greenrobot.eventbus.EventBus
@@ -74,10 +74,9 @@ class TrashFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerF
 
         val adapter = getRecordingsAdapter()
         if (adapter == null) {
-            TrashAdapter(context as SimpleActivity, recordings, this, trash_list)
-                .apply {
-                    trash_list.adapter = this
-                }
+            TrashAdapter(context as SimpleActivity, recordings, this, trash_list).apply {
+                trash_list.adapter = this
+            }
 
             if (context.areSystemAnimationsEnabled) {
                 trash_list.scheduleLayoutAnimation()
