@@ -118,7 +118,9 @@ class MainActivity : SimpleActivity() {
         main_menu.setupMenu()
 
         main_menu.onSearchOpenListener = {
-            view_pager.currentItem = 1
+            if (view_pager.currentItem == 0) {
+                view_pager.currentItem = 1
+            }
         }
 
         main_menu.onSearchTextChangedListener = { text ->
@@ -187,6 +189,7 @@ class MainActivity : SimpleActivity() {
         )
 
         view_pager.adapter = ViewPagerAdapter(this, config.useRecycleBin)
+        view_pager.offscreenPageLimit = 2
         view_pager.onPageChangeListener {
             main_tabs_holder.getTabAt(it)?.select()
             (view_pager.adapter as ViewPagerAdapter).finishActMode()
