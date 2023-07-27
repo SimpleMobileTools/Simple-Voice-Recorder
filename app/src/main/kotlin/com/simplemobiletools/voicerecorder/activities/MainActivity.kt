@@ -118,7 +118,9 @@ class MainActivity : SimpleActivity() {
         main_menu.setupMenu()
 
         main_menu.onSearchOpenListener = {
-            view_pager.currentItem = 1
+            if (view_pager.currentItem == 0) {
+                view_pager.currentItem = 1
+            }
         }
 
         main_menu.onSearchTextChangedListener = { text ->
