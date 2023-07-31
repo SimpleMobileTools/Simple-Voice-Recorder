@@ -273,7 +273,7 @@ class RecorderService : Service() {
             visibility = NotificationCompat.VISIBILITY_SECRET
         }
 
-        val builder = NotificationCompat.Builder(this)
+        val builder = NotificationCompat.Builder(this, channelId)
             .setContentTitle(title)
             .setContentText(text)
             .setSmallIcon(icon)
@@ -283,7 +283,6 @@ class RecorderService : Service() {
             .setSound(null)
             .setOngoing(true)
             .setAutoCancel(true)
-            .setChannelId(channelId)
 
         return builder.build()
     }
