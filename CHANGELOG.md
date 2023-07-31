@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.12.4 *(2023-07-31)*
+----------------------------
+
+ * Added a Recycle bin
+ * Added some stability, UI and translation improvements
+
 Version 5.11.4 *(2023-06-20)*
 ----------------------------
 

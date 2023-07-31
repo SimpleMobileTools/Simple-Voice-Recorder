@@ -1,0 +1,2 @@
+ * Added a Recycle bin
+ * Added some stability, UI and translation improvements
