@@ -3,8 +3,8 @@ package com.simplemobiletools.voicerecorder.activities
 import android.content.Intent
 import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.commons.extensions.openNotificationSettings
-import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.services.RecorderService
+import com.simplemobiletools.commons.R as CommonsR
 
 class BackgroundRecordActivity : SimpleActivity() {
     companion object {
@@ -27,7 +27,7 @@ class BackgroundRecordActivity : SimpleActivity() {
                         }
                     }
                 } else {
-                    PermissionRequiredDialog(this, R.string.allow_notifications_voice_recorder, { openNotificationSettings() })
+                    PermissionRequiredDialog(this, CommonsR.string.allow_notifications_voice_recorder, { openNotificationSettings() })
                 }
             }
         }

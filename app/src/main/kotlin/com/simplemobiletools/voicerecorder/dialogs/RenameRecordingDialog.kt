@@ -7,36 +7,37 @@ import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isRPlus
-import com.simplemobiletools.voicerecorder.R
+import com.simplemobiletools.voicerecorder.databinding.DialogRenameRecordingBinding
 import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.helpers.getAudioFileContentUri
 import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.models.Recording
-import kotlinx.android.synthetic.main.dialog_rename_recording.view.*
 import org.greenrobot.eventbus.EventBus
 import java.io.File
+import com.simplemobiletools.commons.R as CommonsR
 
 class RenameRecordingDialog(val activity: BaseSimpleActivity, val recording: Recording, val callback: () -> Unit) {
     init {
-        val view = activity.layoutInflater.inflate(R.layout.dialog_rename_recording, null).apply {
-            rename_recording_title.setText(recording.title.substringBeforeLast('.'))
+        val binding = DialogRenameRecordingBinding.inflate(activity.layoutInflater).apply {
+            renameRecordingTitle.setText(recording.title.substringBeforeLast('.'))
         }
+        val view = binding.root
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(R.string.ok, null)
-            .setNegativeButton(R.string.cancel, null)
+            .setPositiveButton(CommonsR.string.ok, null)
+            .setNegativeButton(CommonsR.string.cancel, null)
             .apply {
-                activity.setupDialogStuff(view, this, R.string.rename) { alertDialog ->
-                    alertDialog.showKeyboard(view.rename_recording_title)
+                activity.setupDialogStuff(view, this, CommonsR.string.rename) { alertDialog ->
+                    alertDialog.showKeyboard(binding.renameRecordingTitle)
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-                        val newTitle = view.rename_recording_title.value
+                        val newTitle = binding.renameRecordingTitle.value
                         if (newTitle.isEmpty()) {
-                            activity.toast(R.string.empty_name)
+                            activity.toast(CommonsR.string.empty_name)
                             return@setOnClickListener
                         }
 
                         if (!newTitle.isAValidFilename()) {
-                            activity.toast(R.string.invalid_name)
+                            activity.toast(CommonsR.string.invalid_name)
                             return@setOnClickListener
                         }
 

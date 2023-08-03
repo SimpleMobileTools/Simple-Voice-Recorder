@@ -8,6 +8,7 @@ import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.RadioItem
 import com.simplemobiletools.voicerecorder.R
+import com.simplemobiletools.voicerecorder.databinding.ActivitySettingsBinding
 import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.extensions.emptyTheRecycleBin
 import com.simplemobiletools.voicerecorder.extensions.getAllRecordings
@@ -16,26 +17,28 @@ import com.simplemobiletools.voicerecorder.helpers.EXTENSION_M4A
 import com.simplemobiletools.voicerecorder.helpers.EXTENSION_MP3
 import com.simplemobiletools.voicerecorder.helpers.EXTENSION_OGG
 import com.simplemobiletools.voicerecorder.models.Events
-import kotlinx.android.synthetic.main.activity_settings.*
 import org.greenrobot.eventbus.EventBus
 import java.util.Locale
 import kotlin.system.exitProcess
+import com.simplemobiletools.commons.R as CommonsR
 
 class SettingsActivity : SimpleActivity() {
     private var recycleBinContentSize = 0
+    private lateinit var binding: ActivitySettingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        updateMaterialActivityViews(settings_coordinator, settings_holder, useTransparentNavigation = true, useTopSearchMenu = false)
-        setupMaterialScrollListener(settings_nested_scrollview, settings_toolbar)
+        updateMaterialActivityViews(binding.settingsCoordinator, binding.settingsHolder, useTransparentNavigation = true, useTopSearchMenu = false)
+        setupMaterialScrollListener(binding.settingsNestedScrollview, binding.settingsToolbar)
     }
 
     override fun onResume() {
         super.onResume()
-        setupToolbar(settings_toolbar, NavigationIcon.Arrow)
+        setupToolbar(binding.settingsToolbar, NavigationIcon.Arrow)
 
         setupPurchaseThankYou()
         setupCustomizeColors()
@@ -51,29 +54,29 @@ class SettingsActivity : SimpleActivity() {
         setupRecordAfterLaunch()
         setupUseRecycleBin()
         setupEmptyRecycleBin()
-        updateTextColors(settings_nested_scrollview)
+        updateTextColors(binding.settingsNestedScrollview)
 
-        arrayOf(settings_color_customization_section_label, settings_general_settings_label, settings_recycle_bin_label).forEach {
+        arrayOf(binding.settingsColorCustomizationLabel, binding.settingsGeneralSettingsLabel, binding.settingsRecycleBinLabel).forEach {
             it.setTextColor(getProperPrimaryColor())
         }
     }
 
     private fun setupPurchaseThankYou() {
-        settings_purchase_thank_you_holder.beGoneIf(isOrWasThankYouInstalled())
-        settings_purchase_thank_you_holder.setOnClickListener {
+        binding.settingsPurchaseThankYouHolder.beGoneIf(isOrWasThankYouInstalled())
+        binding.settingsPurchaseThankYouHolder.setOnClickListener {
             launchPurchaseThankYouIntent()
         }
     }
 
     private fun setupCustomizeColors() {
-        settings_color_customization_label.text = getCustomizeColorsString()
-        settings_color_customization_holder.setOnClickListener {
+        binding.settingsColorCustomizationLabel.text = getCustomizeColorsString()
+        binding.settingsColorCustomizationHolder.setOnClickListener {
             handleCustomizeColorsClick()
         }
     }
 
     private fun setupCustomizeWidgetColors() {
-        settings_widget_color_customization_holder.setOnClickListener {
+        binding.settingsWidgetColorCustomizationHolder.setOnClickListener {
             Intent(this, WidgetRecordDisplayConfigureActivity::class.java).apply {
                 putExtra(IS_CUSTOMIZING_COLORS, true)
                 startActivity(this)
@@ -82,41 +85,41 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupUseEnglish() {
-        settings_use_english_holder.beVisibleIf((config.wasUseEnglishToggled || Locale.getDefault().language != "en") && !isTiramisuPlus())
-        settings_use_english.isChecked = config.useEnglish
-        settings_use_english_holder.setOnClickListener {
-            settings_use_english.toggle()
-            config.useEnglish = settings_use_english.isChecked
+        binding.settingsUseEnglishHolder.beVisibleIf((config.wasUseEnglishToggled || Locale.getDefault().language != "en") && !isTiramisuPlus())
+        binding.settingsUseEnglish.isChecked = config.useEnglish
+        binding.settingsUseEnglishHolder.setOnClickListener {
+            binding.settingsUseEnglish.toggle()
+            config.useEnglish = binding.settingsUseEnglish.isChecked
             exitProcess(0)
         }
     }
 
     private fun setupLanguage() {
-        settings_language.text = Locale.getDefault().displayLanguage
-        settings_language_holder.beVisibleIf(isTiramisuPlus())
-        settings_language_holder.setOnClickListener {
+        binding.settingsLanguage.text = Locale.getDefault().displayLanguage
+        binding.settingsLanguageHolder.beVisibleIf(isTiramisuPlus())
+        binding.settingsLanguageHolder.setOnClickListener {
             launchChangeAppLanguageIntent()
         }
     }
 
     private fun setupChangeDateTimeFormat() {
-        settings_change_date_time_format_holder.setOnClickListener {
+        binding.settingsChangeDateTimeFormatHolder.setOnClickListener {
             ChangeDateTimeFormatDialog(this) {}
         }
     }
 
     private fun setupHideNotification() {
-        settings_hide_notification.isChecked = config.hideNotification
-        settings_hide_notification_holder.setOnClickListener {
-            settings_hide_notification.toggle()
-            config.hideNotification = settings_hide_notification.isChecked
+        binding.settingsHideNotification.isChecked = config.hideNotification
+        binding.settingsHideNotificationHolder.setOnClickListener {
+            binding.settingsHideNotification.toggle()
+            config.hideNotification = binding.settingsHideNotification.isChecked
         }
     }
 
     private fun setupSaveRecordingsFolder() {
-        settings_save_recordings_label.text = addLockedLabelIfNeeded(R.string.save_recordings_in)
-        settings_save_recordings.text = humanizePath(config.saveRecordingsFolder)
-        settings_save_recordings_holder.setOnClickListener {
+        binding.settingsSaveRecordingsLabel.text = addLockedLabelIfNeeded(R.string.save_recordings_in)
+        binding.settingsSaveRecordings.text = humanizePath(config.saveRecordingsFolder)
+        binding.settingsAudioSourceHolder.setOnClickListener {
             if (isOrWasThankYouInstalled()) {
                 FilePickerDialog(this, config.saveRecordingsFolder, false, showFAB = true) {
                     val path = it
@@ -131,7 +134,7 @@ class SettingsActivity : SimpleActivity() {
                             }
 
                             config.saveRecordingsFolder = path
-                            settings_save_recordings.text = humanizePath(config.saveRecordingsFolder)
+                            binding.settingsSaveRecordings.text = humanizePath(config.saveRecordingsFolder)
                         }
                     }
                 }
@@ -142,8 +145,8 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupExtension() {
-        settings_extension.text = config.getExtensionText()
-        settings_extension_holder.setOnClickListener {
+        binding.settingsExtension.text = config.getExtensionText()
+        binding.settingsExtensionHolder.setOnClickListener {
             val items = arrayListOf(
                 RadioItem(EXTENSION_M4A, getString(R.string.m4a)),
                 RadioItem(EXTENSION_MP3, getString(R.string.mp3))
@@ -155,19 +158,19 @@ class SettingsActivity : SimpleActivity() {
 
             RadioGroupDialog(this@SettingsActivity, items, config.extension) {
                 config.extension = it as Int
-                settings_extension.text = config.getExtensionText()
+                binding.settingsExtension.text = config.getExtensionText()
             }
         }
     }
 
     private fun setupBitrate() {
-        settings_bitrate.text = getBitrateText(config.bitrate)
-        settings_bitrate_holder.setOnClickListener {
+        binding.settingsBitrate.text = getBitrateText(config.bitrate)
+        binding.settingsBitrateHolder.setOnClickListener {
             val items = BITRATES.map { RadioItem(it, getBitrateText(it)) } as ArrayList
 
             RadioGroupDialog(this@SettingsActivity, items, config.bitrate) {
                 config.bitrate = it as Int
-                settings_bitrate.text = getBitrateText(config.bitrate)
+                binding.settingsBitrate.text = getBitrateText(config.bitrate)
             }
         }
     }
@@ -175,25 +178,25 @@ class SettingsActivity : SimpleActivity() {
     private fun getBitrateText(value: Int): String = getString(R.string.bitrate_value).format(value / 1000)
 
     private fun setupRecordAfterLaunch() {
-        settings_record_after_launch.isChecked = config.recordAfterLaunch
-        settings_record_after_launch_holder.setOnClickListener {
-            settings_record_after_launch.toggle()
-            config.recordAfterLaunch = settings_record_after_launch.isChecked
+        binding.settingsRecordAfterLaunch.isChecked = config.recordAfterLaunch
+        binding.settingsRecordAfterLaunchHolder.setOnClickListener {
+            binding.settingsRecordAfterLaunch.toggle()
+            config.recordAfterLaunch = binding.settingsRecordAfterLaunch.isChecked
         }
     }
 
     private fun setupUseRecycleBin() {
         updateRecycleBinButtons()
-        settings_use_recycle_bin.isChecked = config.useRecycleBin
-        settings_use_recycle_bin_holder.setOnClickListener {
-            settings_use_recycle_bin.toggle()
-            config.useRecycleBin = settings_use_recycle_bin.isChecked
+        binding.settingsUseRecycleBin.isChecked = config.useRecycleBin
+        binding.settingsUseRecycleBinHolder.setOnClickListener {
+            binding.settingsUseRecycleBin.toggle()
+            config.useRecycleBin = binding.settingsUseRecycleBin.isChecked
             updateRecycleBinButtons()
         }
     }
 
     private fun updateRecycleBinButtons() {
-        settings_empty_recycle_bin_holder.beVisibleIf(config.useRecycleBin)
+        binding.settingsEmptyRecycleBinHolder.beVisibleIf(config.useRecycleBin)
     }
 
     private fun setupEmptyRecycleBin() {
@@ -206,18 +209,18 @@ class SettingsActivity : SimpleActivity() {
             }
 
             runOnUiThread {
-                settings_empty_recycle_bin_size.text = recycleBinContentSize.formatSize()
+                binding.settingsEmptyRecycleBinSize.text = recycleBinContentSize.formatSize()
             }
         }
 
-        settings_empty_recycle_bin_holder.setOnClickListener {
+        binding.settingsEmptyRecycleBinHolder.setOnClickListener {
             if (recycleBinContentSize == 0) {
-                toast(R.string.recycle_bin_empty)
+                toast(CommonsR.string.recycle_bin_empty)
             } else {
-                ConfirmationDialog(this, "", R.string.empty_recycle_bin_confirmation, R.string.yes, R.string.no) {
+                ConfirmationDialog(this, "", CommonsR.string.empty_recycle_bin_confirmation, CommonsR.string.yes, CommonsR.string.no) {
                     emptyTheRecycleBin()
                     recycleBinContentSize = 0
-                    settings_empty_recycle_bin_size.text = 0.formatSize()
+                    binding.settingsEmptyRecycleBinSize.text = 0.formatSize()
                     EventBus.getDefault().post(Events.RecordingTrashUpdated())
                 }
             }
@@ -225,13 +228,13 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupAudioSource() {
-        settings_audio_source.text = config.getAudioSourceText(config.audioSource)
-        settings_audio_source_holder.setOnClickListener {
+        binding.settingsAudioSource.text = config.getAudioSourceText(config.audioSource)
+        binding.settingsAudioSourceHolder.setOnClickListener {
             val items = getAudioSources().map { RadioItem(it, config.getAudioSourceText(it)) } as ArrayList
 
             RadioGroupDialog(this@SettingsActivity, items, config.audioSource) {
                 config.audioSource = it as Int
-                settings_audio_source.text = config.getAudioSourceText(config.audioSource)
+                binding.settingsAudioSource.text = config.getAudioSourceText(config.audioSource)
             }
         }
     }

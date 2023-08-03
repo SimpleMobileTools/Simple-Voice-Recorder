@@ -1,0 +1,61 @@
+[versions]
+#jetbrains
+kotlin = "1.9.0"
+#KSP
+ksp = "1.9.0-1.0.12"
+#AndroidX
+androidx-constraintlayout = "2.1.4"
+androidx-documentfile = "1.0.1"
+androidx-swiperefreshlayout = "1.1.0"
+#Eventbus
+eventbus = "3.3.1"
+#Room
+room = "2.6.0-alpha02"
+#Simple tools
+simple-commons = "c5a32fb1f3"
+#AudioRecordView
+audiorecordview = "1.0.4"
+#TAndroidLame
+tandroidlame = "1.1"
+#AutofitTextView
+autofittextview = "0.2.1"
+#Gradle
+gradlePlugins-agp = "8.1.0"
+#build
+app-build-compileSDKVersion = "34"
+app-build-targetSDK = "34"
+app-build-minimumSDK = "23"
+app-build-javaVersion = "VERSION_17"
+app-build-kotlinJVMTarget = "17"
+#versioning
+app-version-appId = "com.simplemobiletools.voicerecorder"
+app-version-versionCode = "38"
+app-version-versionName = "5.12.0"
+[libraries]
+#AndroidX
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintlayout" }
+androidx-documentfile = { module = "androidx.documentfile:documentfile", version.ref = "androidx-documentfile" }
+androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "androidx-swiperefreshlayout" }
+#Room
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+#Simple Mobile Tools
+simple-tools-commons = { module = "com.github.SimpleMobileTools:Simple-Commons", version.ref = "simple-commons" }
+#EventBus
+eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
+#AudioRecordView
+audiorecordview = { module = "com.github.Armen101:AudioRecordView", version.ref = "audiorecordview" }
+#TAndroidLame
+tandroidlame = { module = "com.github.naman14:TAndroidLame", version.ref = "tandroidlame" }
+#AutofitTextView
+autofittextview = { module = "me.grantland:autofittextview", version.ref = "autofittextview" }
+[bundles]
+room = [
+    "androidx-room-ktx",
+    "androidx-room-runtime",
+]
+[plugins]
+android = { id = "com.android.application", version.ref = "gradlePlugins-agp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
