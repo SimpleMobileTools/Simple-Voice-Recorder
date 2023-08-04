@@ -55,7 +55,7 @@ class SettingsActivity : SimpleActivity() {
         setupEmptyRecycleBin()
         updateTextColors(binding.settingsNestedScrollview)
 
-        arrayOf(binding.settingsColorCustomizationLabel, binding.settingsGeneralSettingsLabel, binding.settingsRecycleBinLabel).forEach {
+        arrayOf(binding.settingsColorCustomizationSectionLabel, binding.settingsGeneralSettingsLabel, binding.settingsRecycleBinLabel).forEach {
             it.setTextColor(getProperPrimaryColor())
         }
     }
