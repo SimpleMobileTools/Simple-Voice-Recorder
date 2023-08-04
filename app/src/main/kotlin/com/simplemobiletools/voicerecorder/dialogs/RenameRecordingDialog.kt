@@ -14,7 +14,6 @@ import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.models.Recording
 import org.greenrobot.eventbus.EventBus
 import java.io.File
-import com.simplemobiletools.commons.R as CommonsR
 
 class RenameRecordingDialog(val activity: BaseSimpleActivity, val recording: Recording, val callback: () -> Unit) {
     init {
@@ -24,20 +23,20 @@ class RenameRecordingDialog(val activity: BaseSimpleActivity, val recording: Rec
         val view = binding.root
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(CommonsR.string.ok, null)
-            .setNegativeButton(CommonsR.string.cancel, null)
+            .setPositiveButton(com.simplemobiletools.commons.R.string.ok, null)
+            .setNegativeButton(com.simplemobiletools.commons.R.string.cancel, null)
             .apply {
-                activity.setupDialogStuff(view, this, CommonsR.string.rename) { alertDialog ->
+                activity.setupDialogStuff(view, this, com.simplemobiletools.commons.R.string.rename) { alertDialog ->
                     alertDialog.showKeyboard(binding.renameRecordingTitle)
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                         val newTitle = binding.renameRecordingTitle.value
                         if (newTitle.isEmpty()) {
-                            activity.toast(CommonsR.string.empty_name)
+                            activity.toast(com.simplemobiletools.commons.R.string.empty_name)
                             return@setOnClickListener
                         }
 
                         if (!newTitle.isAValidFilename()) {
-                            activity.toast(CommonsR.string.invalid_name)
+                            activity.toast(com.simplemobiletools.commons.R.string.invalid_name)
                             return@setOnClickListener
                         }
 

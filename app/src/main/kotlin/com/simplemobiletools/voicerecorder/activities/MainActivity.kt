@@ -22,7 +22,6 @@ import me.grantland.widget.AutofitHelper
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import com.simplemobiletools.commons.R as CommonsR
 
 class MainActivity : SimpleActivity() {
 
@@ -52,7 +51,7 @@ class MainActivity : SimpleActivity() {
             if (it) {
                 tryInitVoiceRecorder()
             } else {
-                toast(CommonsR.string.no_audio_permissions)
+                toast(com.simplemobiletools.commons.R.string.no_audio_permissions)
                 finish()
             }
         }
@@ -111,7 +110,7 @@ class MainActivity : SimpleActivity() {
 
     private fun refreshMenuItems() {
         binding.mainMenu.getToolbar().menu.apply {
-            findItem(R.id.more_apps_from_us).isVisible = !resources.getBoolean(CommonsR.bool.hide_google_relations)
+            findItem(R.id.more_apps_from_us).isVisible = !resources.getBoolean(com.simplemobiletools.commons.R.bool.hide_google_relations)
         }
     }
 
@@ -162,18 +161,18 @@ class MainActivity : SimpleActivity() {
 
     private fun setupViewPager() {
         binding.mainTabsHolder.removeAllTabs()
-        var tabDrawables = arrayOf(CommonsR.drawable.ic_microphone_vector, R.drawable.ic_headset_vector)
+        var tabDrawables = arrayOf(com.simplemobiletools.commons.R.drawable.ic_microphone_vector, R.drawable.ic_headset_vector)
         var tabLabels = arrayOf(R.string.recorder, R.string.player)
         if (config.useRecycleBin) {
-            tabDrawables += CommonsR.drawable.ic_delete_vector
-            tabLabels += CommonsR.string.recycle_bin
+            tabDrawables += com.simplemobiletools.commons.R.drawable.ic_delete_vector
+            tabLabels += com.simplemobiletools.commons.R.string.recycle_bin
         }
 
         tabDrawables.forEachIndexed { i, drawableId ->
-            binding.mainTabsHolder.newTab().setCustomView(CommonsR.layout.bottom_tablayout_item).apply {
-                customView?.findViewById<ImageView>(CommonsR.id.tab_item_icon)?.setImageDrawable(getDrawable(drawableId))
-                customView?.findViewById<TextView>(CommonsR.id.tab_item_label)?.setText(tabLabels[i])
-                AutofitHelper.create(customView?.findViewById(CommonsR.id.tab_item_label))
+            binding.mainTabsHolder.newTab().setCustomView(com.simplemobiletools.commons.R.layout.bottom_tablayout_item).apply {
+                customView?.findViewById<ImageView>(com.simplemobiletools.commons.R.id.tab_item_icon)?.setImageDrawable(getDrawable(drawableId))
+                customView?.findViewById<TextView>(com.simplemobiletools.commons.R.id.tab_item_label)?.setText(tabLabels[i])
+                AutofitHelper.create(customView?.findViewById(com.simplemobiletools.commons.R.id.tab_item_label))
                 binding.mainTabsHolder.addTab(this)
             }
         }
@@ -232,12 +231,12 @@ class MainActivity : SimpleActivity() {
 
         val faqItems = arrayListOf(
             FAQItem(R.string.faq_1_title, R.string.faq_1_text),
-            FAQItem(CommonsR.string.faq_9_title_commons, CommonsR.string.faq_9_text_commons)
+            FAQItem(com.simplemobiletools.commons.R.string.faq_9_title_commons, com.simplemobiletools.commons.R.string.faq_9_text_commons)
         )
 
-        if (!resources.getBoolean(CommonsR.bool.hide_google_relations)) {
-            faqItems.add(FAQItem(CommonsR.string.faq_2_title_commons, CommonsR.string.faq_2_text_commons))
-            faqItems.add(FAQItem(CommonsR.string.faq_6_title_commons, CommonsR.string.faq_6_text_commons))
+        if (!resources.getBoolean(com.simplemobiletools.commons.R.bool.hide_google_relations)) {
+            faqItems.add(FAQItem(com.simplemobiletools.commons.R.string.faq_2_title_commons, com.simplemobiletools.commons.R.string.faq_2_text_commons))
+            faqItems.add(FAQItem(com.simplemobiletools.commons.R.string.faq_6_title_commons, com.simplemobiletools.commons.R.string.faq_6_text_commons))
         }
 
         startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)

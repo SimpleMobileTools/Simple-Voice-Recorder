@@ -20,7 +20,6 @@ import com.simplemobiletools.voicerecorder.models.Events
 import org.greenrobot.eventbus.EventBus
 import java.util.Locale
 import kotlin.system.exitProcess
-import com.simplemobiletools.commons.R as CommonsR
 
 class SettingsActivity : SimpleActivity() {
     private var recycleBinContentSize = 0
@@ -215,9 +214,9 @@ class SettingsActivity : SimpleActivity() {
 
         binding.settingsEmptyRecycleBinHolder.setOnClickListener {
             if (recycleBinContentSize == 0) {
-                toast(CommonsR.string.recycle_bin_empty)
+                toast(com.simplemobiletools.commons.R.string.recycle_bin_empty)
             } else {
-                ConfirmationDialog(this, "", CommonsR.string.empty_recycle_bin_confirmation, CommonsR.string.yes, CommonsR.string.no) {
+                ConfirmationDialog(this, "", com.simplemobiletools.commons.R.string.empty_recycle_bin_confirmation, com.simplemobiletools.commons.R.string.yes, com.simplemobiletools.commons.R.string.no) {
                     emptyTheRecycleBin()
                     recycleBinContentSize = 0
                     binding.settingsEmptyRecycleBinSize.text = 0.formatSize()

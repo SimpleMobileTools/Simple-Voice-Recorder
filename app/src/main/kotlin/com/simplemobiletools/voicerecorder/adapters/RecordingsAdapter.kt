@@ -23,7 +23,6 @@ import com.simplemobiletools.voicerecorder.interfaces.RefreshRecordingsListener
 import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.models.Recording
 import org.greenrobot.eventbus.EventBus
-import com.simplemobiletools.commons.R as CommonsR
 
 class RecordingsAdapter(
     activity: SimpleActivity,
@@ -139,7 +138,7 @@ class RecordingsAdapter(
         }
 
         val baseString = if (activity.config.useRecycleBin) {
-            CommonsR.string.move_to_recycle_bin_confirmation
+            com.simplemobiletools.commons.R.string.move_to_recycle_bin_confirmation
         } else {
             R.string.delete_recordings_confirmation
         }

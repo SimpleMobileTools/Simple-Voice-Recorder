@@ -6,7 +6,6 @@ import com.simplemobiletools.commons.extensions.beGoneIf
 import com.simplemobiletools.commons.extensions.getAlertDialogBuilder
 import com.simplemobiletools.commons.extensions.setupDialogStuff
 import com.simplemobiletools.voicerecorder.databinding.DialogDeleteConfirmationBinding
-import com.simplemobiletools.commons.R as CommonsR
 
 class DeleteConfirmationDialog(
     private val activity: Activity,
@@ -23,8 +22,8 @@ class DeleteConfirmationDialog(
         binding.deleteRememberTitle.text = message
         binding.skipTheRecycleBinCheckbox.beGoneIf(!showSkipRecycleBinOption)
         activity.getAlertDialogBuilder()
-            .setPositiveButton(CommonsR.string.yes) { _, _ -> dialogConfirmed() }
-            .setNegativeButton(CommonsR.string.no, null)
+            .setPositiveButton(com.simplemobiletools.commons.R.string.yes) { _, _ -> dialogConfirmed() }
+            .setNegativeButton(com.simplemobiletools.commons.R.string.no, null)
             .apply {
                 activity.setupDialogStuff(view, this) { alertDialog ->
                     dialog = alertDialog

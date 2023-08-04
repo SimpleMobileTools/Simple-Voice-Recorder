@@ -14,7 +14,6 @@ import com.simplemobiletools.voicerecorder.models.Recording
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import com.simplemobiletools.commons.R as CommonsR
 
 class TrashFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet), RefreshRecordingsListener {
     private var itemsIgnoringSearch = ArrayList<Recording>()
@@ -67,9 +66,9 @@ class TrashFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerF
         binding.trashPlaceholder.beVisibleIf(recordings.isEmpty())
         if (recordings.isEmpty()) {
             val stringId = if (lastSearchQuery.isEmpty()) {
-                CommonsR.string.recycle_bin_empty
+                com.simplemobiletools.commons.R.string.recycle_bin_empty
             } else {
-                CommonsR.string.no_items_found
+                com.simplemobiletools.commons.R.string.no_items_found
             }
 
             binding.trashPlaceholder.text = context.getString(stringId)

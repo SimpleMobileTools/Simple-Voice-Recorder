@@ -14,7 +14,6 @@ import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.BackgroundRecordActivity
 import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.extensions.drawableToBitmap
-import com.simplemobiletools.commons.R as CommonsR
 
 class MyWidgetRecordDisplayProvider : AppWidgetProvider() {
     private val OPEN_APP_INTENT_ID = 1
@@ -58,7 +57,7 @@ class MyWidgetRecordDisplayProvider : AppWidgetProvider() {
     }
 
     private fun getColoredIcon(context: Context, color: Int, alpha: Int): Bitmap {
-        val drawable = context.resources.getColoredDrawableWithColor(CommonsR.drawable.ic_microphone_vector, color, alpha)
+        val drawable = context.resources.getColoredDrawableWithColor(com.simplemobiletools.commons.R.drawable.ic_microphone_vector, color, alpha)
         return context.drawableToBitmap(drawable)
     }
 }

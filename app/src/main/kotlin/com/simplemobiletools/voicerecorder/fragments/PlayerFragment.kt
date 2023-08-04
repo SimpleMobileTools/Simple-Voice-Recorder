@@ -29,7 +29,6 @@ import org.greenrobot.eventbus.ThreadMode
 import java.util.Stack
 import java.util.Timer
 import java.util.TimerTask
-import com.simplemobiletools.commons.R as CommonsR
 
 class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet), RefreshRecordingsListener {
     private val FAST_FORWARD_SKIP_MS = 10000
@@ -154,7 +153,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
                     R.string.no_recordings_in_folder_found
                 }
             } else {
-                CommonsR.string.no_items_found
+                com.simplemobiletools.commons.R.string.no_items_found
             }
 
             binding.recordingsPlaceholder.text = context.getString(stringId)
@@ -319,7 +318,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     }
 
     private fun getToggleButtonIcon(isPlaying: Boolean): Drawable {
-        val drawable = if (isPlaying) CommonsR.drawable.ic_pause_vector else CommonsR.drawable.ic_play_vector
+        val drawable = if (isPlaying) com.simplemobiletools.commons.R.drawable.ic_pause_vector else com.simplemobiletools.commons.R.drawable.ic_play_vector
         return resources.getColoredDrawableWithColor(drawable, context.getProperPrimaryColor().getContrastColor())
     }
 

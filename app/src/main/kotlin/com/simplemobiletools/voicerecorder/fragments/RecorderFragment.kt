@@ -19,7 +19,6 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import java.util.Timer
 import java.util.TimerTask
-import com.simplemobiletools.commons.R as CommonsR
 
 class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet) {
     private var status = RECORDING_STOPPED
@@ -59,7 +58,7 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
                 if (granted) {
                     toggleRecording()
                 } else {
-                    PermissionRequiredDialog(context as BaseSimpleActivity, CommonsR.string.allow_notifications_voice_recorder, {
+                    PermissionRequiredDialog(context as BaseSimpleActivity, com.simplemobiletools.commons.R.string.allow_notifications_voice_recorder, {
                         (context as BaseSimpleActivity).openNotificationSettings()
                     })
                 }
@@ -90,7 +89,7 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
         }
 
         binding.togglePauseButton.apply {
-            setImageDrawable(resources.getColoredDrawableWithColor(CommonsR.drawable.ic_pause_vector, properPrimaryColor.getContrastColor()))
+            setImageDrawable(resources.getColoredDrawableWithColor(com.simplemobiletools.commons.R.drawable.ic_pause_vector, properPrimaryColor.getContrastColor()))
             background.applyColorFilter(properPrimaryColor)
         }
 
@@ -104,7 +103,7 @@ class RecorderFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
 
     private fun getToggleButtonIcon(): Drawable {
         val drawable =
-            if (status == RECORDING_RUNNING || status == RECORDING_PAUSED) CommonsR.drawable.ic_stop_vector else CommonsR.drawable.ic_microphone_vector
+            if (status == RECORDING_RUNNING || status == RECORDING_PAUSED) com.simplemobiletools.commons.R.drawable.ic_stop_vector else com.simplemobiletools.commons.R.drawable.ic_microphone_vector
         return resources.getColoredDrawableWithColor(drawable, context.getProperPrimaryColor().getContrastColor())
     }
 

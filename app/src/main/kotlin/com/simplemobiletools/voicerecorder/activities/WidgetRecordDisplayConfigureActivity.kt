@@ -15,7 +15,6 @@ import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.databinding.WidgetRecordDisplayConfigBinding
 import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.helpers.MyWidgetRecordDisplayProvider
-import com.simplemobiletools.commons.R as CommonsR
 
 class WidgetRecordDisplayConfigureActivity : SimpleActivity() {
     private var mWidgetAlpha = 0f
@@ -70,7 +69,7 @@ class WidgetRecordDisplayConfigureActivity : SimpleActivity() {
     private fun initVariables() {
         mWidgetColor = config.widgetBgColor
         if (mWidgetColor == resources.getColor(R.color.default_widget_bg_color) && config.isUsingSystemTheme) {
-            mWidgetColor = resources.getColor(CommonsR.color.you_primary_color, theme)
+            mWidgetColor = resources.getColor(com.simplemobiletools.commons.R.color.you_primary_color, theme)
         }
 
         mWidgetAlpha = Color.alpha(mWidgetColor) / 255.toFloat()

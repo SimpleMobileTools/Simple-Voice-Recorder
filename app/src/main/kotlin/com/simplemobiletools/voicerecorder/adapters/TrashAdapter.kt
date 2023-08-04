@@ -18,7 +18,6 @@ import com.simplemobiletools.voicerecorder.interfaces.RefreshRecordingsListener
 import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.models.Recording
 import org.greenrobot.eventbus.EventBus
-import com.simplemobiletools.commons.R as CommonsR
 
 class TrashAdapter(
     activity: SimpleActivity,
@@ -189,7 +188,7 @@ class TrashAdapter(
         PopupMenu(contextTheme, view, Gravity.END).apply {
             inflate(getActionMenuId())
             menu.findItem(R.id.cab_select_all).isVisible = false
-            menu.findItem(R.id.cab_restore).title = resources.getString(CommonsR.string.restore_this_file)
+            menu.findItem(R.id.cab_restore).title = resources.getString(com.simplemobiletools.commons.R.string.restore_this_file)
             setOnMenuItemClickListener { item ->
                 val recordingId = recording.id
                 when (item.itemId) {
