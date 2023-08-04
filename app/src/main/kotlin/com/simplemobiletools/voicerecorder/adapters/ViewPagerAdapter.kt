@@ -53,7 +53,7 @@ class ViewPagerAdapter(private val activity: SimpleActivity, val showRecycleBin:
     }
 
     fun finishActMode() {
-      (mFragments[1] as? PlayerFragment)?.finishActMode()
+        (mFragments[1] as? PlayerFragment)?.finishActMode()
         if (showRecycleBin) {
             (mFragments[2] as? TrashFragment)?.finishActMode()
         }

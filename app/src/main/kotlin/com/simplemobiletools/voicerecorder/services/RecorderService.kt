@@ -195,7 +195,7 @@ class RecorderService : Service() {
 
         val newUri = contentResolver.insert(audioCollection, newSongDetails)
         if (newUri == null) {
-            toast(R.string.unknown_error_occurred)
+            toast(com.simplemobiletools.commons.R.string.unknown_error_occurred)
             return
         }
 
@@ -257,7 +257,7 @@ class RecorderService : Service() {
         }
 
         var priority = Notification.PRIORITY_DEFAULT
-        var icon = R.drawable.ic_microphone_vector
+        var icon = com.simplemobiletools.commons.R.drawable.ic_microphone_vector
         var title = label
         var visibility = NotificationCompat.VISIBILITY_PUBLIC
         var text = getString(R.string.recording)

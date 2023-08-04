@@ -12,9 +12,9 @@ import com.simplemobiletools.commons.dialogs.FeatureLockedDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.voicerecorder.R
+import com.simplemobiletools.voicerecorder.databinding.WidgetRecordDisplayConfigBinding
 import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.helpers.MyWidgetRecordDisplayProvider
-import kotlinx.android.synthetic.main.widget_record_display_config.*
 
 class WidgetRecordDisplayConfigureActivity : SimpleActivity() {
     private var mWidgetAlpha = 0f
@@ -22,12 +22,14 @@ class WidgetRecordDisplayConfigureActivity : SimpleActivity() {
     private var mWidgetColor = 0
     private var mWidgetColorWithoutTransparency = 0
     private var mFeatureLockedDialog: FeatureLockedDialog? = null
+    private lateinit var binding: WidgetRecordDisplayConfigBinding
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false
         super.onCreate(savedInstanceState)
         setResult(Activity.RESULT_CANCELED)
-        setContentView(R.layout.widget_record_display_config)
+        binding = WidgetRecordDisplayConfigBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         initVariables()
 
         val isCustomizingColors = intent.extras?.getBoolean(IS_CUSTOMIZING_COLORS) ?: false
@@ -37,11 +39,11 @@ class WidgetRecordDisplayConfigureActivity : SimpleActivity() {
             finish()
         }
 
-        config_save.setOnClickListener { saveConfig() }
-        config_widget_color.setOnClickListener { pickBackgroundColor() }
+        binding.configSave.setOnClickListener { saveConfig() }
+        binding.configWidgetColor.setOnClickListener { pickBackgroundColor() }
 
         val primaryColor = getProperPrimaryColor()
-        config_widget_seekbar.setColors(getProperTextColor(), primaryColor, primaryColor)
+        binding.configWidgetSeekbar.setColors(getProperTextColor(), primaryColor, primaryColor)
 
         if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
             mFeatureLockedDialog = FeatureLockedDialog(this) {
@@ -51,8 +53,8 @@ class WidgetRecordDisplayConfigureActivity : SimpleActivity() {
             }
         }
 
-        config_save.backgroundTintList = ColorStateList.valueOf(getProperPrimaryColor())
-        config_save.setTextColor(getProperPrimaryColor().getContrastColor())
+        binding.configSave.backgroundTintList = ColorStateList.valueOf(getProperPrimaryColor())
+        binding.configSave.setTextColor(getProperPrimaryColor().getContrastColor())
     }
 
     override fun onResume() {
@@ -67,14 +69,14 @@ class WidgetRecordDisplayConfigureActivity : SimpleActivity() {
     private fun initVariables() {
         mWidgetColor = config.widgetBgColor
         if (mWidgetColor == resources.getColor(R.color.default_widget_bg_color) && config.isUsingSystemTheme) {
-            mWidgetColor = resources.getColor(R.color.you_primary_color, theme)
+            mWidgetColor = resources.getColor(com.simplemobiletools.commons.R.color.you_primary_color, theme)
         }
 
         mWidgetAlpha = Color.alpha(mWidgetColor) / 255.toFloat()
 
         mWidgetColorWithoutTransparency = Color.rgb(Color.red(mWidgetColor), Color.green(mWidgetColor), Color.blue(mWidgetColor))
-        config_widget_seekbar.setOnSeekBarChangeListener(seekbarChangeListener)
-        config_widget_seekbar.progress = (mWidgetAlpha * 100).toInt()
+        binding.configWidgetSeekbar.setOnSeekBarChangeListener(seekbarChangeListener)
+        binding.configWidgetSeekbar.progress = (mWidgetAlpha * 100).toInt()
         updateColors()
     }
 
@@ -107,8 +109,8 @@ class WidgetRecordDisplayConfigureActivity : SimpleActivity() {
 
     private fun updateColors() {
         mWidgetColor = mWidgetColorWithoutTransparency.adjustAlpha(mWidgetAlpha)
-        config_widget_color.setFillWithStroke(mWidgetColor, mWidgetColor)
-        config_image.background.mutate().applyColorFilter(mWidgetColor)
+        binding.configWidgetColor.setFillWithStroke(mWidgetColor, mWidgetColor)
+        binding.configImage.background.mutate().applyColorFilter(mWidgetColor)
     }
 
     private val seekbarChangeListener = object : SeekBar.OnSeekBarChangeListener {

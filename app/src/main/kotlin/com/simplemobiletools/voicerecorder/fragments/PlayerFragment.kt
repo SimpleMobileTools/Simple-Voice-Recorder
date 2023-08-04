@@ -16,13 +16,13 @@ import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
 import com.simplemobiletools.voicerecorder.adapters.RecordingsAdapter
+import com.simplemobiletools.voicerecorder.databinding.FragmentPlayerBinding
 import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.extensions.getAllRecordings
 import com.simplemobiletools.voicerecorder.helpers.getAudioFileContentUri
 import com.simplemobiletools.voicerecorder.interfaces.RefreshRecordingsListener
 import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.models.Recording
-import kotlinx.android.synthetic.main.fragment_player.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -42,6 +42,12 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     private var prevSavePath = ""
     private var prevRecycleBinState = context.config.useRecycleBin
     private var playOnPreparation = true
+    private lateinit var binding: FragmentPlayerBinding
+
+    override fun onFinishInflate() {
+        super.onFinishInflate()
+        binding = FragmentPlayerBinding.bind(this)
+    }
 
     override fun onResume() {
         setupColors()
@@ -78,23 +84,23 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     }
 
     private fun setupViews() {
-        play_pause_btn.setOnClickListener {
-            if (playedRecordingIDs.empty() || player_progressbar.max == 0) {
-                next_btn.callOnClick()
+        binding.playPauseBtn.setOnClickListener {
+            if (playedRecordingIDs.empty() || binding.playerProgressbar.max == 0) {
+                binding.nextBtn.callOnClick()
             } else {
                 togglePlayPause()
             }
         }
 
-        player_progress_current.setOnClickListener {
+        binding.playerProgressCurrent.setOnClickListener {
             skip(false)
         }
 
-        player_progress_max.setOnClickListener {
+        binding.playerProgressMax.setOnClickListener {
             skip(true)
         }
 
-        previous_btn.setOnClickListener {
+        binding.previousBtn.setOnClickListener {
             if (playedRecordingIDs.isEmpty()) {
                 return@setOnClickListener
             }
@@ -110,14 +116,14 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             playRecording(prevRecording, true)
         }
 
-        player_title.setOnLongClickListener {
-            if (player_title.value.isNotEmpty()) {
-                context.copyToClipboard(player_title.value)
+        binding.playerTitle.setOnLongClickListener {
+            if (binding.playerTitle.value.isNotEmpty()) {
+                context.copyToClipboard(binding.playerTitle.value)
             }
             true
         }
 
-        next_btn.setOnClickListener {
+        binding.nextBtn.setOnClickListener {
             val adapter = getRecordingsAdapter()
             if (adapter == null || adapter.recordings.isEmpty()) {
                 return@setOnClickListener
@@ -137,8 +143,8 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     }
 
     private fun setupAdapter(recordings: ArrayList<Recording>) {
-        recordings_fastscroller.beVisibleIf(recordings.isNotEmpty())
-        recordings_placeholder.beVisibleIf(recordings.isEmpty())
+        binding.recordingsFastscroller.beVisibleIf(recordings.isNotEmpty())
+        binding.recordingsPlaceholder.beVisibleIf(recordings.isEmpty())
         if (recordings.isEmpty()) {
             val stringId = if (lastSearchQuery.isEmpty()) {
                 if (isQPlus()) {
@@ -147,27 +153,27 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
                     R.string.no_recordings_in_folder_found
                 }
             } else {
-                R.string.no_items_found
+                com.simplemobiletools.commons.R.string.no_items_found
             }
 
-            recordings_placeholder.text = context.getString(stringId)
+            binding.recordingsPlaceholder.text = context.getString(stringId)
             resetProgress(null)
             player?.stop()
         }
 
         val adapter = getRecordingsAdapter()
         if (adapter == null) {
-            RecordingsAdapter(context as SimpleActivity, recordings, this, recordings_list) {
+            RecordingsAdapter(context as SimpleActivity, recordings, this, binding.recordingsList) {
                 playRecording(it as Recording, true)
                 if (playedRecordingIDs.isEmpty() || playedRecordingIDs.peek() != it.id) {
                     playedRecordingIDs.push(it.id)
                 }
             }.apply {
-                recordings_list.adapter = this
+                binding.recordingsList.adapter = this
             }
 
             if (context.areSystemAnimationsEnabled) {
-                recordings_list.scheduleLayoutAnimation()
+                binding.recordingsList.scheduleLayoutAnimation()
             }
         } else {
             adapter.updateItems(recordings)
@@ -187,9 +193,9 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
             setOnCompletionListener {
                 progressTimer.cancel()
-                player_progressbar.progress = player_progressbar.max
-                player_progress_current.text = player_progress_max.text
-                play_pause_btn.setImageDrawable(getToggleButtonIcon(false))
+                binding.playerProgressbar.progress = binding.playerProgressbar.max
+                binding.playerProgressCurrent.text = binding.playerProgressMax.text
+                binding.playPauseBtn.setImageDrawable(getToggleButtonIcon(false))
             }
 
             setOnPreparedListener {
@@ -205,7 +211,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     override fun playRecording(recording: Recording, playOnPrepared: Boolean) {
         resetProgress(recording)
-        (recordings_list.adapter as RecordingsAdapter).updateCurrentRecording(recording.id)
+        (binding.recordingsList.adapter as RecordingsAdapter).updateCurrentRecording(recording.id)
         playOnPreparation = playOnPrepared
 
         player!!.apply {
@@ -239,12 +245,12 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             }
         }
 
-        play_pause_btn.setImageDrawable(getToggleButtonIcon(playOnPreparation))
-        player_progressbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.playPauseBtn.setImageDrawable(getToggleButtonIcon(playOnPreparation))
+        binding.playerProgressbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (fromUser && !playedRecordingIDs.isEmpty()) {
                     player?.seekTo(progress * 1000)
-                    player_progress_current.text = progress.getFormattedDuration()
+                    binding.playerProgressCurrent.text = progress.getFormattedDuration()
                     resumePlayback()
                 }
             }
@@ -267,22 +273,22 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
                 if (player != null) {
                     val progress = Math.round(player!!.currentPosition / 1000.toDouble()).toInt()
                     updateCurrentProgress(progress)
-                    player_progressbar.progress = progress
+                    binding.playerProgressbar.progress = progress
                 }
             }
         }
     }
 
     private fun updateCurrentProgress(seconds: Int) {
-        player_progress_current.text = seconds.getFormattedDuration()
+        binding.playerProgressCurrent.text = seconds.getFormattedDuration()
     }
 
     private fun resetProgress(recording: Recording?) {
         updateCurrentProgress(0)
-        player_progressbar.progress = 0
-        player_progressbar.max = recording?.duration ?: 0
-        player_title.text = recording?.title ?: ""
-        player_progress_max.text = (recording?.duration ?: 0).getFormattedDuration()
+        binding.playerProgressbar.progress = 0
+        binding.playerProgressbar.max = recording?.duration ?: 0
+        binding.playerTitle.text = recording?.title ?: ""
+        binding.playerProgressMax.text = (recording?.duration ?: 0).getFormattedDuration()
     }
 
     fun onSearchTextChanged(text: String) {
@@ -301,18 +307,18 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     private fun pausePlayback() {
         player?.pause()
-        play_pause_btn.setImageDrawable(getToggleButtonIcon(false))
+        binding.playPauseBtn.setImageDrawable(getToggleButtonIcon(false))
         progressTimer.cancel()
     }
 
     private fun resumePlayback() {
         player?.start()
-        play_pause_btn.setImageDrawable(getToggleButtonIcon(true))
+        binding.playPauseBtn.setImageDrawable(getToggleButtonIcon(true))
         setupProgressTimer()
     }
 
     private fun getToggleButtonIcon(isPlaying: Boolean): Drawable {
-        val drawable = if (isPlaying) R.drawable.ic_pause_vector else R.drawable.ic_play_vector
+        val drawable = if (isPlaying) com.simplemobiletools.commons.R.drawable.ic_pause_vector else com.simplemobiletools.commons.R.drawable.ic_play_vector
         return resources.getColoredDrawableWithColor(drawable, context.getProperPrimaryColor().getContrastColor())
     }
 
@@ -333,7 +339,7 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     private fun getIsPlaying() = player?.isPlaying == true
 
-    private fun getRecordingsAdapter() = recordings_list.adapter as? RecordingsAdapter
+    private fun getRecordingsAdapter() = binding.recordingsList.adapter as? RecordingsAdapter
 
     private fun storePrevState() {
         prevSavePath = context!!.config.saveRecordingsFolder
@@ -342,16 +348,16 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     private fun setupColors() {
         val properPrimaryColor = context.getProperPrimaryColor()
-        recordings_fastscroller.updateColors(properPrimaryColor)
-        context.updateTextColors(player_holder)
+        binding.recordingsFastscroller.updateColors(properPrimaryColor)
+        context.updateTextColors(binding.playerHolder)
 
         val textColor = context.getProperTextColor()
-        arrayListOf(previous_btn, next_btn).forEach {
+        arrayListOf(binding.previousBtn, binding.nextBtn).forEach {
             it.applyColorFilter(textColor)
         }
 
-        play_pause_btn.background.applyColorFilter(properPrimaryColor)
-        play_pause_btn.setImageDrawable(getToggleButtonIcon(false))
+        binding.playPauseBtn.background.applyColorFilter(properPrimaryColor)
+        binding.playPauseBtn.setImageDrawable(getToggleButtonIcon(false))
     }
 
     fun finishActMode() = getRecordingsAdapter()?.finishActMode()

@@ -5,9 +5,7 @@ import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.commons.extensions.beGoneIf
 import com.simplemobiletools.commons.extensions.getAlertDialogBuilder
 import com.simplemobiletools.commons.extensions.setupDialogStuff
-import com.simplemobiletools.voicerecorder.R
-import kotlinx.android.synthetic.main.dialog_delete_confirmation.view.delete_remember_title
-import kotlinx.android.synthetic.main.dialog_delete_confirmation.view.skip_the_recycle_bin_checkbox
+import com.simplemobiletools.voicerecorder.databinding.DialogDeleteConfirmationBinding
 
 class DeleteConfirmationDialog(
     private val activity: Activity,
@@ -17,14 +15,15 @@ class DeleteConfirmationDialog(
 ) {
 
     private var dialog: AlertDialog? = null
-    val view = activity.layoutInflater.inflate(R.layout.dialog_delete_confirmation, null)!!
+    val binding = DialogDeleteConfirmationBinding.inflate(activity.layoutInflater)
+    val view = binding.root
 
     init {
-        view.delete_remember_title.text = message
-        view.skip_the_recycle_bin_checkbox.beGoneIf(!showSkipRecycleBinOption)
+        binding.deleteRememberTitle.text = message
+        binding.skipTheRecycleBinCheckbox.beGoneIf(!showSkipRecycleBinOption)
         activity.getAlertDialogBuilder()
-            .setPositiveButton(R.string.yes) { _, _ -> dialogConfirmed() }
-            .setNegativeButton(R.string.no, null)
+            .setPositiveButton(com.simplemobiletools.commons.R.string.yes) { _, _ -> dialogConfirmed() }
+            .setNegativeButton(com.simplemobiletools.commons.R.string.no, null)
             .apply {
                 activity.setupDialogStuff(view, this) { alertDialog ->
                     dialog = alertDialog
@@ -34,6 +33,6 @@ class DeleteConfirmationDialog(
 
     private fun dialogConfirmed() {
         dialog?.dismiss()
-        callback(view.skip_the_recycle_bin_checkbox.isChecked)
+        callback(binding.skipTheRecycleBinCheckbox.isChecked)
     }
 }

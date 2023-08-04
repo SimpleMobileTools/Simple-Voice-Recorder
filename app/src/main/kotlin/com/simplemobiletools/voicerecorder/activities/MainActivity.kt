@@ -12,12 +12,12 @@ import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.adapters.ViewPagerAdapter
+import com.simplemobiletools.voicerecorder.databinding.ActivityMainBinding
 import com.simplemobiletools.voicerecorder.extensions.checkRecycleBinItems
 import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.helpers.STOP_AMPLITUDE_UPDATE
 import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.services.RecorderService
-import kotlinx.android.synthetic.main.activity_main.*
 import me.grantland.widget.AutofitHelper
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -26,16 +26,18 @@ import org.greenrobot.eventbus.ThreadMode
 class MainActivity : SimpleActivity() {
 
     private var bus: EventBus? = null
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         appLaunched(BuildConfig.APPLICATION_ID)
         setupOptionsMenu()
         refreshMenuItems()
 
-        updateMaterialActivityViews(main_coordinator, main_holder, useTransparentNavigation = false, useTopSearchMenu = true)
+        updateMaterialActivityViews(binding.mainCoordinator, binding.mainHolder, useTransparentNavigation = false, useTopSearchMenu = true)
 
         if (checkAppSideloading()) {
             return
@@ -49,7 +51,7 @@ class MainActivity : SimpleActivity() {
             if (it) {
                 tryInitVoiceRecorder()
             } else {
-                toast(R.string.no_audio_permissions)
+                toast(com.simplemobiletools.commons.R.string.no_audio_permissions)
                 finish()
             }
         }
@@ -78,7 +80,7 @@ class MainActivity : SimpleActivity() {
 
     override fun onPause() {
         super.onPause()
-        config.lastUsedViewPagerPage = view_pager.currentItem
+        config.lastUsedViewPagerPage = binding.viewPager.currentItem
     }
 
     override fun onDestroy() {
@@ -96,8 +98,8 @@ class MainActivity : SimpleActivity() {
     }
 
     override fun onBackPressed() {
-        if (main_menu.isSearchOpen) {
-            main_menu.closeSearch()
+        if (binding.mainMenu.isSearchOpen) {
+            binding.mainMenu.closeSearch()
         } else if (isThirdPartyIntent()) {
             setResult(Activity.RESULT_CANCELED, null)
             super.onBackPressed()
@@ -107,27 +109,27 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun refreshMenuItems() {
-        main_menu.getToolbar().menu.apply {
-            findItem(R.id.more_apps_from_us).isVisible = !resources.getBoolean(R.bool.hide_google_relations)
+        binding.mainMenu.getToolbar().menu.apply {
+            findItem(R.id.more_apps_from_us).isVisible = !resources.getBoolean(com.simplemobiletools.commons.R.bool.hide_google_relations)
         }
     }
 
     private fun setupOptionsMenu() {
-        main_menu.getToolbar().inflateMenu(R.menu.menu)
-        main_menu.toggleHideOnScroll(false)
-        main_menu.setupMenu()
+        binding.mainMenu.getToolbar().inflateMenu(R.menu.menu)
+        binding.mainMenu.toggleHideOnScroll(false)
+        binding.mainMenu.setupMenu()
 
-        main_menu.onSearchOpenListener = {
-            if (view_pager.currentItem == 0) {
-                view_pager.currentItem = 1
+        binding.mainMenu.onSearchOpenListener = {
+            if (binding.viewPager.currentItem == 0) {
+                binding.viewPager.currentItem = 1
             }
         }
 
-        main_menu.onSearchTextChangedListener = { text ->
+        binding.mainMenu.onSearchTextChangedListener = { text ->
             getPagerAdapter()?.searchTextChanged(text)
         }
 
-        main_menu.getToolbar().setOnMenuItemClickListener { menuItem ->
+        binding.mainMenu.getToolbar().setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.more_apps_from_us -> launchMoreAppsFromUsIntent()
                 R.id.settings -> launchSettings()
@@ -140,7 +142,7 @@ class MainActivity : SimpleActivity() {
 
     private fun updateMenuColors() {
         updateStatusbarColor(getProperBackgroundColor())
-        main_menu.updateColors()
+        binding.mainMenu.updateColors()
     }
 
     private fun tryInitVoiceRecorder() {
@@ -158,66 +160,66 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun setupViewPager() {
-        main_tabs_holder.removeAllTabs()
-        var tabDrawables = arrayOf(R.drawable.ic_microphone_vector, R.drawable.ic_headset_vector)
+        binding.mainTabsHolder.removeAllTabs()
+        var tabDrawables = arrayOf(com.simplemobiletools.commons.R.drawable.ic_microphone_vector, R.drawable.ic_headset_vector)
         var tabLabels = arrayOf(R.string.recorder, R.string.player)
         if (config.useRecycleBin) {
-            tabDrawables += R.drawable.ic_delete_vector
-            tabLabels += R.string.recycle_bin
+            tabDrawables += com.simplemobiletools.commons.R.drawable.ic_delete_vector
+            tabLabels += com.simplemobiletools.commons.R.string.recycle_bin
         }
 
         tabDrawables.forEachIndexed { i, drawableId ->
-            main_tabs_holder.newTab().setCustomView(R.layout.bottom_tablayout_item).apply {
-                customView?.findViewById<ImageView>(R.id.tab_item_icon)?.setImageDrawable(getDrawable(drawableId))
-                customView?.findViewById<TextView>(R.id.tab_item_label)?.setText(tabLabels[i])
-                AutofitHelper.create(customView?.findViewById(R.id.tab_item_label))
-                main_tabs_holder.addTab(this)
+            binding.mainTabsHolder.newTab().setCustomView(com.simplemobiletools.commons.R.layout.bottom_tablayout_item).apply {
+                customView?.findViewById<ImageView>(com.simplemobiletools.commons.R.id.tab_item_icon)?.setImageDrawable(getDrawable(drawableId))
+                customView?.findViewById<TextView>(com.simplemobiletools.commons.R.id.tab_item_label)?.setText(tabLabels[i])
+                AutofitHelper.create(customView?.findViewById(com.simplemobiletools.commons.R.id.tab_item_label))
+                binding.mainTabsHolder.addTab(this)
             }
         }
 
-        main_tabs_holder.onTabSelectionChanged(
+        binding.mainTabsHolder.onTabSelectionChanged(
             tabUnselectedAction = {
                 updateBottomTabItemColors(it.customView, false)
                 if (it.position == 1 || it.position == 2) {
-                    main_menu.closeSearch()
+                    binding.mainMenu.closeSearch()
                 }
             },
             tabSelectedAction = {
-                view_pager.currentItem = it.position
+                binding.viewPager.currentItem = it.position
                 updateBottomTabItemColors(it.customView, true)
             }
         )
 
-        view_pager.adapter = ViewPagerAdapter(this, config.useRecycleBin)
-        view_pager.offscreenPageLimit = 2
-        view_pager.onPageChangeListener {
-            main_tabs_holder.getTabAt(it)?.select()
-            (view_pager.adapter as ViewPagerAdapter).finishActMode()
+        binding.viewPager.adapter = ViewPagerAdapter(this, config.useRecycleBin)
+        binding.viewPager.offscreenPageLimit = 2
+        binding.viewPager.onPageChangeListener {
+            binding.mainTabsHolder.getTabAt(it)?.select()
+            (binding.viewPager.adapter as ViewPagerAdapter).finishActMode()
         }
 
         if (isThirdPartyIntent()) {
-            view_pager.currentItem = 0
+            binding.viewPager.currentItem = 0
         } else {
-            view_pager.currentItem = config.lastUsedViewPagerPage
-            main_tabs_holder.getTabAt(config.lastUsedViewPagerPage)?.select()
+            binding.viewPager.currentItem = config.lastUsedViewPagerPage
+            binding.mainTabsHolder.getTabAt(config.lastUsedViewPagerPage)?.select()
         }
     }
 
     private fun setupTabColors() {
-        val activeView = main_tabs_holder.getTabAt(view_pager.currentItem)?.customView
-        val inactiveView = main_tabs_holder.getTabAt(getInactiveTabIndex())?.customView
+        val activeView = binding.mainTabsHolder.getTabAt(binding.viewPager.currentItem)?.customView
+        val inactiveView = binding.mainTabsHolder.getTabAt(getInactiveTabIndex())?.customView
         updateBottomTabItemColors(activeView, true)
         updateBottomTabItemColors(inactiveView, false)
 
-        main_tabs_holder.getTabAt(view_pager.currentItem)?.select()
+        binding.mainTabsHolder.getTabAt(binding.viewPager.currentItem)?.select()
         val bottomBarColor = getBottomNavigationBackgroundColor()
-        main_tabs_holder.setBackgroundColor(bottomBarColor)
+        binding.mainTabsHolder.setBackgroundColor(bottomBarColor)
         updateNavigationBarColor(bottomBarColor)
     }
 
-    private fun getInactiveTabIndex() = if (view_pager.currentItem == 0) 1 else 0
+    private fun getInactiveTabIndex() = if (binding.viewPager.currentItem == 0) 1 else 0
 
-    private fun getPagerAdapter() = (view_pager.adapter as? ViewPagerAdapter)
+    private fun getPagerAdapter() = (binding.viewPager.adapter as? ViewPagerAdapter)
 
     private fun launchSettings() {
         hideKeyboard()
@@ -229,12 +231,12 @@ class MainActivity : SimpleActivity() {
 
         val faqItems = arrayListOf(
             FAQItem(R.string.faq_1_title, R.string.faq_1_text),
-            FAQItem(R.string.faq_9_title_commons, R.string.faq_9_text_commons)
+            FAQItem(com.simplemobiletools.commons.R.string.faq_9_title_commons, com.simplemobiletools.commons.R.string.faq_9_text_commons)
         )
 
-        if (!resources.getBoolean(R.bool.hide_google_relations)) {
-            faqItems.add(FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons))
-            faqItems.add(FAQItem(R.string.faq_6_title_commons, R.string.faq_6_text_commons))
+        if (!resources.getBoolean(com.simplemobiletools.commons.R.bool.hide_google_relations)) {
+            faqItems.add(FAQItem(com.simplemobiletools.commons.R.string.faq_2_title_commons, com.simplemobiletools.commons.R.string.faq_2_text_commons))
+            faqItems.add(FAQItem(com.simplemobiletools.commons.R.string.faq_6_title_commons, com.simplemobiletools.commons.R.string.faq_6_text_commons))
         }
 
         startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)

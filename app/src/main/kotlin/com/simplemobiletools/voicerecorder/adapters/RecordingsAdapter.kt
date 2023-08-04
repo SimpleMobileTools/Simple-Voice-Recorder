@@ -12,6 +12,7 @@ import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
+import com.simplemobiletools.voicerecorder.databinding.ItemRecordingBinding
 import com.simplemobiletools.voicerecorder.dialogs.DeleteConfirmationDialog
 import com.simplemobiletools.voicerecorder.dialogs.RenameRecordingDialog
 import com.simplemobiletools.voicerecorder.extensions.config
@@ -21,7 +22,6 @@ import com.simplemobiletools.voicerecorder.helpers.getAudioFileContentUri
 import com.simplemobiletools.voicerecorder.interfaces.RefreshRecordingsListener
 import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.models.Recording
-import kotlinx.android.synthetic.main.item_recording.view.*
 import org.greenrobot.eventbus.EventBus
 
 class RecordingsAdapter(
@@ -74,7 +74,9 @@ class RecordingsAdapter(
 
     override fun onActionModeDestroyed() {}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = createViewHolder(R.layout.item_recording, parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return createViewHolder(ItemRecordingBinding.inflate(layoutInflater, parent, false).root)
+    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val recording = recordings[position]
@@ -136,7 +138,7 @@ class RecordingsAdapter(
         }
 
         val baseString = if (activity.config.useRecycleBin) {
-            R.string.move_to_recycle_bin_confirmation
+            com.simplemobiletools.commons.R.string.move_to_recycle_bin_confirmation
         } else {
             R.string.delete_recordings_confirmation
         }
@@ -215,30 +217,30 @@ class RecordingsAdapter(
     private fun getSelectedItems() = recordings.filter { selectedKeys.contains(it.id) } as ArrayList<Recording>
 
     private fun setupView(view: View, recording: Recording) {
-        view.apply {
-            setupViewBackground(activity)
-            recording_frame?.isSelected = selectedKeys.contains(recording.id)
+        ItemRecordingBinding.bind(view).apply {
+            root.setupViewBackground(activity)
+            recordingFrame.isSelected = selectedKeys.contains(recording.id)
 
-            arrayListOf<TextView>(recording_title, recording_date, recording_duration, recording_size).forEach {
+            arrayListOf<TextView>(recordingTitle, recordingDate, recordingDuration, recordingSize).forEach {
                 it.setTextColor(textColor)
             }
 
             if (recording.id == currRecordingId) {
-                recording_title.setTextColor(context.getProperPrimaryColor())
+                recordingTitle.setTextColor(root.context.getProperPrimaryColor())
             }
 
-            recording_title.text = recording.title
-            recording_date.text = recording.timestamp.formatDate(context)
-            recording_duration.text = recording.duration.getFormattedDuration()
-            recording_size.text = recording.size.formatSize()
+            recordingTitle.text = recording.title
+            recordingDate.text = recording.timestamp.formatDate(root.context)
+            recordingDuration.text = recording.duration.getFormattedDuration()
+            recordingSize.text = recording.size.formatSize()
 
-            overflow_menu_icon.drawable.apply {
+            overflowMenuIcon.drawable.apply {
                 mutate()
                 setTint(activity.getProperTextColor())
             }
 
-            overflow_menu_icon.setOnClickListener {
-                showPopupMenu(overflow_menu_anchor, recording)
+            overflowMenuIcon.setOnClickListener {
+                showPopupMenu(overflowMenuAnchor, recording)
             }
         }
     }
