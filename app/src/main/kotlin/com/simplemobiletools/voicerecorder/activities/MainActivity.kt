@@ -70,11 +70,11 @@ class MainActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
-        setupTabColors()
         updateMenuColors()
         if (getPagerAdapter()?.showRecycleBin != config.useRecycleBin) {
             setupViewPager()
         }
+        setupTabColors()
         getPagerAdapter()?.onResume()
     }
 
@@ -207,17 +207,19 @@ class MainActivity : SimpleActivity() {
 
     private fun setupTabColors() {
         val activeView = binding.mainTabsHolder.getTabAt(binding.viewPager.currentItem)?.customView
-        val inactiveView = binding.mainTabsHolder.getTabAt(getInactiveTabIndex())?.customView
         updateBottomTabItemColors(activeView, true)
-        updateBottomTabItemColors(inactiveView, false)
+        for (i in 0 until binding.mainTabsHolder.tabCount) {
+            if (i != binding.viewPager.currentItem) {
+                val inactiveView = binding.mainTabsHolder.getTabAt(i)?.customView
+                updateBottomTabItemColors(inactiveView, false)
+            }
+        }
 
         binding.mainTabsHolder.getTabAt(binding.viewPager.currentItem)?.select()
         val bottomBarColor = getBottomNavigationBackgroundColor()
         binding.mainTabsHolder.setBackgroundColor(bottomBarColor)
         updateNavigationBarColor(bottomBarColor)
     }
-
-    private fun getInactiveTabIndex() = if (binding.viewPager.currentItem == 0) 1 else 0
 
     private fun getPagerAdapter() = (binding.viewPager.adapter as? ViewPagerAdapter)
 
