@@ -6,6 +6,11 @@ plugins {
     alias(libs.plugins.android)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.ksp)
+    base
+}
+
+base {
+    archivesName.set("voice-recorder")
 }
 
 val keystorePropertiesFile: File = rootProject.file("keystore.properties")
@@ -23,7 +28,6 @@ android {
         targetSdk = project.libs.versions.app.build.targetSDK.get().toInt()
         versionName = project.libs.versions.app.version.versionName.get()
         versionCode = project.libs.versions.app.version.versionCode.get().toInt()
-        setProperty("archivesBaseName", "voice-recorder")
         vectorDrawables.useSupportLibrary = true
     }
 
