@@ -12,7 +12,7 @@ eventbus = "3.3.1"
 #Room
 room = "2.6.0-alpha02"
 #Simple tools
-simple-commons = "e0db4c5f28"
+simple-commons = "257a2ab069"
 #AudioRecordView
 audiorecordview = "1.0.4"
 #TAndroidLame
