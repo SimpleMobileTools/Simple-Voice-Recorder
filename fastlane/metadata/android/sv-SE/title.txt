@@ -1,1 +1,1 @@
-Simpel röstinspelare
+Simple Voice Recorder
