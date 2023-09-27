@@ -26,7 +26,7 @@
     <string name="bitrate">Débit binaire</string>
     <string name="record_after_launch">Démarrer l’enregistrement automatiquement après le lancement de l’application</string>
     <!-- Settings Audio source selection -->
-    <string name="audio_source_camcorder">Caméra</string>
+    <string name="audio_source_camcorder">Objectif vidéo</string>
     <string name="audio_source_default">Par défaut Android</string>
     <string name="audio_source_unprocessed">Non traitée</string>
     <string name="audio_source_microphone">Microphone</string>
