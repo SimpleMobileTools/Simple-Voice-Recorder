@@ -15,6 +15,11 @@ room = "2.6.0-alpha02"
 simple-commons = "257a2ab069"
 #AudioRecordView
 audiorecordview = "1.0.4"
+#AudioTool
+audiotool = "1.2.1"
+amplituda = "2.2.2"
+waveformseekbar = "5.0.1"
+mobileffmpeg = "4.4"
 #TAndroidLame
 tandroidlame = "1.1"
 #AutofitTextView
@@ -24,7 +29,7 @@ gradlePlugins-agp = "8.1.1"
 #build
 app-build-compileSDKVersion = "34"
 app-build-targetSDK = "34"
-app-build-minimumSDK = "23"
+app-build-minimumSDK = "24"
 app-build-javaVersion = "VERSION_17"
 app-build-kotlinJVMTarget = "17"
 #versioning
@@ -46,6 +51,11 @@ simple-tools-commons = { module = "com.github.SimpleMobileTools:Simple-Commons",
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
 #AudioRecordView
 audiorecordview = { module = "com.github.Armen101:AudioRecordView", version.ref = "audiorecordview" }
+#AudioTool
+audiotool = { module = "com.github.lincollincol:AudioTool", version.ref = "audiotool" }
+amplituda = { module = "com.github.lincollincol:amplituda", version.ref = "amplituda" }
+mobileffmpeg = { module = "com.arthenica:mobile-ffmpeg-full", version.ref = "mobileffmpeg" }
+waveformseekbar = { module = "com.github.massoudss:waveformSeekBar", version.ref = "waveformseekbar" }
 #TAndroidLame
 tandroidlame = { module = "com.github.naman14:TAndroidLame", version.ref = "tandroidlame" }
 #AutofitTextView
@@ -54,6 +64,14 @@ autofittextview = { module = "me.grantland:autofittextview", version.ref = "auto
 room = [
     "androidx-room-ktx",
     "androidx-room-runtime",
+]
+audiotool = [
+    "audiotool",
+    "mobileffmpeg",
+]
+amplituda = [
+    "amplituda",
+    "waveformseekbar",
 ]
 [plugins]
 android = { id = "com.android.application", version.ref = "gradlePlugins-agp" }
