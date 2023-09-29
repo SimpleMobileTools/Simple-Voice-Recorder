@@ -20,6 +20,7 @@ import com.simplemobiletools.voicerecorder.extensions.getAllRecordings
 import com.simplemobiletools.voicerecorder.helpers.getAudioFileContentUri
 import com.simplemobiletools.voicerecorder.models.Recording
 import linc.com.amplituda.Amplituda
+import linc.com.amplituda.AmplitudaResult
 import linc.com.amplituda.callback.AmplitudaSuccessListener
 import linc.com.library.AudioTool
 import java.io.File
@@ -87,12 +88,40 @@ class EditRecordingActivity : SimpleActivity() {
     }
 
     private fun updateVisualization() {
-        Amplituda(this).processAudio(currentRecording.path)
-            .get(AmplitudaSuccessListener {
-                binding.recordingVisualizer.recreate()
-                binding.recordingVisualizer.clearEditing()
-                binding.recordingVisualizer.putAmplitudes(it.amplitudesAsList())
-            })
+        Amplituda(this).apply {
+            try {
+                val uri = Uri.parse(currentRecording.path)
+
+                fun handleAmplitudes(amplitudaResult: AmplitudaResult<*>) {
+                    binding.recordingVisualizer.recreate()
+                    binding.recordingVisualizer.clearEditing()
+                    binding.recordingVisualizer.putAmplitudes(amplitudaResult.amplitudesAsList())
+                }
+
+                when {
+                    DocumentsContract.isDocumentUri(this@EditRecordingActivity, uri) -> {
+                        processAudio(contentResolver.openInputStream(uri)).get(AmplitudaSuccessListener {
+                            handleAmplitudes(it)
+                        })
+                    }
+
+                    currentRecording.path.isEmpty() -> {
+                        processAudio(contentResolver.openInputStream(getAudioFileContentUri(currentRecording.id.toLong()))).get(AmplitudaSuccessListener {
+                            handleAmplitudes(it)
+                        })
+                    }
+
+                    else -> {
+                        processAudio(currentRecording.path).get(AmplitudaSuccessListener {
+                            handleAmplitudes(it)
+                        })
+                    }
+                }
+            } catch (e: Exception) {
+                showErrorToast(e)
+                return
+            }
+        }
     }
 
     private fun setupColors() {
@@ -136,8 +165,7 @@ class EditRecordingActivity : SimpleActivity() {
                     val durationMillisPart = String.format("%.3f", durationMillis - durationMillis.toInt()).replace("0.", "")
                     val startFormatted = (startMillis.toInt()).getFormattedDuration(true) + ".$startMillisPart"
                     val durationFormatted = (durationMillis.toInt()).getFormattedDuration(true) + ".$durationMillisPart"
-                    AudioTool.getInstance(this)
-                        .withAudio(File(currentRecording.path))
+                    modifyAudioFile(currentRecording)
                         .cutAudio(startFormatted, durationFormatted) {
                             progressStart = binding.recordingVisualizer.startPosition
                             playRecording(it.path, null, it.name, durationMillis.toInt(), true)
@@ -165,8 +193,9 @@ class EditRecordingActivity : SimpleActivity() {
                     fun merge() {
                         if (leftPart != null && rightPart != null) {
                             ensureBackgroundThread {
+                                val tempFile = File.createTempFile("${currentRecording.title}.edit.", ".${currentRecording.title.getFilenameExtension()}", cacheDir)
                                 AudioTool.getInstance(this)
-                                    .joinAudios(arrayOf(leftPart, rightPart), "${currentRecording.path}.edit.${currentRecording.path.getFilenameExtension()}") {
+                                    .joinAudios(arrayOf(leftPart, rightPart), tempFile.path) {
                                         runOnUiThread {
                                             currentRecording = Recording(-1, it.name, it.path, it.lastModified().toInt(), (startMillis + realEnd).toInt(), it.getProperSize(false).toInt())
                                             updateVisualization()
@@ -177,14 +206,12 @@ class EditRecordingActivity : SimpleActivity() {
                         }
                     }
 
-                    AudioTool.getInstance(this)
-                        .withAudio(File(currentRecording.path))
+                    modifyAudioFile(currentRecording)
                         .cutAudio("00:00:00", startFormatted) {
                             leftPart = it
                             merge()
                         }
-                    AudioTool.getInstance(this)
-                        .withAudio(File(currentRecording.path))
+                    modifyAudioFile(currentRecording)
                         .cutAudio(endFormatted, realEndFormatted) {
                             rightPart = it
                             merge()
@@ -204,6 +231,7 @@ class EditRecordingActivity : SimpleActivity() {
                     progressStart = 0f
                     binding.recordingVisualizer.clearEditing()
                     currentRecording = recording
+                    updateVisualization()
                     playRecording(currentRecording.path, currentRecording.id, currentRecording.title, currentRecording.duration, true)
                 }
                 else -> return@setOnMenuItemClickListener false
@@ -358,5 +386,37 @@ class EditRecordingActivity : SimpleActivity() {
 
     override fun onPause() {
         super.onPause()
+    }
+
+    private fun modifyAudioFile(recording: Recording): AudioTool {
+        return AudioTool.getInstance(this)
+            .withAudio(copyToTempFile(recording))
+    }
+
+    private fun copyToTempFile(recording: Recording): File {
+        try {
+            val uri = Uri.parse(recording.path)
+
+            when {
+                DocumentsContract.isDocumentUri(this@EditRecordingActivity, uri) -> {
+                    val tempFile = File.createTempFile(recording.title, ".${recording.title.getFilenameExtension()}", cacheDir)
+                    contentResolver.openInputStream(uri)?.copyTo(tempFile.outputStream())
+                    return tempFile
+                }
+
+                recording.path.isEmpty() -> {
+                    val tempFile = File.createTempFile(recording.title, ".${recording.title.getFilenameExtension()}", cacheDir)
+                    contentResolver.openInputStream(getAudioFileContentUri(recording.id.toLong()))?.copyTo(tempFile.outputStream())
+                    return tempFile
+                }
+
+                else -> {
+                    return File(recording.path)
+                }
+            }
+        } catch (e: Exception) {
+            showErrorToast(e)
+            return File(recording.path)
+        }
     }
 }
