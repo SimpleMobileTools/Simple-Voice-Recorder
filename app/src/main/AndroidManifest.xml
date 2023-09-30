@@ -77,6 +77,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activities.EditRecordingActivity" />
+
         <activity
             android:name=".activities.SettingsActivity"
             android:configChanges="orientation"

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="AlwaysShowAction">
+    <item
+        android:id="@+id/play"
+        android:icon="@drawable/ic_play_vector"
+        android:title="Play"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/cut"
+        android:icon="@drawable/ic_cut_vector"
+        android:title="Cut"
+        app:showAsAction="ifRoom" />
+<!--    <item-->
+<!--        android:id="@+id/save"-->
+<!--        android:icon="@drawable/ic_save_vector"-->
+<!--        android:title="Save"-->
+<!--        app:showAsAction="ifRoom" />-->
+    <item
+        android:id="@+id/reset"
+        android:icon="@drawable/ic_reset_vector"
+        android:title="Reset"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/clear"
+        android:icon="@drawable/ic_cross_vector"
+        android:title="Clear"
+        app:showAsAction="ifRoom" />
+</menu>

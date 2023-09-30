@@ -84,23 +84,23 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     }
 
     private fun setupViews() {
-        binding.playPauseBtn.setOnClickListener {
-            if (playedRecordingIDs.empty() || binding.playerProgressbar.max == 0) {
-                binding.nextBtn.callOnClick()
+        binding.playerControlsWrapper.playPauseBtn.setOnClickListener {
+            if (playedRecordingIDs.empty() || binding.playerControlsWrapper.playerProgressbar.max == 0) {
+                binding.playerControlsWrapper.nextBtn.callOnClick()
             } else {
                 togglePlayPause()
             }
         }
 
-        binding.playerProgressCurrent.setOnClickListener {
+        binding.playerControlsWrapper.playerProgressCurrent.setOnClickListener {
             skip(false)
         }
 
-        binding.playerProgressMax.setOnClickListener {
+        binding.playerControlsWrapper.playerProgressMax.setOnClickListener {
             skip(true)
         }
 
-        binding.previousBtn.setOnClickListener {
+        binding.playerControlsWrapper.previousBtn.setOnClickListener {
             if (playedRecordingIDs.isEmpty()) {
                 return@setOnClickListener
             }
@@ -116,14 +116,14 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             playRecording(prevRecording, true)
         }
 
-        binding.playerTitle.setOnLongClickListener {
-            if (binding.playerTitle.value.isNotEmpty()) {
-                context.copyToClipboard(binding.playerTitle.value)
+        binding.playerControlsWrapper.playerTitle.setOnLongClickListener {
+            if (binding.playerControlsWrapper.playerTitle.value.isNotEmpty()) {
+                context.copyToClipboard(binding.playerControlsWrapper.playerTitle.value)
             }
             true
         }
 
-        binding.nextBtn.setOnClickListener {
+        binding.playerControlsWrapper.nextBtn.setOnClickListener {
             val adapter = getRecordingsAdapter()
             if (adapter == null || adapter.recordings.isEmpty()) {
                 return@setOnClickListener
@@ -193,9 +193,9 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
             setOnCompletionListener {
                 progressTimer.cancel()
-                binding.playerProgressbar.progress = binding.playerProgressbar.max
-                binding.playerProgressCurrent.text = binding.playerProgressMax.text
-                binding.playPauseBtn.setImageDrawable(getToggleButtonIcon(false))
+                binding.playerControlsWrapper.playerProgressbar.progress = binding.playerControlsWrapper.playerProgressbar.max
+                binding.playerControlsWrapper.playerProgressCurrent.text = binding.playerControlsWrapper.playerProgressMax.text
+                binding.playerControlsWrapper.playPauseBtn.setImageDrawable(getToggleButtonIcon(false))
             }
 
             setOnPreparedListener {
@@ -245,12 +245,12 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
             }
         }
 
-        binding.playPauseBtn.setImageDrawable(getToggleButtonIcon(playOnPreparation))
-        binding.playerProgressbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.playerControlsWrapper.playPauseBtn.setImageDrawable(getToggleButtonIcon(playOnPreparation))
+        binding.playerControlsWrapper.playerProgressbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (fromUser && !playedRecordingIDs.isEmpty()) {
                     player?.seekTo(progress * 1000)
-                    binding.playerProgressCurrent.text = progress.getFormattedDuration()
+                    binding.playerControlsWrapper.playerProgressCurrent.text = progress.getFormattedDuration()
                     resumePlayback()
                 }
             }
@@ -273,22 +273,22 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
                 if (player != null) {
                     val progress = Math.round(player!!.currentPosition / 1000.toDouble()).toInt()
                     updateCurrentProgress(progress)
-                    binding.playerProgressbar.progress = progress
+                    binding.playerControlsWrapper.playerProgressbar.progress = progress
                 }
             }
         }
     }
 
     private fun updateCurrentProgress(seconds: Int) {
-        binding.playerProgressCurrent.text = seconds.getFormattedDuration()
+        binding.playerControlsWrapper.playerProgressCurrent.text = seconds.getFormattedDuration()
     }
 
     private fun resetProgress(recording: Recording?) {
         updateCurrentProgress(0)
-        binding.playerProgressbar.progress = 0
-        binding.playerProgressbar.max = recording?.duration ?: 0
-        binding.playerTitle.text = recording?.title ?: ""
-        binding.playerProgressMax.text = (recording?.duration ?: 0).getFormattedDuration()
+        binding.playerControlsWrapper.playerProgressbar.progress = 0
+        binding.playerControlsWrapper.playerProgressbar.max = recording?.duration ?: 0
+        binding.playerControlsWrapper.playerTitle.text = recording?.title ?: ""
+        binding.playerControlsWrapper.playerProgressMax.text = (recording?.duration ?: 0).getFormattedDuration()
     }
 
     fun onSearchTextChanged(text: String) {
@@ -307,13 +307,13 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
 
     private fun pausePlayback() {
         player?.pause()
-        binding.playPauseBtn.setImageDrawable(getToggleButtonIcon(false))
+        binding.playerControlsWrapper.playPauseBtn.setImageDrawable(getToggleButtonIcon(false))
         progressTimer.cancel()
     }
 
     private fun resumePlayback() {
         player?.start()
-        binding.playPauseBtn.setImageDrawable(getToggleButtonIcon(true))
+        binding.playerControlsWrapper.playPauseBtn.setImageDrawable(getToggleButtonIcon(true))
         setupProgressTimer()
     }
 
@@ -352,12 +352,12 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         context.updateTextColors(binding.playerHolder)
 
         val textColor = context.getProperTextColor()
-        arrayListOf(binding.previousBtn, binding.nextBtn).forEach {
+        arrayListOf(binding.playerControlsWrapper.previousBtn, binding.playerControlsWrapper.nextBtn).forEach {
             it.applyColorFilter(textColor)
         }
 
-        binding.playPauseBtn.background.applyColorFilter(properPrimaryColor)
-        binding.playPauseBtn.setImageDrawable(getToggleButtonIcon(false))
+        binding.playerControlsWrapper.playPauseBtn.background.applyColorFilter(properPrimaryColor)
+        binding.playerControlsWrapper.playPauseBtn.setImageDrawable(getToggleButtonIcon(false))
     }
 
     fun finishActMode() = getRecordingsAdapter()?.finishActMode()

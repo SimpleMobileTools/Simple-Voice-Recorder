@@ -1,5 +1,6 @@
 package com.simplemobiletools.voicerecorder.adapters
 
+import android.content.Intent
 import android.view.*
 import android.widget.PopupMenu
 import android.widget.TextView
@@ -11,6 +12,7 @@ import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.voicerecorder.BuildConfig
 import com.simplemobiletools.voicerecorder.R
+import com.simplemobiletools.voicerecorder.activities.EditRecordingActivity
 import com.simplemobiletools.voicerecorder.activities.SimpleActivity
 import com.simplemobiletools.voicerecorder.databinding.ItemRecordingBinding
 import com.simplemobiletools.voicerecorder.dialogs.DeleteConfirmationDialog
@@ -278,6 +280,13 @@ class RecordingsAdapter(
                     R.id.cab_open_with -> {
                         executeItemMenuOperation(recordingId) {
                             openRecordingWith()
+                        }
+                    }
+
+                    R.id.cab_edit -> {
+                        Intent(activity, EditRecordingActivity::class.java).apply {
+                            putExtra(EditRecordingActivity.RECORDING_ID, recordingId)
+                            activity.startActivity(this)
                         }
                     }
 
