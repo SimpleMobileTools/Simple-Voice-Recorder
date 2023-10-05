@@ -3,15 +3,11 @@ package com.simplemobiletools.voicerecorder.services
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.*
-import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
-import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Build
 import android.os.IBinder
-import android.provider.MediaStore
-import android.provider.MediaStore.Audio.Media
 import androidx.core.app.NotificationCompat
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
@@ -19,16 +15,13 @@ import com.simplemobiletools.commons.helpers.isOreoPlus
 import com.simplemobiletools.commons.helpers.isRPlus
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.activities.SplashActivity
-import com.simplemobiletools.voicerecorder.extensions.config
-import com.simplemobiletools.voicerecorder.extensions.getDefaultRecordingsRelativePath
-import com.simplemobiletools.voicerecorder.extensions.updateWidgets
+import com.simplemobiletools.voicerecorder.extensions.*
 import com.simplemobiletools.voicerecorder.helpers.*
 import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.recorder.MediaRecorderWrapper
 import com.simplemobiletools.voicerecorder.recorder.Mp3Recorder
 import com.simplemobiletools.voicerecorder.recorder.Recorder
 import org.greenrobot.eventbus.EventBus
-import java.io.File
 import java.util.*
 
 class RecorderService : Service() {
@@ -75,17 +68,7 @@ class RecorderService : Service() {
             return
         }
 
-        val defaultFolder = File(config.saveRecordingsFolder)
-        if (!defaultFolder.exists()) {
-            defaultFolder.mkdir()
-        }
-
-        val baseFolder = if (isRPlus() && !hasProperStoredFirstParentUri(defaultFolder.absolutePath)) {
-            cacheDir
-        } else {
-            defaultFolder.absolutePath
-        }
-
+        val baseFolder = getBaseFolder()
         currFilePath = "$baseFolder/${getCurrentFormattedDateTime()}.${config.getExtension()}"
 
         try {
@@ -139,9 +122,9 @@ class RecorderService : Service() {
 
                 ensureBackgroundThread {
                     if (isRPlus() && !hasProperStoredFirstParentUri(currFilePath)) {
-                        addFileInNewMediaStore()
+                        addFileInNewMediaStore(currFilePath, ::recordingSavedSuccessfully)
                     } else {
-                        addFileInLegacyMediaStore()
+                        addFileInLegacyMediaStore(currFilePath, ::recordingSavedSuccessfully)
                     }
                     EventBus.getDefault().post(Events.RecordingCompleted())
                 }
@@ -179,42 +162,6 @@ class RecorderService : Service() {
         } catch (e: Exception) {
             showErrorToast(e)
         }
-    }
-
-    @SuppressLint("InlinedApi")
-    private fun addFileInNewMediaStore() {
-        val audioCollection = Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
-        val storeFilename = currFilePath.getFilenameFromPath()
-
-        val newSongDetails = ContentValues().apply {
-            put(Media.DISPLAY_NAME, storeFilename)
-            put(Media.TITLE, storeFilename)
-            put(Media.MIME_TYPE, storeFilename.getMimeType())
-            put(Media.RELATIVE_PATH, getDefaultRecordingsRelativePath())
-        }
-
-        val newUri = contentResolver.insert(audioCollection, newSongDetails)
-        if (newUri == null) {
-            toast(com.simplemobiletools.commons.R.string.unknown_error_occurred)
-            return
-        }
-
-        try {
-            val outputStream = contentResolver.openOutputStream(newUri)
-            val inputStream = getFileInputStreamSync(currFilePath)
-            inputStream!!.copyTo(outputStream!!, DEFAULT_BUFFER_SIZE)
-            recordingSavedSuccessfully(newUri)
-        } catch (e: Exception) {
-            showErrorToast(e)
-        }
-    }
-
-    private fun addFileInLegacyMediaStore() {
-        MediaScannerConnection.scanFile(
-            this,
-            arrayOf(currFilePath),
-            arrayOf(currFilePath.getMimeType())
-        ) { _, uri -> recordingSavedSuccessfully(uri) }
     }
 
     private fun recordingSavedSuccessfully(savedUri: Uri) {

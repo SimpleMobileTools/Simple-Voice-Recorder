@@ -2,15 +2,13 @@ package com.simplemobiletools.voicerecorder.extensions
 
 import android.annotation.SuppressLint
 import android.appwidget.AppWidgetManager
-import android.content.ComponentName
-import android.content.ContentResolver
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.media.MediaMetadataRetriever
+import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -236,5 +234,60 @@ private fun Context.getDurationFromUri(uri: Uri): Long {
         (time.toLong() / 1000.toDouble()).roundToLong()
     } catch (e: Exception) {
         0L
+    }
+}
+
+@SuppressLint("InlinedApi")
+fun Context.addFileInNewMediaStore(
+    filePath: String,
+    successCallback: (Uri) -> Unit
+) {
+    val audioCollection = Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+    val storeFilename = filePath.getFilenameFromPath()
+
+    val newSongDetails = ContentValues().apply {
+        put(Media.DISPLAY_NAME, storeFilename)
+        put(Media.TITLE, storeFilename)
+        put(Media.MIME_TYPE, storeFilename.getMimeType())
+        put(Media.RELATIVE_PATH, getDefaultRecordingsRelativePath())
+    }
+
+    val newUri = contentResolver.insert(audioCollection, newSongDetails)
+    if (newUri == null) {
+        toast(com.simplemobiletools.commons.R.string.unknown_error_occurred)
+        return
+    }
+
+    try {
+        val outputStream = contentResolver.openOutputStream(newUri)
+        val inputStream = getFileInputStreamSync(filePath)
+        inputStream!!.copyTo(outputStream!!, DEFAULT_BUFFER_SIZE)
+        successCallback(newUri)
+    } catch (e: Exception) {
+        showErrorToast(e)
+    }
+}
+
+fun Context.addFileInLegacyMediaStore(
+    filePath: String,
+    successCallback: (Uri) -> Unit
+) {
+    MediaScannerConnection.scanFile(
+        this,
+        arrayOf(filePath),
+        arrayOf(filePath.getMimeType())
+    ) { _, uri -> successCallback(uri) }
+}
+
+fun Context.getBaseFolder(): String {
+    val defaultFolder = File(config.saveRecordingsFolder)
+    if (!defaultFolder.exists()) {
+        defaultFolder.mkdir()
+    }
+
+    return if (isRPlus() && !hasProperStoredFirstParentUri(defaultFolder.absolutePath)) {
+        cacheDir.absolutePath
+    } else {
+        defaultFolder.absolutePath
     }
 }

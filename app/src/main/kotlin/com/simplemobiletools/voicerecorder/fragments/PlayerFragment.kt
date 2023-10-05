@@ -368,6 +368,11 @@ class PlayerFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
+    fun recordingCompleted(event: Events.RecordingEdited) {
+        refreshRecordings()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
     fun recordingMovedToRecycleBin(event: Events.RecordingTrashUpdated) {
         refreshRecordings()
     }

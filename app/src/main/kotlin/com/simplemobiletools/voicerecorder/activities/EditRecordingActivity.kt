@@ -10,19 +10,28 @@ import android.os.Looper
 import android.os.PowerManager
 import android.provider.DocumentsContract
 import android.widget.SeekBar
+import androidx.core.view.forEach
 import androidx.core.view.isVisible
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.NavigationIcon
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
+import com.simplemobiletools.commons.helpers.isRPlus
+import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.databinding.ActivityEditRecordingBinding
+import com.simplemobiletools.voicerecorder.extensions.addFileInLegacyMediaStore
+import com.simplemobiletools.voicerecorder.extensions.addFileInNewMediaStore
 import com.simplemobiletools.voicerecorder.extensions.getAllRecordings
+import com.simplemobiletools.voicerecorder.extensions.getBaseFolder
 import com.simplemobiletools.voicerecorder.helpers.getAudioFileContentUri
+import com.simplemobiletools.voicerecorder.models.Events
 import com.simplemobiletools.voicerecorder.models.Recording
 import linc.com.amplituda.Amplituda
 import linc.com.amplituda.AmplitudaResult
 import linc.com.amplituda.callback.AmplitudaSuccessListener
 import linc.com.library.AudioTool
+import org.greenrobot.eventbus.EventBus
 import java.io.File
+import java.io.OutputStream
 import java.util.Timer
 import java.util.TimerTask
 
@@ -44,6 +53,7 @@ class EditRecordingActivity : SimpleActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditRecordingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupOptionsMenu()
 
         updateMaterialActivityViews(binding.mainCoordinator, binding.recordingVisualizer, useTransparentNavigation = false, useTopSearchMenu = false)
 
@@ -82,6 +92,12 @@ class EditRecordingActivity : SimpleActivity() {
                     binding.playerControlsWrapper.resetBtn.isVisible = true
                 }
             }
+
+            if (recording != currentRecording) {
+                binding.editToolbar.menu.forEach { it.isVisible = true }
+            } else {
+                binding.editToolbar.menu.forEach { it.isVisible = false }
+            }
         }
         updateVisualization()
 
@@ -92,6 +108,18 @@ class EditRecordingActivity : SimpleActivity() {
             togglePlayPause()
         }
         setupColors()
+    }
+
+    private fun setupOptionsMenu() {
+        binding.editToolbar.inflateMenu(R.menu.edit_menu)
+
+        binding.editToolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.save -> saveChanges()
+                else -> return@setOnMenuItemClickListener false
+            }
+            return@setOnMenuItemClickListener true
+        }
     }
 
     private fun updateVisualization() {
@@ -159,11 +187,6 @@ class EditRecordingActivity : SimpleActivity() {
                 binding.playerControlsWrapper.playerProgressbar.progress = binding.playerControlsWrapper.playerProgressbar.max
                 binding.playerControlsWrapper.playerProgressCurrent.text = binding.playerControlsWrapper.playerProgressMax.text
                 binding.playerControlsWrapper.playPauseBtn.setImageDrawable(getToggleButtonIcon(false))
-            }
-
-            setOnPreparedListener {
-//                setupProgressTimer()
-//                player?.start()
             }
         }
     }
@@ -316,6 +339,42 @@ class EditRecordingActivity : SimpleActivity() {
             }
     }
 
+    private fun saveChanges() {
+        val finalLocation = "${getBaseFolder()}/${recording.title}.edit.${recording.title.getFilenameExtension()}"
+        if (isRPlus() && hasProperStoredFirstParentUri(finalLocation)) {
+            val fileUri = createDocumentUriUsingFirstParentTreeUri(finalLocation)
+            createSAFFileSdk30(finalLocation)
+            val outputStream = contentResolver.openOutputStream(fileUri, "w")!!
+            copyTo(currentRecording, outputStream)
+        } else if (!isRPlus() && isPathOnSD(finalLocation)) {
+            var document = getDocumentFile(finalLocation.getParentPath())
+            document = document?.createFile("", finalLocation.getFilenameFromPath())
+            val outputStream = contentResolver.openOutputStream(document!!.uri, "w")!!
+            copyTo(currentRecording, outputStream)
+        } else {
+            copyTo(currentRecording, File(finalLocation).outputStream())
+        }
+
+
+        if (isRPlus() && !hasProperStoredFirstParentUri(finalLocation)) {
+            addFileInNewMediaStore(finalLocation) {
+                toast(R.string.recording_saved_successfully)
+                AudioTool.getInstance(this).release()
+                getRecordingsCache().listFiles()?.forEach { it.delete() }
+                EventBus.getDefault().post(Events.RecordingEdited())
+                finish()
+            }
+        } else {
+            addFileInLegacyMediaStore(finalLocation) {
+                toast(R.string.recording_saved_successfully)
+                AudioTool.getInstance(this).release()
+                getRecordingsCache().listFiles()?.forEach { it.delete() }
+                EventBus.getDefault().post(Events.RecordingEdited())
+                finish()
+            }
+        }
+    }
+
     private fun setupProgressTimer() {
         progressTimer.cancel()
         progressTimer = Timer()
@@ -387,19 +446,43 @@ class EditRecordingActivity : SimpleActivity() {
             .withAudio(copyToTempFile(recording))
     }
 
-    private fun copyToTempFile(recording: Recording): File {
+    private fun copyTo(recording: Recording, outputStream: OutputStream) {
         try {
             val uri = Uri.parse(recording.path)
 
             when {
                 DocumentsContract.isDocumentUri(this@EditRecordingActivity, uri) -> {
-                    val tempFile = File.createTempFile(recording.title, ".${recording.title.getFilenameExtension()}", cacheDir)
+                    contentResolver.openInputStream(uri)?.copyTo(outputStream)
+                }
+
+                recording.path.isEmpty() -> {
+                    contentResolver.openInputStream(getAudioFileContentUri(recording.id.toLong()))?.copyTo(outputStream)
+                }
+
+                else -> {
+                    File(recording.path).inputStream().copyTo(outputStream)
+                }
+            }
+        } catch (e: Exception) {
+            showErrorToast(e)
+            File(recording.path).inputStream().copyTo(outputStream)
+        }
+    }
+
+    private fun copyToTempFile(recording: Recording): File {
+        try {
+            val recordingCacheDir = getRecordingsCache()
+            val uri = Uri.parse(recording.path)
+
+            when {
+                DocumentsContract.isDocumentUri(this@EditRecordingActivity, uri) -> {
+                    val tempFile = File.createTempFile(recording.title, ".${recording.title.getFilenameExtension()}", recordingCacheDir)
                     contentResolver.openInputStream(uri)?.copyTo(tempFile.outputStream())
                     return tempFile
                 }
 
                 recording.path.isEmpty() -> {
-                    val tempFile = File.createTempFile(recording.title, ".${recording.title.getFilenameExtension()}", cacheDir)
+                    val tempFile = File.createTempFile(recording.title, ".${recording.title.getFilenameExtension()}", recordingCacheDir)
                     contentResolver.openInputStream(getAudioFileContentUri(recording.id.toLong()))?.copyTo(tempFile.outputStream())
                     return tempFile
                 }
@@ -413,4 +496,6 @@ class EditRecordingActivity : SimpleActivity() {
             return File(recording.path)
         }
     }
+
+    private fun getRecordingsCache() = File(cacheDir, "tmp_recordings")
 }
