@@ -12,10 +12,10 @@ import android.provider.DocumentsContract
 import android.widget.SeekBar
 import androidx.core.view.children
 import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.NavigationIcon
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.voicerecorder.R
 import com.simplemobiletools.voicerecorder.databinding.ActivityEditRecordingBinding
-import com.simplemobiletools.voicerecorder.extensions.deleteRecordings
 import com.simplemobiletools.voicerecorder.extensions.getAllRecordings
 import com.simplemobiletools.voicerecorder.helpers.getAudioFileContentUri
 import com.simplemobiletools.voicerecorder.models.Recording
@@ -69,9 +69,9 @@ class EditRecordingActivity : SimpleActivity() {
         binding.recordingVisualizer.recreate()
         binding.recordingVisualizer.editListener = {
             if (binding.recordingVisualizer.startPosition >= 0f) {
-                binding.settingsToolbar.menu.children.forEach { it.isVisible = true }
+                binding.editToolbar.menu.children.forEach { it.isVisible = true }
             } else {
-                binding.settingsToolbar.menu.children.forEach { it.isVisible = false }
+                binding.editToolbar.menu.children.forEach { it.isVisible = false }
             }
         }
         updateVisualization()
@@ -138,7 +138,7 @@ class EditRecordingActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        binding.settingsToolbar.inflateMenu(R.menu.menu_edit)
+        binding.editToolbar.inflateMenu(R.menu.menu_edit)
 //        binding.settingsToolbar.toggleHideOnScroll(false)
 //        binding.settingsToolbar.setupMenu()
 
@@ -152,8 +152,8 @@ class EditRecordingActivity : SimpleActivity() {
 //            getPagerAdapter()?.searchTextChanged(text)
 //        }
 
-        binding.settingsToolbar.menu.children.forEach { it.isVisible = false }
-        binding.settingsToolbar.setOnMenuItemClickListener { menuItem ->
+        binding.editToolbar.menu.children.forEach { it.isVisible = false }
+        binding.editToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.play -> {
                     val start = binding.recordingVisualizer.startPosition
@@ -382,6 +382,7 @@ class EditRecordingActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
+        setupToolbar(binding.editToolbar, NavigationIcon.Arrow)
     }
 
     override fun onPause() {
