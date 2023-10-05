@@ -55,14 +55,6 @@ class EditRecordingActivity : SimpleActivity() {
 
         recording = getAllRecordings().first { it.id == recordingId }
         currentRecording = recording
-//        AudioTool.getInstance(this)
-//            .withAudio(File(recording.path))
-//            .cutAudio("00:00:00", "00:00:00.250") {}
-//            .saveCurrentTo(recording.path)
-//            .release()
-
-//        binding.recordingVisualizer.waveProgressColor = getProperPrimaryColor()
-//        binding.recordingVisualizer.setSampleFrom(recording.path)
         val controls = listOf(
             binding.playerControlsWrapper.trimBtn,
             binding.playerControlsWrapper.cutBtn,
@@ -92,11 +84,9 @@ class EditRecordingActivity : SimpleActivity() {
             }
         }
         updateVisualization()
-//        android.media.MediaCodec.createByCodecName().createInputSurface()
-//        binding.recordingVisualizer.update()
 
         initMediaPlayer()
-        playRecording(recording.path, recording.id, recording.title, recording.duration, false)
+        playRecording(recording.path, recording.id, recording.duration)
 
         binding.playerControlsWrapper.playPauseBtn.setOnClickListener {
             togglePlayPause()
@@ -178,10 +168,8 @@ class EditRecordingActivity : SimpleActivity() {
         }
     }
 
-    fun playRecording(path: String, id: Int?, title: String?, duration: Int?, playOnPrepared: Boolean) {
+    fun playRecording(path: String, id: Int?, duration: Int?) {
         resetProgress(duration)
-//        (binding.recordingsList.adapter as RecordingsAdapter).updateCurrentRecording(recording.id)
-//        playOnPreparation = playOnPrepared
 
         player!!.apply {
             reset()
@@ -233,7 +221,7 @@ class EditRecordingActivity : SimpleActivity() {
     private fun clearSelection() {
         progressStart = 0f
         binding.recordingVisualizer.clearEditing()
-        playRecording(currentRecording.path, currentRecording.id, currentRecording.title, currentRecording.duration, true)
+        playRecording(currentRecording.path, currentRecording.id, currentRecording.duration)
     }
 
     private fun resetEditing() {
@@ -241,7 +229,7 @@ class EditRecordingActivity : SimpleActivity() {
         binding.recordingVisualizer.clearEditing()
         currentRecording = recording
         updateVisualization()
-        playRecording(currentRecording.path, currentRecording.id, currentRecording.title, currentRecording.duration, true)
+        playRecording(currentRecording.path, currentRecording.id, currentRecording.duration)
     }
 
     private fun playSelection() {
@@ -254,12 +242,13 @@ class EditRecordingActivity : SimpleActivity() {
         val durationMillisPart = String.format("%.3f", durationMillis - durationMillis.toInt()).replace("0.", "")
         val startFormatted = (startMillis.toInt()).getFormattedDuration(true) + ".$startMillisPart"
         val durationFormatted = (durationMillis.toInt()).getFormattedDuration(true) + ".$durationMillisPart"
-        modifyAudioFile(currentRecording)
-            .cutAudio(startFormatted, durationFormatted) {
-                progressStart = binding.recordingVisualizer.startPosition
-                playRecording(it.path, null, it.name, durationMillis.toInt(), true)
-            }
-            .release()
+        if (durationMillis > 0f) {
+            modifyAudioFile(currentRecording)
+                .cutAudio(startFormatted, durationFormatted) {
+                    progressStart = binding.recordingVisualizer.startPosition
+                    playRecording(it.path, null, durationMillis.toInt())
+                }
+        }
     }
 
     private fun trimSelection() {
@@ -277,10 +266,9 @@ class EditRecordingActivity : SimpleActivity() {
                 runOnUiThread {
                     currentRecording = Recording(-1, it.name, it.path, it.lastModified().toInt(), durationMillis.toInt(), it.getProperSize(false).toInt())
                     updateVisualization()
-                    playRecording(currentRecording.path, currentRecording.id, currentRecording.title, currentRecording.duration, true)
+                    playRecording(currentRecording.path, currentRecording.id, currentRecording.duration)
                 }
             }
-            .release()
     }
 
     private fun cutSelection() {
@@ -309,7 +297,7 @@ class EditRecordingActivity : SimpleActivity() {
                             runOnUiThread {
                                 currentRecording = Recording(-1, it.name, it.path, it.lastModified().toInt(), (startMillis + realEnd).toInt(), it.getProperSize(false).toInt())
                                 updateVisualization()
-                                playRecording(currentRecording.path, currentRecording.id, currentRecording.title, currentRecording.duration, true)
+                                playRecording(currentRecording.path, currentRecording.id, currentRecording.duration)
                             }
                         }
                 }
