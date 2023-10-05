@@ -128,11 +128,6 @@ class EditRecordingActivity : SimpleActivity() {
         val properPrimaryColor = getProperPrimaryColor()
         updateTextColors(binding.mainCoordinator)
 
-        val textColor = getProperTextColor()
-        arrayListOf(binding.playerControlsWrapper.previousBtn, binding.playerControlsWrapper.nextBtn).forEach {
-            it.applyColorFilter(textColor)
-        }
-
         binding.playerControlsWrapper.playPauseBtn.background.applyColorFilter(properPrimaryColor)
         binding.playerControlsWrapper.playPauseBtn.setImageDrawable(getToggleButtonIcon(false))
     }
@@ -260,7 +255,7 @@ class EditRecordingActivity : SimpleActivity() {
     }
 
     fun playRecording(path: String, id: Int?, title: String?, duration: Int?, playOnPrepared: Boolean) {
-        resetProgress(title, duration)
+        resetProgress(duration)
 //        (binding.recordingsList.adapter as RecordingsAdapter).updateCurrentRecording(recording.id)
 //        playOnPreparation = playOnPrepared
 
@@ -334,11 +329,10 @@ class EditRecordingActivity : SimpleActivity() {
         binding.playerControlsWrapper.playerProgressCurrent.text = seconds.getFormattedDuration()
     }
 
-    private fun resetProgress(title: String?, duration: Int?) {
+    private fun resetProgress(duration: Int?) {
         updateCurrentProgress(0)
         binding.playerControlsWrapper.playerProgressbar.progress = 0
         binding.playerControlsWrapper.playerProgressbar.max = duration ?: 0
-        binding.playerControlsWrapper.playerTitle.text = title ?: ""
         binding.playerControlsWrapper.playerProgressMax.text = (duration ?: 0).getFormattedDuration()
     }
 
