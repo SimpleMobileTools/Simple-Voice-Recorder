@@ -98,6 +98,9 @@ class EditRecordingActivity : SimpleActivity() {
             } else {
                 binding.editToolbar.menu.forEach { it.isVisible = false }
             }
+
+            binding.playerControlsWrapper.selectedStartTime.setText(binding.recordingVisualizer.startPosition.formatSelectionPosition())
+            binding.playerControlsWrapper.selectedEndTime.setText(binding.recordingVisualizer.endPosition.formatSelectionPosition())
         }
         updateVisualization()
 
@@ -107,6 +110,12 @@ class EditRecordingActivity : SimpleActivity() {
         binding.playerControlsWrapper.playPauseBtn.setOnClickListener {
             togglePlayPause()
         }
+        binding.playerControlsWrapper.selectedStartTime.setText(0f.formatSelectionPosition())
+        binding.playerControlsWrapper.selectedEndTime.setText(1f.formatSelectionPosition())
+
+//        binding.playerControlsWrapper.selectedStartTime.onTextChangeListener {
+//
+//        }
         setupColors()
     }
 
@@ -259,12 +268,9 @@ class EditRecordingActivity : SimpleActivity() {
         val start = binding.recordingVisualizer.startPosition
         val end = binding.recordingVisualizer.endPosition
 
-        val startMillis = start * currentRecording.duration
         val durationMillis = (end - start) * currentRecording.duration
-        val startMillisPart = String.format("%.3f", startMillis - startMillis.toInt()).replace("0.", "")
-        val durationMillisPart = String.format("%.3f", durationMillis - durationMillis.toInt()).replace("0.", "")
-        val startFormatted = (startMillis.toInt()).getFormattedDuration(true) + ".$startMillisPart"
-        val durationFormatted = (durationMillis.toInt()).getFormattedDuration(true) + ".$durationMillisPart"
+        val startFormatted = start.formatSelectionPosition()
+        val durationFormatted = (end - start).formatSelectionPosition()
         if (durationMillis > 0f) {
             modifyAudioFile(currentRecording)
                 .cutAudio(startFormatted, durationFormatted) {
@@ -278,12 +284,9 @@ class EditRecordingActivity : SimpleActivity() {
         val start = binding.recordingVisualizer.startPosition
         val end = binding.recordingVisualizer.endPosition
 
-        val startMillis = start * currentRecording.duration
         val durationMillis = (end - start) * currentRecording.duration
-        val startMillisPart = String.format("%.3f", startMillis - startMillis.toInt()).replace("0.", "")
-        val durationMillisPart = String.format("%.3f", durationMillis - durationMillis.toInt()).replace("0.", "")
-        val startFormatted = (startMillis.toInt()).getFormattedDuration(true) + ".$startMillisPart"
-        val durationFormatted = (durationMillis.toInt()).getFormattedDuration(true) + ".$durationMillisPart"
+        val startFormatted = start.formatSelectionPosition()
+        val durationFormatted = (end - start).formatSelectionPosition()
         modifyAudioFile(currentRecording)
             .cutAudio(startFormatted, durationFormatted) {
                 runOnUiThread {
@@ -299,14 +302,10 @@ class EditRecordingActivity : SimpleActivity() {
         val end = binding.recordingVisualizer.endPosition
 
         val startMillis = start * currentRecording.duration
-        val endMillis = end * currentRecording.duration
         val realEnd = (1 - end) * currentRecording.duration
-        val startMillisPart = String.format("%.3f", startMillis - startMillis.toInt()).replace("0.", "")
-        val endMillisPart = String.format("%.3f", endMillis - endMillis.toInt()).replace("0.", "")
-        val realEndMillisPart = String.format("%.3f", realEnd - realEnd.toInt()).replace("0.", "")
-        val startFormatted = (startMillis.toInt()).getFormattedDuration(true) + ".$startMillisPart"
-        val endFormatted = (endMillis.toInt()).getFormattedDuration(true) + ".$endMillisPart"
-        val realEndFormatted = (realEnd.toInt()).getFormattedDuration(true) + ".$realEndMillisPart"
+        val startFormatted = start.formatSelectionPosition()
+        val endFormatted = end.formatSelectionPosition()
+        val realEndFormatted = (1 - end).formatSelectionPosition()
 
         var leftPart: File? = null
         var rightPart: File? = null
@@ -498,4 +497,10 @@ class EditRecordingActivity : SimpleActivity() {
     }
 
     private fun getRecordingsCache() = File(cacheDir, "tmp_recordings")
+
+    private fun Float.formatSelectionPosition(): String {
+        val millis = this * currentRecording.duration
+        val millisPart = String.format("%.3f", millis - millis.toInt()).replace("0.", "")
+        return (millis.toInt()).getFormattedDuration(true) + ".$millisPart"
+    }
 }

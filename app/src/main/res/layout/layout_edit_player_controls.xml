@@ -17,11 +17,31 @@
         android:background="@color/divider_grey"
         android:importantForAccessibility="no" />
 
+    <com.simplemobiletools.commons.views.MyEditText
+        android:id="@+id/selected_start_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/activity_margin"
+        android:layout_marginTop="@dimen/normal_margin"
+        android:text="00:00:00.000" />
+
+    <com.simplemobiletools.commons.views.MyEditText
+        android:id="@+id/selected_end_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/player_controls"
+        android:layout_alignTop="@+id/selected_start_time"
+        android:layout_alignBottom="@+id/selected_start_time"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/activity_margin"
+        android:text="00:00:00.000" />
+
     <com.simplemobiletools.commons.views.MyTextView
         android:id="@+id/player_progress_current"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/player_controls"
+        android:layout_below="@+id/selected_start_time"
         android:layout_alignTop="@+id/player_progressbar"
         android:layout_alignBottom="@+id/player_progressbar"
         android:background="?attr/selectableItemBackgroundBorderless"
@@ -35,7 +55,7 @@
         android:id="@+id/player_progressbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/player_divider"
+        android:layout_below="@+id/selected_start_time"
         android:layout_toStartOf="@+id/player_progress_max"
         android:layout_toEndOf="@+id/player_progress_current"
         android:clickable="true"
