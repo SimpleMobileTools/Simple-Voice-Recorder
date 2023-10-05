@@ -63,11 +63,17 @@ class EditRecordingActivity : SimpleActivity() {
 
 //        binding.recordingVisualizer.waveProgressColor = getProperPrimaryColor()
 //        binding.recordingVisualizer.setSampleFrom(recording.path)
-        val controls = listOf(binding.playerControlsWrapper.cutBtn, binding.playerControlsWrapper.clearBtn, binding.playerControlsWrapper.resetBtn)
-        listOf(binding.playerControlsWrapper.cutBtn, binding.playerControlsWrapper.clearBtn, binding.playerControlsWrapper.resetBtn).forEach {
+        val controls = listOf(
+            binding.playerControlsWrapper.trimBtn,
+            binding.playerControlsWrapper.cutBtn,
+            binding.playerControlsWrapper.clearBtn,
+            binding.playerControlsWrapper.resetBtn
+        )
+        controls.forEach {
             it.isVisible = false
         }
 
+        binding.playerControlsWrapper.trimBtn.setOnClickListener { trimSelection() }
         binding.playerControlsWrapper.cutBtn.setOnClickListener { cutSelection() }
         binding.playerControlsWrapper.clearBtn.setOnClickListener { clearSelection() }
         binding.playerControlsWrapper.resetBtn.setOnClickListener { resetEditing() }
@@ -140,7 +146,12 @@ class EditRecordingActivity : SimpleActivity() {
         updateTextColors(binding.mainCoordinator)
 
         val textColor = getProperTextColor()
-        arrayListOf(binding.playerControlsWrapper.cutBtn, binding.playerControlsWrapper.clearBtn, binding.playerControlsWrapper.resetBtn).forEach {
+        listOf(
+            binding.playerControlsWrapper.trimBtn,
+            binding.playerControlsWrapper.cutBtn,
+            binding.playerControlsWrapper.clearBtn,
+            binding.playerControlsWrapper.resetBtn
+        ).forEach {
             it.applyColorFilter(textColor)
         }
 
@@ -247,6 +258,27 @@ class EditRecordingActivity : SimpleActivity() {
             .cutAudio(startFormatted, durationFormatted) {
                 progressStart = binding.recordingVisualizer.startPosition
                 playRecording(it.path, null, it.name, durationMillis.toInt(), true)
+            }
+            .release()
+    }
+
+    private fun trimSelection() {
+        val start = binding.recordingVisualizer.startPosition
+        val end = binding.recordingVisualizer.endPosition
+
+        val startMillis = start * currentRecording.duration
+        val durationMillis = (end - start) * currentRecording.duration
+        val startMillisPart = String.format("%.3f", startMillis - startMillis.toInt()).replace("0.", "")
+        val durationMillisPart = String.format("%.3f", durationMillis - durationMillis.toInt()).replace("0.", "")
+        val startFormatted = (startMillis.toInt()).getFormattedDuration(true) + ".$startMillisPart"
+        val durationFormatted = (durationMillis.toInt()).getFormattedDuration(true) + ".$durationMillisPart"
+        modifyAudioFile(currentRecording)
+            .cutAudio(startFormatted, durationFormatted) {
+                runOnUiThread {
+                    currentRecording = Recording(-1, it.name, it.path, it.lastModified().toInt(), durationMillis.toInt(), it.getProperSize(false).toInt())
+                    updateVisualization()
+                    playRecording(currentRecording.path, currentRecording.id, currentRecording.title, currentRecording.duration, true)
+                }
             }
             .release()
     }

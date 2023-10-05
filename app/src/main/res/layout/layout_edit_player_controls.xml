@@ -79,6 +79,19 @@
             android:src="@drawable/ic_cut_vector" />
 
         <ImageView
+            android:id="@+id/trim_btn"
+            android:layout_width="@dimen/normal_icon_size"
+            android:layout_height="@dimen/normal_icon_size"
+            android:layout_alignTop="@+id/play_pause_btn"
+            android:layout_alignBottom="@+id/play_pause_btn"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/cut_btn"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Cut"
+            android:padding="@dimen/medium_margin"
+            android:src="@drawable/ic_trim_vector" />
+
+        <ImageView
             android:id="@+id/play_pause_btn"
             android:layout_width="@dimen/toggle_recording_button_size"
             android:layout_height="@dimen/toggle_recording_button_size"
