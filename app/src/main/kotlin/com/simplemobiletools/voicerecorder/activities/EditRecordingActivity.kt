@@ -9,6 +9,7 @@ import android.os.Handler
 import android.os.Looper
 import android.os.PowerManager
 import android.provider.DocumentsContract
+import android.view.inputmethod.EditorInfo
 import android.widget.SeekBar
 import androidx.core.view.forEach
 import androidx.core.view.isVisible
@@ -113,9 +114,30 @@ class EditRecordingActivity : SimpleActivity() {
         binding.playerControlsWrapper.selectedStartTime.setText(0f.formatSelectionPosition())
         binding.playerControlsWrapper.selectedEndTime.setText(1f.formatSelectionPosition())
 
-//        binding.playerControlsWrapper.selectedStartTime.onTextChangeListener {
-//
-//        }
+        binding.playerControlsWrapper.selectedStartTime.setOnEditorActionListener { v, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                val position = v.text.toString().parseSelectionPosition()
+                if (position != null && position <= 1f && position >= 0f) {
+                    binding.recordingVisualizer.updateStartPosition(position)
+                }
+                true
+            } else {
+                false
+            }
+        }
+
+        binding.playerControlsWrapper.selectedEndTime.setOnEditorActionListener { v, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                val position = v.text.toString().parseSelectionPosition()
+                if (position != null && position <= 1f && position >= 0f) {
+                    binding.recordingVisualizer.updateEndPosition(position)
+                }
+                true
+            } else {
+                false
+            }
+        }
+
         setupColors()
     }
 
@@ -502,5 +524,22 @@ class EditRecordingActivity : SimpleActivity() {
         val millis = this * currentRecording.duration
         val millisPart = String.format("%.3f", millis - millis.toInt()).replace("0.", "")
         return (millis.toInt()).getFormattedDuration(true) + ".$millisPart"
+    }
+
+    private fun String.parseSelectionPosition(): Float? {
+        val parts = split(":")
+
+        val hours = parts[0].toFloatOrNull()
+        val minutes = parts[1].toFloatOrNull()
+        val seconds = parts[2].toFloatOrNull()
+
+        return if (hours != null && minutes != null && seconds != null) {
+            var totalSeconds = seconds
+            totalSeconds += minutes * 60
+            totalSeconds += hours * 60 * 60
+            return totalSeconds / currentRecording.duration
+        } else {
+            null
+        }
     }
 }

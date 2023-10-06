@@ -181,6 +181,28 @@ class AudioEditorView @JvmOverloads constructor(
         return true
     }
 
+    fun updateStartPosition(newPosition: Float) {
+        if (newPosition > endPosition) {
+            startPosition = endPosition
+            endPosition = newPosition
+        } else {
+            startPosition = newPosition
+        }
+        invalidate()
+        editListener?.invoke()
+    }
+
+    fun updateEndPosition(newPosition: Float) {
+        if (newPosition < startPosition) {
+            endPosition = startPosition
+            startPosition = newPosition
+        } else {
+            endPosition = newPosition
+        }
+        invalidate()
+        editListener?.invoke()
+    }
+
     fun updateProgress(progress: Float) {
         currentProgress = progress
         invalidate()

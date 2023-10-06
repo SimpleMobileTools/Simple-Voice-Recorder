@@ -22,6 +22,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:digits="0123456789:."
+        android:imeOptions="actionDone"
+        android:singleLine="true"
         android:layout_marginStart="@dimen/activity_margin"
         android:layout_marginTop="@dimen/normal_margin"
         android:text="00:00:00.000" />
@@ -30,10 +33,13 @@
         android:id="@+id/selected_end_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:digits="0123456789:."
         android:layout_below="@+id/player_controls"
         android:layout_alignTop="@+id/selected_start_time"
         android:layout_alignBottom="@+id/selected_start_time"
         android:layout_alignParentEnd="true"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
         android:layout_marginEnd="@dimen/activity_margin"
         android:text="00:00:00.000" />
 
