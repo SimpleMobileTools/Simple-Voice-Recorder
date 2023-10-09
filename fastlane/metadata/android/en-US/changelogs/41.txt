@@ -1,0 +1,2 @@
+ * Fixed a glitch with inability to change save folder
+ * Added some stability, UI and translation improvements

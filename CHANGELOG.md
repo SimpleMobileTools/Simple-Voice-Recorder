@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.12.3 *(2023-10-09)*
+----------------------------
+
+ * Fixed a glitch with inability to change save folder
+ * Added some stability, UI and translation improvements
+
 Version 5.12.2 *(2023-09-18)*
 ----------------------------
 
