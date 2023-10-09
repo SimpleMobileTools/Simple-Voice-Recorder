@@ -12,7 +12,7 @@ eventbus = "3.3.1"
 #Room
 room = "2.6.0-alpha02"
 #Simple tools
-simple-commons = "257a2ab069"
+simple-commons = "8e7dd4508e"
 #AudioRecordView
 audiorecordview = "1.0.4"
 #AudioTool

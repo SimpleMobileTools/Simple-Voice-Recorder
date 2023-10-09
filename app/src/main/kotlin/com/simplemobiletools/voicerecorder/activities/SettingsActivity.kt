@@ -118,7 +118,7 @@ class SettingsActivity : SimpleActivity() {
     private fun setupSaveRecordingsFolder() {
         binding.settingsSaveRecordingsLabel.text = addLockedLabelIfNeeded(R.string.save_recordings_in)
         binding.settingsSaveRecordings.text = humanizePath(config.saveRecordingsFolder)
-        binding.settingsAudioSourceHolder.setOnClickListener {
+        binding.settingsSaveRecordingsHolder.setOnClickListener {
             if (isOrWasThankYouInstalled()) {
                 FilePickerDialog(this, config.saveRecordingsFolder, false, showFAB = true) {
                     val path = it
@@ -216,7 +216,13 @@ class SettingsActivity : SimpleActivity() {
             if (recycleBinContentSize == 0) {
                 toast(com.simplemobiletools.commons.R.string.recycle_bin_empty)
             } else {
-                ConfirmationDialog(this, "", com.simplemobiletools.commons.R.string.empty_recycle_bin_confirmation, com.simplemobiletools.commons.R.string.yes, com.simplemobiletools.commons.R.string.no) {
+                ConfirmationDialog(
+                    this,
+                    "",
+                    com.simplemobiletools.commons.R.string.empty_recycle_bin_confirmation,
+                    com.simplemobiletools.commons.R.string.yes,
+                    com.simplemobiletools.commons.R.string.no
+                ) {
                     emptyTheRecycleBin()
                     recycleBinContentSize = 0
                     binding.settingsEmptyRecycleBinSize.text = 0.formatSize()
