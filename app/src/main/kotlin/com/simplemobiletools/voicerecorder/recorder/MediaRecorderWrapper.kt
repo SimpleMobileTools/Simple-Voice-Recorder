@@ -5,6 +5,7 @@ import android.content.Context
 import android.media.MediaRecorder
 import com.simplemobiletools.voicerecorder.extensions.config
 import com.simplemobiletools.voicerecorder.helpers.SAMPLE_RATE
+import com.simplemobiletools.voicerecorder.helpers.OGGOPUS_SAMPLE_RATE
 import java.io.FileDescriptor
 
 class MediaRecorderWrapper(val context: Context) : Recorder {
@@ -14,7 +15,10 @@ class MediaRecorderWrapper(val context: Context) : Recorder {
         setOutputFormat(context.config.getOutputFormat())
         setAudioEncoder(context.config.getAudioEncoder())
         setAudioEncodingBitRate(context.config.bitrate)
-        setAudioSamplingRate(SAMPLE_RATE)
+        if (isQPlus()) {
+                setAudioSamplingRate(OGGOPUS_SAMPLE_RATE)
+            }
+        else -> setAudioSamplingRate(SAMPLE_RATE)
     }
 
     override fun setOutputFile(path: String) {
