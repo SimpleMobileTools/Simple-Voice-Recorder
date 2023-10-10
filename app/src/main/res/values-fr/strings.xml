@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Enregistreur vocal simple</string>
     <string name="app_launcher_name">Enregistreur vocal</string>
-    <string name="recording_saved_successfully">Enregistrement sauvegardé avec succès</string>
+    <string name="recording_saved_successfully">Sauvegarde de l\'enregistrement réussie</string>
     <string name="recording">Enregistrement</string>
     <string name="no_recordings_found">Aucun enregistrement créé par cette application
 \nn’a été trouvé</string>
