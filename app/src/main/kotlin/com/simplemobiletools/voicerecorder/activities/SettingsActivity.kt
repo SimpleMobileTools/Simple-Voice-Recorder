@@ -147,8 +147,7 @@ private fun setupExtension() {
     binding.settingsExtension.text = config.getExtensionText()
     binding.settingsExtensionHolder.setOnClickListener {
         val items = arrayListOf(
-        // Note: M4A is not open source (FOSS)
-            RadioItem(EXTENSION_M4A, getString(R.string.m4a) + " (not FOSS)"), // Update label text
+            RadioItem(EXTENSION_M4A, getString(R.string.m4a) + " (not FOSS)"), // Update label text // Note: M4A is not open source (FOSS)
             RadioItem(EXTENSION_MP3, getString(R.string.mp3))
         )
 
