@@ -280,13 +280,6 @@ class RecordingsAdapter(
                         }
                     }
 
-                    /*R.id.cab_edit -> {
-                        Intent(activity, EditRecordingActivity::class.java).apply {
-                            putExtra(EditRecordingActivity.RECORDING_ID, recordingId)
-                            activity.startActivity(this)
-                        }
-                    }*/
-
                     R.id.cab_delete -> {
                         executeItemMenuOperation(recordingId, removeAfterCallback = false) {
                             askConfirmDelete()

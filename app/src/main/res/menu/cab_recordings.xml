@@ -18,12 +18,6 @@
         android:icon="@drawable/ic_delete_vector"
         android:showAsAction="always"
         android:title="@string/delete" />
-    <!--<item
-        android:id="@+id/cab_edit"
-        android:icon="@drawable/ic_edit_vector"
-        android:showAsAction="ifRoom"
-        android:title="@string/edit"
-        app:showAsAction="ifRoom" />-->
     <item
         android:id="@+id/cab_open_with"
         android:showAsAction="never"
