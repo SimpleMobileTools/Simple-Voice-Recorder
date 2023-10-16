@@ -100,7 +100,5 @@ dependencies {
     implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.tandroidlame)
-    //implementation(libs.bundles.audiotool)
-    //implementation(libs.bundles.amplituda)
     implementation(libs.autofittextview)
 }
