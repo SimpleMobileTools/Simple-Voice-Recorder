@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Enregistreur vocal simple</string>
     <string name="app_launcher_name">Enregistreur vocal</string>
-    <string name="recording_saved_successfully">Sauvegarde de l\'enregistrement réussie</string>
+    <string name="recording_saved_successfully">Enregistrement de l\'enregistrement réussi</string>
     <string name="recording">Enregistrement</string>
     <string name="no_recordings_found">Aucun enregistrement créé par cette application
 \nn’a été trouvé</string>
@@ -20,13 +20,13 @@
         <item quantity="other">%d enregistrements</item>
     </plurals>
     <!-- Settings -->
-    <string name="try_hiding_notification">Essayez de masquer la notification d’enregistrement</string>
-    <string name="save_recordings_in">Sauvegarder les enregistrements dans</string>
+    <string name="try_hiding_notification">Essayer de masquer la notification d’enregistrement</string>
+    <string name="save_recordings_in">Enregistrer les enregistrements dans</string>
     <string name="audio_source">Source audio</string>
-    <string name="bitrate">Débit binaire</string>
+    <string name="bitrate">Débit</string>
     <string name="record_after_launch">Démarrer l’enregistrement automatiquement après le lancement de l’application</string>
     <!-- Settings Audio source selection -->
-    <string name="audio_source_camcorder">Objectif vidéo</string>
+    <string name="audio_source_camcorder">Microphone intégré</string>
     <string name="audio_source_default">Par défaut Android</string>
     <string name="audio_source_unprocessed">Non traitée</string>
     <string name="audio_source_microphone">Microphone</string>
@@ -34,7 +34,7 @@
     <string name="audio_source_voice_communication">Communication vocale</string>
     <string name="audio_source_voice_performance">Performance vocale</string>
     <!-- FAQ -->
-    <string name="faq_1_title">Puis-je masquer l’icône de notification pendant l’enregistrement \?</string>
+    <string name="faq_1_title">Puis-je masquer l’icône de notification pendant l’enregistrement \?</string>
     <string name="faq_1_text">Eh bien, ça dépend. Pendant que vous utilisez votre appareil, il n’est plus possible de masquer complètement les notifications d’applications comme celle-ci. Si vous cochez l’élément de réglage approprié, l’application fera de son mieux pour les masquer. Vous pouvez cependant la masquer sur l’écran de verrouillage, si vous désactivez l’affichage des notifications sensibles dans les paramètres de votre appareil.</string>
     <!--
         Haven't found some strings? There's more at
